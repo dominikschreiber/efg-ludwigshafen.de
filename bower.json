@@ -1,0 +1,28 @@
+{
+  "name": "efg-ludwigshafen.de",
+  "version": "0.0.1",
+  "authors": [
+    "Dominik Schreiber <domischreib@gmail.com>"
+  ],
+  "description": "website of efg ludwigshafen",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "efg-ludwigshafen.de",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "less": "~2.1.1",
+    "prefixfree": "*",
+    "angular": "~1.3.6",
+    "angular-route": "~1.3.6",
+    "angular-google-maps": "~2.0.11",
+    "angularjs-geolocation": "~0.1.1"
+  }
+}
