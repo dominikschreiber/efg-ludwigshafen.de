@@ -16,7 +16,9 @@ angular.module('efg.findusView', [
 	// or marker won't update when map is moved
 	var latitude = 49.49172
 	  , longitude = 8.435441
-	  , d = {lat: 0.002, lng: 0.002};
+	// northways == +lat
+	// eastways == +lng
+	  , d = {lat: 0.0035, lng: 0.005};
 	
 	this.map = {
 		center: {
@@ -55,11 +57,11 @@ angular.module('efg.findusView', [
 		};
 		this.map.bounds = {
 			northeast: {
-				latitude: Math.min(this.we.coords.latitude, this.you.coords.latitude) - d.lat,
+				latitude: Math.max(this.we.coords.latitude, this.you.coords.latitude) + d.lat,
 				longitude: Math.max(this.we.coords.longitude, this.you.coords.longitude) + d.lng
 			},
 			southwest: {
-				latitude: Math.max(this.we.coords.latitude, this.you.coords.latitude) + d.lat,
+				latitude: Math.min(this.we.coords.latitude, this.you.coords.latitude) - d.lat,
 				longitude: Math.min(this.we.coords.longitude, this.you.coords.longitude) - d.lng
 			}
 		};
