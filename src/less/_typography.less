@@ -1,0 +1,32 @@
+// typography (font sizes, line heights, etc.)
+@import '_variables.less';
+
+html {
+	font-size: 12px;
+	
+	@media (min-width: @screen-sm-min) { font-size: 14px; }
+	@media (min-width: @screen-md-min) { font-size: 16px; }
+	@media (min-width: @screen-lg-min) { font-size: 22px; }
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 { 
+	font-size: 3.5 * @u-unit;
+}
+h2 { 
+	font-size: 2.25 * @u-unit;
+}
+h3 { 
+	font-size: 1.125 * @u-unit;
+}
+
+p { 
+	font-size: .825 * @u-unit;
+	
+	&.lead {
+		font-size: 1 * @u-unit;
+	}
+}

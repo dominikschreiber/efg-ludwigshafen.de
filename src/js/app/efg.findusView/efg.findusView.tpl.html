@@ -1,0 +1,35 @@
+<div class="component component-almost-viewport">
+	<ui-gmap-google-map center="findus.map.center" 
+						zoom="findus.map.zoom"
+						options="findus.map.options"
+						bounds="findus.map.bounds">
+		<ui-gmap-marker idkey="findus.we.id"
+						coords="findus.we.coords">
+			<ui-gmap-window show="true">
+				<div>
+					<p>Hier sind wir!</p>
+					<address>Böhlstraße 5<br>67063 Ludwigshafen</address>
+				</div>
+			</ui-gmap-window>
+		</ui-gmap-marker>
+		<ui-gmap-marker ng-if="findus.you !== undefined"
+						idkey="findus.you.id"
+						coords="findus.you.coords">
+			<ui-gmap-window show="true">
+				<div><p>Hier bist Du!</p></div>
+			</ui-gmap-window>
+		</ui-gmap-marker>
+	</ui-gmap-google-map>
+</div>
+<component classes="component-lg"
+		   header="Böhlstraße 5, Ludwigshafen"
+		   subheader="Plane Deinen Weg zu uns.">
+	<div class="col-sm-6">
+		<h3>Mit öffentlichen Verkehrsmitteln</h3>
+		<p class="text-left">Die Haltestelle <em>Hemshofstraße/BASF Tor 7</em> (Linie 7) ist zwei Gehminuten entfernt.</p>
+	</div>
+	<div class="col-sm-6">
+		<h3>Mit dem Auto</h3>
+		<p><a href="https://www.google.de/maps/place/Böhlstraße+5,+67063+Ludwigshafen+am+Rhein/" class="btn btn-lg btn-outline">Zu Google Maps</a></p>
+	</div>
+</component>

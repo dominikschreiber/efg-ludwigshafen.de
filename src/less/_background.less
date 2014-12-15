@@ -1,0 +1,48 @@
+// provides classes to style the background of arbitrary elements
+@import '_variables.less';
+@import '_mixins.less';
+
+.bg-img {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.bg-light {
+	color: @c-content;
+	background-color: @c-background;
+}
+
+.bg-dark {
+	color: @c-content-inverse;
+	background-color: @c-background-inverse;
+}
+
+.bg-dark-spotlight {
+	.bg-dark;
+	.bg-img;
+	._bg-img-dark('img/spotlight.jpg');
+}
+
+.bg-dark-map {
+	.bg-dark;
+	.bg-img;
+	._bg-img-dark('img/map.jpg')
+}
+
+.bg-dark-food {
+	.bg-dark;
+	.bg-img;
+	._bg-img-dark('img/food.jpg');
+}
+
+.bg-effect-parallax {
+	background-attachment: fixed;
+}
+
+._bg-img-dark(@url) {
+	@black: fade(@c-black, 70%);
+	background-image:
+		linear-gradient(@black, @black),
+		url(@url);
+}

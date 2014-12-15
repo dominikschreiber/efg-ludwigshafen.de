@@ -1,0 +1,29 @@
+// full-width element that should contain a container
+// useful for full-width backgrounds, top/bottom padding etc.
+@import '_variables.less';
+
+.component {
+	display: block;
+	width: 100%;
+	
+	.row + .row {
+		margin-top: 2 * @u-unit;
+	}
+}
+
+.component-flex {
+	display: flex;
+	
+	> * {
+		margin: auto;
+	}
+}
+
+.component-lg {
+	@padding-factor: 5;
+	padding-top: @padding-factor * @u-unit;
+	padding-bottom: @padding-factor * @u-unit;
+}
+
+.component-almost-viewport { height: calc(~"100vh - "(7 * @u-unit)); }
+.component-viewport { height: 100vh; }

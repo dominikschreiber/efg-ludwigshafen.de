@@ -1,0 +1,131 @@
+<!-- ===== welcome ============================================== -->
+<component classes="component-flex component-almost-viewport bg-dark-spotlight"
+		   header="EfG Ludwigshafen"
+		   subheader="Baptisten im Hemshof"></component>
+
+<!-- ===== services ============================================= -->
+<component classes="component-lg"
+		   header="Unsere Gottesdienste"
+		   subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
+	<div class="col-sm-4 col-sm-offset-1">
+		<a href="#!/service/sunday"
+		   class="btn btn-lg btn-block btn-outline">
+			Jeden Sonntag<br>
+			<b>10:00 Uhr</b>
+		</a>
+	</div>
+	<div class="col-sm-4 col-sm-offset-2">
+		<a href="#!/service/worship"
+		   class="btn btn-lg btn-block btn-outline">
+			Am 2. Sonntag im Monat<br>
+			<b>19:00 Uhr</b>
+		</a>
+	</div>
+</component>
+
+<!-- ===== location ============================================= -->
+<component classes="component-lg bg-dark-map"
+		   header="Unser Standort"
+		   subheader="Wir sind mitten im Hemshof, dem Herz von Ludwigshafen.">
+	<div class="col-md-12">
+		<p class="lead">Böhlstraße 5, 67063 Ludwigshafen</p>
+	</div>
+	<div class="col-md-12 u-space-top">
+		<p><a href="#!/findus" class="btn btn-lg btn-light btn-outline">Wegbeschreibung anzeigen</a></p>
+	</div>
+</component>
+
+<!-- ===== events =============================================== -->
+<component classes="component-lg"
+		   header="Nächste Events"
+		   subheader="Bei uns in der Gemeinde.">
+	<thumbnail class="col-sm-4"
+			   ng-repeat="event in index.events"
+			   href="'#!/event/' + event.id"
+			   header="event.title"
+			   subheader="event.subtitle"
+			   img="event.img"
+			   imgclass="'img-rounded'"/>
+</component>
+
+<!-- ===== groups =============================================== -->
+<component classes="component-lg bg-dark-food"
+		   header="Unsere Gruppen"
+		   subheader="Du bist herzlich eingeladen.">
+	<thumbnail class="col-sm-4 col-md-3"
+			   ng-repeat="group in index.groups"
+			   href="'#!/group/' + group.id"
+			   header="group.title"
+			   subheader="group.subtitle"
+			   img="group.img"
+			   imgclass="'img-circle'"/>
+</component>
+
+<!-- ===== info ================================================= -->
+<component classes="component-lg"
+		   header="Informationen"
+		   subheader="Wir wollen Deine Fragen beantworten.">
+	<thumbnail class="col-sm-4"
+			   ng-repeat="info in index.infos"
+			   href="'#!/info/' + info.id"
+			   header="info.title"
+			   subheader="info.subtitle"
+			   img="info.img"/>
+</component>
+
+<!-- ===== next ================================================= -->
+<component classes="component-lg bg-primary"
+		   header="Nächste Schritte"
+		   subheader="Wie gehts jetzt weiter?">
+	<div class="col-sm-4"
+		 ng-repeat="action in index.next"
+		 style="margin-bottom: 2rem">
+		<a class="btn btn-light btn-lg btn-outline"
+		   ng-href="#!/next/{{action.id}}">
+			{{action.subtitle}}<br>
+			<b>{{action.title}}</b>
+		</a>
+	</div>
+</component>
+
+<!-- ===== member =============================================== -->
+<component classes="component-lg"
+		   header="Unser Team">
+	<div class="col-md-12">
+		<div class="row">
+			<thumbnail class="col-sm-6"
+					   ng-repeat="member in index.members | regex:'Älteste':'subtitle'"
+					   href="'#!/member/' + member.id"
+					   header="member.title"
+					   subheader="member.subtitle"
+					   img="member.img"
+					   imgclass="'img-circle'"/>
+		</div>
+		<div class="row" ng-hide="index.showFullTeam" ng-init="index.showFullTeam = false">
+			<div class="col-md-12">
+				<button type="button" class="btn btn-lg btn-outline" ng-click="index.showFullTeam = true">mehr Verantwortliche</button>
+			</div>
+		</div>
+		<div class="row" ng-if="index.showFullTeam">
+			<!-- using negative look-around regex to filter !Älteste http://stackoverflow.com/a/406408 -->
+			<thumbnail class="col-sm-4 col-md-3"
+					   ng-repeat="member in index.members | regex:'^((?!Älteste).)*$':'subtitle'"
+					   href="'#!/member/' + member.id"
+					   header="member.title"
+					   subheader="member.subtitle"
+					   img="member.img"
+					   imgclass="'img-circle'"/>
+		</div>
+	</div>
+</component>
+
+<!-- ===== contact ============================================== -->
+<component classes="component-lg bg-dark"
+		   header="Kontakt"
+		   subheader="So erreichst Du uns.">
+	<thumbnail class="col-sm-4"
+			   ng-repeat="contact in index.contacts"
+			   href="contact.subtitle"
+			   header="contact.title"
+			   img="contact.img"/>
+</component>
