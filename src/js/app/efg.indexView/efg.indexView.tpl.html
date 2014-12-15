@@ -75,12 +75,11 @@
 
 <!-- ===== next ================================================= -->
 <component classes="component-lg bg-primary"
-		   header="Nächste Schritte"
-		   subheader="Wie gehts jetzt weiter?">
+		   header="Nächste Schritte">
 	<div class="col-sm-4"
 		 ng-repeat="action in index.next"
-		 style="margin-bottom: 2rem">
-		<a class="btn btn-light btn-lg btn-outline"
+		 style="margin-bottom: 2rem; padding-left: 2rem; padding-right: 2rem;">
+		<a class="btn btn-light btn-lg btn-block btn-outline"
 		   ng-href="#!/next/{{action.id}}">
 			{{action.subtitle}}<br>
 			<b>{{action.title}}</b>
