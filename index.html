@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html ng-app="efg">
+	<head>
+		<title>EfG Ludwigshafen</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- css libraries -->
+		<!-- link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" -->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<!-- own css -->
+		<link rel="stylesheet" href="theme.min.css">
+		<!-- js that must appear in head (deals with less/css) -->
+		<script src="bower_components/prefixfree/prefixfree.min.js"></script>
+	</head>
+
+	<body>
+		<div ng-view></div>
+		
+		<!-- js libraries -->
+		<script src="bower_components/lodash/dist/lodash.min.js"></script> <!-- dependency of angular-google-maps -->
+		<script src="bower_components/jquery/dist/jquery.min.js"></script> <!-- dependency of bootstrap -->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-route/angular-route.min.js"></script>
+		<script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+		<script src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+		<!-- own js -->
+		<script src="main.min.js"></script>
+	</body>
+</html>
