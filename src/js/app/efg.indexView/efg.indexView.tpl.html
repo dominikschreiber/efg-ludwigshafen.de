@@ -1,5 +1,6 @@
 <!-- ===== welcome ============================================== -->
-<component classes="component-flex component-almost-viewport bg-dark-spotlight"
+<component classes="component-flex component-almost-viewport bg-img bg-dark"
+		   style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(//lorempixel.com/g/1920/1080/abstract)"
 		   header="EfG Ludwigshafen"
 		   subheader="Baptisten im Hemshof"></component>
 
@@ -24,7 +25,8 @@
 </component>
 
 <!-- ===== location ============================================= -->
-<component classes="component-lg bg-dark-map"
+<component classes="component-lg bg-img bg-dark"
+		   style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(//lorempixel.com/g/1920/1080/transport)"
 		   header="Unser Standort"
 		   subheader="Wir sind mitten im Hemshof, dem Herz von Ludwigshafen.">
 	<div class="col-md-12">
@@ -49,7 +51,8 @@
 </component>
 
 <!-- ===== groups =============================================== -->
-<component classes="component-lg bg-dark-food"
+<component classes="component-lg bg-img bg-dark"
+		   style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(//lorempixel.com/g/1920/1080/people)"
 		   header="Unsere Gruppen"
 		   subheader="Du bist herzlich eingeladen.">
 	<thumbnail class="col-sm-4 col-md-3"
@@ -93,12 +96,13 @@
 	<div class="col-md-12">
 		<div class="row">
 			<thumbnail class="col-sm-6"
+					   style="padding-left: 6rem; padding-right: 6rem"
 					   ng-repeat="member in index.members | regex:'Älteste':'subtitle'"
 					   href="'#!/member/' + member.id"
 					   header="member.title"
 					   subheader="member.subtitle"
 					   img="member.img"
-					   imgclass="'img-circle'"/>
+					   imgclass="'img-circle img-thumbnail'"/>
 		</div>
 		<div class="row" ng-hide="index.showFullTeam" ng-init="index.showFullTeam = false">
 			<div class="col-md-12">
@@ -113,7 +117,7 @@
 					   header="member.title"
 					   subheader="member.subtitle"
 					   img="member.img"
-					   imgclass="'img-circle'"/>
+					   imgclass="'img-circle img-thumbnail'"/>
 		</div>
 	</div>
 </component>
