@@ -3,6 +3,7 @@ angular.module('efg.indexView', [
 	'efg.regexFilter',
 	'efg.componentDirective',
 	'bootstrap.thumbnailDirective',
+	'bootstrap.thumbnailsDirective',
 	'ng',
 	'ngRoute'
 ])
@@ -15,18 +16,32 @@ angular.module('efg.indexView', [
 })
 
 .controller('IndexCtrl', function(mock, $log, $filter) {
+	this.$filter = $filter;
+	
 	mock.get('/api/v1/group').then(angular.bind(this, function success(result) {
 		this.groups = result;
 	}));
 	mock.get('/api/v1/member?fields=name,duties,img').then(angular.bind(this, function success(result) {
-		this.members = result.map(function(member) {
-			return {
-				id: member.id,
-				title: [member.name.givenname, member.name.familyname].join(' '),
-				subtitle: member.duties.join(', '),
-				img: member.img
-			};
-		});
+		function createMember(member) {
+				return {
+					id: member.id,
+					title: [member.name.givenname, member.name.familyname].join(' '),
+					subtitle: member.duties.join(', '),
+					img: member.img
+				};
+			}
+		
+		this.members = result
+			.filter(function(member) {
+				return member.duties.indexOf('Ältester') === -1;
+			})
+			.map(createMember);
+		
+		this.elders = result
+			.filter(function(member) {
+				return member.duties.indexOf('Ältester') > -1;
+			})
+			.map(createMember);
 	}));
 	mock.get('/api/v1/event?limit=3&fields=name,date,img').then(angular.bind(this, function success(result) {
 		this.events = result.map(function(event) {
@@ -62,9 +77,8 @@ angular.module('efg.indexView', [
 	mock.get('/api/v1/contact?fields=name,action,img').then(angular.bind(this, function success(result) {
 		this.contacts = result.map(function(contact) {
 			return {
-				id: contact.id,
+				id: contact.action,
 				title: contact.name,
-				subtitle: contact.action,
 				img: contact.img
 			};
 		});
