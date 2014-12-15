@@ -3,8 +3,16 @@
 @c-white: #ffffff;
 @c-black: #000000;
 
+// color methodology:
+// ------------------
+// - c-content is the main content color (dark, when on light background)
+// - c-background is the main background color
+// - *-eased is a weaker version of the color
+// - *-inverse is a inversed version of the color (e.g. dark instead of light)
 @c-content: lighten(@c-black, 20%);
+@c-content-eased: lighten(@c-content, 20%);
 @c-content-inverse: @c-white;
+@c-content-inverse-eased: darken(@c-content-inverse, 20%);
 
 @c-background: darken(@c-white, 10%);
 @c-background-inverse: lighten(@c-black, 20%);
