@@ -22,14 +22,14 @@
 		background-color,
 		color;
 	
-	._generate-btn-outline(darken(@c-white, 40%));
+	._generate-btn-outline(@c-content-eased);
 	
 	&.btn-primary { ._generate-btn-outline(@brand-primary); }
 	&.btn-success { ._generate-btn-outline(@brand-success); }
 	&.btn-info { ._generate-btn-outline(@brand-info); }
 	&.btn-warning { ._generate-btn-outline(@brand-warning); }
 	&.btn-danger { ._generate-btn-outline(@brand-danger); }
-	&.btn-light { ._generate-btn-outline(@c-white); }
+	&.btn-light { ._generate-btn-outline(@c-content-inverse); }
 }
 
 // generates color-specific outlined buttons
