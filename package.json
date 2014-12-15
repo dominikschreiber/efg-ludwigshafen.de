@@ -4,13 +4,15 @@
   "description": "website of efg ludwigshafen",
   "main": "index.html",
   "scripts": {
-	"clean": "node_modules/.bin/grunt clean",
+    "postinstall": "node_modules/.bin/bower install",
+    "clean": "node_modules/.bin/grunt clean",
     "start": "node_modules/.bin/grunt start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dominik Schreiber <domischreib@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "bower": "^1.3.12",
     "connect-livereload": "^0.5.2",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
