@@ -16,9 +16,7 @@ angular.module('efg.findusView', [
 	// or marker won't update when map is moved
 	var latitude = 49.49172
 	  , longitude = 8.435441
-	// northways == +lat
-	// eastways == +lng
-	  , d = {lat: 0.0035, lng: 0.005};
+	  , delta = 0.0001;
 	
 	this.map = {
 		center: {
@@ -32,12 +30,12 @@ angular.module('efg.findusView', [
 		},
 		bounds: {
 			northeast: {
-				latitude: latitude - d.lat,
-				longitude: longitude + d.lng
+				latitude: latitude * (1 + delta),
+				longitude: longitude * (1 + delta)
 			},
 			southwest: {
-				latitude: latitude + d.lat,
-				longitude: longitude - d.lng
+				latitude: latitude * (1 - delta),
+				longitude: longitude * (1 - delta)
 			}
 		}
 	};
@@ -57,12 +55,14 @@ angular.module('efg.findusView', [
 		};
 		this.map.bounds = {
 			northeast: {
-				latitude: Math.max(this.we.coords.latitude, this.you.coords.latitude) + d.lat,
-				longitude: Math.max(this.we.coords.longitude, this.you.coords.longitude) + d.lng
+				// to north == +lat
+				latitude: Math.max(this.we.coords.latitude, this.you.coords.latitude) * (1 + delta),
+				// to east == +lng
+				longitude: Math.max(this.we.coords.longitude, this.you.coords.longitude) * (1 + delta)
 			},
 			southwest: {
-				latitude: Math.min(this.we.coords.latitude, this.you.coords.latitude) - d.lat,
-				longitude: Math.min(this.we.coords.longitude, this.you.coords.longitude) - d.lng
+				latitude: Math.min(this.we.coords.latitude, this.you.coords.latitude) * (1 - delta),
+				longitude: Math.min(this.we.coords.longitude, this.you.coords.longitude) * (1 - delta)
 			}
 		};
 	}));
