@@ -8,8 +8,8 @@ angular.module('efg.mockService', [
 			{id: 'family', title: 'Kinderbetreuung', subtitle: '0 bis 6 Jahre', img: 'glyphicon glyphicon-user'},
 			{id: 'kids', title: 'Kindergottesdienst', subtitle: '7 bis 12 Jahre', img: 'glyphicon glyphicon-user'},
 			{id: 'teens', title: 'Gemeindeunterricht', subtitle: '13 bis 16 Jahre', img: 'glyphicon glyphicon-user'},
-			{id: 'youth', title: 'Teenie-Hauskreise', subtitle: '17 bis 21 Jahre', img: 'glyphicon glyphicon-user'},
-			{id: 'young-adults', title: 'unlimited', subtitle: '22 bis 35 Jahre', img: 'glyphicon glyphicon-user'},
+			{id: 'youth-cellgroups', title: 'Teenie-Hauskreise', subtitle: '17 bis 21 Jahre', img: 'glyphicon glyphicon-user'},
+			{id: 'unlimited', title: 'unlimited', subtitle: '22 bis 35 Jahre', img: 'glyphicon glyphicon-user'},
 			{id: 'women', title: 'Café Life', subtitle: 'Frauen', img: 'glyphicon glyphicon-user'},
 			{id: 'seniors', title: 'Seniorenkreis', subtitle: 'über 60 Jahre', img: 'glyphicon glyphicon-user'}
 		],
