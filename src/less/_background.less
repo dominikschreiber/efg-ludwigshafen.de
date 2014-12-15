@@ -11,11 +11,21 @@
 .bg-light {
 	color: @c-content;
 	background-color: @c-background;
+	
+	.text-eased,
+	&.text-eased {
+		color: @c-content-eased;
+	}
 }
 
 .bg-dark {
 	color: @c-content-inverse;
 	background-color: @c-background-inverse;
+	
+	.text-eased,
+	&.text-eased {
+		color: @c-content-inverse-eased;
+	}
 }
 
 .bg-dark-spotlight {
