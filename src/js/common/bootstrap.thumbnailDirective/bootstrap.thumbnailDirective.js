@@ -9,6 +9,7 @@ angular.module('bootstrap.thumbnailDirective', [
 				return haystack.indexOf(needle) > -1;
 			};
 		},
+		replace: true,
 		restrict: 'E',
 		scope: {
 			href: '=',
