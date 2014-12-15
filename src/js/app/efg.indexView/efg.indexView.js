@@ -14,7 +14,7 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(mock, $log, $scope) {
+.controller('IndexCtrl', function(mock, $log, $filter) {
 	mock.get('/api/v1/group').then(angular.bind(this, function success(result) {
 		this.groups = result;
 	}));
@@ -28,8 +28,30 @@ angular.module('efg.indexView', [
 			};
 		});
 	}));
-	mock.get('/api/v1/event?limit=3').then(angular.bind(this, function success(result) {
-		this.events = result;
+	mock.get('/api/v1/event?limit=3&fields=name,date,img').then(angular.bind(this, function success(result) {
+		this.events = result.map(function(event) {
+			return {
+				id: event.id,
+				title: event.name,
+				subtitle: (event.date.length > 1) ?
+					event.date
+						.reduce(function(prev, now) {
+							var min = prev[0]
+							  , max = prev[1];
+							
+							if (now < min) { min = now; }
+							if (now > max) { max = now; }
+							
+							return [min, max];
+						}, [Number.MAX_VALUE, Number.MIN_VALUE])
+						.map(function(date) {
+							return $filter('date')(new Date(date), 'd. MMMM');
+						})
+						.join(' bis ') :
+					$filter('date')(new Date(event.date[0]), 'd. MMMM HH:mm'),
+				img: event.img
+			};
+		});
 	}));
 	mock.get('/api/v1/next').then(angular.bind(this, function success(result) {
 		this.next = result;
