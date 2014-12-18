@@ -1,7 +1,9 @@
 angular.module('efg.findusView', [
+	'efg.componentDirective',
 	'uiGmapgoogle-maps',
 	'geolocation',
-	'ng'
+	'ng',
+	'ngRoute'
 ])
 
 .config(function($routeProvider) {
