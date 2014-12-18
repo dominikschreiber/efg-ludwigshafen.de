@@ -3,6 +3,7 @@ angular.module('efg', [
 	'efg.serviceView',
 	'efg.memberView',
 	'efg.findusView',
+	'efg.groupView',
 	'uiGmapgoogle-maps',
 	'ng',
 	'ngRoute'
