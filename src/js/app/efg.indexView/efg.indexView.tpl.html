@@ -8,18 +8,13 @@
 <component classes="component-lg"
 		   header="Unsere Gottesdienste"
 		   subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
-	<div class="col-sm-4 col-sm-offset-1">
-		<a href="#!/service/sunday"
+	<div class="col-sm-6"
+		 style="padding-left: 2rem; padding-right: 2rem"
+		 ng-repeat="service in index.services">
+		<a ng-href="#!/service/{{service.id}}"
 		   class="btn btn-lg btn-block btn-outline">
-			Jeden Sonntag<br>
-			<b>10:00 Uhr</b>
-		</a>
-	</div>
-	<div class="col-sm-4 col-sm-offset-2">
-		<a href="#!/service/worship"
-		   class="btn btn-lg btn-block btn-outline">
-			Am 2. Sonntag im Monat<br>
-			<b>19:00 Uhr</b>
+			<span ng-bind="service.title"></span><br>
+			<strong ng-bind="service.subtitle"></strong>
 		</a>
 	</div>
 </component>

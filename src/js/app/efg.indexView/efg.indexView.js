@@ -18,6 +18,9 @@ angular.module('efg.indexView', [
 .controller('IndexCtrl', function(mock, $log, $filter) {
 	this.$filter = $filter;
 	
+	mock.get('/api/v1/service').then(angular.bind(this, function success(result) {
+		this.services = result;
+	}));
 	mock.get('/api/v1/group').then(angular.bind(this, function success(result) {
 		this.groups = result;
 	}));

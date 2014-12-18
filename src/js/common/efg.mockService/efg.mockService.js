@@ -5,14 +5,49 @@ angular.module('efg.mockService', [
 .factory('mock', function($q, $log, $window) {
 	var mock = {
 		'/api/v1/group': [
-			{id: 'family', title: 'Kinderbetreuung', subtitle: '0 bis 6 Jahre', img: 'glyphicon glyphicon-user'},
-			{id: 'kids', title: 'Kindergottesdienst', subtitle: '7 bis 12 Jahre', img: 'glyphicon glyphicon-user'},
-			{id: 'teens', title: 'Gemeindeunterricht', subtitle: '13 bis 16 Jahre', img: 'glyphicon glyphicon-user'},
-			{id: 'youth-cellgroups', title: 'Teenie-Hauskreise', subtitle: '17 bis 21 Jahre', img: 'glyphicon glyphicon-user'},
-			{id: 'unlimited', title: 'unlimited', subtitle: '22 bis 35 Jahre', img: 'glyphicon glyphicon-user'},
-			{id: 'women', title: 'Café Life', subtitle: 'Frauen', img: 'glyphicon glyphicon-user'},
-			{id: 'seniors', title: 'Seniorenkreis', subtitle: 'über 60 Jahre', img: 'glyphicon glyphicon-user'}
+			{id: 'family', title: 'Kinderbetreuung', subtitle: '0 bis 6 Jahre', img: '//lorempixel.com/200/200/cats/1'},
+			{id: 'kids', title: 'Kindergottesdienst', subtitle: '7 bis 12 Jahre', img: '//lorempixel.com/200/200/cats/2'},
+			{id: 'teens', title: 'Gemeindeunterricht', subtitle: '13 bis 16 Jahre', img: '//lorempixel.com/200/200/cats/3'},
+			{id: 'youth-cellgroups', title: 'Teenie-Hauskreise', subtitle: '17 bis 21 Jahre', img: '//lorempixel.com/200/200/cats/4'},
+			{id: 'unlimited', title: 'unlimited', subtitle: '22 bis 35 Jahre', img: '//lorempixel.com/200/200/cats/5'},
+			{id: 'women', title: 'Café Life', subtitle: 'Frauen', img: '//lorempixel.com/200/200/cats/6'},
+			{id: 'seniors', title: 'Seniorenkreis', subtitle: 'über 60 Jahre', img: '//lorempixel.com/200/200/cats/7'}
 		],
+		'/api/v1/group/family?fields=name,poster': {
+			id: 'family',
+			name: '',
+			poster: '//lorempixel.com/1920/1080/cats/1'
+		},
+		'/api/v1/group/kids?fields=name,poster': {
+			id: 'kids',
+			name: '',
+			poster: '//lorempixel.com/1920/1080/cats/2'
+		},
+		'/api/v1/group/teens?fields=name,poster': {
+			id: 'teens',
+			name: '',
+			poster: '//lorempixel.com/1920/1080/cats/3'
+		},
+		'/api/v1/group/youth-cellgroups?fields=name,poster': {
+			id: 'youth-cellgroups',
+			name: '',
+			poster: '//lorempixel.com/1920/1080/cats/4'
+		},
+		'/api/v1/group/unlimited?fields=name,poster': {
+			id: 'unlimited',
+			name: '',
+			poster: '//lorempixel.com/1920/1080/cats/5'
+		},
+		'/api/v1/group/women?fields=name,poster': {
+			id: 'women',
+			name: '',
+			poster: '//lorempixel.com/1920/1080/cats/6'
+		},
+		'/api/v1/group/seniors?fields=name,poster': {
+			id: 'seniors',
+			name: '',
+			poster: '//lorempixel.com/1920/1080/cats/7'
+		},
 		'/api/v1/member?fields=name,duties,img':  [
 			{
 				id: 'wilfried',
@@ -174,11 +209,17 @@ angular.module('efg.mockService', [
 			{id: 'location', name: 'Böhlstraße 5, Ludwigshafen', action: '#!/findus', img: 'glyphicon glyphicon-map-marker'},
 			{id: 'email', name: 'info@efg-ludwigshafen.de', action: 'mailto:info@efg-ludwigshafen.de', img: 'glyphicon glyphicon-envelope'}
 		],
+		'/api/v1/service': [
+			{id: 'sunday', title: 'Jeden Sonntag', subtitle: '10:00 Uhr'},
+			{id: 'worship', title: 'Am 2. Sonntag im Monat', subtitle: '19:00 Uhr'}
+		],
 		'/api/v1/service/sunday': {
+			id: 'sunday',
 			title: 'Sonntagmorgen-Gottesdienst',
 			subtitle: 'Jung und Alt, Groß und Klein. Gemeinsam vor Gott'
 		},
 		'/api/v1/service/worship': {
+			id: 'worship',
 			title: 'Lobpreis-Gottesdienst',
 			subtitle: 'Musik. Gebet. Anbetung.'
 		}
