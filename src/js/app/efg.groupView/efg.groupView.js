@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('efg.groupView', [
 	'efg.mockService',
 	'efg.componentDirective',
