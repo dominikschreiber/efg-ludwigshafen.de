@@ -2,6 +2,10 @@ angular.module('efg.trustFilter', [
 	'ng'
 ])
 
-.filter('trust', function($sce) {
+.filter('trustHtml', function($sce) {
 	return $sce.trustAsHtml;
+})
+
+.filter('trustResource', function($sce) {
+	return $sce.trustAsResourceUrl;
 });
