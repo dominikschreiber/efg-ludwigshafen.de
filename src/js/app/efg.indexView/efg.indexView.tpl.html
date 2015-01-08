@@ -108,13 +108,8 @@
            header="Predigten">
 	<div class="col-md-12">
 		<h3>{{index.sermon.name}} <small>{{index.sermon.date | date:'d. MMMM'}}, von {{index.sermon.preacher.name}}</small></h3>
-		<audio controls
-			   class="show"
-			   style="width: 100%">
-			<source ng-repeat="source in index.sermon.source"
-					ng-src="{{source.src | trustResource}}"
-					type="{{source.type}}"/>
-		</audio>
+		<sermon content="index.sermon"
+                style="width: 100%"></sermon>
 		<p class="u-space-top">
 			<a class="btn btn-lg btn-outline"
 			   ng-href="#!/sermon/">
