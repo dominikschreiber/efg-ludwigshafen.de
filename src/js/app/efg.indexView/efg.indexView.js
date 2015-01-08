@@ -1,6 +1,9 @@
+'use strict';
+
 angular.module('efg.indexView', [
 	'efg.mockService',
 	'efg.regexFilter',
+	'efg.trustFilter',
 	'efg.componentDirective',
 	'bootstrap.thumbnailDirective',
 	'bootstrap.thumbnailsDirective',
@@ -34,20 +37,22 @@ angular.module('efg.indexView', [
 				};
 			}
 		
-		this.members = result
+		this.members = _.chain(result)
 			.filter(function(member) {
 				return member.duties.indexOf('Ältester') === -1;
 			})
-			.map(createMember);
+			.map(createMember)
+            .value();
 		
-		this.elders = result
+		this.elders = _.chain(result)
 			.filter(function(member) {
 				return member.duties.indexOf('Ältester') > -1;
 			})
-			.map(createMember);
+			.map(createMember)
+            .value();
 	}));
 	mock.get('/api/v1/event?limit=3&fields=name,date,img').then(angular.bind(this, function success(result) {
-		this.events = result.map(function(event) {
+		this.events = _.map(result, function(event) {
 			return {
 				id: event.id,
 				title: event.name,
@@ -71,14 +76,27 @@ angular.module('efg.indexView', [
 			};
 		});
 	}));
-	mock.get('/api/v1/next').then(angular.bind(this, function success(result) {
-		this.next = result;
+	mock.get('/api/v1/next?fields=name').then(angular.bind(this, function success(result) {
+		this.next = _.map(result, function(action) {
+            var words = action.name.split(' ')
+              , result = {
+                id: action.id,
+                title: _.last(words),
+                subtitle: _.initial(words).join(' ')
+            };
+            
+            $log.log(result);
+            return result;
+        });
 	}));
 	mock.get('/api/v1/info').then(angular.bind(this, function success(result) {
 		this.infos = result;
 	}));
+    mock.get('/api/v1/sermon?fields=name,date,series:(name,order),preacher:(name),source:(src,type)&limit=1').then(angular.bind(this, function success(result) {
+		this.sermon = result[0];
+	}));
 	mock.get('/api/v1/contact?fields=name,action,img').then(angular.bind(this, function success(result) {
-		this.contacts = result.map(function(contact) {
+		this.contacts = _.map(result, function(contact) {
 			return {
 				id: contact.action,
 				title: contact.name,
