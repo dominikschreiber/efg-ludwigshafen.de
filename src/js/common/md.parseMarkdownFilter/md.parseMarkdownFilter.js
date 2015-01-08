@@ -1,34 +1,40 @@
 'use strict';
 
-angular.module('md.parserFilter', [
+angular.module('md.parseMarkdownFilter', [
     'ng'
 ])
 
-.filter('parser', function($filter) {
-    var lineKeywords = {
+.filter('parseMarkdown', function($filter) {
+    var lineKeywords = _.pairs({
         '# ': '<h1>',
         '## ': '<h2>',
         '### ': '<h3>',
         '> ': '<blockquote>',
         '- ': '<ul><li>',
         '* ': '<ul><li>'
-    };
+    });
     
-    function isDefined(line) { return !_.isUndefined(line); }
+    function isDefined(line) { return line; }
     
     function parseLineContent(content) {
         return content;
     }
     
     function parseLine(line) {
-        return _.reduce(_.pairs(lineKeywords), function(keywordTag, prev) {
-            if (line.indexOf(keywordTag[0]) === 0) {
+        var html = _.reduce(lineKeywords, function(prev, keywordTag) {
+            if (isDefined(line) && isDefined(keywordTag) && line.indexOf(keywordTag[0]) === 0) {
                 return keywordTag[1] +
                     parseLineContent(line.substring(keywordTag[0].length)) +
                     createClosingTag(keywordTag[1]);
             }
             return prev;
-        }, '');
+        }, undefined);
+        
+        if (html !== undefined) {
+            return html;
+        } else {
+            return '<p>' + parseLineContent(line) + '</p>';
+        }
     }
     
     function createClosingTag(openingTag) {
@@ -42,12 +48,13 @@ angular.module('md.parserFilter', [
     }
     
     function parse(input) {
-        _.chain(input.split('\n'))
+        return _.chain(input.split(/\n/g))
             .filter(isDefined)
             .map(parseLine)
             .value()
             .join('')
-            .replace('</ul><ul>', '');
+            .replace(/<\/ul><ul>/g, '')
+            .replace(/<\/blockquote><blockquote>/g, '');
     }
     
     return function(input) {
