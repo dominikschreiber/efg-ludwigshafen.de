@@ -215,15 +215,67 @@ angular.module('efg.mockService', [
 			{id: 'sunday', title: 'Jeden Sonntag', subtitle: '10:00 Uhr'},
 			{id: 'worship', title: 'Am 2. Sonntag in geraden Monaten', subtitle: '19:00 Uhr'}
 		],
-		'/api/v1/service/sunday': {
+		'/api/v1/service/sunday?fields=name,subtitle,description,poster,sermon': {
 			id: 'sunday',
-			title: 'Sonntagmorgen-Gottesdienst',
-			subtitle: 'Jung und Alt, Groß und Klein. Gemeinsam vor Gott'
+			name: 'Sonntagmorgen-Gottesdienst',
+			subtitle: 'Jung und Alt, Groß und Klein. Gemeinsam vor Gott',
+            description: [
+                    '### Gottes Familie. Zusammen.',
+                ].join('\n'),
+            poster: '//lorempixel.com/1920/1080/',
+            sermon: {
+                id: '2014-12-21',
+                date: (new Date('2014/12/21 10:00')).getTime(),
+                name: 'Zuversicht und Festigkeit -- Strophe 6',
+                series: {
+                    id: 'wiesollichdichempfangen',
+                    name: 'Wie soll ich Dich empfangen',
+                    order: 3
+                },
+                preacher: {
+                    id: 'thomasweber',
+                    name: 'Thomas Weber'
+                },
+                source: [{
+                    src: 'http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3',
+                    type: 'audio/ogg'
+                }, {
+                    src: 'http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3',
+                    type: 'audio/mpeg'
+                }]
+            }
 		},
-		'/api/v1/service/worship': {
+		'/api/v1/service/worship?fields=name,subtitle,description,poster,sermon': {
 			id: 'worship',
-			title: 'Lobpreis-Gottesdienst',
-			subtitle: 'Musik. Gebet. Anbetung.'
+			name: 'Lobpreis-Gottesdienst',
+			subtitle: 'Musik. Gebet. Anbetung.',
+            description: [
+                    '### Gott im Mittelpunkt',
+                    'Wir nehmen uns Zeit, Gott die Ehre zu geben. Hier wird viel gebetet, noch mehr gesungen, und auf Gott gehört.', 
+                    'Meist geht ein solcher Gottesdienst etwa eine Stunde.'
+                ].join('\n'),
+            poster: '//lorempixel.com/1920/1080/',
+            sermon: {
+                id: '2014-12-21',
+                date: (new Date('2014/12/21 10:00')).getTime(),
+                name: 'Zuversicht und Festigkeit -- Strophe 6',
+                series: {
+                    id: 'wiesollichdichempfangen',
+                    name: 'Wie soll ich Dich empfangen',
+                    order: 3
+                },
+                preacher: {
+                    id: 'thomasweber',
+                    name: 'Thomas Weber'
+                },
+                source: [{
+                    src: 'http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3',
+                    type: 'audio/ogg'
+                }, {
+                    src: 'http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3',
+                    type: 'audio/mpeg'
+                }]
+            }
 		},
 		'/api/v1/sermon?fields=name,date,series:(name,order),preacher:(name),source:(src,type)&limit=1': [{
 			id: '2014-12-21',
@@ -248,15 +300,18 @@ angular.module('efg.mockService', [
 		}]
 	};
 	
-	$log.debug('consider implementing a backend, then replace mock with $http -- that should be it');
+	$log.log('consider implementing a backend, then replace mock with $http -- that should be it');
 	return {
 		get: function(url) {
-			var deferred = $q.defer();
-			
+			var deferred = $q.defer()
+              , reason;
+            
 			if (mock.hasOwnProperty(url)) {
 				deferred.resolve(mock[url]);
 			} else {
-				deferred.reject(url + ' not found in ' + Object.keys(mock));
+                reason = url + ' not found in ' + _.keys(mock);
+                $log.log(reason);
+				deferred.reject(reason);
 			}
 			
 			return deferred.promise;
