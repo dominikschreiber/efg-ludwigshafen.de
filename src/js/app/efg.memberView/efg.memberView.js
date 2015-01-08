@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('efg.memberView', [
 	'efg.mockService',
 	'ng',
