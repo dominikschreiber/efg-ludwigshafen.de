@@ -2,9 +2,8 @@
 
 angular.module('efg.indexView', [
 	'efg.mockService',
-	'efg.regexFilter',
-	'efg.trustFilter',
 	'efg.componentDirective',
+    'efg.sermonDirective',
 	'bootstrap.thumbnailDirective',
 	'bootstrap.thumbnailsDirective',
 	'ng',
