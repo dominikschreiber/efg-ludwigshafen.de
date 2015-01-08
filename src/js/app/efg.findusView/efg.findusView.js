@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('efg.findusView', [
 	'efg.componentDirective',
 	'uiGmapgoogle-maps',
@@ -6,10 +8,15 @@ angular.module('efg.findusView', [
 	'ngRoute'
 ])
 
-.config(function($routeProvider) {
+.config(function($routeProvider, uiGmapGoogleMapApiProvider) {
 	$routeProvider.when('/findus', {
 		controller: 'FindusCtrl as findus',
 		templateUrl: 'efg.findusView.tpl.html'
+	});
+    
+	uiGmapGoogleMapApiProvider.configure({
+		v: '3.17',
+		libraries: 'weather,geometry,visualization'
 	});
 })
 
