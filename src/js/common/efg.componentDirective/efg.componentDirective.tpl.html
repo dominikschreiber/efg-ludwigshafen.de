@@ -1,6 +1,7 @@
 <article class="component" ng-class="classes">
 	<div class="container text-center">
-		<header class="row">
+		<header class="row"
+                ng-if="header || subheader">
 			<div class="col-md-12">
 				<h2 ng-bind="header"></h2>
 				<p ng-bind="subheader" class="text-eased"></p>
