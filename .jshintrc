@@ -1,0 +1,14 @@
+{
+	// enforcing
+	"curly": true,
+	"quotmark": "single",
+  // relaxing
+	"globalstrict": true,
+	"laxbreak": true,
+	"laxcomma": true,
+	// environment
+    "globals": {
+        "angular": true,
+        "_": true
+    }
+}
