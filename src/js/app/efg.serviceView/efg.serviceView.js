@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('efg.serviceView', [
+    'efg.trustFilter',
 	'efg.mockService',
+    'efg.sermonDirective',
+    'md.parseMarkdownFilter',
 	'ng',
 	'ngRoute'
 ])
@@ -14,9 +17,11 @@ angular.module('efg.serviceView', [
 })
 
 .controller('ServiceCtrl', function(mock, $routeParams) {
-	mock.get('/api/v1/service/' + $routeParams.id).then(angular.bind(this, function success(result) {
-		this.title = result.title;
+	mock.get('/api/v1/service/' + $routeParams.id + '?fields=name,subtitle,description,poster,sermon').then(angular.bind(this, function success(result) {
+		this.img = result.poster;
+        this.title = result.name;
 		this.subtitle = result.subtitle;
 		this.description = result.description;
+        this.sermon = result.sermon;
 	}));
 });
