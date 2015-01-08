@@ -1,8 +1,10 @@
+'use strict';
+
 angular.module('efg.mockService', [
 	'ng'
 ])
 
-.factory('mock', function($q, $log, $window) {
+.factory('mock', function($q, $log) {
 	var mock = {
 		'/api/v1/group': [
 			{id: 'family', title: 'Kinderbetreuung', subtitle: '0 bis 6 Jahre', img: '//lorempixel.com/200/200/cats/1'},
@@ -192,13 +194,13 @@ angular.module('efg.mockService', [
 				img: '//lorempixel.com/500/400/abstract/3'
 			}
 		],
-		'/api/v1/next': [
-			{id: 'service', title: 'Gottesdienst', subtitle: 'Komm zu einem'},
-			{id: 'cellgroup', title: 'Hauskreis', subtitle: 'Besuch einen'},
-			{id: 'help', title: 'Hilfe', subtitle: 'Erhalte'},
-			{id: 'talents', title: 'Gaben', subtitle: 'Entdecke Deine'},
-			{id: 'baptism', title: 'Getauft', subtitle: 'Werde'},
-			{id: 'participate', title: 'mit', subtitle: 'Arbeite'}
+		'/api/v1/next?fields=name': [
+			{id: 'service', name: 'Komm zu einem Gottesdienst'},
+			{id: 'cellgroup', name: 'Besuch einen Hauskreis'},
+			{id: 'help', name: 'Erhalte Hilfe'},
+			{id: 'talents', name: 'Entdecke Deine Gaben'},
+			{id: 'baptism', name: 'Werde Getauft'},
+			{id: 'participate', name: 'Arbeite mit'}
 		],
 		'/api/v1/info': [
 			{id: 'creed', title: 'Glaubensbekenntnis', subtitle: 'Was wir glauben', img: 'glyphicon glyphicon-fire'},
@@ -211,7 +213,7 @@ angular.module('efg.mockService', [
 		],
 		'/api/v1/service': [
 			{id: 'sunday', title: 'Jeden Sonntag', subtitle: '10:00 Uhr'},
-			{id: 'worship', title: 'Am 2. Sonntag im Monat', subtitle: '19:00 Uhr'}
+			{id: 'worship', title: 'Am 2. Sonntag in geraden Monaten', subtitle: '19:00 Uhr'}
 		],
 		'/api/v1/service/sunday': {
 			id: 'sunday',
@@ -222,7 +224,28 @@ angular.module('efg.mockService', [
 			id: 'worship',
 			title: 'Lobpreis-Gottesdienst',
 			subtitle: 'Musik. Gebet. Anbetung.'
-		}
+		},
+		'/api/v1/sermon?fields=name,date,series:(name,order),preacher:(name),source:(src,type)&limit=1': [{
+			id: '2014-12-21',
+			date: (new Date('2014/12/21 10:00')).getTime(),
+			name: 'Zuversicht und Festigkeit -- Strophe 6',
+			series: {
+				id: 'wiesollichdichempfangen',
+				name: 'Wie soll ich Dich empfangen',
+				order: 3
+			},
+			preacher: {
+				id: 'thomasweber',
+				name: 'Thomas Weber'
+			},
+			source: [{
+				src: 'http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3',
+				type: 'audio/ogg'
+			}, {
+				src: 'http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3',
+				type: 'audio/mpeg'
+			}]
+		}]
 	};
 	
 	$log.debug('consider implementing a backend, then replace mock with $http -- that should be it');
