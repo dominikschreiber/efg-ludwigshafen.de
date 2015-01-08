@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('efg.serviceView', [
 	'efg.mockService',
 	'ng',
