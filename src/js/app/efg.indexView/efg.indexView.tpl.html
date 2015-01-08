@@ -26,9 +26,10 @@
 		   subheader="Wir sind mitten im Hemshof, dem Herz von Ludwigshafen.">
 	<div class="col-md-12">
 		<p class="lead">Böhlstraße 5, 67063 Ludwigshafen</p>
-	</div>
-	<div class="col-md-12 u-space-top">
-		<p><a href="#!/findus" class="btn btn-lg btn-light btn-outline">Wegbeschreibung anzeigen</a></p>
+		<p class="u-space-top"><a href="#!/findus"
+			  class="btn btn-lg btn-light btn-outline">
+			Wegbeschreibung anzeigen
+		</a></p>
 	</div>
 </component>
 
@@ -83,9 +84,15 @@
 					    base="#!/member/"
 					    imgclass="img-circle img-thumbnail"/>
 		</div>
-		<div class="row" ng-hide="index.showFullTeam" ng-init="index.showFullTeam = false">
+		<div class="row"
+			 ng-hide="index.showFullTeam"
+			 ng-init="index.showFullTeam = false">
 			<div class="col-md-12">
-				<button type="button" class="btn btn-lg btn-outline" ng-click="index.showFullTeam = true">mehr Verantwortliche</button>
+				<button type="button"
+						class="btn btn-lg btn-outline"
+						ng-click="index.showFullTeam = true">
+					mehr Verantwortliche
+				</button>
 			</div>
 		</div>
 		<div class="row" ng-if="index.showFullTeam">
@@ -93,6 +100,27 @@
 					    base="#!/member/"
 					    imgclass="img-circle img-thumbnail"/>
 		</div>
+	</div>
+</component>
+
+<!-- ===== sermon =============================================== -->
+<component classes="component-lg bg-success"
+           header="Predigten">
+	<div class="col-md-12">
+		<h3>{{index.sermon.name}} <small>{{index.sermon.date | date:'d. MMMM'}}, von {{index.sermon.preacher.name}}</small></h3>
+		<audio controls
+			   class="show"
+			   style="width: 100%">
+			<source ng-repeat="source in index.sermon.source"
+					ng-src="{{source.src | trustResource}}"
+					type="{{source.type}}"/>
+		</audio>
+		<p class="u-space-top">
+			<a class="btn btn-lg btn-outline"
+			   ng-href="#!/sermon/">
+				mehr Predigten
+			</a>
+		</p>
 	</div>
 </component>
 
