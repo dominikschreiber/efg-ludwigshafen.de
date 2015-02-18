@@ -14,7 +14,9 @@ module.exports = function(grunt) {
 		less: {
 			styles: {
 				options: {
-					cleancss: true,
+					plugins: [
+                        new (require('less-plugin-clean-css'))()
+                    ],
 					sourceMap: true,
 					sourceMapFilename: 'theme.min.css.map'
 				},
