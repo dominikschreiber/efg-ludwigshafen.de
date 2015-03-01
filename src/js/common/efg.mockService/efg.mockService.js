@@ -206,6 +206,10 @@ angular.module('efg.mockService', [
 			{id: 'creed', title: 'Glaubensbekenntnis', subtitle: 'Was wir glauben', img: 'glyphicon glyphicon-fire'},
 			{id: 'faq', title: 'Häufige Fragen', subtitle: undefined, img: 'glyphicon glyphicon-comment'}
 		],
+        '/api/v1/info/creed': {
+            id: 'creed',
+            name: 'Glaubensbekenntnis'
+        },
 		'/api/v1/contact?fields=name,action,img': [
 			{id: 'phone', name: '+49 1577 8394600', action: 'tel:+4915778394600', img: 'glyphicon glyphicon-earphone'},
 			{id: 'location', name: 'Böhlstraße 5, Ludwigshafen', action: '#!/findus', img: 'glyphicon glyphicon-map-marker'},

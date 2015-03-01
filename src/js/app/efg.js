@@ -2,6 +2,7 @@
 
 angular.module('efg', [
 	'efg.indexView',
+    'efg.infoView',
 	'efg.serviceView',
 	'efg.memberView',
 	'efg.findusView',
