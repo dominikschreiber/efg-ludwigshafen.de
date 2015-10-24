@@ -2,6 +2,7 @@
 
 angular.module('efg.eventView', [
     'efg.eventApi',
+    'ng',
     'ngRoute'
 ])
 

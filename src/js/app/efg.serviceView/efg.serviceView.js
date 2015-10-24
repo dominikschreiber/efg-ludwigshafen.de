@@ -3,7 +3,6 @@
 angular.module('efg.serviceView', [
     'efg.serviceApi',
     'efg.trustFilter',
-	'efg.mockService',
     'efg.sermonDirective',
     'md.parseMarkdownFilter',
 	'ng',

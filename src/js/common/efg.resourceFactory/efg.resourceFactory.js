@@ -73,3 +73,4 @@ resourceFactory('next');
 resourceFactory('contact');
 resourceFactory('info');
 resourceFactory('event');
+resourceFactory('sermon');

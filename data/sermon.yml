@@ -1,0 +1,12 @@
+2014-12-21:
+    name: Zuversicht und Festigkeit - Strophe 6
+    date: 2014/12/21 10:00
+    series:
+        name: Wie soll ich Dich empfangen
+        order: 3
+    preacher: Thomas Weber
+    source:
+        - src: http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3
+          type: audio/ogg
+        - src: http://www.efg-ludwigshafen.de/predigt/?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3
+          type: audio/mpeg

@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('efg.infoView', [
-    'efg.infoApi'
+    'efg.infoApi',
+    'ng',
+    'ngRoute'
 ])
 
 .config(function($routeProvider) {

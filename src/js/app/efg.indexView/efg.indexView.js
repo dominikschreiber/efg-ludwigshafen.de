@@ -8,7 +8,7 @@ angular.module('efg.indexView', [
     'efg.groupApi',
     'efg.infoApi',
     'efg.eventApi',
-	'efg.mockService',
+	'efg.sermonApi',
 	'efg.componentDirective',
     'efg.sermonDirective',
 	'bootstrap.thumbnailDirective',
@@ -24,7 +24,7 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(eventApi, infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
+.controller('IndexCtrl', function(eventApi, infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, sermonApi, $http, $log, $filter) {
 	this.$filter = $filter;
 
 	serviceApi.query().then(function(services) {
@@ -128,9 +128,9 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-    mock.get('/api/v1/sermon?fields=name,date,series:(name,order),preacher:(name),source:(src,type)&limit=1').then(angular.bind(this, function success(result) {
-		this.sermon = result[0];
-	}));
+    sermonApi.query().then(function(sermons) {
+		this.sermon = sermons[Object.keys(sermons)[0]];
+	}.bind(this));
 	contactApi.query().then(function(contacts) {
 		this.contacts = Object.keys(contacts).map(function(key) {
             var contact = contacts[key];
