@@ -1,5 +1,18 @@
-# website-angularjs-prototype
+# efg-ludwigshafen.github.io
 
-This was an attempt to create a whole new website for EfG Ludwigshafen as a single-page application with (as of the time writing) not even a backend (and images from [lorempixel](lorempixel.com) instead of real images etc. pp.).
+Website of the baptist church EfG Ludwigshafen, Germany.
 
-*The project is no longer continued.* See it as an inspiration for future AngularJS projects (or as a nostalgic approach of how people in 2014 created AngularJS apps).
+## developing
+
+To get started, perform the following steps:
+
+```bash
+# clone the repository
+git clone git@github.com:efg-ludwigshafen/efg-ludwigshafen.github.io
+# cd to the cloned repository
+cd efg-ludwigshafen.github.io
+# install dependencies (installs bower dependencies as well)
+npm install
+# start the development build (concat + uglify js, start server at ::8000)
+npm start
+```
