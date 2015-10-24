@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('efg.indexView', [
+    'efg.nextApi',
     'efg.memberApi',
     'efg.serviceApi',
     'efg.groupApi',
@@ -20,10 +21,10 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
+.controller('IndexCtrl', function(nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
 	this.$filter = $filter;
 
-	serviceApi.query().then(function success(services) {
+	serviceApi.query().then(function(services) {
 		this.services = Object.keys(services).map(function(id) {
             return {
                 id: id,
@@ -35,7 +36,7 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-	groupApi.query().then(function success(groups) {
+	groupApi.query().then(function(groups) {
         this.groups = Object.keys(groups).map(function(id) {
             return {
                 id: id,
@@ -45,7 +46,7 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-	memberApi.query().then(function success(members) {
+	memberApi.query().then(function(members) {
 		function createMember(member) {
 				return {
 					id: member.id,
@@ -99,17 +100,17 @@ angular.module('efg.indexView', [
 			};
 		});
 	}));
-	mock.get('/api/v1/next?fields=name').then(angular.bind(this, function success(result) {
-		this.next = _.map(result, function(action) {
-            var words = action.name.split(' ');
+	nextApi.query().then(function(actions) {
+		this.next = Object.keys(actions).map(function(key) {
+            var words = actions[key].action.split(' ');
 
             return {
-                id: action.id,
+                id: key,
                 title: _.last(words),
                 subtitle: _.initial(words).join(' ')
             };
         });
-	}));
+	}.bind(this));
 	mock.get('/api/v1/info').then(angular.bind(this, function success(result) {
 		this.infos = result;
 	}));

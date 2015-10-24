@@ -42,20 +42,6 @@ angular.module('efg.mockService', [
         '/api/v1/event/weihnachtsgottesdienst': {
 
         },
-		'/api/v1/next?fields=name': [
-			{id: 'service', name: 'Komm zu einem Gottesdienst'},
-			{id: 'cellgroup', name: 'Besuch einen Hauskreis'},
-			{id: 'help', name: 'Erhalte Hilfe'},
-			{id: 'talents', name: 'Entdecke Deine Gaben'},
-			{id: 'baptism', name: 'Werde Getauft'},
-			{id: 'participate', name: 'Arbeite mit'}
-		],
-        '/api/v1/next/service': {
-            name: 'Gottesdienst',
-            description: 'Der erste Schritt: komm in Kontakt',
-            img: '//lorempixel.com/1920/1080/city/2',
-            content: '<h2>Komm in Kontakt</h2><p>Komm in Kontakt</p>'
-        },
 		'/api/v1/info': [
 			{id: 'creed', title: 'Glaubensbekenntnis', subtitle: 'Was wir glauben', img: 'glyphicon glyphicon-fire'},
 			{id: 'faq', title: 'Häufige Fragen', subtitle: undefined, img: 'glyphicon glyphicon-comment'}

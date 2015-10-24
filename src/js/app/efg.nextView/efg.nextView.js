@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('efg.nextView', [
-    'efg.mockService',
-    'efg.trustFilter',
+    'efg.nextApi',
+    'md.parseMarkdownFilter',
     'ngRoute'
 ])
 
@@ -13,11 +13,11 @@ angular.module('efg.nextView', [
     });
 })
 
-.controller('NextCtrl', function(mock, $routeParams) {
-    mock.get('/api/v1/next/' + $routeParams.id).then(angular.bind(this, function success(result) {
-        this.title = result.name;
-        this.subtitle = result.description;
-        this.img = result.img;
-        this.content = result.content;
-    }));
+.controller('NextCtrl', function(nextApi, $routeParams) {
+    nextApi.get($routeParams.id).then(function(action) {
+        this.title = action.name;
+        this.subtitle = action.subtitle;
+        this.img = action.poster;
+        this.content = action.description;
+    }.bind(this));
 });
