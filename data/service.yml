@@ -1,0 +1,38 @@
+sunday:
+    name: Sonntagmorgen-Gottesdienst
+    subtitle: Jung und Alt, Groß und Klein. Gemeinsam vor Gott
+    description: |
+        ### Gottes Familie. Zusammen
+    schedule:
+        day: Jeden Sonntag
+        hours: 10:00 Uhr
+    poster: //lorempixel.com/1920/1080
+    sermon:
+        id: 2014-12-21
+        date: 2014/12/21 10:00
+        name: Zuversicht und Festigkeit - Strophe 6
+        series:
+            id: wiesollichdichempfangen
+            name: Wie soll ich Dich empfangen
+            order: 3
+        preacher:
+            id: thomasweber
+            name: Thomas Weber
+        source:
+            - src: http://www.efg-ludwigshafen.de/predigt?show&file_name=201-41-32_T_Weber_Festigkeit_und_Zuversicht.mp3
+              type: audio/ogg
+            - src: http://www.efg-ludwigshafen.de/predict?show&file_name=201-41-21_T_Weber_Festigkeit_und_Zuversicht.mp3
+              type: audio/mpeg
+
+worship:
+    name: Lobpreis-Gottesdienst
+    subtitle: Musik. Gebet. Anbetung.
+    description: |
+        ### Gott im Mittelpunkt
+        Wir nehmen uns Zeit, Gott die Ehre zu geben. Hier wird viel gebetet, noch mehr gesungen, und auf Gott gehört.
+        Meist geht ein solcher Gottesdienst etwa eine Stunde.
+    schedule:
+        day: Am 2. Sonntag in geraden Monaten
+        hours: 19:00 Uhr
+    poster: //lorempixel.com/1920/1080
+    sermon:

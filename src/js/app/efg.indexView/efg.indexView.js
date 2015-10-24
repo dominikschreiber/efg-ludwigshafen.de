@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('efg.indexView', [
+    'efg.serviceApi',
     'efg.groupApi',
 	'efg.mockService',
 	'efg.componentDirective',
@@ -18,12 +19,21 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(groupApi, mock, $http, $log, $filter) {
+.controller('IndexCtrl', function(serviceApi, groupApi, mock, $http, $log, $filter) {
 	this.$filter = $filter;
 
-	mock.get('/api/v1/service').then(angular.bind(this, function success(result) {
-		this.services = result;
-	}));
+	serviceApi.query().then(function success(services) {
+		this.services = Object.keys(services).map(function(id) {
+            return {
+                id: id,
+                title: services[id].name,
+                subtitle: [
+                    services[id].schedule.day,
+                    services[id].schedule.hours
+                ].join(', ')
+            };
+        });
+	}.bind(this));
 	groupApi.query().then(function success(groups) {
         this.groups = Object.keys(groups).map(function(id) {
             return {
