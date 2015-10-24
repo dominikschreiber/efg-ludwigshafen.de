@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('efg.indexView', [
+    'efg.contactApi',
     'efg.nextApi',
     'efg.memberApi',
     'efg.serviceApi',
@@ -21,7 +22,7 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
+.controller('IndexCtrl', function(contactApi, nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
 	this.$filter = $filter;
 
 	serviceApi.query().then(function(services) {
@@ -117,13 +118,14 @@ angular.module('efg.indexView', [
     mock.get('/api/v1/sermon?fields=name,date,series:(name,order),preacher:(name),source:(src,type)&limit=1').then(angular.bind(this, function success(result) {
 		this.sermon = result[0];
 	}));
-	mock.get('/api/v1/contact?fields=name,action,img').then(angular.bind(this, function success(result) {
-		this.contacts = _.map(result, function(contact) {
+	contactApi.query().then(function(contacts) {
+		this.contacts = Object.keys(contacts).map(function(key) {
+            var contact = contacts[key];
 			return {
 				id: contact.action,
 				title: contact.name,
-				img: contact.img
+				img: contact.thumbnail
 			};
 		});
-	}));
+	}.bind(this));
 });

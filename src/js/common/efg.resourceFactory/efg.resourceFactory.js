@@ -70,3 +70,4 @@ resourceFactory('group');
 resourceFactory('service');
 resourceFactory('member');
 resourceFactory('next');
+resourceFactory('contact');
