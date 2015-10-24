@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('efg.memberView', [
-	'efg.mockService',
+	'efg.memberApi',
 	'ng',
 	'ngRoute'
 ])
@@ -13,11 +13,14 @@ angular.module('efg.memberView', [
 	});
 })
 
-.controller('MemberCtrl', function(mock, $routeParams) {
-	mock.get('/api/v1/member/' + $routeParams.id + '?fields=name,duties,description,poster').then(angular.bind(this, function success(result) {
-		this.title = [result.name.givenname, result.name.familyname].join(' ');
-		this.subtitle = result.duties.join(', ');
-		this.description = result.description;
-		this.img = result.poster;
-	}));
+.controller('MemberCtrl', function(memberApi, $routeParams) {
+	memberApi.get($routeParams.id).then(function success(member) {
+		this.title = [
+            member.name.givenname,
+            member.name.familyname
+        ].join(' ');
+		this.subtitle = member.duties.join(', ');
+		this.description = member.description;
+		this.img = member.poster;
+	}.bind(this));
 });

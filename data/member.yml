@@ -1,0 +1,69 @@
+wilfried:
+    name:
+        givenname: Wilfried
+        familyname: Schmitt
+    description: |
+        Seit der Gemeindegründung dabei. Der Hirte.
+    duties:
+        - Gemeindeleiter
+        - Ältester
+    img: //lorempixel.com/500/500/people/7
+    poster: //lorempixel.com/1920/1080/people/7
+
+thomas:
+    name:
+        givenname: Thomas
+        familyname: Weber
+    description: |
+        Seit 2 Jahren Ältester. Der Macher.
+    duties:
+        - Ältester
+    img: //lorempixel.com/500/500/people/8
+    poster: //lorempixel.com/1920/1080/people/8
+
+denise:
+    name:
+        givenname: Denise
+        familyname: Schmutz
+    description: |
+        Trust fund taxidermy sriracha Kickstarter asymmetrical disrupt, cred chillwave stumptown artisan biodiesel pug tousled. Pinterest wolf blog squid, Austin locavore you probably haven't heard of them cred asymmetrical lo-fi keffiyeh. Single-origin coffee hella cardigan chia kitsch vinyl. Bicycle rights DIY Carles, heirloom meditation locavore Godard semiotics mixtape. Godard post-ironic iPhone fanny pack quinoa, aesthetic gluten-free swag narwhal forage chia roof party messenger bag. Craft beer VHS cliche Carles, Pinterest organic drinking vinegar biodiesel ugh try-hard chambray whatever +1. Plaid seitan four dollar toast Pinterest, Kickstarter Odd Future direct trade keytar.
+    duties:
+        - Raumbuchung
+        - Kranke
+    img: //lorempixel.com/500/500/people/3
+    poster: //lorempixel.com/1920/1080/people/3
+
+andreas:
+    name:
+        givenname: Andreas
+        familyname: Petry
+    description: |
+        Thundercats cronut forage, master cleanse retro hella squid Williamsburg leggings. Direct trade ennui tofu semiotics vinyl Odd Future, Godard meggings bitters kogi hashtag. Austin irony flexitarian, keffiyeh mlkshk gentrify heirloom 3 wolf moon meditation selvage slow-carb. Direct trade biodiesel occupy, migas gluten-free taxidermy jean shorts single-origin coffee street art bicycle rights pour-over 8-bit mumblecore. Thundercats kogi Pitchfork tousled scenester, pug flexitarian skateboard raw denim. Keffiyeh distillery raw denim, asymmetrical literally selvage actually Banksy. Fingerstache slow-carb plaid scenester, raw denim four dollar toast asymmetrical before they sold out banh mi dreamcatcher.
+    duties:
+        - Lehre
+        - Gebet
+    img: //lorempixel.com/500/500/people/9
+    poster: //lorempixel.com/1920/1080/people/9
+
+daniel:
+    name:
+        givenname: Daniel
+        familyname: Mertins
+    description: |
+        Pitchfork gentrify messenger bag banh mi PBR next level, vegan chambray trust fund keytar letterpress vinyl lomo. Bushwick Blue Bottle pickled, letterpress pork belly readymade crucifix ennui hashtag mumblecore. Hella biodiesel skateboard, mlkshk fixie hashtag Pitchfork keytar wolf. Mustache sustainable butcher Bushwick, kogi try-hard tattooed flexitarian Carles chambray PBR brunch freegan trust fund. Leggings keffiyeh fixie, cardigan hashtag sustainable hoodie pork belly irony Tumblr meh. Cardigan VHS 8-bit, mixtape gastropub forage gentrify mumblecore distillery lo-fi typewriter Pitchfork scenester Austin. Fashion axe leggings readymade ennui, Pitchfork quinoa Banksy lomo disrupt lumbersexual Echo Park scenester.
+    duties:
+        - Gottesdienst
+    img: //lorempixel.com/500/500/people/6
+    poster: //lorempixel.com/1920/1080/people/6
+
+jonas:
+    name:
+        givenname: Jonas
+        familyname: Weber
+    description: |
+        Chambray sriracha flexitarian keytar, sartorial meggings tofu yr salvia lumbersexual mlkshk blog bitters normcore. Church-key sartorial Brooklyn disrupt, YOLO flexitarian salvia leggings shabby chic meggings dreamcatcher fixie. Paleo mixtape squid DIY. Flannel Kickstarter art party, mumblecore authentic gastropub cold-pressed Truffaut locavore semiotics Carles organic next level tilde. Schlitz master cleanse lomo, next level bicycle rights Williamsburg Neutra paleo raw denim. Gluten-free single-origin coffee distillery bicycle rights meditation. Banksy banjo bespoke YOLO, taxidermy mlkshk slow-carb lo-fi Williamsburg twee.
+    duties:
+        - Jugendarbeit
+        - Hauskreise
+    img: //lorempixel.com/500/500/people/10
+    poster: //lorempixel.com/1920/1080/people/10

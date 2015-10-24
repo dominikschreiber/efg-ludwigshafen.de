@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('efg.indexView', [
+    'efg.memberApi',
     'efg.serviceApi',
     'efg.groupApi',
 	'efg.mockService',
@@ -19,7 +20,7 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(serviceApi, groupApi, mock, $http, $log, $filter) {
+.controller('IndexCtrl', function(memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
 	this.$filter = $filter;
 
 	serviceApi.query().then(function success(services) {
@@ -44,30 +45,35 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-	mock.get('/api/v1/member?fields=name,duties,img').then(angular.bind(this, function success(result) {
+	memberApi.query().then(function success(members) {
 		function createMember(member) {
 				return {
 					id: member.id,
-					title: [member.name.givenname, member.name.familyname].join(' '),
+					title: [
+                        member.name.givenname,
+                        member.name.familyname
+                    ].join(' '),
 					subtitle: member.duties.join(', '),
 					img: member.img
 				};
 			}
 
-		this.members = _.chain(result)
-			.filter(function(member) {
-				return member.duties.indexOf('Ältester') === -1;
-			})
-			.map(createMember)
-            .value();
+		this.members = Object.keys(members).reduce(function(all, key) {
+            var member = members[key];
+            if (member.duties.indexOf('Ältester') === -1) {
+                all.push(createMember(member));
+            }
+            return all;
+        }, []);
 
-		this.elders = _.chain(result)
-			.filter(function(member) {
-				return member.duties.indexOf('Ältester') > -1;
-			})
-			.map(createMember)
-            .value();
-	}));
+		this.elders = Object.keys(members).reduce(function(all, key) {
+            var member = members[key];
+            if (member.duties.indexOf('Ältester') > -1) {
+                all.push(createMember(member));
+            }
+            return all;
+        }, []);
+	}.bind(this));
 	mock.get('/api/v1/event?limit=3&fields=name,date,img').then(angular.bind(this, function success(result) {
 		this.events = _.map(result, function(event) {
 			return {

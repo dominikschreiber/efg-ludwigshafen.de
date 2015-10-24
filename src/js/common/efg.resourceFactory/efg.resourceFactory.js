@@ -68,3 +68,4 @@ function resourceFactory(resource) {
 
 resourceFactory('group');
 resourceFactory('service');
+resourceFactory('member');
