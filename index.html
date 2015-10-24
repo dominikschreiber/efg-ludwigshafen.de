@@ -1,14 +1,14 @@
 <!doctype html>
 
-<html 
+<html
 	  ng-app="efg"
 	  lang="de-de">
 	<head>
 		<title>EfG Ludwigshafen</title>
-		
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<!-- css libraries -->
 		<!-- link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" -->
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -20,8 +20,9 @@
 
 	<body>
 		<div ng-view autoscroll="true"></div>
-		
+
 		<!-- js libraries -->
+        <script src="node_modules/js-yaml/dist/js-yaml.min.js"></script>
 		<script src="bower_components/lodash/lodash.min.js"></script> <!-- dependency of angular-google-maps -->
 		<script src="bower_components/jquery/dist/jquery.min.js"></script> <!-- dependency of bootstrap -->
 		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
