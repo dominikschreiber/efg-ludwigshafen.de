@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('efg.indexView', [
+    'efg.groupApi',
 	'efg.mockService',
 	'efg.componentDirective',
     'efg.sermonDirective',
@@ -17,15 +18,22 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(mock, $log, $filter) {
+.controller('IndexCtrl', function(groupApi, mock, $http, $log, $filter) {
 	this.$filter = $filter;
-	
+
 	mock.get('/api/v1/service').then(angular.bind(this, function success(result) {
 		this.services = result;
 	}));
-	mock.get('/api/v1/group').then(angular.bind(this, function success(result) {
-		this.groups = result;
-	}));
+	groupApi.query().then(function success(groups) {
+        this.groups = Object.keys(groups).map(function(id) {
+            return {
+                id: id,
+                title: groups[id].name,
+                subtitle: groups[id].category,
+                img: groups[id].thumbnail
+            };
+        });
+	}.bind(this));
 	mock.get('/api/v1/member?fields=name,duties,img').then(angular.bind(this, function success(result) {
 		function createMember(member) {
 				return {
@@ -35,14 +43,14 @@ angular.module('efg.indexView', [
 					img: member.img
 				};
 			}
-		
+
 		this.members = _.chain(result)
 			.filter(function(member) {
 				return member.duties.indexOf('Ältester') === -1;
 			})
 			.map(createMember)
             .value();
-		
+
 		this.elders = _.chain(result)
 			.filter(function(member) {
 				return member.duties.indexOf('Ältester') > -1;
@@ -60,10 +68,10 @@ angular.module('efg.indexView', [
 						.reduce(function(prev, now) {
 							var min = prev[0]
 							  , max = prev[1];
-							
+
 							if (now < min) { min = now; }
 							if (now > max) { max = now; }
-							
+
 							return [min, max];
 						}, [Number.MAX_VALUE, Number.MIN_VALUE])
 						.map(function(date) {
@@ -77,15 +85,13 @@ angular.module('efg.indexView', [
 	}));
 	mock.get('/api/v1/next?fields=name').then(angular.bind(this, function success(result) {
 		this.next = _.map(result, function(action) {
-            var words = action.name.split(' ')
-              , result = {
+            var words = action.name.split(' ');
+
+            return {
                 id: action.id,
                 title: _.last(words),
                 subtitle: _.initial(words).join(' ')
             };
-            
-            $log.log(result);
-            return result;
         });
 	}));
 	mock.get('/api/v1/info').then(angular.bind(this, function success(result) {

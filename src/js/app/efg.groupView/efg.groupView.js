@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('efg.groupView', [
-	'efg.mockService',
+    'efg.groupApi',
 	'efg.componentDirective',
 	'ng',
 	'ngRoute'
@@ -14,9 +14,9 @@ angular.module('efg.groupView', [
 	});
 })
 
-.controller('GroupCtrl', function(mock, $routeParams) {
-	mock.get('/api/v1/group/' + $routeParams.id + '?fields=name,poster').then(angular.bind(this, function success(result) {
-		this.title = result.name;
-		this.img = result.poster;
-	}));
+.controller('GroupCtrl', function(groupApi, $routeParams) {
+    groupApi.get($routeParams.id).then(function success(group) {
+        this.title = group.name;
+        this.img = group.poster;
+    }.bind(this));
 });
