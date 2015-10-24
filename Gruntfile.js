@@ -2,7 +2,7 @@
 
 module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
-	
+
 	grunt.initConfig({
 		// clean workspace
 		clean: {
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 		// concat files to one big file
 		concat: {
 			scripts: {
-				src: ['src/js/**/*.js', '<%= ngtemplates.efg.dest %>', '!*.spec.js'],
+				src: ['src/js/common/efg.resourceFactory/efg.resourceFactory.js', 'src/js/**/*.js', '<%= ngtemplates.efg.dest %>', '!*.spec.js'],
 				dest: 'tmp/main.js'
 			}
 		},
@@ -103,11 +103,11 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-	
+
 	grunt.registerTask('default', ['clean', 'styles', 'scripts']);
-	
+
 	grunt.registerTask('styles', ['less:styles']);
 	grunt.registerTask('scripts', ['ngtemplates:efg', 'concat:scripts', 'ngAnnotate:scripts', 'uglify:scripts']);
-	
+
 	grunt.registerTask('start', ['default', 'connect', 'watch']);
 };
