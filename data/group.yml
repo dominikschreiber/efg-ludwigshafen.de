@@ -1,4 +1,41 @@
-- id: family
-  title: Kinderbetreuung
-  subtitle: 0 bis 6 Jahre
-  img: //lorempixel.com/200/200/cats/1
+family:
+    name: Kinderbetreuung
+    category: 0 bis 6 Jahre
+    thumbnail: //lorempixel.com/200/200/cats/1
+    poster: //lorempixel.com/1920/1080/cats/1
+
+kids:
+    name: Kindergottesdienst
+    category: 7 bis 12 Jahre
+    thumbnail: //lorempixel.com/200/200/cats/2
+    poster: //lorempixel.com/1920/1080/cats/2
+
+teens:
+    name: Gemeindeunterricht
+    category: 13 bis 16 Jahre
+    thumbnail: //lorempixel.com/200/200/cats/3
+    poster: //lorempixel.com/1920/1080/cats/3
+
+youth-cellgroups:
+    name: Teenie-Hauskreise
+    category: 17 bis 21 Jahre
+    thumbnail: //lorempixel.com/200/200/cats/4
+    poster: //lorempixel.com/1920/1080/cats/4
+
+unlimited:
+    name: unlimited
+    category: 22 bis 35 Jahre
+    thumbnail: //lorempixel.com/200/200/cats/5
+    poster: //lorempixel.com/1920/1080/cats/5
+
+women:
+    name: Café Life
+    category: Frauen
+    thumbnail: //lorempixel.com/200/200/cats/6
+    poster: //lorempixel.com/1920/1080/cats/6
+
+seniors:
+    name: Seniorenkreis
+    category: über 60 Jahre
+    thumbnail: //lorempixel.com/200/200/cats/7
+    poster: //lorempixel.com/1920/1080/cats/7
