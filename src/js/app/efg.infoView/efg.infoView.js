@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('efg.infoView', [
-    'efg.mockService'
+    'efg.infoApi'
 ])
 
 .config(function($routeProvider) {
@@ -11,10 +11,8 @@ angular.module('efg.infoView', [
     });
 })
 
-.controller('InfoCtrl', function(mock, $routeParams) {
-    mock.get('/api/v1/info/' + $routeParams.id).then(angular.bind(this, function success(result) {
-        this.title = result.name;
-    }), angular.bind(this, function error() {
-        
-    }));
+.controller('InfoCtrl', function(infoApi, $routeParams) {
+    infoApi.get($routeParams.id).then(function(info) {
+        this.title = info.name;
+    }.bind(this));
 });

@@ -42,19 +42,6 @@ angular.module('efg.mockService', [
         '/api/v1/event/weihnachtsgottesdienst': {
 
         },
-		'/api/v1/info': [
-			{id: 'creed', title: 'Glaubensbekenntnis', subtitle: 'Was wir glauben', img: 'glyphicon glyphicon-fire'},
-			{id: 'faq', title: 'Häufige Fragen', subtitle: undefined, img: 'glyphicon glyphicon-comment'}
-		],
-        '/api/v1/info/creed': {
-            id: 'creed',
-            name: 'Glaubensbekenntnis'
-        },
-		'/api/v1/contact?fields=name,action,img': [
-			{id: 'phone', name: '+49 1577 8394600', action: 'tel:+4915778394600', img: 'glyphicon glyphicon-earphone'},
-			{id: 'location', name: 'Böhlstraße 5, Ludwigshafen', action: '#!/findus', img: 'glyphicon glyphicon-map-marker'},
-			{id: 'email', name: 'info@efg-ludwigshafen.de', action: 'mailto:info@efg-ludwigshafen.de', img: 'glyphicon glyphicon-envelope'}
-		],
 		'/api/v1/sermon?fields=name,date,series:(name,order),preacher:(name),source:(src,type)&limit=1': [{
 			id: '2014-12-21',
 			date: (new Date('2014/12/21 10:00')).getTime(),

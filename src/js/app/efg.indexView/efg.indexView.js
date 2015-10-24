@@ -6,6 +6,7 @@ angular.module('efg.indexView', [
     'efg.memberApi',
     'efg.serviceApi',
     'efg.groupApi',
+    'efg.infoApi',
 	'efg.mockService',
 	'efg.componentDirective',
     'efg.sermonDirective',
@@ -22,7 +23,7 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(contactApi, nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
+.controller('IndexCtrl', function(infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
 	this.$filter = $filter;
 
 	serviceApi.query().then(function(services) {
@@ -112,9 +113,17 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-	mock.get('/api/v1/info').then(angular.bind(this, function success(result) {
-		this.infos = result;
-	}));
+	infoApi.query().then(function(infos) {
+		this.infos = Object.keys(infos).map(function(key) {
+            var info = infos[key];
+            return {
+                id: key,
+                title: info.name,
+                subtitle: info.subtitle,
+                img: info.thumbnail
+            };
+        });
+	}.bind(this));
     mock.get('/api/v1/sermon?fields=name,date,series:(name,order),preacher:(name),source:(src,type)&limit=1').then(angular.bind(this, function success(result) {
 		this.sermon = result[0];
 	}));

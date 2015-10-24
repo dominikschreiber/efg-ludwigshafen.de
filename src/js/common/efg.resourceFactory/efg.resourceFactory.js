@@ -71,3 +71,4 @@ resourceFactory('service');
 resourceFactory('member');
 resourceFactory('next');
 resourceFactory('contact');
+resourceFactory('info');
