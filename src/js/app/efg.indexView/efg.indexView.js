@@ -7,6 +7,7 @@ angular.module('efg.indexView', [
     'efg.serviceApi',
     'efg.groupApi',
     'efg.infoApi',
+    'efg.eventApi',
 	'efg.mockService',
 	'efg.componentDirective',
     'efg.sermonDirective',
@@ -23,28 +24,30 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
+.controller('IndexCtrl', function(eventApi, infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, mock, $http, $log, $filter) {
 	this.$filter = $filter;
 
 	serviceApi.query().then(function(services) {
-		this.services = Object.keys(services).map(function(id) {
+		this.services = Object.keys(services).map(function(key) {
+            var service = services[key];
             return {
-                id: id,
-                title: services[id].name,
+                id: key,
+                title: service.name,
                 subtitle: [
-                    services[id].schedule.day,
-                    services[id].schedule.hours
+                    service.schedule.day,
+                    service.schedule.hours
                 ].join(', ')
             };
         });
 	}.bind(this));
 	groupApi.query().then(function(groups) {
-        this.groups = Object.keys(groups).map(function(id) {
+        this.groups = Object.keys(groups).map(function(key) {
+            var group = groups[key];
             return {
-                id: id,
-                title: groups[id].name,
-                subtitle: groups[id].category,
-                img: groups[id].thumbnail
+                id: key,
+                title: group.name,
+                subtitle: group.category,
+                img: group.thumbnail
             };
         });
 	}.bind(this));
@@ -77,10 +80,11 @@ angular.module('efg.indexView', [
             return all;
         }, []);
 	}.bind(this));
-	mock.get('/api/v1/event?limit=3&fields=name,date,img').then(angular.bind(this, function success(result) {
-		this.events = _.map(result, function(event) {
+	eventApi.query().then(function(events) {
+		this.events = Object.keys(events).map(function(key) {
+            var event = events[key];
 			return {
-				id: event.id,
+				id: key,
 				title: event.name,
 				subtitle: (event.date.length > 1) ?
 					event.date
@@ -98,10 +102,10 @@ angular.module('efg.indexView', [
 						})
 						.join(' bis ') :
 					$filter('date')(new Date(event.date[0]), 'd. MMMM HH:mm'),
-				img: event.img
+				img: event.thumbnail
 			};
 		});
-	}));
+	}.bind(this));
 	nextApi.query().then(function(actions) {
 		this.next = Object.keys(actions).map(function(key) {
             var words = actions[key].action.split(' ');
