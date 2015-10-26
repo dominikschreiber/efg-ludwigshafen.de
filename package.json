@@ -4,9 +4,9 @@
   "description": "website of efg ludwigshafen",
   "main": "index.html",
   "scripts": {
-    "postinstall": "node_modules/.bin/bower install",
-    "clean": "node_modules/.bin/grunt clean",
-    "start": "node_modules/.bin/grunt start",
+    "postinstall": "bower install",
+    "clean": "grunt clean",
+    "start": "grunt start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dominik Schreiber <domischreib@gmail.com>",

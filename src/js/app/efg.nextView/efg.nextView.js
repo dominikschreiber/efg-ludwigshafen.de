@@ -2,7 +2,7 @@
 
 angular.module('efg.nextView', [
     'efg.nextApi',
-    'md.parseMarkdownFilter',
+    'btford.markdown',
     'ngRoute'
 ])
 
