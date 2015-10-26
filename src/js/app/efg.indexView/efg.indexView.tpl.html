@@ -63,7 +63,8 @@
 <component classes="component-lg"
 		   header="Nächste Events"
 		   subheader="Bei uns in der Gemeinde.">
-	<thumbnails items="index.events"
+	<thumbnails ng-if="index.events.length > 0"
+                items="index.events"
 			    base="#!/event/"
 			    imgclass="img-rounded"/>
 </component>
@@ -73,7 +74,8 @@
 		   style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(//lorempixel.com/g/1920/1080/people)"
 		   header="Unsere Gruppen"
 		   subheader="Du bist herzlich eingeladen.">
-	<thumbnails items="index.groups"
+	<thumbnails ng-if="index.groups.length > 0"
+                items="index.groups"
 			    base="#!/group/"
 			    imgclass="img-circle"/>
 </component>
@@ -82,7 +84,8 @@
 <component classes="component-lg"
 		   header="Informationen"
 		   subheader="Wir wollen Deine Fragen beantworten.">
-	<thumbnails items="index.infos"
+	<thumbnails ng-if="index.infos.length > 0"
+                items="index.infos"
 				base="#!/info/"/>
 </component>
 
@@ -105,7 +108,8 @@
 		   header="Unser Team">
 	<div class="col-md-12">
 		<div class="row">
-			<thumbnails itemstyle="{'padding-left': '6rem', 'padding-right': '6rem'}"
+			<thumbnails ng-if="index.elders.length > 0"
+                        itemstyle="{'padding-left': '6rem', 'padding-right': '6rem'}"
 					    items="index.elders"
 					    base="#!/member/"
 					    imgclass="img-circle img-thumbnail"/>
@@ -122,7 +126,8 @@
 			</div>
 		</div>
 		<div class="row" ng-if="index.showFullTeam">
-			<thumbnails items="index.members"
+			<thumbnails ng-if="index.members.length > 0"
+                        items="index.members"
 					    base="#!/member/"
 					    imgclass="img-circle img-thumbnail"/>
 		</div>
@@ -149,6 +154,7 @@
 <component classes="component-lg bg-dark"
 		   header="Kontakt"
 		   subheader="So erreichst Du uns.">
-	<thumbnails items="index.contacts"
+	<thumbnails ng-if="index.contacts.length > 0"
+                items="index.contacts"
 				href=""/>
 </component>

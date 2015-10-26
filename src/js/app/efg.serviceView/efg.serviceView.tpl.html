@@ -4,9 +4,11 @@
 		   subheader="{{service.subtitle}}"></component>
 <component classes="component-lg">
     <div class="col-sm-6 text-left"
+         ng-class="{'col-sm-offset-3': !service.sermon}"
          ng-bind-html="service.description | parseMarkdown">
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6"
+         ng-if="service.sermon">
         <h3>Hör Dir eine Predigt an</h3>
         <p class="lead">{{service.sermon.name}}</p>
         <p>vom {{service.sermon.date | date:'d. MMMM'}}, von {{service.sermon.preacher.name}}</p>

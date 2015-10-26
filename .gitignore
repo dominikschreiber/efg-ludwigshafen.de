@@ -26,3 +26,7 @@ tmp/
 
 # Users Environment Variables
 .lock-wscript
+
+# vscode dependent files+folders
+/typings/
+/.vscode/

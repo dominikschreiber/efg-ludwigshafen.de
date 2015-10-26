@@ -1,8 +1,8 @@
 <a ng-href="{{href}}"
    class="thumbnail"
    ng-class="classes">
-	<p ng-if="contains(img, ' ')" style="font-size: 3rem"><i ng-class="img"></i></p>
-	<img ng-if="!contains(img, ' ')" ng-src="{{img}}" ng-class="imgclass">
+	<p ng-if="img && contains(img, ' ')" style="font-size: 3rem"><i ng-class="img"></i></p>
+	<img ng-if="img && !contains(img, ' ')" ng-src="{{img}}" ng-class="imgclass">
 	<div class="caption">
 		<h3 ng-bind="header"></h3>
 		<p ng-bind="subheader"></p>

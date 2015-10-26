@@ -3,5 +3,5 @@
            subheader="{{next.subtitle}}"
 		   ng-style="{'background-image': 'url(' + next.img + ')'}"></component>
 <component classes="component-lg">
-	<div ng-bind-html="next.content | trustHtml"></div>
+	<div ng-bind-html="next.content | parseMarkdown"></div>
 </component>

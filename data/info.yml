@@ -1,0 +1,8 @@
+creed:
+    name: Glaubensbekenntnis
+    subtitle: Was wir glauben
+    thumbnail: glyphicon glyphicon-fire
+
+faq:
+    name: Häufige Fragen
+    thumbnail: glyphicon glyphicon-comment

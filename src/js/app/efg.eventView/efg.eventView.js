@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('efg.eventView', [
-    'efg.mockService',
+    'efg.eventApi',
+    'ng',
     'ngRoute'
 ])
 
@@ -12,8 +13,8 @@ angular.module('efg.eventView', [
     });
 })
 
-.controller('EventCtrl', function(mock, $routeParams) {
-    mock.get('/api/v1/event/' + $routeParams.id).then(function(result) {
-    
-    });
+.controller('EventCtrl', function(eventApi, $routeParams) {
+    eventApi.get($routeParams.id).then(function(event) {
+
+    }.bind(this));
 });

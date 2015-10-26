@@ -1,0 +1,14 @@
+phone:
+    name: +49 1577 8394600
+    action: "tel:+4915778394600"
+    thumbnail: glyphicon glyphicon-earphone
+
+location:
+    name: Böhlstraße 5, Ludwigshafen
+    action: "#!/findus"
+    thumbnail: glyphicon glyphicon-map-marker
+
+email:
+    name: info@efg-ludwigshafen.de
+    action: "mailto:info@efg-ludwigshafen.de"
+    thumbnail: glyphicon glyphicon-envelope
