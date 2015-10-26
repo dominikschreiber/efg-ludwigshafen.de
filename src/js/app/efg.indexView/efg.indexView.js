@@ -10,6 +10,7 @@ angular.module('efg.indexView', [
     'efg.eventApi',
 	'efg.sermonApi',
 	'efg.componentDirective',
+    'efg.headerlogoDirective',
     'efg.sermonDirective',
 	'bootstrap.thumbnailDirective',
 	'bootstrap.thumbnailsDirective',
