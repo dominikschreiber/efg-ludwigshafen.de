@@ -1,41 +1,41 @@
 family:
     name: Kinderbetreuung
     category: 0 bis 3 Jahre
-    thumbnail: //lorempixel.com/200/200/cats/1
+    thumbnail: glyphicon glyphicon-baby-formula glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/1
 
 kids:
     name: Kindergottesdienst
     category: 3 bis 12 Jahre
-    thumbnail: //lorempixel.com/200/200/cats/2
+    thumbnail: glyphicon glyphicon-grain glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/2
 
 teens:
     name: Gemeindeunterricht
     category: 13 bis 16 Jahre
-    thumbnail: //lorempixel.com/200/200/cats/3
+    thumbnail: glyphicon glyphicon-education glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/3
 
 youth-cellgroups:
     name: Hauskreise
     category: über 17 Jahre
-    thumbnail: //lorempixel.com/200/200/cats/4
+    thumbnail: glyphicon glyphicon-leaf glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/4
 
 unlimited:
     name: unlimited
     category: 13 bis 35 Jahre
-    thumbnail: //lorempixel.com/200/200/cats/5
+    thumbnail: glyphicon glyphicon-fire glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/5
 
 women:
     name: Café Life
     category: Frauen
-    thumbnail: //lorempixel.com/200/200/cats/6
+    thumbnail: glyphicon glyphicon-globe glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/6
 
 seniors:
     name: Seniorenkreis
     category: über 60 Jahre
-    thumbnail: //lorempixel.com/200/200/cats/7
+    thumbnail: glyphicon glyphicon-tree-deciduous glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/7
