@@ -1,0 +1,25 @@
+<svg version="1.1"
+     baseProfile="full"
+     width="2160"
+     height="700"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,300);</style>
+    <style>
+        .c-primary { fill: #55ace8 }
+        .c-light   { fill: #ebebeb }
+        .c-dark    { fill: #132532 }
+        text {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 96px;
+            font-weight: 300;
+        }
+    </style>
+<!--    <rect x="0" y="0" width="2160" height="625" class="c-dark"/>-->
+    <text x="4" y="485" class="c-light">Evangelisch-freikirchliche Gemeinde (Baptisten)</text>
+    <text x="1270" y="604" class="c-light" style="font-weight:600">Ludwigshafen</text>
+    <path d="M 1944   0 h  42 v 180 h  90 v   42 h -132 Z" class="c-primary"/>
+    <path d="M 1944 232 v 132 h  42 v -90 h  180 v  -42 Z" class="c-light"/>
+    <path d="M 1802 232 h 132 v 373 h -42 v -331 h  -90 Z" class="c-light"/>
+    <path d="M 1712 180 h 180 v -90 h  42 v  132 h -222 Z" class="c-light"/>
+</svg>
