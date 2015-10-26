@@ -4,7 +4,7 @@ angular.module('efg.serviceView', [
     'efg.serviceApi',
     'efg.trustFilter',
     'efg.sermonDirective',
-    'md.parseMarkdownFilter',
+    'btford.markdown',
 	'ng',
 	'ngRoute'
 ])

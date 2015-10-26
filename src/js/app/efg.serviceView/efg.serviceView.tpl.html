@@ -5,7 +5,7 @@
 <component classes="component-lg">
     <div class="col-sm-6 text-left"
          ng-class="{'col-sm-offset-3': !service.sermon}"
-         ng-bind-html="service.description | parseMarkdown">
+         btf-markdown="service.description">
     </div>
     <div class="col-sm-6"
          ng-if="service.sermon">
