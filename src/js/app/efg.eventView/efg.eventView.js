@@ -2,19 +2,23 @@
 
 angular.module('efg.eventView', [
     'efg.eventApi',
+    'ui.calendar',
     'ng',
     'ngRoute'
 ])
 
 .config(function($routeProvider) {
-    $routeProvider.when('/event/:id', {
+    $routeProvider.when('/event', {
         controller: 'EventCtrl as event',
         templateUrl: 'efg.eventView.tpl.html'
     });
 })
 
-.controller('EventCtrl', function(eventApi, $routeParams) {
-    eventApi.get($routeParams.id).then(function(event) {
-
-    }.bind(this));
+.controller('EventCtrl', function() {
+    this.sources = [{
+        googleCalendarId: 'efg.ludwigshafen@gmail.com'
+    }];
+    this.calendar = {
+        googleCalendarApiKey: 'AIzaSyAItn9V0gjivVppN6e0Ey5RviaMxtTuQ0U'
+    };
 });
