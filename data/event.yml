@@ -1,3 +1,11 @@
+# ${id}:
+#     name: String
+#     thumbnail: url|classList
+#     date: Array<Date>
+#
+# @creates #!/event/${id}
+# @stability 0
+
 weihnachtsgottesdienst:
     name: Weihnachtsgottesdienst
     thumbnail: //lorempixel.com/500/400/abstract/1

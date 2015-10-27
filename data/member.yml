@@ -1,3 +1,15 @@
+# ${id}:
+#     name:
+#         givenname: String
+#         familyname: String
+#     description: String (multiline, markdown)
+#     duties: Array<String>
+#     img: url|classList
+#     poster: url
+#
+# @creates #!/member/${id}
+# @stability 2
+
 wilfried:
     name:
         givenname: Wilfried

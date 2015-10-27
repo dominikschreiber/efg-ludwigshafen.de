@@ -1,3 +1,11 @@
+# ${id}:
+#     name: String
+#     subtitle: String
+#     thumbnail: url|classList
+#
+# @creates #!/info/${id}
+# @stability 1
+
 creed:
     name: Glaubensbekenntnis
     subtitle: Was wir glauben

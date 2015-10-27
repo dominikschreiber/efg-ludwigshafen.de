@@ -16,3 +16,21 @@ npm install
 # start the development build (concat + uglify js, start server at ::8000)
 npm start
 ```
+
+## copywriting
+
+Content is placed in [YAML](http://yaml.org/) files in the [/data](./data)
+folder. Those files contain an explaining header with a more-or-less final
+"schema" as well as possible notes on the stability of this schema (oriented
+at nodejs' [stability index](https://nodejs.org/api/documentation.html#documentation_stability_index))
+and the routes that are created for the resource. This would be for example
+
+```yml
+# ${id}:
+#     name: String
+#     thumbnail: url|classList
+#     poster: url
+#
+# @creates #!/foo/${id}
+# @stability 1
+```

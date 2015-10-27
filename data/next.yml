@@ -1,3 +1,13 @@
+# ${id}:
+#     action: String (shown on index page)
+#     name: String
+#     subtitle: String
+#     description String (multiline, markdown)
+#     poster: url
+#
+# @creates #!/next/${id}
+# @stability 2
+
 service:
     action: Komm zu einem Gottesdienst
     name: Gottesdienst

@@ -1,3 +1,14 @@
+# ${id}:
+#     name: String
+#     date: Date
+#     series:
+#         name: String
+#         order: Integer
+#     preacher: String
+#     source: Array<{src: url, type: mime}>
+#
+# @stability 0
+
 2014-12-21:
     name: Zuversicht und Festigkeit - Strophe 6
     date: 2014/12/21 10:00

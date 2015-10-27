@@ -1,3 +1,16 @@
+# ${id}:
+#     name: String
+#     subtitle: String
+#     description: String (multiline, markdown)
+#     schedule:
+#         day: String (e.g. Sonntags)
+#         hours: String (e.g. 10:00 Uhr)
+#     poster: url
+#     sermon: Sermon (see sermon.yml)
+#
+# @creates #!/service/${id}
+# @stability 2
+
 sunday:
     name: Sonntagmorgen-Gottesdienst
     subtitle: Jung und Alt, Groß und Klein. Gemeinsam vor Gott

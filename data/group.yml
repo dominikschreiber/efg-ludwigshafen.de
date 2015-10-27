@@ -1,3 +1,12 @@
+# ${id}:
+#     name: String
+#     category: String
+#     thumbnail: url|classList
+#     poster: url
+#
+# @creates #!/group/${id}
+# @stability 1
+
 family:
     name: Kinderbetreuung
     category: 0 bis 3 Jahre
@@ -16,7 +25,7 @@ teens:
     thumbnail: glyphicon glyphicon-education glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/3
 
-youth-cellgroups:
+cellgroups:
     name: Hauskreise
     category: über 17 Jahre
     thumbnail: glyphicon glyphicon-leaf glyphicon-fw img-circle
@@ -25,7 +34,7 @@ youth-cellgroups:
 unlimited:
     name: unlimited
     category: 13 bis 35 Jahre
-    thumbnail: glyphicon glyphicon-fire glyphicon-fw img-circle
+    thumbnail: glyphicon glyphicon-sunglasses glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/5
 
 women:
