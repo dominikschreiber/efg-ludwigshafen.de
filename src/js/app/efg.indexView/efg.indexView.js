@@ -7,7 +7,6 @@ angular.module('efg.indexView', [
     'efg.serviceApi',
     'efg.groupApi',
     'efg.infoApi',
-    'efg.eventApi',
 	'efg.sermonApi',
 	'efg.componentDirective',
     'efg.headerlogoDirective',
@@ -25,7 +24,7 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(eventApi, infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, sermonApi, $http, $log, $filter) {
+.controller('IndexCtrl', function(infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, sermonApi, $http, $log, $filter) {
 	this.$filter = $filter;
 
 	serviceApi.query().then(function(services) {
@@ -80,32 +79,6 @@ angular.module('efg.indexView', [
             }
             return all;
         }, []);
-	}.bind(this));
-	eventApi.query().then(function(events) {
-		this.events = Object.keys(events).map(function(key) {
-            var event = events[key];
-			return {
-				id: key,
-				title: event.name,
-				subtitle: (event.date.length > 1) ?
-					event.date
-						.reduce(function(prev, now) {
-							var min = prev[0]
-							  , max = prev[1];
-
-							if (now < min) { min = now; }
-							if (now > max) { max = now; }
-
-							return [min, max];
-						}, [Number.MAX_VALUE, Number.MIN_VALUE])
-						.map(function(date) {
-							return $filter('date')(new Date(date), 'd. MMMM');
-						})
-						.join(' bis ') :
-					$filter('date')(new Date(event.date[0]), 'd. MMMM HH:mm'),
-				img: event.thumbnail
-			};
-		});
 	}.bind(this));
 	nextApi.query().then(function(actions) {
 		this.next = Object.keys(actions).map(function(key) {

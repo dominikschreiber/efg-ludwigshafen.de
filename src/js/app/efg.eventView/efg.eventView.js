@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('efg.eventView', [
-    'efg.eventApi',
     'ui.calendar',
     'ng',
     'ngRoute'
