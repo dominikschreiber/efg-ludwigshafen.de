@@ -1,0 +1,50 @@
+@u-navbar-height: 3 * @u-unit;
+@u-navbar-lineheight: .5 * @u-navbar-height;
+
+.navbar {
+    margin-bottom: 0;
+    min-height: @u-navbar-height;
+}
+
+.navbar-default {
+    color: @c-content-inverse;
+    background-color: @c-content;
+    border-color: @c-content;
+    box-shadow: 0 0 @u-unit @c-content;
+
+    .navbar-nav {
+        & > li {
+            & > a {
+                color: @c-content-inverse;
+
+                &:hover,
+                &:focus,
+                &:active,
+                &.hover,
+                &.focus,
+                &.active {
+                    color: @c-content-inverse-eased;
+                }
+
+                transition: color @t-fast @t-timing;
+            }
+        }
+    }
+}
+
+.navbar-brand {
+    padding-top: .15 * @u-navbar-height;
+    padding-bottom: .15 * @u-navbar-height;
+    height: @u-navbar-height;
+    line-height: @u-navbar-height / 2;
+}
+
+.navbar-nav {
+    & > li {
+        & > a {
+            line-height: @u-navbar-lineheight;
+            padding-top: (@u-navbar-height - @u-navbar-lineheight) / 2;
+            padding-bottom: (@u-navbar-height - @u-navbar-lineheight) / 2;
+        }
+    }
+}

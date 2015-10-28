@@ -2,6 +2,7 @@
 
 angular.module('efg.findusView', [
 	'efg.componentDirective',
+    'bootstrap.headerbarDirective',
 	'uiGmapgoogle-maps',
 	'geolocation',
 	'ng',
@@ -13,7 +14,7 @@ angular.module('efg.findusView', [
 		controller: 'FindusCtrl as findus',
 		templateUrl: 'efg.findusView.tpl.html'
 	});
-    
+
 	uiGmapGoogleMapApiProvider.configure({
 		v: '3.17',
 		libraries: 'weather,geometry,visualization'
@@ -26,7 +27,7 @@ angular.module('efg.findusView', [
 	var latitude = 49.49172
 	  , longitude = 8.435441
 	  , delta = 0.0001;
-	
+
 	this.map = {
 		center: {
 			latitude: latitude,
@@ -56,7 +57,7 @@ angular.module('efg.findusView', [
 		id: 0
 	};
 	this.you = undefined;
-	
+
 	geolocation.getLocation().then(angular.bind(this, function success(data) {
 		this.you = {
 			coords: data.coords,
