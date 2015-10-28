@@ -3,30 +3,45 @@
 
 html {
 	font-size: 12px;
-	
+
 	@media (min-width: @screen-sm-min) { font-size: 14px; }
 	@media (min-width: @screen-md-min) { font-size: 16px; }
 	@media (min-width: @screen-lg-min) { font-size: 22px; }
+
+    font-weight: 400;
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+           (min-resolution: 192dpi) { font-weight: 300; }
 }
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: @f-font-family;
 }
 
-h1 { 
+h1 {
 	font-size: 3.5 * @u-unit;
 }
-h2 { 
+h2 {
 	font-size: 2.25 * @u-unit;
 }
-h3 { 
+h3 {
 	font-size: 1.125 * @u-unit;
 }
 
-p { 
+p {
 	font-size: .825 * @u-unit;
-	
+
 	&.lead {
 		font-size: 1 * @u-unit;
 	}
+}
+
+b,
+strong,
+th,
+dd {
+    font-weight: 700;
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+           (min-resolution: 192dpi) { font-weight: 600; }
 }
