@@ -1,6 +1,10 @@
 'use strict';
 
 angular.module('efg.eventView', [
+<<<<<<< HEAD
+=======
+    'bootstrap.headerbarDirective',
+>>>>>>> feb609bbd9a502f48d473cec5d2119af1ab2b931
     'ui.calendar',
     'ng',
     'ngRoute'

@@ -18,10 +18,10 @@ module.exports = function(grunt) {
                         new (require('less-plugin-clean-css'))()
                     ],
 					sourceMap: true,
-					sourceMapFilename: 'theme.min.css.map'
+					sourceMapFilename: 'main.min.css.map'
 				},
 				files: {
-					'theme.min.css': 'src/less/theme.less'
+					'main.min.css': 'src/less/theme.less'
 				}
 			}
 		},
@@ -30,8 +30,42 @@ module.exports = function(grunt) {
 			scripts: {
 				src: ['src/js/common/efg.resourceFactory/efg.resourceFactory.js', 'src/js/**/*.js', '<%= ngtemplates.efg.dest %>', '!*.spec.js'],
 				dest: 'tmp/main.js'
-			}
+			},
+            vendorscripts: {
+                src: [
+                    'node_modules/js-yaml/dist/js-yaml.min.js',
+                    'bower_components/lodash/lodash.min.js',
+                    'bower_components/jquery/dist/jquery.min.js',
+                    'bower_components/moment/min/moment.min.js',
+                    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                    'bower_components/angular/angular.min.js',
+                    'bower_components/angular-route/angular-route.min.js',
+                    'bower_components/angular-i18n/angular-locale_de-de.js',
+                    'bower_components/angular-google-maps/dist/angular-google-maps.min.js',
+                    'bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js',
+                    'bower_components/angular-sanitize/angular-sanitize.min.js',
+                    'bower_components/angular-ui-calendar/src/calendar.js',
+                    'bower_components/angular-markdown-directive/markdown.js',
+                    'bower_components/fullcalendar/dist/fullcalendar.min.js',
+                    'bower_components/fullcalendar/dist/gcal.js',
+                    'bower_components/showdown/compressed/Showdown.min.js'
+                ],
+                dest: 'vendor.min.js'
+            },
+            vendorstyles: {
+                src: [
+                    'bower_components/fullcalendar/dist/fullcalendar.css'
+                ],
+                dest: 'vendor.min.css'
+            }
 		},
+        copy: {
+            glyphicons: {
+                files: [
+                    {expand: true, cwd: 'bower_components/bootstrap/dist/fonts', src: ['**'], dest: 'assets/fonts/'}
+                ]
+            }
+        },
 		// add angular dependency strings before functions
 		ngAnnotate: {
 			options: {
@@ -89,7 +123,7 @@ module.exports = function(grunt) {
 			},
 			styles: {
 				files: '**/*.less',
-				tasks: ['styles']
+				tasks: ['less']
 			},
 			templates: {
 				files: 'src/**/*.tpl.html',
@@ -106,8 +140,8 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', ['clean', 'styles', 'scripts']);
 
-	grunt.registerTask('styles', ['less:styles']);
-	grunt.registerTask('scripts', ['ngtemplates:efg', 'concat:scripts', 'ngAnnotate:scripts', 'uglify:scripts']);
+	grunt.registerTask('styles', ['less', 'copy:glyphicons']);
+	grunt.registerTask('scripts', ['ngtemplates:efg', 'concat', 'ngAnnotate:scripts', 'uglify:scripts']);
 
 	grunt.registerTask('start', ['default', 'connect', 'watch']);
 };

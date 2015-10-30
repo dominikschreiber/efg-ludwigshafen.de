@@ -1,24 +1,41 @@
-@import '../../bower_components/bootstrap/less/variables.less';
-
-@c-white: #ffffff;
-@c-black: #000000;
-
-// color methodology:
-// ------------------
+// colors (c- prefixed):
+//
 // - c-content is the main content color (dark, when on light background)
 // - c-background is the main background color
 // - *-eased is a weaker version of the color
 // - *-inverse is a inversed version of the color (e.g. dark instead of light)
-@c-content: lighten(@c-black, 20%);
-@c-content-eased: lighten(@c-content, 20%);
-@c-content-inverse: @c-white;
-@c-content-inverse-eased: darken(@c-content-inverse, 20%);
+@c-white: #ffffff;
+@c-black: #000000;
 
-@c-background: darken(@c-white, 10%);
-@c-background-inverse: lighten(@c-black, 20%);
+@c-content: #123532;
+@c-content-eased: desaturate(lighten(@c-content, 20%), 50%);
+@c-content-inverse: @c-white;
+@c-content-inverse-eased: #ebebeb;
+
+@c-primary: #55ace8;
+
+@c-background: #ebebeb;
+@c-background-inverse: @c-content;
+
+// timings (t- prefixed)
 
 @t-fast: .2s;
 @t-slow: .5s;
 @t-timing: ease-in-out;
 
+// units (u- prefixed)
+
 @u-unit: 1rem;
+
+// fonts (f- prefixed)
+
+@f-font-family: 'Source Sans Pro', sans-serif;
+
+// ===== bootstrap overrides ==================================================
+
+@gray-base: @c-black;
+@brand-primary: @c-primary;
+
+@font-family-sans-serif: @f-font-family;
+
+@icon-font-path: '/assets/fonts/';

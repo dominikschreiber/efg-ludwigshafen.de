@@ -1,0 +1,11 @@
+<li>
+    <a ng-href="typeof action === 'string' ? {{action}} : ''"
+       ng-click="typeof action === 'string' ? undefined : action">
+       <i ng-if="img && img.indexOf(' ') > -1"
+          ng-class="img"></i>
+       <img ng-if="img && img.indexOf(' ') === -1"
+            ng-src="img"
+            class="img-responsive"/>
+       <span ng-transclude></span>
+    </a>
+</li>
