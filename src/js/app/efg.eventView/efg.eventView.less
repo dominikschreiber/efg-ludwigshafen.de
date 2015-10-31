@@ -1,0 +1,21 @@
+.fc-event {
+    background-color: @c-primary;
+    border-color: @c-primary;
+
+    &,
+    &:hover {
+        color: @c-white;
+    }
+
+}
+
+.fc-unthemed {
+    .fc-other-month {
+        background: fade(@c-background, 30%);
+    }
+    // needs to be behind .fc-sat/.fc-sun to style
+    // .fc-sat/.fc-sun.fc-today correctly
+    .fc-today {
+        background: fade(@c-primary, 20%);
+    }
+}

@@ -1,5 +1,6 @@
 @u-navbar-height: 3 * @u-unit;
 @u-navbar-lineheight: .5 * @u-navbar-height;
+@u-navbar-vertical-padding: (@u-navbar-height - @u-navbar-lineheight) / 2;
 
 .navbar {
     margin-bottom: 0;
@@ -7,10 +8,14 @@
 }
 
 .navbar-default {
-    color: @c-content-inverse;
     background-color: @c-content;
     border-color: @c-content;
     box-shadow: 0 0 @u-unit @c-content;
+
+    &,
+    .navbar-text {
+        color: @c-content-inverse;
+    }
 
     .navbar-nav {
         & > li {
@@ -43,8 +48,14 @@
     & > li {
         & > a {
             line-height: @u-navbar-lineheight;
-            padding-top: (@u-navbar-height - @u-navbar-lineheight) / 2;
-            padding-bottom: (@u-navbar-height - @u-navbar-lineheight) / 2;
+            padding-top: @u-navbar-vertical-padding;
+            padding-bottom: @u-navbar-vertical-padding;
         }
     }
+}
+
+.navbar-text {
+    line-height: @u-navbar-lineheight;
+    margin-top: @u-navbar-vertical-padding;
+    margin-bottom: @u-navbar-vertical-padding;
 }

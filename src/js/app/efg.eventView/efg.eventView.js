@@ -36,21 +36,33 @@ angular.module('efg.eventView', [
                 left: '',
                 center: '',
                 right: ''
-            }
+            },
+            timeFormat: 'H:mm',
+            height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * .8,
+            viewRender: function() {
+                this.updateTitle();
+            }.bind(this)
         }
     };
 
     this.today = function() {
         fullCalendar('today');
+        this.updateTitle();
     }.bind(this);
 
     this.next = function() {
         fullCalendar('next');
+        this.updateTitle();
     }.bind(this);
 
     this.previous = function() {
         fullCalendar('prev');
+        this.updateTitle();
     }.bind(this);
+
+    this.updateTitle = function() {
+        this.title = fullCalendar('getDate')._d;
+    };
 
     this.eventSources = [this.eventSource];
 });

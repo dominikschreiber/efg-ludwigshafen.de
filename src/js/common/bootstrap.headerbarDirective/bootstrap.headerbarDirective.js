@@ -20,6 +20,7 @@ angular.module('bootstrap.headerbarDirective', [
         templateUrl: 'bootstrap.headeractionDirective.tpl.html',
         scope: {
             img: '@',
+            header: '@',
             href: '@',
             click: '='
         },
