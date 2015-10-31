@@ -1,13 +1,14 @@
 <headerbar>
-    <headeraction action="event.today">
+    <headeraction click="event.today">
         heute
     </headeraction>
     <headeraction img="glyphicon glyphicon-menu-left"
-                  action="event.previous"></headeraction>
+                  click="event.previous"></headeraction>
     <headeraction img="glyphicon glyphicon-menu-right"
-                  action="event.next"></headeraction>
+                  click="event.next"></headeraction>
 </headerbar>
 <component classes="component-almost-viewport">
-    <div ui-calendar="event.calendar"
-         ng-model="event.eventSources"></div>
+    <div ui-calendar="event.uiConfig.calendar"
+         ng-model="event.eventSources"
+         calendar="events"></div>
 </component>

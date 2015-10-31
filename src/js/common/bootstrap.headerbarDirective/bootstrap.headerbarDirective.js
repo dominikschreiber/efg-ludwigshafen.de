@@ -20,10 +20,10 @@ angular.module('bootstrap.headerbarDirective', [
         templateUrl: 'bootstrap.headeractionDirective.tpl.html',
         scope: {
             img: '@',
-            action: '&'
+            href: '@',
+            click: '='
         },
         link: function($scope, $element, $attributes) {
-
         },
         transclude: true,
         replace: true

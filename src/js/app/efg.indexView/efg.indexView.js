@@ -65,7 +65,7 @@ angular.module('efg.indexView', [
 			}
 
 		this.members = Object.keys(members).reduce(function(all, key) {
-            var member = members[key];
+            var member = _.extend(members[key], {id: key});
             if (member.duties.indexOf('Ältester') === -1) {
                 all.push(createMember(member));
             }
@@ -73,7 +73,7 @@ angular.module('efg.indexView', [
         }, []);
 
 		this.elders = Object.keys(members).reduce(function(all, key) {
-            var member = members[key];
+            var member = _.extend(members[key], {id: key});
             if (member.duties.indexOf('Ältester') > -1) {
                 all.push(createMember(member));
             }

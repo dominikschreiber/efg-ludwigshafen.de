@@ -1,6 +1,6 @@
 <li>
-    <a ng-href="typeof action === 'string' ? {{action}} : ''"
-       ng-click="typeof action === 'string' ? undefined : action">
+    <a ng-href="{{href}}"
+       ng-click="click()">
        <i ng-if="img && img.indexOf(' ') > -1"
           ng-class="img"></i>
        <img ng-if="img && img.indexOf(' ') === -1"
