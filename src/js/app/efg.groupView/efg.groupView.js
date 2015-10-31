@@ -19,5 +19,6 @@ angular.module('efg.groupView', [
     groupApi.get($routeParams.id).then(function success(group) {
         this.title = group.name;
         this.img = group.poster;
+        this.description = group.description;
     }.bind(this));
 });

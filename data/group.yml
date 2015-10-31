@@ -3,6 +3,7 @@
 #     category: String
 #     thumbnail: url|classList
 #     poster: url
+#     description: String (multiline, markdown)
 #
 # @creates #!/group/${id}
 # @stability 1
@@ -12,6 +13,8 @@ family:
     category: 0 bis 3 Jahre
     thumbnail: glyphicon glyphicon-baby-formula glyphicon-fw img-circle
     poster: //lorempixel.com/1920/1080/cats/1
+    description: |
+        Wat
 
 kids:
     name: Kindergottesdienst
