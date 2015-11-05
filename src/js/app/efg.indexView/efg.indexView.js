@@ -102,8 +102,8 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-    sermonApi.query().then(function(sermons) {
-		this.sermon = sermons[Object.keys(sermons)[0]];
+    sermonApi.get(0).then(function(sermon) {
+		this.sermon = sermon;
 	}.bind(this));
 	contactApi.query().then(function(contacts) {
 		this.contacts = Object.keys(contacts).map(function(key) {

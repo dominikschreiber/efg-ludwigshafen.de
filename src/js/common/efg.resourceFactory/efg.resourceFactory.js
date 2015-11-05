@@ -36,10 +36,17 @@ function resourceFactory(resource) {
             var deferred = $q.defer();
 
             if (!cache) {
-                $http.get('data/' + resource + '.yml').success(function(yml) {
-                    cache = jsyaml.load(yml);
-                    deferred.resolve(cache);
-                });
+                if (resource == "sermon") {
+                    $http.get('http://cloud.efg-ludwigshafen.de/index.php/apps/files_sharing/ajax/list.php?t=Nx83ZHVvnE9GSlk&dir=/').success(function (data) {
+                        cache = data.data.files;
+                        deferred.resolve(cache);
+                    });
+                } else {
+                    $http.get('data/' + resource + '.yml').success(function (yml) {
+                        cache = jsyaml.load(yml);
+                        deferred.resolve(cache);
+                    });
+                }
             } else {
                 deferred.resolve(cache);
             }

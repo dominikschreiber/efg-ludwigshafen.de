@@ -1,0 +1,14 @@
+<headerbar></headerbar>
+<component classes="component-lg">
+    <div class="col-sm-6 text-left"
+         btf-markdown="sermon.description">
+    </div>
+    <div class="col-sm-12"
+         ng-repeat="s in sermon.sermons">
+        <p class="lead">{{s.name}}</p>
+        <p>vom {{sermons.sermons[0].date | date:'d. MMMM'}}, von {{sermon.sermons[0].preacher.name}}</p>
+        <sermon content="s"
+                style="width: 100%"></sermon>
+
+    </div>
+</component>

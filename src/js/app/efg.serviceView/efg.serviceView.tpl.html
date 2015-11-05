@@ -1,19 +1,19 @@
 <headerbar></headerbar>
 <component classes="component-flex component-almost-viewport bg-dark"
            ng-style="{'background-image': 'url(' + service.img + ')'}"
-		   header="{{service.title}}"
-		   subheader="{{service.subtitle}}"></component>
+		   header="{{sermon.title}}"
+		   subheader="{{sermon.subtitle}}"></component>
 <component classes="component-lg">
     <div class="col-sm-6 text-left"
-         ng-class="{'col-sm-offset-3': !service.sermon}"
-         btf-markdown="service.description">
+         ng-class="{'col-sm-offset-3': !sermon.sermon[0]}"
+         btf-markdown="sermon.description">
     </div>
     <div class="col-sm-6"
-         ng-if="service.sermon">
+         ng-if="sermon.sermon[0]">
         <h3>Hör Dir eine Predigt an</h3>
-        <p class="lead">{{service.sermon.name}}</p>
-        <p>vom {{service.sermon.date | date:'d. MMMM'}}, von {{service.sermon.preacher.name}}</p>
-        <sermon content="service.sermon"
+        <p class="lead">{{sermon.sermon[0].name}}</p>
+        <p>vom {{sermon.sermon[0].date | date:'d. MMMM'}}, von {{sermon.sermon[0].preacher.name}}</p>
+        <sermon content="sermon.sermon[0]"
                 style="width: 100%"></sermon>
     </div>
 </component>
