@@ -4,9 +4,9 @@
          btf-markdown="sermon.description">
     </div>
     <div class="col-sm-12"
-         ng-repeat="s in sermon.sermons">
+         ng-repeat="s in sermon.sermons | orderBy: '-date'">
         <p class="lead">{{s.name}}</p>
-        <p>vom {{sermons.sermons[0].date | date:'d. MMMM'}}, von {{sermon.sermons[0].preacher.name}}</p>
+        <p>vom {{s.date | date:'d. MMMM yy'}}, von {{s.preacher.name}}</p>
         <sermon content="s"
                 style="width: 100%"></sermon>
 

@@ -46,12 +46,14 @@ function resourceFactory(resource) {
                                 sermon.filename = filedata.name;
                                 var infos = filedata.name.split('.')[0].split('_');
                                 sermon.preacher = {};
-                                sermon.preacher.name = infos[1];
+                                if (infos[1]) {
+                                    sermon.preacher.name = infos[1].replace(/-/g,' ').replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                                }
                                 sermon.source = {};
                                 sermon.source.type = filedata.mimetype.toLowerCase();
                                 sermon.source.src = 'http://cloud.efg-ludwigshafen.de/index.php/s/' + sharedfolder + '/download?path=%2F&files=' + sermon.filename;
                                 if (infos[2]) {
-                                    sermon.name = infos[2];
+                                    sermon.name = infos[2].replace(/-/g,' ');
                                 }
                                 sermon.date = Date.parse(infos[0]);
                                 cache.push(sermon);
