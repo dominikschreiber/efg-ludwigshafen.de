@@ -11,8 +11,8 @@
     <div class="col-sm-6"
          ng-if="sermon.sermon[0]">
         <h3>Hör Dir eine Predigt an</h3>
-        <p class="lead">{{sermon.sermon[0].name}}</p>
-        <p>vom {{sermon.sermon[0].date | date:'d. MMMM'}}, von {{sermon.sermon[0].preacher.name}}</p>
+        <p class="lead">{{sermon.name}}</p>
+        <p>vom {{sermon.date | date:'d. MMMM'}}, von {{sermon.preacher.name}}</p>
         <sermon content="sermon.sermon[0]"
                 style="width: 100%"></sermon>
     </div>
