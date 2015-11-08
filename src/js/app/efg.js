@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('efg', [
+    'efg.sermonView',
     'efg.eventView',
 	'efg.indexView',
     'efg.infoView',
