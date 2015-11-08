@@ -15,7 +15,19 @@ sunday:
     name: Sonntagmorgen-Gottesdienst
     subtitle: Jung und Alt, Groß und Klein. Gemeinsam vor Gott
     description: |
-        ### Gottes Familie. Zusammen
+        ### Gottes Familie. Zusammen.
+
+        Sonntagsmorgens trifft sich die ganze Gemeinde. Wir
+        feiern etwa eineinhalb Stunden Gott, unseren Herrn,
+        und bleiben im Anschluss zu Kaffee und Gesprächen.
+
+        In einem typischen Sonntagmorgen-Gottesdienst sind
+        zwischen 70 und 100 Gottesdienstbesucher. Wir beginnen
+        um 10:00 mit einer musikalischen Einstimmung. Ein
+        Mitarbeiter leitet uns durch den Gottesdienst. Der
+        Prediger erklärt uns einen Text aus der Bibel und
+        eine Band singt mit uns Lieder, um Gott anzubeten.
+
     schedule:
         day: Jeden Sonntag
         hours: 10:00 Uhr
