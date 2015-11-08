@@ -1,9 +1,9 @@
 <headerbar header="{{event.title | date: 'MMMM yyyy'}}">
+    <headeraction img="glyphicon glyphicon-menu-left"
+                  click="event.previous"></headeraction>
     <headeraction click="event.today">
         heute
     </headeraction>
-    <headeraction img="glyphicon glyphicon-menu-left"
-                  click="event.previous"></headeraction>
     <headeraction img="glyphicon glyphicon-menu-right"
                   click="event.next"></headeraction>
 </headerbar>
