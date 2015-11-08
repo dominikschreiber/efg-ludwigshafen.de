@@ -130,7 +130,7 @@ module.exports = function(grunt) {
 				tasks: ['scripts']
 			},
 			livereload: {
-				files: ['<%= watch.scripts.files %>', '<%= watch.styles.files %>', '**/*.html'],
+				files: ['<%= watch.scripts.files %>', '<%= watch.styles.files %>', '**/*.html', '**/*.yml'],
 				options: {
 					livereload: true
 				}
