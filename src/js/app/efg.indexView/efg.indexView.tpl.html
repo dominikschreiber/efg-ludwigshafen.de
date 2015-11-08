@@ -1,9 +1,8 @@
 <!-- ===== welcome ============================================== -->
 
 <headerlogo classes="component-flex component-almost-viewport bg-img bg-dark"
-		    style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(//lorempixel.com/g/1920/1080/abstract)">
+		    style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(assets/img/DSC_5153.jpg)">
 </headerlogo>
-
 
 <!-- ===== services ============================================= -->
 <component classes="component-lg"
@@ -56,7 +55,7 @@
 </component>
 
 <!-- ===== info ================================================= -->
-<component classes="component-lg"
+<component classes="component-lg  bg-primary"
 		   header="Informationen"
 		   subheader="Wir wollen Deine Fragen beantworten.">
 	<thumbnails ng-if="index.infos.length > 0"
@@ -65,8 +64,9 @@
 </component>
 
 <!-- ===== next ================================================= -->
-<component classes="component-lg bg-primary"
-		   header="Nächste Schritte">
+<component classes="component-lg"
+		   header="Nächste Schritte"
+           style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(assets/img/IMG_4933a.jpg)">
 	<div class="col-sm-4"
 		 ng-repeat="action in index.next"
 		 style="margin-bottom: 2rem; padding-left: 2rem; padding-right: 2rem;">
