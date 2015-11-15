@@ -1,6 +1,5 @@
 <audio controls
-       class="show">
-    <source ng-repeat="source in sermon.source"
-            ng-src="{{source.src | trustResource}}"
-            type="{{source.type}}"/>
+       class="show"
+       type="{{sermon.source.type}}"
+       ng-src="{{sermon.source.src | trustResource}}">
 </audio>
