@@ -15,12 +15,12 @@ wilfried:
         givenname: Wilfried
         familyname: Schmitt
     description: |
-        Seit der Gemeindegründung dabei. Der Hirte.
+        Seit der Gemeindegründung dabei.  Der Hirte.
     duties:
         - Gemeindeleiter
         - Ältester
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster: //lorempixel.com/1920/1080/people/7
+    img: /assets/img/leader/wilfried_klein.jpg
+    poster: /assets/img/leader/wilfried.jpg
 
 markus:
     name:
@@ -42,8 +42,8 @@ thomas:
         Seit 2 Jahren Ältester. Der Macher.
     duties:
         - Ältester
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster: //lorempixel.com/1920/1080/people/4
+    img: /assets/img/leader/thomas_klein.jpg
+    poster: /assets/img/leader/thomas.jpg
 
 andreas:
     name:
@@ -64,8 +64,8 @@ daniel:
         Pitchfork gentrify messenger bag banh mi PBR next level, vegan chambray trust fund keytar letterpress vinyl lomo. Bushwick Blue Bottle pickled, letterpress pork belly readymade crucifix ennui hashtag mumblecore. Hella biodiesel skateboard, mlkshk fixie hashtag Pitchfork keytar wolf. Mustache sustainable butcher Bushwick, kogi try-hard tattooed flexitarian Carles chambray PBR brunch freegan trust fund. Leggings keffiyeh fixie, cardigan hashtag sustainable hoodie pork belly irony Tumblr meh. Cardigan VHS 8-bit, mixtape gastropub forage gentrify mumblecore distillery lo-fi typewriter Pitchfork scenester Austin. Fashion axe leggings readymade ennui, Pitchfork quinoa Banksy lomo disrupt lumbersexual Echo Park scenester.
     duties:
         - Diakon
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster: //lorempixel.com/1920/1080/people/6
+    img: /assets/img/leader/daniel_klein.jpg
+    poster: /assets/img/leader/daniel.jpg
 
 jonas:
     name:
