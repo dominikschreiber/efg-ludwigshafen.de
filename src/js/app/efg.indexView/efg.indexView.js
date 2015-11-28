@@ -25,7 +25,7 @@ angular.module('efg.indexView', [
 })
 
 .controller('IndexCtrl', function(infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, sermonApi, $log, $filter) {
-	this.$filter = $filter;
+    this.$filter = $filter;
 
 	serviceApi.query().then(function(services) {
 		this.services = Object.keys(services).map(function(key) {
@@ -40,7 +40,8 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-	groupApi.query().then(function(groups) {
+
+    groupApi.query().then(function(groups) {
         this.groups = Object.keys(groups).map(function(key) {
             var group = groups[key];
             return {
@@ -51,7 +52,8 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-	memberApi.query().then(function(members) {
+
+    memberApi.query().then(function(members) {
 		function createMember(member) {
 				return {
 					id: member.id,
@@ -80,7 +82,8 @@ angular.module('efg.indexView', [
             return all;
         }, []);
 	}.bind(this));
-	nextApi.query().then(function(actions) {
+
+    nextApi.query().then(function(actions) {
 		this.next = Object.keys(actions).map(function(key) {
             var words = actions[key].action.split(' ');
 
@@ -91,7 +94,8 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-	infoApi.query().then(function(infos) {
+
+    infoApi.query().then(function(infos) {
 		this.infos = Object.keys(infos).map(function(key) {
             var info = infos[key];
             return {
@@ -102,6 +106,7 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
+
     sermonApi.get(0).then(function(sermon) {
 		this.sermon = sermon;
         this.showSermons = true;
@@ -109,7 +114,8 @@ angular.module('efg.indexView', [
         $log.log(reason);
         this.showSermons = false;
     }.bind(this));
-	contactApi.query().then(function(contacts) {
+
+    contactApi.query().then(function(contacts) {
 		this.contacts = Object.keys(contacts).map(function(key) {
             var contact = contacts[key];
 			return {

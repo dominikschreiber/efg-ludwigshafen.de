@@ -1,10 +1,10 @@
 <!-- ===== welcome ============================================== -->
-<headerlogo classes="component-flex component-almost-viewport bg-img bg-dark"
+<headerlogo classes="welcome component-flex component-almost-viewport bg-img bg-dark"
 		    style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(assets/img/DSC_5153.jpg)">
 </headerlogo>
 
 <!-- ===== services ============================================= -->
-<component classes="component-lg"
+<component classes="services component-lg"
 		   header="Unsere Gottesdienste"
 		   subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
 	<div class="col-sm-6"
@@ -33,7 +33,7 @@
 </component>
 
 <!-- ===== events =============================================== -->
-<component classes="component-lg"
+<component classes="events component-lg"
 		   header="Nächste Events"
 		   subheader="Bei uns in der Gemeinde.">
     <a class="btn btn-lg btn-outline"
@@ -43,7 +43,7 @@
 </component>
 
 <!-- ===== groups =============================================== -->
-<component classes="component-lg bg-img bg-dark"
+<component classes="groups component-lg bg-img bg-dark"
 		   style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(//lorempixel.com/g/1920/1080/people)"
 		   header="Unsere Gruppen"
 		   subheader="Du bist herzlich eingeladen.">
@@ -54,7 +54,7 @@
 </component>
 
 <!-- ===== info ================================================= -->
-<component classes="component-lg  bg-primary"
+<component classes="info component-lg  bg-primary"
 		   header="Informationen"
 		   subheader="Wir wollen Deine Fragen beantworten.">
 	<thumbnails ng-if="index.infos.length > 0"
@@ -64,7 +64,7 @@
 
 
 <!-- ===== next ================================================= -->
-<component classes="component-lg bg-dark bg-img"
+<component classes="next component-lg bg-dark bg-img"
 		   header="Nächste Schritte"
            style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(assets/img/IMG_4933a.jpg)">
 	<div class="col-sm-4"
@@ -79,12 +79,11 @@
 </component>
 
 <!-- ===== member =============================================== -->
-<component classes="component-lg"
+<component classes="members component-lg"
 		   header="Unsere Gemeindeleitung">
 	<div class="col-md-12">
 		<div class="row">
 			<thumbnails ng-if="index.elders.length > 0"
-                        itemstyle="{'padding-left': '6rem', 'padding-right': '6rem'}"
 					    items="index.elders"
 					    base="#!/member/"
 					    imgclass="img-circle img-thumbnail"/>
@@ -103,7 +102,6 @@
 		<div class="row"
              ng-if="index.showFullTeam">
 			<thumbnails ng-if="index.members.length > 0"
-                        itemstyle="{'padding-left': '6rem', 'padding-right': '6rem'}"
                         items="index.members"
 					    base="#!/member/"
 					    imgclass="img-circle img-thumbnail"/>
@@ -112,7 +110,7 @@
 </component>
 
 <!-- ===== sermon =============================================== -->
-<component classes="component-lg bg-success"
+<component classes="sermons component-lg bg-success"
            header="Predigten"
            ng-show="index.showSermons">
 	<div class="col-md-12">
