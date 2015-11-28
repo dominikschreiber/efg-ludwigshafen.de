@@ -25,5 +25,15 @@
 	padding-bottom: @padding-factor * @u-unit;
 }
 
-.component-almost-viewport { height: calc(~"100vh - "(11 * @u-unit)); }
-.component-viewport { height: 100vh; }
+
+.component-viewport {
+    height: 100vh;
+}
+
+.component-almost-viewport {
+    height: calc(~"100vh - "(11 * @u-unit));
+
+    &.bg-img {
+        background-size: cover;
+    }
+}
