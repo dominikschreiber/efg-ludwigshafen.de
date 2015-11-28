@@ -100,8 +100,10 @@
 				</button>
 			</div>
 		</div>
-		<div class="row" ng-if="index.showFullTeam">
+		<div class="row"
+             ng-if="index.showFullTeam">
 			<thumbnails ng-if="index.members.length > 0"
+                        itemstyle="{'padding-left': '6rem', 'padding-right': '6rem'}"
                         items="index.members"
 					    base="#!/member/"
 					    imgclass="img-circle img-thumbnail"/>
@@ -111,7 +113,8 @@
 
 <!-- ===== sermon =============================================== -->
 <component classes="component-lg bg-success"
-           header="Predigten">
+           header="Predigten"
+           ng-show="index.showSermons">
 	<div class="col-md-12">
 		<h3>{{index.sermon.name}} <small>{{index.sermon.date | date:'d. MMMM'}}, von {{index.sermon.preacher}}</small></h3>
 		<sermon content="index.sermon"

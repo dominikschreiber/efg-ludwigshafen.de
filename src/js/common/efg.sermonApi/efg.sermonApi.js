@@ -53,7 +53,7 @@ angular.module('efg.sermonApi', [
                     });
 
                 deferred.resolve(cache);
-            });
+            }, deferred.reject);
         } else {
             deferred.resolve(cache);
         }
