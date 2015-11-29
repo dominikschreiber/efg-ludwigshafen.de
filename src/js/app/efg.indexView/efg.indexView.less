@@ -1,13 +1,45 @@
+.services.component-lg {
+    @media screen and (max-width: @screen-sm-min) {
+        .row > * + * {
+            margin-top: @u-unit;
+        }
+    }
+}
+
 .members.component-lg {
     .thumbnail {
         .glyphicon {
-            font-size: 4 * @u-unit;;
-            line-height: 1.2;
+            font-size: 50vmin;
+            line-height: 1.4;
         }
 
         .img-thumbnail {
-            width: 7 * @u-unit;
-            height: 7 * @u-unit;
+            width: 80vmin;
+            height: 80vmin;
+        }
+
+        @media screen and (min-width: @screen-sm-min) {
+            .glyphicon {
+                font-size: 5 * @u-unit;
+                line-height: 1.2;
+            }
+
+            .img-thumbnail {
+                width: 8 * @u-unit;
+                height: 8 * @u-unit;
+            }
+        }
+
+        @media screen and (min-width: @screen-md-min) {
+            .glyphicon {
+                font-size: 4 * @u-unit;
+                line-height: 1.2;
+            }
+
+            .img-thumbnail {
+                width: 7 * @u-unit;
+                height: 7 * @u-unit;
+            }
         }
     }
 }
