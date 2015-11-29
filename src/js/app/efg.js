@@ -3,6 +3,7 @@
 angular.module('efg', [
     'efg.sermonView',
     'efg.eventView',
+    'efg.imprintView',
 	'efg.indexView',
     'efg.infoView',
 	'efg.serviceView',
@@ -18,7 +19,7 @@ angular.module('efg', [
 	$routeProvider.otherwise({
 		redirectTo: '/'
 	});
-	
+
 	$locationProvider.html5Mode(false);
 	$locationProvider.hashPrefix('!');
 });
