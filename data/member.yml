@@ -30,8 +30,8 @@ markus:
     duties:
         - Pastor
         - Ältester
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster: //lorempixel.com/1920/1080/people/3
+    img: /assets/img/leader/markus_klein.jpg
+    poster: /assets/img/leader/markus.jpg
 
 thomas:
     name:
@@ -71,5 +71,5 @@ jonas:
     description: |
     duties:
         - Diakon
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster:
+    img: /assets/img/leader/jonas_klein.jpg
+    poster: /assets/img/leader/jonas.jpg
