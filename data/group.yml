@@ -12,7 +12,7 @@ family:
     name: Kinderbetreuung
     category: 0 bis 3 Jahre
     thumbnail: glyphicon glyphicon-baby-formula glyphicon-fw img-circle
-    poster: //lorempixel.com/1920/1080/cats/1
+    poster: #//lorempixel.com/1920/1080/cats/1
     description: |
         Wat
 
@@ -20,19 +20,19 @@ kids:
     name: Kindergottesdienst
     category: 3 bis 12 Jahre
     thumbnail: glyphicon glyphicon-grain glyphicon-fw img-circle
-    poster: //lorempixel.com/1920/1080/cats/2
+    poster: #//lorempixel.com/1920/1080/cats/2
 
 teens:
     name: Gemeindeunterricht
     category: 13 bis 16 Jahre
     thumbnail: glyphicon glyphicon-education glyphicon-fw img-circle
-    poster: //lorempixel.com/1920/1080/cats/3
+    poster: #//lorempixel.com/1920/1080/cats/3
 
 cellgroups:
     name: Hauskreise
     category: über 17 Jahre
     thumbnail: glyphicon glyphicon-leaf glyphicon-fw img-circle
-    poster: //lorempixel.com/1920/1080/cats/4
+    poster: #//lorempixel.com/1920/1080/cats/4
     description: |
         Hauskreise sind der Kern unserer Gemeinde. In kleinen Gruppen
         &ndash; meist zwischen fünf und zehn Personen &ndash; treffen
@@ -68,16 +68,16 @@ unlimited:
     name: unlimited
     category: 13 bis 35 Jahre
     thumbnail: glyphicon glyphicon-sunglasses glyphicon-fw img-circle
-    poster: //lorempixel.com/1920/1080/cats/5
+    poster: #//lorempixel.com/1920/1080/cats/5
 
 women:
     name: Café Life
     category: Frauen
     thumbnail: glyphicon glyphicon-globe glyphicon-fw img-circle
-    poster: //lorempixel.com/1920/1080/cats/6
+    poster: #//lorempixel.com/1920/1080/cats/6
 
 seniors:
     name: Seniorenkreis
     category: über 60 Jahre
     thumbnail: glyphicon glyphicon-tree-deciduous glyphicon-fw img-circle
-    poster: //lorempixel.com/1920/1080/cats/7
+    poster: #//lorempixel.com/1920/1080/cats/7
