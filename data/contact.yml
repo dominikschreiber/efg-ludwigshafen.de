@@ -6,8 +6,8 @@
 # @stability 2
 
 phone:
-    name: +49 1577 8394600
-    action: "tel:+4915778394600"
+    name: (+49) 621 12280558
+    action: "tel:+4962112280558"
     thumbnail: glyphicon glyphicon-earphone
 
 location:
