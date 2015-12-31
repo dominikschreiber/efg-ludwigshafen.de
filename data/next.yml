@@ -19,6 +19,14 @@ service:
 
 cellgroup:
     action: Besuch einen Hauskreis
+    name: Hauskreis
+    description: |
+        Bibelkreise, die sich in Privathaushalten als kleine Gruppen zu ca. 5 bis 10 Personen treffen, nennen wir Hauskreise. In der Regel finden die Treffen an einem Werktag, abends , einmal wöchentlich, manche auch 14 - tägig, statt.
+
+        Von Gruppe zu Gruppe werden die Abende etwas unterschiedlich gestaltet, indem z. B. mit gemeinsamen Singen oder einem Abendessen begonnen wird. Was allen wichtig isr, ist im Glauben zu wachsen. Wir lesen in der Bibel und tauschen uns über die Texte aus. Sehr wichtig ist uns das Gebet; Lob,Dank und Bitten für persönliche Anliegen, Anliegen der Gemeinde und auch darüber hinaus.
+
+        Unsere Gemeinde hat Hauskreise im Stadtgebiet von Ludwigshafen verteilt und in Limburgerhof. Wenn Du einen Hauskreis suchst oder einfach mal "hinein schnuppern" willst, nimm gern Kontakt mit (Jonas Weber)[/#!/member/jonas] auf.
+    poster: //unsplash.com/photos/jzY47T8vh-U/download
 
 help:
     action: Erhalte Hilfe
