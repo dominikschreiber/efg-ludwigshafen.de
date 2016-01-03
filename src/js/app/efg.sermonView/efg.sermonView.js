@@ -19,5 +19,6 @@ angular.module('efg.sermonView', [
 .controller('SermonCtrl', function($http,sermonApi) {
    sermonApi.query().then(function success(result) {
        this.sermons = result;
+       this.current = this.sermons[0];
 	}.bind(this));
 });

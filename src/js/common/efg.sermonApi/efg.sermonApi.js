@@ -7,7 +7,7 @@ angular.module('efg.sermonApi', [
 .factory('sermonApi', ['$q', '$http', function($q, $http) {
     var cache
       , host = 'cloud.efg-ludwigshafen.de'
-      , sharedfolder = 'NuQBZMJwjKThDPJ';
+      , sharedfolder = 'bq1QQFmNVLVoE8p';
 
     // parse filename to sermon object, e.g.
     //
