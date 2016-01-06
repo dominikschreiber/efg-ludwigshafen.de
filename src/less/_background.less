@@ -5,6 +5,14 @@
 .bg-img {
 	background-repeat: no-repeat;
 	background-position: center;
+
+    * {
+        text-shadow: 0 (.1 * @u-unit) (.2 * @u-unit) fade(@c-content-inverse, 60);
+    }
+
+    &.bg-dark * {
+        text-shadow: 0 (.1 * @u-unit) (.2 * @u-unit) fade(@c-content, 60);
+    }
 }
 
 .bg-primary {
@@ -15,7 +23,7 @@
     &.text-eased {
         color: @c-content-inverse-eased;
     }
-    
+
     .btn-outline {
         .btn-outline;
         .btn-light;
