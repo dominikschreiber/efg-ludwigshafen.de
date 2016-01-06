@@ -15,7 +15,7 @@ service:
     description: |
         ## Komm in Kontakt
         Komm in Kontakt
-    poster: #//lorempixel.com/1920/1080/city/2
+    poster: /assets/img/kreuz2x1900.jpg
 
 cellgroup:
     action: Besuch einen Hauskreis
@@ -26,7 +26,7 @@ cellgroup:
         Von Gruppe zu Gruppe werden die Abende etwas unterschiedlich gestaltet, indem z. B. mit gemeinsamen Singen oder einem Abendessen begonnen wird. Was allen wichtig isr, ist im Glauben zu wachsen. Wir lesen in der Bibel und tauschen uns über die Texte aus. Sehr wichtig ist uns das Gebet; Lob,Dank und Bitten für persönliche Anliegen, Anliegen der Gemeinde und auch darüber hinaus.
 
         Unsere Gemeinde hat Hauskreise im Stadtgebiet von Ludwigshafen verteilt und in Limburgerhof. Wenn Du einen Hauskreis suchst oder einfach mal "hinein schnuppern" willst, nimm gern Kontakt mit [Jonas Weber](/#!/member/jonas) auf.
-    poster: //unsplash.com/photos/jzY47T8vh-U/download
+    poster: /assets/img/hauskreis1x1900.jpg
 
 help:
     action: Erhalte Hilfe
