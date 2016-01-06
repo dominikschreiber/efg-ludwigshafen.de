@@ -9,6 +9,10 @@
     "start": "grunt start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/efg-ludwigshafen/efg-ludwigshafen.github.io.git"
+  },
   "author": "Dominik Schreiber <domischreib@gmail.com>",
   "license": "MIT",
   "devDependencies": {
