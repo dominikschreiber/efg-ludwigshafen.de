@@ -1,24 +1,4 @@
 <headerbar></headerbar>
 <component classes="component-lg">
-    <div class="col-sm-4"
-         ng-show="sermon.current">
-        <h3>{{sermon.current.name}}</h3>
-        <p>vom {{sermon.current.date | date:'d. MMMM yy'}}, von {{sermon.current.preacher}}</p>
-        <sermon content="sermon.current"
-                style="width: 100%"></sermon>
-    </div>
-    <div class="col-sm-8">
-        <table class="sermons table table-bordered table-hover">
-            <tbody>
-                <tr ng-repeat="s in sermon.sermons"
-                    ng-click="sermon.current = s"
-                    ng-class="{active: sermon.current === s}"
-                    class="sermon">
-                    <td class="sermon-date">{{s.date | date:'dd.MM.yy'}}</td>
-                    <td class="sermon-name">{{s.name}}</td>
-                    <td class="sermon-preacher">{{s.preacher}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <sermons></sermons>
 </component>

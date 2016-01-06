@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('efg.sermonView', [
-    'efg.sermonApi',
+    'efg.sermonsDirective',
     'bootstrap.headerbarDirective',
     'btford.markdown',
-    'efg.sermonDirective',
 	'ng',
 	'ngRoute'
 ])
@@ -16,9 +15,5 @@ angular.module('efg.sermonView', [
     });
 })
 
-.controller('SermonCtrl', function($http,sermonApi) {
-   sermonApi.query().then(function success(result) {
-       this.sermons = result;
-       this.current = this.sermons[0];
-	}.bind(this));
+.controller('SermonCtrl', function() {
 });

@@ -11,7 +11,7 @@ angular.module('efg.sermonApi', [
 
     // parse filename to sermon object, e.g.
     //
-    //     2015-11-08_Preacher-Name_Sermon-title_Sermon-series.mp3
+    //     2015-11-08_Preacher-Name_Sermon-title_Sermon-series_n.mp3
     //     =>
     //     {
     //         filename: '2015-...mp3',
@@ -19,6 +19,7 @@ angular.module('efg.sermonApi', [
     //         source: { type: 'audio/mp3', src: '...' },
     //         name: 'Sermon title',
     //         series: 'Sermon series',
+    //         episode: parseInt('n'),
     //         date: new Date('2015-11-08')
     //     }
     function init() {
@@ -48,6 +49,9 @@ angular.module('efg.sermonApi', [
                             series: infos[3]
                                   ? infos[3].replace(/-/g, ' ')
                                   : undefined,
+                            episode: infos[4]
+                                   ? parseInt(infos[4])
+                                   : undefined,
                             date: new Date(infos[0])
                         };
                     });
