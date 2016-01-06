@@ -8,19 +8,23 @@
 }
 
 .navbar-default {
-    background-color: @c-content;
-    border-color: @c-content;
-    box-shadow: 0 0 @u-unit @c-content;
+    @c-background: fade(@c-white, 90);
+    @c-foreground: contrast(@c-background, @c-content-inverse, @c-content);
+    @c-foreground-eased: contrast(@c-background, @c-content-inverse-eased, @c-content-eased);
+
+    background-color: @c-background;
+    border-color: transparent;
+    box-shadow: 0 0 @u-unit fade(@c-content, 10);
 
     &,
     .navbar-text {
-        color: @c-content-inverse;
+        color: @c-foreground;
     }
 
     .navbar-nav {
         & > li {
             & > a {
-                color: @c-content-inverse;
+                color: @c-foreground;
 
                 &:hover,
                 &:focus,
@@ -28,7 +32,7 @@
                 &.hover,
                 &.focus,
                 &.active {
-                    color: @c-content-inverse-eased;
+                    color: @c-foreground-eased;
                 }
 
                 transition: color @t-fast @t-timing;
