@@ -1,0 +1,12 @@
+<li class="headerbar-item">
+    <button ng-href="{{item.href}}"
+            ng-click="item.click()"
+            class="btn btn-outline navbar-btn">
+        <i ng-if="item.img && item.img.indexOf(' ') > -1"
+           ng-class="item.img"></i>
+        <img ng-if="item.img && item.img.indexOf(' ') === -1"
+                ng-src="item.img"
+                class="img-responsive"/>
+        <span ng-transclude></span>
+    </button>
+</li>

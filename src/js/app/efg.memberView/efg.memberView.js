@@ -2,7 +2,6 @@
 
 angular.module('efg.memberView', [
 	'efg.memberApi',
-    'bootstrap.headerbarDirective',
 	'ng',
 	'ngRoute'
 ])

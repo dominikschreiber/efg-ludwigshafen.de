@@ -2,7 +2,6 @@
 
 angular.module('efg.findusView', [
 	'efg.componentDirective',
-    'bootstrap.headerbarDirective',
 	'uiGmapgoogle-maps',
 	'geolocation',
 	'ng',

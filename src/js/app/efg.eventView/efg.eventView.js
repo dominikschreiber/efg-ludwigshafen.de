@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('efg.eventView', [
-    'bootstrap.headerbarDirective',
+    'efg.headerbarService',
     'ui.calendar',
     'ng',
     'ngRoute'
@@ -14,7 +14,7 @@ angular.module('efg.eventView', [
     });
 })
 
-.controller('EventCtrl', function(uiCalendarConfig) {
+.controller('EventCtrl', function(uiCalendarConfig, headerbar, $filter, $scope) {
     /**
      * calls the fullCalendar api of the used calendar
      * with the given `method`.
@@ -32,13 +32,12 @@ angular.module('efg.eventView', [
     this.uiConfig = {
         calendar: {
             googleCalendarApiKey: 'AIzaSyAItn9V0gjivVppN6e0Ey5RviaMxtTuQ0U',
-            header: {
-                left: '',
-                center: '',
-                right: ''
-            },
+            header: false,
             timeFormat: 'H:mm',
-            height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * .8,
+            height: Math.max(
+                Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.querySelector('.headerbar').scrollHeight,
+                0
+            ),
             viewRender: function() {
                 this.updateTitle();
             }.bind(this)
@@ -61,8 +60,29 @@ angular.module('efg.eventView', [
     }.bind(this);
 
     this.updateTitle = function() {
-        this.title = fullCalendar('getDate')._d;
+        headerbar.title($filter('date')(fullCalendar('getDate')._d, 'MMMM'));
     };
 
     this.eventSources = [this.eventSource];
+
+    headerbar
+        .title($filter('date')(new Date(), 'MMMM'))
+        .add({
+            id: 'previous',
+            click: this.previous,
+            img: 'glyphicon glyphicon-menu-left'
+        }, {
+            id: 'today',
+            click: this.today,
+            content: 'heute'
+        }, {
+            id: 'next',
+            click: this.next,
+            img: 'glyphicon glyphicon-menu-right'
+        });
+
+    $scope.$on('$destroy', function() {
+        headerbar.clear();
+        headerbar.title('');
+    });
 });

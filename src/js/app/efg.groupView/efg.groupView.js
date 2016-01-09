@@ -3,7 +3,6 @@
 angular.module('efg.groupView', [
     'efg.groupApi',
 	'efg.componentDirective',
-    'bootstrap.headerbarDirective',
 	'ng',
 	'ngRoute'
 ])

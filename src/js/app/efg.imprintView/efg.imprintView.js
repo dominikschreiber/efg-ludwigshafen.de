@@ -2,7 +2,6 @@
 
 angular.module('efg.imprintView', [
     'efg.componentDirective',
-    'bootstrap.headerbarDirective',
     'ng',
     'ngRoute'
 ])

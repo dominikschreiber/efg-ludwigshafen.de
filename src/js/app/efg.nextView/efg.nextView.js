@@ -2,7 +2,6 @@
 
 angular.module('efg.nextView', [
     'efg.nextApi',
-    'bootstrap.headerbarDirective',
     'btford.markdown',
     'ngRoute'
 ])

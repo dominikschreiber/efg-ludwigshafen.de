@@ -2,7 +2,6 @@
 
 angular.module('efg.infoView', [
     'efg.infoApi',
-    'bootstrap.headerbarDirective',
     'ng',
     'ngRoute'
 ])

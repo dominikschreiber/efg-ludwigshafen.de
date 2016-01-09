@@ -2,7 +2,6 @@
 
 angular.module('efg.sermonView', [
     'efg.sermonsDirective',
-    'bootstrap.headerbarDirective',
     'btford.markdown',
 	'ng',
 	'ngRoute'
