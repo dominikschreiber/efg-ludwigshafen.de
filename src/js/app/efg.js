@@ -11,6 +11,7 @@ angular.module('efg', [
 	'efg.findusView',
 	'efg.groupView',
     'efg.nextView',
+    'efg.headerbarDirective',
 	'ng',
 	'ngRoute'
 ])

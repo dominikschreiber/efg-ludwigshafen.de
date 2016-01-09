@@ -112,15 +112,12 @@
 <!-- ===== sermon =============================================== -->
 <component classes="sermons component-lg"
            header="Predigten"
-           ng-show="index.showSermons">
+           subheader="Hör Dir unsere Aufnahmen an.">
 	<div class="col-md-12">
-		<h3>{{index.sermon.name}} <small>{{index.sermon.date | date:'d. MMMM'}}, von {{index.sermon.preacher}}</small></h3>
-		<sermon content="index.sermon"
-                style="width: 100%"></sermon>
 		<p class="u-space-top">
 			<a class="btn btn-lg btn-outline"
 			   ng-href="#!/sermon/">
-				mehr Predigten
+				Predigt auswählen
 			</a>
 		</p>
 	</div>

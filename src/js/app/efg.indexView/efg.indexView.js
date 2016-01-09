@@ -8,6 +8,8 @@ angular.module('efg.indexView', [
     'efg.groupApi',
     'efg.infoApi',
 	'efg.sermonApi',
+    'efg.sermonService',
+    'efg.playerService',
 	'efg.componentDirective',
     'efg.headerlogoDirective',
     'efg.sermonDirective',
@@ -24,7 +26,7 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, sermonApi, $log, $filter) {
+.controller('IndexCtrl', function(infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, sermonApi, sermon, player, $log, $filter) {
     this.$filter = $filter;
 
 	serviceApi.query().then(function(services) {
@@ -106,14 +108,6 @@ angular.module('efg.indexView', [
             };
         });
 	}.bind(this));
-
-    sermonApi.get(0).then(function(sermon) {
-		this.sermon = sermon;
-        this.showSermons = true;
-	}.bind(this), function(reason) {
-        $log.log(reason);
-        this.showSermons = false;
-    }.bind(this));
 
     contactApi.query().then(function(contacts) {
 		this.contacts = Object.keys(contacts).map(function(key) {

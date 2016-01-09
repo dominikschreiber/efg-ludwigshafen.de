@@ -1,27 +1,26 @@
 angular.module('efg.sermonsDirective', [
     'efg.sermonDirective',
+    'efg.sermonService',
     'efg.sermonApi',
     'ng'
 ])
 
-.directive('sermons', function (sermonApi) {
+.directive('sermons', function (sermonApi, sermon) {
     return {
         templateUrl: 'efg.sermonsDirective.tpl.html',
         link: function ($scope, $element, $attributes) {
             $scope.sermons = [];
-            $scope.current = {};
 
             sermonApi.query().then(function(sermons) {
                 $scope.sermons = sermons;
-                $scope.current = $scope.sermons[0];
             });
 
-            $scope.activate = function(sermon) {
-                $scope.current = sermon;
+            $scope.activate = function(s) {
+                sermon.set(s);
             };
 
-            $scope.isactive = function(sermon) {
-                return $scope.current === sermon;
+            $scope.isactive = function(s) {
+                return sermon.is(s);
             };
         }
     }
