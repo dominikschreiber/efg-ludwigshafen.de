@@ -11,8 +11,14 @@ body {
     background-color: fade(@c-white, 80);
     box-shadow: 0 0 (.5 * @u-unit) fade(@c-content, 60);
 
-    .btn-outline {
+    .btn-outline,
+    .input-group-addon,
+    .form-control {
         border-color: @c-content-inverse-eased;
+    }
+
+    .form-control {
+        font-size: 85%; // <- bootstrap variable @font-size-small is px-based -.-
     }
 }
 

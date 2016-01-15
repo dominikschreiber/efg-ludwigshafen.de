@@ -10,7 +10,7 @@
         <span ng-transclude></span>
     </button>
     <div ng-if="item.type === 'text'">{{item.content}}</div>
-    <div class="input-group" ng-if="item.type === 'search'">
+    <div class="input-group input-group-outline" ng-if="item.type === 'search'">
         <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
         <input placeholder="{{item.content}}" type="search" class="form-control"  ng-change="item.action(searchString)" ng-model="searchString">
      </div>
