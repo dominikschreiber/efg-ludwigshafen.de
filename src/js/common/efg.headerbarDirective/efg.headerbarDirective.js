@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('efg.headerbarDirective', [
     'efg.playerService',
     'efg.headerbarService',
@@ -41,7 +43,7 @@ angular.module('efg.headerbarDirective', [
             });
         },
         transclude: true
-    }
+    };
 })
 
 .directive('headeraction', function() {
@@ -52,5 +54,5 @@ angular.module('efg.headerbarDirective', [
         },
         transclude: true,
         replace: true
-    }
+    };
 });

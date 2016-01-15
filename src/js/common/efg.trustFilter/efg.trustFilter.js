@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('efg.trustFilter', [
 	'ng'
 ])

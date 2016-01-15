@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('bootstrap.thumbnailsDirective', [
 	'bootstrap.thumbnailDirective',
 	'ng'
@@ -13,7 +15,7 @@ angular.module('bootstrap.thumbnailsDirective', [
 				}
 				return arr;
 			}
-			
+
 			function getclasses(itemCount, itemsPerLine, slug) {
 				for (var i = 1; i <= itemsPerLine; i++) {
 					if (itemCount === i) {
@@ -22,14 +24,14 @@ angular.module('bootstrap.thumbnailsDirective', [
 				}
 				return getclasses(itemsPerLine, itemsPerLine, slug).concat(getclasses(itemCount - itemsPerLine, itemsPerLine, slug));
 			}
-			
+
 			function classes(itemcount) {
 				return _.zip(getclasses(itemcount, 3, 'sm'), getclasses(itemcount, 4, 'md')).map(function(i) { return i.join(' '); });
 			}
-			
+
 			var cls = classes($scope.items.length)
 			  , i;
-			
+
 			for (i = 0; i < $scope.items.length; i++) {
 				$scope.items[i] = angular.extend($scope.items[i], {cls: cls[i]});
 			}

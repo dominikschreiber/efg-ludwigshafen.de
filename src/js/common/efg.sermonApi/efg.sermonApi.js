@@ -41,7 +41,7 @@ angular.module('efg.sermonApi', [
                                 src: 'http://' + host + '/index.php/s/' + sharedfolder + '/download?path=/&files=' + file.name
                             },
                             preacher: infos[1]
-                                    ? infos[1].replace(/-/g, ' ').replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
+                                    ? infos[1].replace(/-/g, ' ').replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); })
                                     : undefined,
                             name: infos[2]
                                 ? infos[2].replace(/-/g, ' ')
@@ -80,5 +80,5 @@ angular.module('efg.sermonApi', [
 
             return deferred.promise;
         }
-    }
+    };
 }]);

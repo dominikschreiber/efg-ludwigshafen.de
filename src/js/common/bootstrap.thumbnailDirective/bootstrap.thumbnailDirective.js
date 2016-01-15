@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('bootstrap.thumbnailDirective', [
 	'ng'
 ])
