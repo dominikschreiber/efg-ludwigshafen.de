@@ -1,10 +1,7 @@
 <component classes="component-almost-viewport"
 		   ng-style="{'background-image': 'url(' + group.img + ')'}">
 </component>
-<component classes="component-lg"
+<component classes="component-lg component-singlecolumn"
 		   header="{{group.title}}">
-    <div class="row">
-        <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 text-left"
-             btf-markdown="group.description"></div>
-    </div>
+    <div btf-markdown="group.description"></div>
 </component>

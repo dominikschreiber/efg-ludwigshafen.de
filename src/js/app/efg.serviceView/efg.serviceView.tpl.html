@@ -1,16 +1,7 @@
-<component classes="component-flex component-almost-viewport bg-dark"
+<component classes="component-flex component-sm bg-dark"
            ng-style="{'background-image': 'url(' + service.img + ')'}"
 		   header="{{service.title}}"
 		   subheader="{{service.subtitle}}"></component>
-<component classes="component-lg">
-    <div class="col-sm-6 text-left"
-         ng-class="{'col-sm-offset-3': !service.sermon}"
-         btf-markdown="service.description">
-    </div>
-    <div class="col-sm-6"
-         ng-if="service.sermon">
-        <h3>Hör Dir eine Predigt an</h3>
-        <sermon content="service.sermon"
-                style="width: 100%"></sermon>
-    </div>
+<component classes="component-sm component-singlecolumn">
+    <div btf-markdown="service.description"></div>
 </component>

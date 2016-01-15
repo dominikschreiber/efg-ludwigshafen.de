@@ -1,10 +1,7 @@
 <component classes="component-almost-viewport bg-img"
 		   ng-style="{'background-image': 'url(' + member.img + ')'}"></component>
-<component classes="component-lg"
+<component classes="component-lg component-singlecolumn"
 		   header="{{member.title}}"
 		   subheader="{{member.subtitle}}">
-    <div class="row">
-        <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 text-left"
-             btf-markdown="member.description"></div>
-    </div>
+    <div btf-markdown="member.description"></div>
 </component>
