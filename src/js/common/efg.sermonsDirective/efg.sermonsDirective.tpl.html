@@ -6,14 +6,11 @@
             style="width: 100%"></sermon>
 </div>
 <div class="col-sm-8"-->
-    <ul class="sermons">
-        <li ng-repeat="s in sermons"
-            ng-click="activate(s)"
-            ng-class="{active: isactive(s)}"
-            class="sermon text-left">
-            <p ng-show="s.series"><small>{{s.series}} <span ng-if="s.episode">{{s.episode}}</span></small></p>
-            <h4>{{s.name}}</h4>
-            <p><span style="margin-right:1rem">{{s.date | date:'dd.MM.yy'}}</span>{{s.preacher}}</p>
-        </li>
-    </ul>
+<ul class="sermons">
+    <li ng-repeat="s in sermons | filter:searchFilter" ng-click="activate(s)" ng-class="{active: isactive(s)}" class="sermon text-left">
+        <p ng-show="s.series"><small>{{s.series}} <span ng-if="s.episode">{{s.episode}}</span></small></p>
+        <h4>{{s.name}}</h4>
+        <p><span style="margin-right:1rem">{{s.date | date:'dd.MM.yy'}}</span>{{s.preacher}}</p>
+    </li>
+</ul>
 <!--/div-->

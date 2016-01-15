@@ -37,11 +37,17 @@ angular.module('efg.headerbarService', [
          * @return {headerbar} the headerbar, for chained calls
          */
         add: function() {
+            var ids = [];
             for (var i = 0; i < arguments.length; i++) {
-                if (items.indexOf(arguments[i]) === -1) {
-                    items.push(arguments[i]);
+                var id = (1+Math.random()).toString(36).slice(2,8);
+                var item = arguments[i];
+                if (items.indexOf(item) === -1) {
+                    item.id = item.id || id;
+                    items.push(item);
+                    ids.push(id);
                 }
             }
+
             return this;
         },
 

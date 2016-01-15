@@ -60,29 +60,35 @@ angular.module('efg.eventView', [
     }.bind(this);
 
     this.updateTitle = function() {
-        headerbar.title($filter('date')(fullCalendar('getDate')._d, 'MMMM'));
+        headerbar.update({
+            id:headerIds[0],
+            content: $filter('date')(new Date(), 'MMMM'),
+            type: 'text'
+        });
     };
 
     this.eventSources = [this.eventSource];
 
-    headerbar
-        .title($filter('date')(new Date(), 'MMMM'))
-        .add({
-            id: 'previous',
-            click: this.previous,
+    var headerIds = headerbar
+        .add(
+        {
+            type: 'text',
+            content: $filter('date')(new Date(), 'MMMM')
+        }, {
+            action: this.previous,
+            type: 'button',
             img: 'glyphicon glyphicon-menu-left'
         }, {
-            id: 'today',
-            click: this.today,
+            action: this.today,
+            type: 'button',
             content: 'heute'
         }, {
-            id: 'next',
-            click: this.next,
+            action: this.next,
+            type: 'button',
             img: 'glyphicon glyphicon-menu-right'
         });
 
     $scope.$on('$destroy', function() {
         headerbar.clear();
-        headerbar.title('');
     });
 });

@@ -25,7 +25,8 @@ angular.module('efg.headerbarDirective', [
                 $scope.playpause = {
                     id: 'playpause',
                     img: 'glyphicon glyphicon-' + (paused ? 'play' : 'pause'),
-                    click: player.toggle
+                    action: player.toggle,
+                    type: 'button'
                 };
             });
             $scope.$watch(sermon.get, function(s) {
