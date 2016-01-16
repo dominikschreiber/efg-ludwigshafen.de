@@ -7,22 +7,18 @@ angular.module('efg.headerbarDirective', [
     'ng'
 ])
 
-.directive('headerbar', function(headerbar, player, sermon) {
+.directive('headerbar', function(headerbar, player, sermon, $window, $log) {
     return {
         templateUrl: 'efg.headerbarDirective.tpl.html',
         link: function($scope) {
             var initial = true;
 
-            $scope.$watch(function() { return headerbar.title(); }, function(title) {
-                if (title !== undefined) {
-                    $scope.header = title;
-                }
-            });
             $scope.$watch(headerbar.query, function(items) {
                 if (items) {
                     $scope.leftitems = items;
                 }
             });
+
             $scope.$watch(player.isPaused, function(paused) {
                 $scope.playpause = {
                     id: 'playpause',
@@ -31,6 +27,18 @@ angular.module('efg.headerbarDirective', [
                     type: 'button'
                 };
             });
+
+            $scope.position = 0;
+            $scope.$on('player:timeupdate', function(event, position) {
+                $log.log(position, $scope.fullwidth);
+                $scope.position = position * $scope.fullwidth;
+            });
+
+            $scope.fullwidth = $window.innerWidth;
+            $scope.$watch(function() { return $window.innerWidth; }, function(width) {
+                $scope.fullwidth = width;
+            });
+
             $scope.$watch(sermon.get, function(s) {
                 if (s) {
                     $scope.sermon = s;
@@ -42,7 +50,8 @@ angular.module('efg.headerbarDirective', [
                 }
             });
         },
-        transclude: true
+        transclude: true,
+        replace: true
     };
 })
 

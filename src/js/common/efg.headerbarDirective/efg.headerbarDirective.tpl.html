@@ -1,4 +1,7 @@
 <nav class="headerbar headerbar-fixed-top">
+    <style>
+        .headerbar:after { transform: scaleX({{position}}); }
+    </style>
     <ul class="headerbar-items">
         <li class="headerbar-item">
             <a href="#!/"
@@ -16,8 +19,10 @@
     <ul class="headerbar-rightitems"
         ng-if="sermon">
         <li class="headerbar-item">
-            {{sermon.name}}<br>
-            <small>{{sermon.preacher}} &ndash; {{sermon.date | date:'dd.MM.yyyy'}}</small>
+            <a href="#!/sermon">
+                {{sermon.name}}<br>
+                <small>{{sermon.preacher}} &ndash; {{sermon.date | date:'dd.MM.yyyy'}}</small>
+            </a>
         </li>
         <headeraction item="playpause"></headeraction>
     </ul>
