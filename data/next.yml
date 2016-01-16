@@ -34,6 +34,14 @@ cellgroup:
 
 help:
     action: Erhalte Hilfe
+    name: Erhalte Hilfe
+    description: |
+        > Und der König wird antworten und zu ihnen sagen: Wahrlich, ich sage euch: **Was ihr getan habt einem von diesen meinen geringsten Bründern, das habt ihr mir getan.**
+        >
+        > Matthäus 25,40
+
+        Du hast ein konkretes Problem, bei dem Du unsere Hilfe benötigst? [Markus Sander](#!/member/markus) bringt dich mit den richtigen Personen dafür zusammen.
+    poster: //unsplash.com/photos/iQWvVYMtv1k/download
 
 talents:
     action: Entdecke Deine Gaben
