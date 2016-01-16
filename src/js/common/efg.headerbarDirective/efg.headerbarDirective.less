@@ -38,6 +38,13 @@ body {
         height: .2 * @u-unit;
 
         background-color: @c-primary;
+
+        will-change: height;
+        transition: height @t-fast @t-timing;
+    }
+
+    &:hover:after {
+        height: .5 * @u-unit;
     }
 }
 
