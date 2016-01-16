@@ -1,0 +1,32 @@
+.component-sermon {
+    position: relative;
+}
+
+.sermon-progress {
+    .appearance(none);
+
+    pointer-events: none;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    background: transparent;
+
+    &::-webkit-progress-bar {
+        background: transparent;
+    }
+
+    &::-webkit-progress-value {
+        background: fade(@c-white, 10);
+    }
+
+    &::-moz-progress-bar {
+        background: fade(@c-white, 10);
+    }
+}
