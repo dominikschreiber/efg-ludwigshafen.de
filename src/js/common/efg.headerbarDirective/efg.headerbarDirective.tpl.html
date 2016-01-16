@@ -1,18 +1,15 @@
 <nav class="headerbar headerbar-fixed-top">
-    <style>
-        .headerbar:after { transform: scaleX({{position}}); }
-    </style>
     <ul class="headerbar-items">
         <li class="headerbar-item">
             <a href="#!/"
-                class="headerbar-brand">
+               class="headerbar-brand">
                 <img alt="EfG Ludwigshafen"
-                        src="assets/img/logo.svg"
-                        class="img-responsive">
+                     src="assets/img/logo.svg"
+                     class="img-responsive">
             </a>
         </li>
         <headeraction ng-repeat="item in leftitems"
-                        item="item">
+                      item="item">
             {{item.content}}
         </headeraction>
     </ul>
