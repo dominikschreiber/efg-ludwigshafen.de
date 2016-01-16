@@ -25,27 +25,6 @@ body {
     .form-control {
         font-size: 85%; // <- bootstrap variable @font-size-small is px-based -.-
     }
-
-    &:after {
-        content: '';
-
-        position: absolute;
-        bottom: 0;
-        left: 0;
-
-        display: block;
-        width: 1px;
-        height: .2 * @u-unit;
-
-        background-color: @c-primary;
-
-        will-change: height;
-        transition: height @t-fast @t-timing;
-    }
-
-    &:hover:after {
-        height: .5 * @u-unit;
-    }
 }
 
 .headerbar-fixed-top {

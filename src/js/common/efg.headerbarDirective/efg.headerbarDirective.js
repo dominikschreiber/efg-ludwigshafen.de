@@ -19,24 +19,13 @@ angular.module('efg.headerbarDirective', [
                 }
             });
 
-            $scope.$watch(player.isPaused, function(paused) {
+            $scope.$watch(player.ispaused, function(paused) {
                 $scope.playpause = {
                     id: 'playpause',
                     img: 'glyphicon glyphicon-' + (paused ? 'play' : 'pause'),
                     action: player.toggle,
                     type: 'button'
                 };
-            });
-
-            $scope.position = 0;
-            $scope.$on('player:timeupdate', function(event, position) {
-                $log.log(position, $scope.fullwidth);
-                $scope.position = position * $scope.fullwidth;
-            });
-
-            $scope.fullwidth = $window.innerWidth;
-            $scope.$watch(function() { return $window.innerWidth; }, function(width) {
-                $scope.fullwidth = width;
             });
 
             $scope.$watch(sermon.get, function(s) {
