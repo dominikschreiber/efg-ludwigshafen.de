@@ -19,3 +19,14 @@ email:
     name: info@efg-ludwigshafen.de
     action: "mailto:info@efg-ludwigshafen.de"
     thumbnail: glyphicon glyphicon-envelope
+
+bank:
+    name: Spendenkonto
+    action: "#!/contact/bank"
+    thumbnail: glyphicon glyphicon-euro
+    description: |
+        ## Gemeindekonto
+        IBAN DE09 5009 2100 0000 4632 05
+        ## Diakoniekonto
+        IBAN DE13 5009 2100 0000 4632 30
+        BIC GENODE51BH2
