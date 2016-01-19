@@ -37,9 +37,11 @@ body {
 }
 
 .headerbar-brand {
-    img {
-        max-height: @u-navbar-height - (2 * @u-navbar-vertical-padding);
-        min-width: 2 * @u-unit;
+    min-width: 2 * @u-unit;
+    a {
+        img {
+            max-height: @u-navbar-height - (2 * @u-navbar-vertical-padding);
+        }
     }
 }
 
