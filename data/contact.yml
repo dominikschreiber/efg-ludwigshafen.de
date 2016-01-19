@@ -24,9 +24,12 @@ bank:
     name: Spendenkonto
     action: "#!/contact/bank"
     thumbnail: glyphicon glyphicon-euro
+    #poster: //unsplash.com/photos/ZKVBM2_Dp84/download
     description: |
         ## Gemeindekonto
         IBAN DE09 5009 2100 0000 4632 05
+
         ## Diakoniekonto
         IBAN DE13 5009 2100 0000 4632 30
+
         BIC GENODE51BH2
