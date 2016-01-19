@@ -21,9 +21,9 @@ email:
     thumbnail: glyphicon glyphicon-envelope
 
 bank:
-    name: Spendenkonto
+    name: Geben
     action: "#!/contact/bank"
-    thumbnail: glyphicon glyphicon-euro
+    thumbnail: glyphicon glyphicon-gift
     #poster: //unsplash.com/photos/ZKVBM2_Dp84/download
     description: |
         ## Gemeindekonto

@@ -46,6 +46,8 @@ module.exports = function(grunt) {
                     'bower_components/angular-sanitize/angular-sanitize.min.js',
                     'bower_components/angular-ui-calendar/src/calendar.js',
                     'bower_components/angular-markdown-directive/markdown.js',
+                    'bower_components/angulartics/src/angulartics.js',
+                    'bower_components/angulartics/src/angulartics-piwik.js',
                     'bower_components/fullcalendar/dist/fullcalendar.min.js',
                     'bower_components/fullcalendar/dist/gcal.js',
                     'bower_components/showdown/compressed/Showdown.min.js'

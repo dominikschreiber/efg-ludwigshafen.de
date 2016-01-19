@@ -14,7 +14,9 @@ angular.module('efg', [
     'efg.contactView',
     'efg.headerbarDirective',
 	'ng',
-	'ngRoute'
+	'ngRoute',
+    'angulartics',
+    'angulartics.piwik'
 ])
 
 .config(function($routeProvider, $locationProvider) {
