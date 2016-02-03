@@ -1,5 +1,5 @@
 <component classes="component-almost-viewport"
-		   ng-style="{'background-image': 'url(' + group.img + ')'}">
+		   ng-style="{'background-image': 'url(' + group.$filter('responsive')(group.img) + ')'}">
 </component>
 <component classes="component-lg component-singlecolumn"
 		   header="{{group.title}}">

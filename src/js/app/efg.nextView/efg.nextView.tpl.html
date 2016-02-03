@@ -1,7 +1,7 @@
 <component classes="component-almost-viewport component-flex bg-dark bg-img"
            header="{{next.title}}"
            subheader="{{next.subtitle}}"
-		   ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(' + next.img + ')'}"></component>
+		   ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(' + next.$filter('responsive')(next.img) + ')'}"></component>
 <component classes="component-lg component-singlecolumn">
 	<div btf-markdown="next.content"></div>
 </component>

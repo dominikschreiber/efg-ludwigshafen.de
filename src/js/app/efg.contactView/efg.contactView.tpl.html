@@ -1,5 +1,5 @@
 <component classes="component-flex component-sm bg-dark"
-           ng-style="{'background-image': 'url(' + contact.img + ')'}"
+           ng-style="{'background-image': 'url(' + contact.$filter('responsive')(contact.img) + ')'}"
 		   header="{{contact.title}}"
 		   subheader="{{contact.subtitle}}"></component>
 <component classes="component-sm component-singlecolumn">

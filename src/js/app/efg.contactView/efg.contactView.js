@@ -3,6 +3,7 @@
 angular.module('efg.contactView', [
     'efg.contactApi',
     'efg.trustFilter',
+    'efg.responsiveFilter',
     'btford.markdown',
 	'ng',
 	'ngRoute'
@@ -15,7 +16,9 @@ angular.module('efg.contactView', [
 	});
 })
 
-.controller('ContactCtrl', function(contactApi, $routeParams) {
+.controller('ContactCtrl', function(contactApi, $routeParams, $filter) {
+    this.$filter = $filter;
+    
     contactApi.get($routeParams.id).then(function success(result) {
 		this.img = result.poster;
         this.title = result.name;

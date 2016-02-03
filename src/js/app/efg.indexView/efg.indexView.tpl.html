@@ -1,6 +1,6 @@
 <!-- ===== welcome ============================================== -->
 <headerlogo classes="welcome component-flex component-almost-viewport bg-img bg-dark"
-		    style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(assets/img/gemeinde1x1900.jpg)">
+		    ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(' + index.$filter('responsive')('/assets/img/gemeinde.jpg') + ')'}">
 </headerlogo>
 
 <!-- ===== services ============================================= -->
@@ -20,7 +20,7 @@
 
 <!-- ===== location ============================================= -->
 <component classes="component-lg bg-img bg-dark"
-		   style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(assets/img/papageiensiedlungx1900.jpg)"
+		   ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(' + index.$filter('responsive')('/assets/img/papageiensiedlung.jpg') + ')'}"
 		   header="Unser Standort"
 		   subheader="Wir sind mitten im Hemshof, dem Herz von Ludwigshafen.">
 	<div class="col-md-12">
@@ -66,7 +66,7 @@
 <!-- ===== next ================================================= -->
 <component classes="next component-lg bg-dark bg-img"
 		   header="Nächste Schritte"
-           style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(assets/img/kreuz1x1900.jpg)">
+           ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(' + index.$filter('responsive')('/assets/img/kreuz1.jpg') + ')'}">
 	<div class="col-sm-4"
 		 ng-repeat="action in index.next"
 		 style="margin-bottom: 2rem; padding-left: 2rem; padding-right: 2rem;">

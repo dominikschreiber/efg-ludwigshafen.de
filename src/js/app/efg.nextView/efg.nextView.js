@@ -2,6 +2,7 @@
 
 angular.module('efg.nextView', [
     'efg.nextApi',
+    'efg.responsiveFilter',
     'btford.markdown',
     'ngRoute'
 ])
@@ -13,7 +14,9 @@ angular.module('efg.nextView', [
     });
 })
 
-.controller('NextCtrl', function(nextApi, $routeParams) {
+.controller('NextCtrl', function(nextApi, $routeParams, $filter) {
+    this.$filter = $filter;
+    
     nextApi.get($routeParams.id).then(function(action) {
         this.title = action.name;
         this.subtitle = action.subtitle;
