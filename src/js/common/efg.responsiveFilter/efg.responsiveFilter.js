@@ -9,18 +9,19 @@ angular.module('efg.responsiveFilter', [
             sm: 768,
             md: 992,
             lg: 1200
-        };
+        }
+      , assetprefix = '/assets/img/';
     
     function isimage(path) {
         return /\.(jpg|jpeg|png|gif)$/.test(path);
     }
     
     function isasset(path) {
-        return path.indexOf('/assets/') === 0;
+        return path.indexOf(assetprefix) === 0;
     }
     
-    function imagedimension() {
-        return device() + resolution();
+    function imagedimension(joincharacter) {
+        return [device(), resolution()].filter(Boolean).join(joincharacter || '');
     }
     
     function device() {
@@ -36,12 +37,16 @@ angular.module('efg.responsiveFilter', [
     function resolution() {
         return $window.matchMedia('(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)').matches
             ? '@2x'
-            : '';
+            : undefined;
+    }
+    
+    function rewritten(asseturl) {
+        return assetprefix + imagedimension('/') + '/' + asseturl.slice(assetprefix.length);
     }
     
     return function(path) {
         return isimage(path) && isasset(path)
-            ? path.replace(/(.*\/?)([a-zA-Z0-9_-]+)\.(jpg|jpeg|png|gif)$/, '$1$2-' + imagedimension() + '.$3')
+            ? rewritten(path)
             : path;
     };
 });
