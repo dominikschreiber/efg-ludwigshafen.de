@@ -18,8 +18,8 @@ wilfried:
     duties:
         - Gemeindeleiter
         - Ältester
-    img: /assets/img/leader/wilfried_klein.jpg
-    poster: /assets/img/leader/wilfried.jpg
+    img: /assets/img/wilfried_klein.jpg
+    poster: /assets/img/wilfried.jpg
 
 markus:
     name:
@@ -30,8 +30,8 @@ markus:
     duties:
         - Pastor
         - Ältester
-    img: /assets/img/leader/markus_klein.jpg
-    poster: /assets/img/leader/markus.jpg
+    img: /assets/img/markus_klein.jpg
+    poster: /assets/img/markus.jpg
 
 thomas:
     name:
@@ -61,8 +61,8 @@ daniel:
     description: |
     duties:
         - Diakon
-    img: /assets/img/leader/daniel_klein.jpg
-    poster: /assets/img/leader/daniel.jpg
+    img: /assets/img/daniel_klein.jpg
+    poster: /assets/img/daniel.jpg
 
 jonas:
     name:
@@ -71,5 +71,5 @@ jonas:
     description: |
     duties:
         - Diakon
-    img: /assets/img/leader/jonas_klein.jpg
-    poster: /assets/img/leader/jonas.jpg
+    img: /assets/img/jonas_klein.jpg
+    poster: /assets/img/jonas.jpg
