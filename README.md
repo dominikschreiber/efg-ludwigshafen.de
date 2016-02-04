@@ -11,6 +11,8 @@ To get started, perform the following steps:
 git clone git@github.com:efg-ludwigshafen/efg-ludwigshafen.github.io
 # cd to the cloned repository
 cd efg-ludwigshafen.github.io
+# install GraphicsMagick (from somewhere -- mac users have it easy here)
+brew install GraphicsMagick
 # install dependencies (installs bower dependencies as well)
 npm install
 # start the development build (concat + uglify js, start server at ::8000)

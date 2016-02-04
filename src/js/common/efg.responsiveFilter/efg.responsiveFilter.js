@@ -36,7 +36,7 @@ angular.module('efg.responsiveFilter', [
     
     function resolution() {
         return $window.matchMedia('(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)').matches
-            ? '@2x'
+            ? '2x'
             : undefined;
     }
     

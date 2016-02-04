@@ -41,8 +41,8 @@ thomas:
         Seit 2 Jahren Ältester. Der Macher.
     duties:
         - Ältester
-    img: /assets/img/leader/thomas_klein.jpg
-    poster: /assets/img/leader/thomas.jpg
+    img: /assets/img/thomas_klein.jpg
+    poster: /assets/img/thomas.jpg
 
 andreas:
     name:
