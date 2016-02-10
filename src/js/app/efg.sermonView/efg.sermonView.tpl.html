@@ -15,6 +15,11 @@
         <i class="glyphicon"
            ng-class="{'glyphicon-play': sermon.ispaused, 'glyphicon-pause': !sermon.ispaused}"></i>
     </button>
+    <a ng-href="{{sermon.src}}"
+       class="btn btn-outline btn-light"
+       download>
+       <i class="glyphicon glyphicon-save"></i>
+    </a>
     <button ng-click="sermon.skip()"
             class="btn btn-outline btn-light"
             title="{{sermon.frameduration}} Sekunden vorspulen">

@@ -36,6 +36,7 @@ angular.module('efg.sermonView', [
         if (sermon) {
             this.header = sermon.name;
             this.subheader = sermon.preacher + ' \u2013 ' + $filter('date')(sermon.date, 'dd.MM.yyyy');
+            this.src = sermon.source.src;
         } else {
             defaultheaders();
         }
