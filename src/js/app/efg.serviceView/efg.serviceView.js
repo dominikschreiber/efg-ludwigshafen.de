@@ -4,6 +4,7 @@ angular.module('efg.serviceView', [
     'efg.serviceApi',
     'efg.trustFilter',
     'efg.sermonDirective',
+    'efg.responsiveFilter',
     'btford.markdown',
 	'ng',
 	'ngRoute'
@@ -16,7 +17,9 @@ angular.module('efg.serviceView', [
 	});
 })
 
-.controller('ServiceCtrl', function(serviceApi, $routeParams) {
+.controller('ServiceCtrl', function(serviceApi, $routeParams, $filter) {
+    this.$filter = $filter;
+    
     serviceApi.get($routeParams.id).then(function success(result) {
 		this.img = result.poster;
         this.title = result.name;

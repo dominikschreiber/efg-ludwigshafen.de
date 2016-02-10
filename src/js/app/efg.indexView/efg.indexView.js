@@ -13,6 +13,7 @@ angular.module('efg.indexView', [
 	'efg.componentDirective',
     'efg.headerlogoDirective',
     'efg.sermonDirective',
+    'efg.responsiveFilter',
 	'bootstrap.thumbnailDirective',
 	'bootstrap.thumbnailsDirective',
 	'ng',

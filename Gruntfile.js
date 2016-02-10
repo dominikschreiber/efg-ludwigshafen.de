@@ -117,6 +117,99 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+        // generate images
+        responsive_images: {
+            xs: {
+                options: {
+                    sizes: [{rename: false, width: 768}]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'assets/img',
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    dest: 'assets/img/xs'
+                }]
+            },
+            xs2x: {
+                options: {
+                    sizes: [
+                        {rename: false, width: 1536},
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'assets/img',
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    dest: 'assets/img/xs/2x'
+                }]
+            },
+            sm: {
+                options: {
+                    sizes: [{rename: false, width: 992}]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'assets/img',
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    dest: 'assets/img/sm'
+                }]
+            },
+            sm2x: {
+                options: {
+                    sizes: [{rename: false, width: 1984}]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'assets/img',
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    dest: 'assets/img/sm/2x'
+                }]
+            },
+            md: {
+                options: {
+                    sizes: [{rename: false, width: 1200}]
+                },
+                files: [{
+                    expand: true,
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    cwd: 'assets/img',
+                    dest: 'assets/img/md'
+                }]
+            },
+            md2x: {
+                options: {
+                    sizes: [{rename: false, width: 1200 * 2}]
+                },
+                files: [{
+                    expand: true,
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    cwd: 'assets/img',
+                    dest: 'assets/img/md/2x'
+                }]
+            },
+            lg: {
+                options: {
+                    sizes: [{rename: false, width: 1980}]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'assets/img',
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    dest: 'assets/img/lg'
+                }]
+            },
+            lg2x: {
+                options: {
+                    sizes: [{rename: false, width: 1980 * 2}]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'assets/img',
+                    src: ['*.{gif,jpg,jpeg,png}'],
+                    dest: 'assets/img/lg/2x'
+                }]
+            }
+        },
 		// watch for file changes, perform tasks
 		watch: {
 			scripts: {
@@ -127,6 +220,10 @@ module.exports = function(grunt) {
 				files: '**/*.less',
 				tasks: ['less']
 			},
+            images: {
+                files: 'assets/img/*.{jpg,jpeg,gif,png}',
+                tasks: ['images']
+            },
 			templates: {
 				files: 'src/**/*.tpl.html',
 				tasks: ['scripts']
@@ -140,8 +237,9 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['clean', 'styles', 'scripts']);
+	grunt.registerTask('default', ['clean', 'styles', 'scripts', 'assets']);
 
+    grunt.registerTask('assets', ['responsive_images']);
 	grunt.registerTask('styles', ['less', 'copy:glyphicons']);
 	grunt.registerTask('scripts', ['ngtemplates:efg', 'concat', 'ngAnnotate:scripts', 'uglify:scripts']);
 

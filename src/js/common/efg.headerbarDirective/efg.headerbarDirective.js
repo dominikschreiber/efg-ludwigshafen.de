@@ -4,6 +4,7 @@ angular.module('efg.headerbarDirective', [
     'efg.playerService',
     'efg.headerbarService',
     'efg.sermonService',
+    'efg.responsiveFilter',
     'ng'
 ])
 

@@ -3,6 +3,7 @@
 angular.module('efg.groupView', [
     'efg.groupApi',
 	'efg.componentDirective',
+    'efg.responsiveFilter',
 	'ng',
 	'ngRoute'
 ])
@@ -14,7 +15,9 @@ angular.module('efg.groupView', [
 	});
 })
 
-.controller('GroupCtrl', function(groupApi, $routeParams) {
+.controller('GroupCtrl', function(groupApi, $routeParams, $filter) {
+    this.$filter = $filter;
+    
     groupApi.get($routeParams.id).then(function success(group) {
         this.title = group.name;
         this.img = group.poster;

@@ -2,6 +2,7 @@
 
 angular.module('efg.infoView', [
     'efg.infoApi',
+    'efg.responsiveFilter',
     'ng',
     'ngRoute'
 ])
@@ -13,7 +14,9 @@ angular.module('efg.infoView', [
     });
 })
 
-.controller('InfoCtrl', function(infoApi, $routeParams) {
+.controller('InfoCtrl', function(infoApi, $routeParams, $filter) {
+    this.$filter = $filter;
+    
     infoApi.get($routeParams.id).then(function(info) {
         this.title = info.name;
     }.bind(this));

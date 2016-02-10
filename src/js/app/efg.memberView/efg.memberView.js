@@ -2,6 +2,7 @@
 
 angular.module('efg.memberView', [
 	'efg.memberApi',
+    'efg.responsiveFilter',
 	'ng',
 	'ngRoute'
 ])
@@ -13,7 +14,9 @@ angular.module('efg.memberView', [
 	});
 })
 
-.controller('MemberCtrl', function(memberApi, $routeParams) {
+.controller('MemberCtrl', function(memberApi, $routeParams, $filter) {
+    this.$filter = $filter;
+    
 	memberApi.get($routeParams.id).then(function success(member) {
 		this.title = [
             member.name.givenname,

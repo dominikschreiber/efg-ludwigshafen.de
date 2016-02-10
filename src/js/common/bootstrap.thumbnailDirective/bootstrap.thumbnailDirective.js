@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('bootstrap.thumbnailDirective', [
+    'efg.responsiveFilter',
 	'ng'
 ])
 

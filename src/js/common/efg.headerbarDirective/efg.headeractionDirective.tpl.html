@@ -5,8 +5,8 @@
         <i ng-if="item.img && item.img.indexOf(' ') > -1"
            ng-class="item.img"></i>
         <img ng-if="item.img && item.img.indexOf(' ') === -1"
-                ng-src="item.img"
-                class="img-responsive"/>
+             ng-src="item.img | responsive"
+             class="img-responsive"/>
         <span ng-transclude></span>
     </button>
     <div ng-if="item.type === 'text'">{{item.content}}</div>
