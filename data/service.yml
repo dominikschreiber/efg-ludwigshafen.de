@@ -42,7 +42,7 @@ worship:
         Wir nehmen uns Zeit, Gott die Ehre zu geben. Hier wird viel gebetet, noch mehr gesungen, und auf Gott gehört.
         Meist geht ein solcher Gottesdienst etwa eine Stunde.
     schedule:
-        day: Am 2. Sonntag in geraden Monaten
+        day: an jedem 1. Sonntag im Monat
         hours: 19:00 Uhr
     poster: #//lorempixel.com/1920/1080
     sermon:
