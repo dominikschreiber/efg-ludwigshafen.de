@@ -19,6 +19,33 @@ npm install
 npm start
 ```
 
+## deploying
+
+The actual website efg-ludwigshafen.de is hosted by a germany-based web hoster
+where we only have FTP access to the server machine. To minimize the pain of
+deploying the current state to the production server, it is recommended to
+create [git hooks](https://git-scm.com/book/uz/v2/Customizing-Git-Git-Hooks):
+
+```bash
+# content of file: .git/hooks/pre-push
+npm install
+npm run build
+ncftpput -R -u {{user}} -p {{password}} {{host}} {{root-folder}} {vendor,main}.min.{js,css}
+ncftpput -R -u {{user}} -p {{password}} {{host}} {{root-folder}} index.html
+ncftpput -R -A -u {{user}} -p {{password}} {{host}} {{root-folder}}/assets assets
+ncftpput -R -u {{user}} -p {{password}} {{host}} {{root-folder}}/data data
+```
+
+```bash
+# execute this once
+brew install ncftp
+ln -s .git/hooks/pre-push .git/hooks/post-merge
+```
+
+If you don't know user/password/host/root-folder you might not be in a
+position where you should know them. But if you feel you should, kindly ask
+[dominikschreiber](http://github.com/dominikschreiber).
+
 ## copywriting
 
 Content is placed in [YAML](http://yaml.org/) files in the [/data](./data)
