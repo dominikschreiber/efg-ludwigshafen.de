@@ -20,3 +20,14 @@
         background: fade(@c-primary, 20%);
     }
 }
+ 
+@media screen and (max-width: @screen-xs-max) {
+    .view-event {
+        .headerbar-items {
+            width: 100%;
+            justify-content: flex-end;
+        }
+        .headerbar-brand { margin-right: auto; }
+        .headerbar-rightitems { display: none; }
+    }
+}

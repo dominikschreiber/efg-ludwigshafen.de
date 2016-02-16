@@ -30,3 +30,29 @@
         background: fade(@c-white, 10);
     }
 }
+
+.view-sermon {
+    .headerbar {
+        .input-group-addon,
+        .form-control {
+            padding: 0 @u-unit;
+        }
+        
+        .form-control {
+            height: 3 * @u-unit;
+            @media screen and (min-width: @screen-sm) {
+                height: 2 * @u-unit;
+            }
+        }
+    }
+
+    @media screen and (max-width: @screen-xs-max) {
+        .headerbar-rightitems { display: none; }
+        .headerbar {
+            .input-group {
+                margin-top: .5 * (@u-xs-headerbar-height - 3 * @u-unit);
+                margin-bottom: .5 * (@u-xs-headerbar-height - 3 * @u-unit);
+            }
+        }
+    }
+}
