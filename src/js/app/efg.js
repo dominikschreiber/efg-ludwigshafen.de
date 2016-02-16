@@ -26,4 +26,12 @@ angular.module('efg', [
 
 	$locationProvider.html5Mode(false);
 	$locationProvider.hashPrefix('!');
+})
+
+.run(function($rootScope, $log, $route) {
+    $rootScope.$on('$routeChangeSuccess', function() {
+        if ($route.current.$$route) {
+            document.body.className = 'view-' + ($route.current.$$route.originalPath.split('/')[1] || 'index');
+        }
+    });
 });
