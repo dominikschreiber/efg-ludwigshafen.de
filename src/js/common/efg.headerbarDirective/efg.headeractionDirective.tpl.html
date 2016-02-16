@@ -1,7 +1,7 @@
 <li class="headerbar-item">
     <button ng-if="item.type === 'button'" ng-href="{{item.href}}"
             ng-click="item.action()"
-            class="btn btn-outline navbar-btn">
+            class="btn btn-outline headerbar-btn">
         <i ng-if="item.img && item.img.indexOf(' ') > -1"
            ng-class="item.img"></i>
         <img ng-if="item.img && item.img.indexOf(' ') === -1"
