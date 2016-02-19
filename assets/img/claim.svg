@@ -1,6 +1,6 @@
 <svg version="1.1"
      baseProfile="full"
-     width="2160"
+     width="2260"
      height="700"
      xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -15,10 +15,10 @@
             font-weight: 300;
         }
     </style>
-    <text text-anchor="end" x="1851" y="485" class="c-light">Evangelisch-freikirchliche Gemeinde (Baptisten)</text>
-    <text text-anchor="end" x="1851" y="603" class="c-light" style="font-weight:600">Ludwigshafen</text>
-    <path d="M 1944   0 h  42 v 180 h  90 v   42 h -132 Z" class="c-primary"/>
-    <path d="M 1944 232 v 132 h  42 v -90 h  180 v  -42 Z" class="c-light"/>
-    <path d="M 1802 232 h 132 v 373 h -42 v -331 h  -90 Z" class="c-light"/>
-    <path d="M 1712 180 h 180 v -90 h  42 v  132 h -222 Z" class="c-light"/>
+    <text text-anchor="end" x="1951" y="485" class="c-light">Evangelisch-freikirchliche Gemeinde (Baptisten)</text>
+    <text text-anchor="end" x="1951" y="603" class="c-light" style="font-weight:600">Ludwigshafen</text>
+    <path d="M 2044   0 h  42 v 180 h  90 v   42 h -132 Z" class="c-primary"/>
+    <path d="M 2044 232 v 132 h  42 v -90 h  180 v  -42 Z" class="c-light"/>
+    <path d="M 1902 232 h 132 v 373 h -42 v -331 h  -90 Z" class="c-light"/>
+    <path d="M 1812 180 h 180 v -90 h  42 v  132 h -222 Z" class="c-light"/>
 </svg>
