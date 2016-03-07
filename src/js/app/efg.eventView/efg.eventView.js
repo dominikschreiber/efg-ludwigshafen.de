@@ -2,6 +2,7 @@
 
 angular.module('efg.eventView', [
     'efg.headerbarService',
+    'efg.eventService',
     'ui.calendar',
     'ng',
     'ngRoute'
@@ -14,7 +15,7 @@ angular.module('efg.eventView', [
     });
 })
 
-.controller('EventCtrl', function(uiCalendarConfig, headerbar, $filter, $scope) {
+.controller('EventCtrl', function(uiCalendarConfig, headerbar, event, $filter, $scope, $log) {
     /**
      * calls the fullCalendar api of the used calendar
      * with the given `method`.
@@ -40,7 +41,12 @@ angular.module('efg.eventView', [
             ),
             viewRender: function() {
                 this.updateTitle();
-            }.bind(this)
+            }.bind(this),
+            eventRender: function(e, $element) {
+                $element
+                    .prop('title', e.title)
+                    .addClass(event.unwrap(e).classname);
+            }
         }
     };
 

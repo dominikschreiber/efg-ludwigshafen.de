@@ -1,23 +1,41 @@
 .fc-event {
-    background-color: @c-primary;
+    background-color: transparent;
     border-color: @c-primary;
+    border-width: 0 0 0 .125 * @u-unit;
+    border-radius: 0;
+    
     font-size: .6 * @u-unit;
 
     &,
     &:hover {
-        color: @c-white;
+        color: @c-content;
     }
+    
+    &.is-for-all     { border-color: @c-primary; }
+    &.is-for-women   { border-color: @c-accent-1; }
+    &.is-for-men     { border-color: @c-accent-2; }
+    &.is-for-kids    { border-color: @c-accent-3; }
+    &.is-for-teens   { border-color: @c-accent-4; }
+    &.is-for-seniors { border-color: @c-accent-5; }
+    &.is-internal    { border-color: @c-accent-6; }
+}
 
+.fc-content {
+    text-overflow: ellipsis;
+}
+
+.fc-day-grid-event {
+    margin: .0625 * @u-unit 0;
 }
 
 .fc-unthemed {
     .fc-other-month {
-        background: fade(@c-background, 30%);
+        background: fade(@c-background, 30);
     }
     // needs to be behind .fc-sat/.fc-sun to style
     // .fc-sat/.fc-sun.fc-today correctly
     .fc-today {
-        background: fade(@c-primary, 20%);
+        background: fade(@c-primary, 10);
     }
 }
  
