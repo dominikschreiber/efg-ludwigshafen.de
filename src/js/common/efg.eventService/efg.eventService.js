@@ -5,8 +5,8 @@ angular.module('efg.eventService', [
 ])
 
 .factory('event', function($log) {
-    function endswith(str, suffix) {
-        return str && str.lastIndexOf(suffix) === str.length - suffix.length;
+    function endswithignorecase(str, suffix) {
+        return str && str.toLowerCase().lastIndexOf(suffix.toLowerCase()) === str.length - suffix.length;
     }
     
     /**
@@ -15,12 +15,13 @@ angular.module('efg.eventService', [
      * @type {{suffix: string}}
      */
     var types = {
-            'für Alle': 'for-all',
-            'für Frauen': 'for-women',
-            'für Männer': 'for-men',
-            'für Kinder': 'for-kids',
-            'für Jugendliche': 'for-teens',
-            'für Mitarbeiter': 'internal'
+            'für alle': 'for-all',
+            'für frauen': 'for-women',
+            'für männer': 'for-men',
+            'für kinder': 'for-kids',
+            'für jugendliche': 'for-teens',
+            'für senioren': 'for-seniors',
+            'für mitarbeiter': 'internal'
         };
     
     return {
@@ -32,7 +33,7 @@ angular.module('efg.eventService', [
          */
         unwrap: function(event) {
             for (var type in types) {
-                if (endswith(event.description, type)) {
+                if (endswithignorecase(event.description, type)) {
                     $log.log(event);
                     return {
                         description: event.description.slice(0, - type.length),
