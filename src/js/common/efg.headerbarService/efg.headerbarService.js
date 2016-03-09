@@ -50,7 +50,7 @@ angular.module('efg.headerbarService', [
                 }
             }
 
-            return this;
+            return ids;
         },
 
         /**

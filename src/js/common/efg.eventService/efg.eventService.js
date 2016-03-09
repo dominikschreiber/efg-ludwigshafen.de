@@ -15,13 +15,13 @@ angular.module('efg.eventService', [
      * @type {{suffix: string}}
      */
     var types = {
-            'für alle': 'for-all',
-            'für frauen': 'for-women',
-            'für männer': 'for-men',
-            'für kinder': 'for-kids',
-            'für jugendliche': 'for-teens',
-            'für senioren': 'for-seniors',
-            'für mitarbeiter': 'internal'
+            'für alle': 'is-for-all',
+            'für Frauen': 'is-for-women',
+            'für Männer': 'is-for-men',
+            'für Kinder': 'is-for-kids',
+            'für Jugendliche': 'is-for-teens',
+            'für Senioren': 'is-for-seniors',
+            'für Mitarbeiter': 'is-internal'
         };
     
     return {
@@ -34,14 +34,18 @@ angular.module('efg.eventService', [
         unwrap: function(event) {
             for (var type in types) {
                 if (endswithignorecase(event.description, type)) {
-                    $log.log(event);
                     return {
                         description: event.description.slice(0, - type.length),
-                        classname: 'is-' + types[type]
+                        classname: types[type]
                     };
                 }
             }
-            return {description: event.description, classname: ''};
+            return {description: event.description, classname: types['für alle']};
+        },
+        types: function() {
+            return Object.keys(types).reduce(function(result, key) {
+                return result.concat([{title: key, classname: types[key]}]);
+            }, []);
         }
     };
 });

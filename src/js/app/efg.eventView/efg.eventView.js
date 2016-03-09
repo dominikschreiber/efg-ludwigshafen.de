@@ -25,6 +25,8 @@ angular.module('efg.eventView', [
     function fullCalendar(method) {
         return uiCalendarConfig.calendars.events.fullCalendar(method);
     }
+    
+    var headerIds;
 
     this.eventSource = {
         googleCalendarId: 'efg.ludwigshafen@gmail.com'
@@ -36,17 +38,29 @@ angular.module('efg.eventView', [
             header: false,
             timeFormat: 'H:mm',
             height: Math.max(
-                Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.querySelector('.headerbar').scrollHeight,
+                Math.max(
+                    document.documentElement.clientHeight, 
+                    window.innerHeight || 0
+                ) - 
+                document.querySelector('.headerbar').scrollHeight -
+                2 * parseInt(document.body.style.paddingBottom),
                 0
             ),
             viewRender: function() {
                 this.updateTitle();
             }.bind(this),
             eventRender: function(e, $element) {
+                var unwrapped = event.unwrap(e)
+                  , selectedTypes;
+                
                 $element
                     .prop('title', e.title)
-                    .addClass(event.unwrap(e).classname);
-            }
+                    .addClass(unwrapped.classname);
+                
+                if (this.selectedtypes.indexOf(unwrapped.classname) > -1) {
+                    $element.addClass('is-selected');
+                }
+            }.bind(this)
         }
     };
 
@@ -67,17 +81,35 @@ angular.module('efg.eventView', [
 
     this.updateTitle = function() {
         headerbar.update({
-            id:headerIds[0],
-            content: $filter('date')(new Date(), 'MMMM'),
+            id: headerIds[0],
+            content: $filter('date')(fullCalendar('getDate')._d, 'MMMM'),
             type: 'text'
         });
     };
+    
+    this.updateCalendar = function() {
+        this.selectedtypes = this.getSelectedTypes();
+        fullCalendar('rerenderEvents');
+    };
 
     this.eventSources = [this.eventSource];
+    this.eventfilters = event.types().map(function(type) {
+        return angular.extend(type, {checked: true});
+    });
+    
+    this.getSelectedTypes = function() {
+        return (this.eventfilters || []).reduce(function(checkedClassnames, filter) {
+            if (filter.checked) {
+                return checkedClassnames.concat([filter.classname]);
+            } else {
+                return checkedClassnames;
+            }
+        }, []);
+    };
+    this.selectedtypes = this.getSelectedTypes();
 
-    var headerIds = headerbar
-        .add(
-        {
+    headerIds = headerbar
+        .add({
             type: 'text',
             content: $filter('date')(new Date(), 'MMMM')
         }, {

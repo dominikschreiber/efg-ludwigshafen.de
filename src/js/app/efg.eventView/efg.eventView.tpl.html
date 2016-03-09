@@ -1,5 +1,24 @@
 <component classes="component-almost-viewport">
-    <div ui-calendar="event.uiConfig.calendar"
-         ng-model="event.eventSources"
-         calendar="events"></div>
+    <div class="col-xs-12 col-sm-9 col-md-10">
+        <div ui-calendar="event.uiConfig.calendar"
+             ng-model="event.eventSources"
+             calendar="events"></div>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-2">
+        <h3 class="text-left">Finde Termine</h3>
+        <ul class="eventfilters">
+            <li class="eventfilter"
+                ng-class="
+                    (filter.classname ? filter.classname : '') +
+                    (filter.checked ? ' is-selected' : '')"
+                ng-repeat="filter in event.eventfilters">
+                <label>
+                    <input type="checkbox"
+                           ng-model="filter.checked"
+                           ng-change="event.updateCalendar()">
+                    {{filter.title}}
+                </label>
+            </li>
+        </ul>
+    </div>
 </component>
