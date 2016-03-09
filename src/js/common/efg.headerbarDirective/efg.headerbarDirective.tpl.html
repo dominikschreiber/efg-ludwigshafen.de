@@ -20,6 +20,11 @@
                 <small>{{sermon.preacher}} &ndash; {{sermon.date | date:'dd.MM.yyyy'}}</small>
             </a>
         </li>
-        <headeraction item="playpause"></headeraction>
+        <li class="headerbar-item">
+            <button analytics-on analytics-category="Media" analytics-event="Play" analytics-label="{{sermon.preacher}} &ndash; {{sermon.date | date:'dd.MM.yyyy'}}"  ng-click="playpause.action()"
+                    class="btn btn-outline headerbar-btn">
+                <i ng-class="playpause.img"></i>
+            </button>
+        </li>
     </ul>
 </nav>

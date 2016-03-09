@@ -10,12 +10,12 @@
             title="{{sermon.frameduration}} Sekunden zurückspulen">
         <i class="glyphicon glyphicon-repeat glyphicon-flip-horizontal"></i>
     </button>
-    <button ng-click="sermon.playpause()"
+    <button analytics-on analytics-category="Media" analytics-event="Play" analytics-label="{{sermon.subheader}}" ng-click="sermon.playpause()"
             class="btn btn-outline btn-light">
         <i class="glyphicon"
            ng-class="{'glyphicon-play': sermon.ispaused, 'glyphicon-pause': !sermon.ispaused}"></i>
     </button>
-    <a analytics-on="click" analytics-event="Download" ng-href="{{sermon.src}}"
+    <a analytics-on analytics-category="Media" analytics-event="Download" analytics-label="{{sermon.subheader}}" ng-href="{{sermon.src}}"
        class="btn btn-outline btn-light"
        download>
        <i class="glyphicon glyphicon-save"></i>
