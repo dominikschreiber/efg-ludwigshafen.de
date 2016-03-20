@@ -28,7 +28,13 @@ module.exports = function(grunt) {
 		// concat files to one big file
 		concat: {
 			scripts: {
-				src: ['src/js/common/efg.resourceFactory/efg.resourceFactory.js', 'src/js/**/*.js', '<%= ngtemplates.efg.dest %>', '!*.spec.js'],
+				src: [
+                    'src/js/common/efg.resourceFactory/efg.resourceFactory.js',
+                    'src/js/common/efg.owncloudFactory/efg.owncloudFactory.js',
+                    'src/js/**/*.js',
+                    '<%= ngtemplates.efg.dest %>',
+                    '!*.spec.js'
+                ],
 				dest: 'tmp/main.js'
 			},
             vendorscripts: {

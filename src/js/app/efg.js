@@ -12,6 +12,7 @@ angular.module('efg', [
 	'efg.groupView',
     'efg.nextView',
     'efg.contactView',
+    'efg.pressView',
     'efg.headerbarDirective',
 	'ng',
 	'ngRoute',
