@@ -1,0 +1,16 @@
+<component classes="component-lg bg-dark bg-img"
+           header="Downloads"
+           style="background-image: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url('https://unsplash.com/photos/a2NRu2Wxa2o/download'); background-size: cover">
+</component>
+<component classes="component-singlecolumn">
+    <a class="efgMediaobject"
+       ng-repeat="item in downloads.items"
+       ng-href="{{item.url}}"
+       download>
+        <div class="efgMediaobject__thumbnail"
+             ng-style="{'background-image': 'url(' + downloads.getImageSrc(item) + ')'}"></div>
+        <div class="efgMediaobject__body">
+            <h4 class="efgMediaobject__title">{{item.title}}<small>.{{item.ending}}</small></h4>
+        </div>
+    </a>
+</component>

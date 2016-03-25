@@ -97,8 +97,8 @@ owncloudFactory('sermon', 'bq1QQFmNVLVoE8p', function(srcbuilder) {
             return sermons;
         }
     };
-}, {sort: 'name', sortdirection: 'dec'});
-owncloudFactory('press', '9VJFv5jmb3JpNXB', function(srcbuilder) {
+}, {sort: 'name', sortdirection: 'desc'});
+owncloudFactory('downloads', '9VJFv5jmb3JpNXB', function(srcbuilder) {
     return function(items, file) {
         return items.concat([{
             filename: file.name,

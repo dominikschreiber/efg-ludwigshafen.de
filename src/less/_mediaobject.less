@@ -1,0 +1,32 @@
+.efgMediaobject {
+    display: flex;
+    border-radius: @border-radius-base;
+    transition: background-color @t-fast @t-timing;
+    
+    & + & {
+        margin-top: @u-unit;
+    }
+    
+    &:hover {
+        background-color: @c-content-inverse-eased;
+        text-decoration: none;
+    }
+    
+    .efgMediaobject__thumbnail {
+        display: block;
+        width: 4 * @u-unit;
+        height: 4 * @u-unit;
+        margin-right: @u-unit;
+        
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .efgMediaobject__body {
+        display: flex;
+        align-items: center;
+        
+        width: 100%;
+    } 
+}
