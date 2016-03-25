@@ -19,8 +19,8 @@ angular.module('efg.downloadsView', [
     }.bind(this));
     
     this.getImageSrc = function(asset) {
-        return /\.(png|jpe?g)$/.test(asset.url)
-            ? asset.url
+        return /(png|jpe?g)$/.test(asset.ending)
+            ? encodeURI(asset.url)
             : '//placehold.it/96?text=' + asset.ending.toUpperCase();
     };
 });
