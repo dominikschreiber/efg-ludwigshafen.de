@@ -6,6 +6,7 @@
 #     duties: Array<String>
 #     img: url|classList
 #     poster: url
+#     isleader: Boolean
 #
 # @creates #!/member/${id}
 # @stability 2
@@ -20,6 +21,7 @@ wilfried:
         - Ältester
     img: /assets/img/wilfried_klein.jpg
     poster: /assets/img/wilfried.jpg
+    isleader: true
 
 markus:
     name:
@@ -32,6 +34,7 @@ markus:
         - Ältester
     img: /assets/img/markus_klein.jpg
     poster: /assets/img/markus.jpg
+    isleader: true
 
 thomas:
     name:
@@ -43,6 +46,7 @@ thomas:
         - Ältester
     img: /assets/img/thomas_klein.jpg
     poster: /assets/img/thomas.jpg
+    isleader: true
 
 andreas:
     name:
@@ -53,6 +57,7 @@ andreas:
         - Diakon
     img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
     poster:
+    isleader: false
 
 daniel:
     name:
@@ -63,6 +68,7 @@ daniel:
         - Diakon
     img: /assets/img/daniel_klein.jpg
     poster: /assets/img/daniel.jpg
+    isleader: false
 
 jonas:
     name:
@@ -73,3 +79,4 @@ jonas:
         - Diakon
     img: /assets/img/jonas_klein.jpg
     poster: /assets/img/jonas.jpg
+    isleader: false
