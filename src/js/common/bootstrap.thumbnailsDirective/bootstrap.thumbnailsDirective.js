@@ -7,7 +7,18 @@ angular.module('bootstrap.thumbnailsDirective', [
 
 .directive('thumbnails', function($log) {
 	return {
-		link: function($scope, $element, $attributes) {
+		controller: function($scope) {
+            function zip(a, b) {
+                var result = [], i;
+                
+                if (a.length !== b.length) { throw new Error('arrays must be of same length!'); }
+                for (i = 0; i < a.length; i++) {
+                    result.push([a[i], b[i]]);
+                }
+                
+                return result;
+            }
+            
 			function createArray(item, times) {
 				var arr = [];
 				for (var i = 0; i < times; i++) {
@@ -26,7 +37,7 @@ angular.module('bootstrap.thumbnailsDirective', [
 			}
 
 			function classes(itemcount) {
-				return _.zip(getclasses(itemcount, 3, 'sm'), getclasses(itemcount, 4, 'md')).map(function(i) { return i.join(' '); });
+				return zip(getclasses(itemcount, 3, 'sm'), getclasses(itemcount, 4, 'md')).map(function(i) { return i.join(' '); });
 			}
 
 			var cls = classes($scope.items.length)
