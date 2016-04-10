@@ -5,7 +5,7 @@
         <i ng-class="img"></i>
     </p>
 	<img ng-if="img && !contains(img, ' ')"
-         ng-src="{{img | responsive}}"
+         ng-src="{{img}}"
          ng-class="imgclass">
 	<div class="caption">
 		<h3 ng-bind="header"></h3>
