@@ -4,9 +4,44 @@ angular.module('efg.eventService', [
     'ng'
 ])
 
-.factory('event', function($log) {
+.factory('event', function($q, $log, configurationApi) {
     function endswithignorecase(str, suffix) {
         return str && str.toLowerCase().lastIndexOf(suffix.toLowerCase()) === str.length - suffix.length;
+    }
+    
+    function _unwrap(types, args) {
+        var event = args[0];
+        
+        for (var type in types) {
+            if (endswithignorecase(event.description, type)) {
+                return {
+                    description: event.description.slice(0, - type.length),
+                    classname: types[type]
+                };
+            }
+        }
+        return {description: event.description, classname: types[Object.keys(types)[0]]};
+    }
+    
+    function _types(types) {
+        return Object.keys(types).reduce(function(result, key) {
+            return result.concat([{title: key, classname: types[key]}]);
+        }, []);
+    }
+    
+    function _promise(fn) {
+        var deferred = $q.defer();
+        
+        if (!types) {
+            configurationApi.get('event').then(function(conf) {
+                types = conf.types;
+                deferred.resolve(fn(types, [].slice.call(arguments, 1)));
+            }, deferred.reject);
+        } else {
+            deferred.resolve(fn(types, [].slice.call(arguments, 1)));
+        }
+        
+        return deferred.promise;
     }
     
     /**
@@ -14,15 +49,7 @@ angular.module('efg.eventService', [
      * e.g. "für Mitarbeiter" -> "is-internal"
      * @type {{suffix: string}}
      */
-    var types = {
-            'für alle': 'is-for-all',
-            'für Frauen': 'is-for-women',
-            'für Männer': 'is-for-men',
-            'für Kinder': 'is-for-kids',
-            'für Jugendliche': 'is-for-teens',
-            'für Senioren': 'is-for-seniors',
-            'für Mitarbeiter': 'is-internal'
-        };
+    var types;
     
     return {
         /**
@@ -32,20 +59,10 @@ angular.module('efg.eventService', [
          * unwrapped event 
          */
         unwrap: function(event) {
-            for (var type in types) {
-                if (endswithignorecase(event.description, type)) {
-                    return {
-                        description: event.description.slice(0, - type.length),
-                        classname: types[type]
-                    };
-                }
-            }
-            return {description: event.description, classname: types['für alle']};
+            return _promise(_unwrap, event);
         },
         types: function() {
-            return Object.keys(types).reduce(function(result, key) {
-                return result.concat([{title: key, classname: types[key]}]);
-            }, []);
+            return _promise(_types);
         }
     };
 });

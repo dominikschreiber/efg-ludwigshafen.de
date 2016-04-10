@@ -66,9 +66,11 @@ function resourceFactory(resource) {
     }]);
 }
 
+resourceFactory('configuration');
 resourceFactory('group');
 resourceFactory('service');
 resourceFactory('member');
 resourceFactory('next');
 resourceFactory('contact');
 resourceFactory('info');
+resourceFactory('geo');

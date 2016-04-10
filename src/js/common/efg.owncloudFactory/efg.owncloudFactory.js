@@ -1,22 +1,20 @@
 'use strict';
 
 /**
- * @param {string} resource name for the generated service
- * @param {string} sharedfolderid the ID of the folder shared by owncloud
- * @param {(object => string) => ((Array, string) => Array)} reducer method
- * that gets a srcbuilder (object => string) to create a full url for a given
+ * @param {String} resource name for the generated service
+ * @param {(object => String) => ((Array, String) => Array)} reducer method
+ * that gets a srcbuilder (object => String) to create a full url for a given
  * filename and returns a method that will be used to reduce the files served
  * by owncloud (see example)
- * @param {{string: string}} options additional options for the folder listing
+ * @param {{String: String}} options? additional options for the folder listing
  * request (e.g. {{{sort: 'name'}}})  
  */
-function owncloudFactory(resource, sharedfolderid, reducer, options) {
+function owncloudFactory(resource, reducer, options) {
     var api = resource + 'Api';
     
-    angular.module('efg.' + api, ['ng'])
-    .factory(api, ['$q', '$http', function($q, $http) {
-        var cache
-        , host = 'cloud.efg-ludwigshafen.de';
+    angular.module('efg.' + api, ['efg.configurationApi', 'ng'])
+    .factory(api, ['$q', '$http', 'configurationApi', function($q, $http, configurationApi) {
+        var cache;
         
         function init() {
             var deferred = $q.defer();
@@ -24,11 +22,16 @@ function owncloudFactory(resource, sharedfolderid, reducer, options) {
             if (cache) {
                 deferred.resolve(cache);
             } else {
-                $http.get('http://' + host + '/index.php/apps/files_sharing/ajax/list.php?t=' + sharedfolderid + '&dir=/'+ (options && Object.keys(options).length > 0 ? '&' + Object.keys(options).reduce(function(all, now) { return all + '&' + now + '=' + options[now]; }, []) : '')).then(function(data) {
-                    cache = data.data.data.files.reduce(reducer(function(filename) {
-                        return 'http://' + host + '/index.php/s/' + sharedfolderid + '/download?path=/&files=' + filename;
-                    }), []);
-                    deferred.resolve(cache);
+                configurationApi.get('owncloud').then(function(conf) {
+                    var host = conf.host
+                      , sharedfolderid = conf.folders[resource];
+                    
+                    $http.get('http://' + host + '/index.php/apps/files_sharing/ajax/list.php?t=' + sharedfolderid + '&dir=/'+ (options && Object.keys(options).length > 0 ? '&' + Object.keys(options).reduce(function(all, now) { return all + '&' + now + '=' + options[now]; }, []) : '')).then(function(data) {
+                        cache = data.data.data.files.reduce(reducer(function(filename) {
+                            return 'http://' + host + '/index.php/s/' + sharedfolderid + '/download?path=/&files=' + filename;
+                        }), []);
+                        deferred.resolve(cache);
+                    }, deferred.reject);
                 }, deferred.reject);
             }
             
@@ -54,7 +57,7 @@ function owncloudFactory(resource, sharedfolderid, reducer, options) {
     }]);
 }
 
-owncloudFactory('sermon', 'bq1QQFmNVLVoE8p', function(srcbuilder) {
+owncloudFactory('sermon', function(srcbuilder) {
     return function(sermons, file) {
         var infos;
         if (file.mimetype.indexOf('audio') > -1 && file.name.split('_').length > 1) {
@@ -98,7 +101,7 @@ owncloudFactory('sermon', 'bq1QQFmNVLVoE8p', function(srcbuilder) {
         }
     };
 }, {sort: 'name', sortdirection: 'desc'});
-owncloudFactory('downloads', '9VJFv5jmb3JpNXB', function(srcbuilder) {
+owncloudFactory('downloads', function(srcbuilder) {
     return function(items, file) {
         return items.concat([{
             filename: file.name,
