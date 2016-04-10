@@ -228,7 +228,7 @@ module.exports = function(grunt) {
 			},
             images: {
                 files: 'assets/img/*.{jpg,jpeg,gif,png}',
-                tasks: ['images']
+                tasks: ['assets']
             },
 			templates: {
 				files: 'src/**/*.tpl.html',
