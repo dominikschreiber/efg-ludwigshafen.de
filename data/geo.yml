@@ -1,0 +1,15 @@
+ludwigshafen:
+    latitude: 49.49172
+    longitude: 8.435441
+    street: Böhlstraße 5
+    city: Ludwigshafen
+    subtitle: Wir sind mitten im Hemshof, dem Herz von Ludwigshafen.
+    connections:
+      - title: Mit öffentlichen Verkehrsmitteln
+        description: Die Haltestelle *Hemshofstraße/BASF Tor 7* (Linie 7) ist zwei Gehminuten entfernt.
+        url: "http://fahrplanauskunft.vrn.de/vrn/XSLT_TRIP_REQUEST2?language=de&sessionID=0&name_destination=Hemshofstra%C3%9Fe,%20Ludwigshafen&type_destination=stop"
+        action: Zum VRN
+      - title: Mit dem Auto
+        description: "Du kannst direkt gegenüber parken. Oder auf dem BASF-Mitarbeiterplatz (*Anilinstraße*) &ndash; zu Fuß zwei Minuten."
+        url: "https://www.google.de/maps/place/Böhlstraße+5,+67063+Ludwigshafen+am+Rhein/"
+        action: Zu Google Maps

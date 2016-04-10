@@ -12,7 +12,7 @@ phone:
 
 location:
     name: Böhlstraße 5, Ludwigshafen
-    action: "#!/findus"
+    action: "#!/geo"
     thumbnail: glyphicon glyphicon-map-marker
 
 email:
@@ -23,7 +23,7 @@ email:
 bank:
     name: Geben
     action: "#!/contact/bank"
-    thumbnail: glyphicon glyphicon-gift
+    thumbnail: glyphicon glyphicon-piggy-bank
     #poster: //unsplash.com/photos/ZKVBM2_Dp84/download
     description: |
         ## Gemeindekonto

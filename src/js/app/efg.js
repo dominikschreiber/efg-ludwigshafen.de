@@ -8,7 +8,7 @@ angular.module('efg', [
     'efg.infoView',
 	'efg.serviceView',
 	'efg.memberView',
-	'efg.findusView',
+	'efg.geoView',
 	'efg.groupView',
     'efg.nextView',
     'efg.contactView',
