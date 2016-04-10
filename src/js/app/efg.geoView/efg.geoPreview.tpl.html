@@ -1,0 +1,13 @@
+<component classes="{{classes}}"
+		   ng-style="styles"
+		   header="Unser Standort"
+		   subheader="{{campuses[0].subtitle}}"
+           ng-if="campuses && campuses.length > 0">
+	<div class="col-md-12">
+		<p class="lead">{{campuses[0].location}}</p>
+		<p class="u-space-top"><a href="#!/geo"
+			  class="btn btn-lg btn-light btn-outline">
+			Wegbeschreibung anzeigen
+		</a></p>
+	</div>
+</component>

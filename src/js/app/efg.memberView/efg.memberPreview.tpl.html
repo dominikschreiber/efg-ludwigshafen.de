@@ -1,0 +1,30 @@
+<component classes="members {{classes}}"
+           ng-styles="styles"
+		   header="Unsere Gemeindeleitung">
+	<div class="col-md-12">
+		<div class="row">
+			<thumbnails ng-if="leaders.length > 0"
+					    items="leaders"
+					    base="#!/member/"
+					    imgclass="img-circle img-thumbnail"/>
+		</div>
+		<div class="row"
+			 ng-hide="showFullTeam"
+			 ng-init="showFullTeam = false">
+			<div class="col-md-12">
+				<button type="button"
+						class="btn btn-lg btn-outline"
+						ng-click="showFullTeam = true">
+					mehr Verantwortliche
+				</button>
+			</div>
+		</div>
+		<div class="row"
+             ng-if="showFullTeam">
+			<thumbnails ng-if="members.length > 0"
+                        items="members"
+					    base="#!/member/"
+					    imgclass="img-circle img-thumbnail"/>
+		</div>
+	</div>
+</component>

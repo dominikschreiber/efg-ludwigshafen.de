@@ -3,6 +3,7 @@
 angular.module('efg.memberView', [
 	'efg.memberApi',
     'efg.responsiveFilter',
+    'bootstrap.thumbnailsDirective',
 	'ng',
 	'ngRoute'
 ])
@@ -26,4 +27,40 @@ angular.module('efg.memberView', [
 		this.description = member.description;
 		this.img = member.poster;
 	}.bind(this));
+})
+
+.directive('memberpreview', function(memberApi, $log) {
+    return {
+        templateUrl: 'efg.memberPreview.tpl.html',
+        scope: {
+            classes: '@',
+            styles: '='
+        },
+        controller: function($scope) {
+            function create(member) {
+                return {
+                    id: member.id,
+                    title: [
+                        member.name.givenname,
+                        member.name.familyname
+                    ].join(' '),
+                    subtitle: member.duties.join(', '),
+                    img: member.img
+                };
+            }
+            
+            memberApi.query().then(function(members) {
+                var key
+                  , member;
+                  
+                for (key in members) {
+                    member = angular.extend(members[key], {id: key});
+                    $scope[member.isleader ? 'leaders' : 'members'].push(create(member));
+                }
+            });
+            
+            $scope.members = [];
+            $scope.leaders = [];
+        }
+    }
 });

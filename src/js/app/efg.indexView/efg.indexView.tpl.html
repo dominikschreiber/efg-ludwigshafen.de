@@ -1,149 +1,36 @@
 <!-- ===== welcome ============================================== -->
 <headerlogo classes="welcome component-flex component-almost-viewport bg-img bg-dark"
-		    ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(' + index.$filter('responsive')('/assets/img/gemeinde1.jpg') + ')'}">
+		    ng-style="index.dark('/assets/img/header.jpg')">
 </headerlogo>
 
-<!-- ===== services ============================================= -->
-<component classes="services component-lg"
-		   header="Unsere Gottesdienste"
-		   subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
-	<div class="col-sm-6"
-		 style="padding-left: 2rem; padding-right: 2rem"
-		 ng-repeat="service in index.services">
-		<a ng-href="#!/service/{{service.id}}"
-		   class="btn btn-lg btn-block btn-outline">
-			<span ng-bind="service.title"></span><br>
-			<strong ng-bind="service.subtitle"></strong>
-		</a>
-	</div>
-</component>
+<servicepreview classes="component-lg"></servicepreview>
 
-<!-- ===== location ============================================= -->
-<component classes="component-lg bg-img bg-dark"
-		   ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(' + index.$filter('responsive')('/assets/img/papageiensiedlung.jpg') + ')'}"
-		   header="Unser Standort"
-		   subheader="Wir sind mitten im Hemshof, dem Herz von Ludwigshafen.">
-	<div class="col-md-12">
-		<p class="lead">Böhlstraße 5, 67063 Ludwigshafen</p>
-		<p class="u-space-top"><a href="#!/findus"
-			  class="btn btn-lg btn-light btn-outline">
-			Wegbeschreibung anzeigen
-		</a></p>
-	</div>
-</component>
+<geopreview classes="component-lg bg-img bg-dark"
+            styles="index.dark('/assets/img/geopreview.jpg')"></geopreview>
+            
+<eventpreview classes="component-lg"></eventpreview>
 
-<!-- ===== events =============================================== -->
-<component classes="events component-lg"
-		   header="Nächste Events"
-		   subheader="Bei uns in der Gemeinde.">
-    <a class="btn btn-lg btn-outline"
-        ng-href="#!/event/">
-        zum Kalender
-    </a>
-</component>
+<nextpreview classes="component-lg bg-dark bg-img"
+             styles="index.dark('/assets/img/nextpreview.jpg')"></nextpreview>
+             
+<memberpreview classes="component-lg bg-primary"></memberpreview>
 
-<!-- ===== groups ===============================================
-<component classes="groups component-lg bg-img bg-dark"
-		   style="background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url()"
-		   header="Unsere Gruppen"
-		   subheader="Du bist herzlich eingeladen.">
-	<thumbnails ng-if="index.groups.length > 0"
-                items="index.groups"
-			    base="#!/group/"
-			    imgclass="img-circle"/>
-</component> -->
+<sermonpreview classes="component-lg"></sermonpreview>
 
-<!-- ===== info =================================================
-<component classes="info component-lg  bg-primary"
-		   header="Informationen"
-		   subheader="Wir wollen Deine Fragen beantworten.">
-	<thumbnails ng-if="index.infos.length > 0"
-                items="index.infos"
-				base="#!/info/"/>
-</component> -->
-
-
-<!-- ===== next ================================================= -->
-<component classes="next component-lg bg-dark bg-img"
-		   header="Nächste Schritte"
-           ng-style="{'background-image': 'linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(' + index.$filter('responsive')('/assets/img/kreuz1.jpg') + ')'}">
-	<div class="col-sm-4"
-		 ng-repeat="action in index.next"
-		 style="margin-bottom: 2rem; padding-left: 2rem; padding-right: 2rem;">
-		<a class="btn btn-light btn-lg btn-block btn-outline"
-		   ng-href="#!/next/{{action.id}}">
-			{{action.subtitle}}<br>
-			<b>{{action.title}}</b>
-		</a>
-	</div>
-</component>
-
-<!-- ===== member =============================================== -->
-<component classes="members component-lg bg-primary"
-		   header="Unsere Gemeindeleitung">
-	<div class="col-md-12">
-		<div class="row">
-			<thumbnails ng-if="index.elders.length > 0"
-					    items="index.elders"
-					    base="#!/member/"
-					    imgclass="img-circle img-thumbnail"/>
-		</div>
-		<div class="row"
-			 ng-hide="index.showFullTeam"
-			 ng-init="index.showFullTeam = false">
-			<div class="col-md-12">
-				<button type="button"
-						class="btn btn-lg btn-outline"
-						ng-click="index.showFullTeam = true">
-					mehr Verantwortliche
-				</button>
-			</div>
-		</div>
-		<div class="row"
-             ng-if="index.showFullTeam">
-			<thumbnails ng-if="index.members.length > 0"
-                        items="index.members"
-					    base="#!/member/"
-					    imgclass="img-circle img-thumbnail"/>
-		</div>
-	</div>
-</component>
-
-<!-- ===== sermon =============================================== -->
-<component classes="sermons component-lg"
-           header="Predigten"
-           subheader="Hör Dir unsere Aufnahmen an.">
-	<div class="col-md-12">
-		<p class="u-space-top">
-			<a class="btn btn-lg btn-outline"
-			   ng-href="#!/sermon/">
-				Predigt auswählen
-			</a>
-		</p>
-	</div>
-</component>
-
-<!-- ===== contact ============================================== -->
-<component classes="component-lg bg-dark"
-		   header="Kontakt"
-		   subheader="So erreichst Du uns.">
-	<thumbnails ng-if="index.contacts.length > 0"
-                items="index.contacts"
-				href=""/>
-</component>
+<contactpreview classes="component-lg bg-dark"></contactpreview>
 
 <!-- ===== legal ================================================ -->
 <component>
     <div class="col-sm-4">
         <a href="#!/imprint"
            style="color:inherit">
-            <i class="glyphicon glyphicon-education"></i> Impressum
+            Impressum
         </a>
     </div>
     <div class="col-sm-4">
         <a href="#!/downloads"
            style="color:inherit">
-            <i class="glyphicon glyphicon-folder-open"></i> Downloads
+            Downloads
         </a>
     </div>
     <div class="col-sm-4">

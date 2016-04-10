@@ -4,6 +4,7 @@ angular.module('efg.contactView', [
     'efg.contactApi',
     'efg.trustFilter',
     'efg.responsiveFilter',
+    'bootstrap.thumbnailsDirective',
     'btford.markdown',
 	'ng',
 	'ngRoute'
@@ -25,4 +26,26 @@ angular.module('efg.contactView', [
 		this.subtitle = result.subtitle;
 		this.description = result.description;
 	}.bind(this));
+})
+
+.directive('contactpreview', function(contactApi) {
+    return {
+        templateUrl: 'efg.contactPreview.tpl.html',
+        scope: {
+            classes: '@',
+            styles: '='
+        },
+        controller: function($scope) {
+            contactApi.query().then(function(contacts) {
+                $scope.contacts = Object.keys(contacts).map(function(key) {
+                    var contact = contacts[key];
+                    return {
+                        id: contact.action,
+                        title: contact.name,
+                        img: contact.thumbnail
+                    };
+                });
+            });
+        }
+    };
 });

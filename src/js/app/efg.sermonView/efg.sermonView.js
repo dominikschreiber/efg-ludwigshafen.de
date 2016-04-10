@@ -76,4 +76,14 @@ angular.module('efg.sermonView', [
         this.currenttime = update.currenttime;
         this.duration = update.duration;
     }.bind(this));
+})
+
+.directive('sermonpreview', function(sermonApi) {
+    return {
+        templateUrl: 'efg.sermonPreview.tpl.html',
+        scope: {
+            classes: '@',
+            styles: '='
+        }
+    };
 });

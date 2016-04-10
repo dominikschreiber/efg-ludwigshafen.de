@@ -1,21 +1,16 @@
 'use strict';
 
 angular.module('efg.indexView', [
-    'efg.contactApi',
-    'efg.nextApi',
-    'efg.memberApi',
-    'efg.serviceApi',
-    'efg.groupApi',
-    'efg.infoApi',
-	'efg.sermonApi',
-    'efg.sermonService',
-    'efg.playerService',
+    'efg.serviceView',
+    'efg.geoView',
+    'efg.eventView',
+    'efg.nextView',
+    'efg.memberView',
+    'efg.sermonView',
+    'efg.contactView',
 	'efg.componentDirective',
     'efg.headerlogoDirective',
-    'efg.sermonDirective',
     'efg.responsiveFilter',
-	'bootstrap.thumbnailDirective',
-	'bootstrap.thumbnailsDirective',
 	'ng',
 	'ngRoute'
 ])
@@ -27,97 +22,23 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function(infoApi, contactApi, nextApi, memberApi, serviceApi, groupApi, sermonApi, sermon, player, $log, $filter) {
-    this.$filter = $filter;
-
-	serviceApi.query().then(function(services) {
-		this.services = Object.keys(services).map(function(key) {
-            var service = services[key];
-            return {
-                id: key,
-                title: service.name,
-                subtitle: [
-                    service.schedule.day,
-                    service.schedule.hours
-                ].join(', ')
+.controller('IndexCtrl', function($filter, $log) {
+    /** @type {{String: String}} */
+    var cache = {};
+    
+    /**
+     * @param {String} imgurl
+     * @return {{'background-image': String}}
+     */
+    this.dark = function(imgurl) {
+        // ng runs into $rootScope:infdig (Infinite $digest Loop)
+        // if a new object is created in every call => cache the
+        // results and return the same references every time
+        if (!(imgurl in cache)) {
+            cache[imgurl] = {
+                'background-image': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(' + $filter('responsive')(imgurl) + ')'
             };
-        });
-	}.bind(this));
-
-    groupApi.query().then(function(groups) {
-        this.groups = Object.keys(groups).map(function(key) {
-            var group = groups[key];
-            return {
-                id: key,
-                title: group.name,
-                subtitle: group.category,
-                img: group.thumbnail
-            };
-        });
-	}.bind(this));
-
-    memberApi.query().then(function(members) {
-		function createMember(member) {
-				return {
-					id: member.id,
-					title: [
-                        member.name.givenname,
-                        member.name.familyname
-                    ].join(' '),
-					subtitle: member.duties.join(', '),
-					img: member.img
-				};
-			}
-
-		this.members = Object.keys(members).reduce(function(all, key) {
-            var member = _.extend(members[key], {id: key});
-            if (member.duties.indexOf('Ältester') === -1) {
-                all.push(createMember(member));
-            }
-            return all;
-        }, []);
-
-		this.elders = Object.keys(members).reduce(function(all, key) {
-            var member = _.extend(members[key], {id: key});
-            if (member.duties.indexOf('Ältester') > -1) {
-                all.push(createMember(member));
-            }
-            return all;
-        }, []);
-	}.bind(this));
-
-    nextApi.query().then(function(actions) {
-		this.next = Object.keys(actions).map(function(key) {
-            var words = actions[key].action.split(' ');
-
-            return {
-                id: key,
-                title: _.last(words),
-                subtitle: _.initial(words).join(' ')
-            };
-        });
-	}.bind(this));
-
-    infoApi.query().then(function(infos) {
-		this.infos = Object.keys(infos).map(function(key) {
-            var info = infos[key];
-            return {
-                id: key,
-                title: info.name,
-                subtitle: info.subtitle,
-                img: info.thumbnail
-            };
-        });
-	}.bind(this));
-
-    contactApi.query().then(function(contacts) {
-		this.contacts = Object.keys(contacts).map(function(key) {
-            var contact = contacts[key];
-			return {
-				id: contact.action,
-				title: contact.name,
-				img: contact.thumbnail
-			};
-		});
-	}.bind(this));
+        }
+        return cache[imgurl];
+    };
 });

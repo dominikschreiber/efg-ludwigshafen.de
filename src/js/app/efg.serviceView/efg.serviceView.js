@@ -27,4 +27,29 @@ angular.module('efg.serviceView', [
 		this.description = result.description;
         this.sermon = result.sermon;
 	}.bind(this));
+})
+
+.directive('servicepreview', function(serviceApi) {
+    return {
+        templateUrl: 'efg.servicePreview.tpl.html',
+        scope: {
+            classes: '@',
+            styles: '='
+        },
+        controller: function($scope) {
+            serviceApi.query().then(function(services) {
+                $scope.services = Object.keys(services).map(function(key) {
+                    var service = services[key];
+                    return {
+                        id: key,
+                        title: service.name,
+                        subtitle: [
+                            service.schedule.day,
+                            service.schedule.hours
+                        ].join(', ')
+                    };
+                });
+            });
+        }
+    }
 });
