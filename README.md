@@ -1,65 +1,41 @@
 # efg-ludwigshafen.github.io
 
-Website of the baptist church EfG Ludwigshafen, Germany.
+Website of the baptist church [EfG Ludwigshafen](http://efg-ludwigshafen.de), Germany.
 
-## developing
+## getting started
 
-To get started, perform the following steps:
-
-```bash
-# clone the repository
-git clone git@github.com:efg-ludwigshafen/efg-ludwigshafen.github.io
-# cd to the cloned repository
-cd efg-ludwigshafen.github.io
-# install GraphicsMagick (from somewhere -- mac users have it easy here)
-brew install GraphicsMagick
-# install dependencies (installs bower dependencies as well)
-npm install
-# start the development build (concat + uglify js, start server at ::8000)
-npm start
-```
-
-## deploying
-
-The actual website efg-ludwigshafen.de is hosted by a germany-based web hoster
-where we only have FTP access to the server machine. To minimize the pain of
-deploying the current state to the production server, it is recommended to
-create [git hooks](https://git-scm.com/book/uz/v2/Customizing-Git-Git-Hooks):
+To serve this project locally clone it and serve with whatever http file server you prefer:
 
 ```bash
-# content of file: .git/hooks/pre-push
-npm install
-npm run build
-ncftpput -R -u {{user}} -p {{password}} {{host}} {{root-folder}} {vendor,main}.min.{js,css}
-ncftpput -R -u {{user}} -p {{password}} {{host}} {{root-folder}} index.html
-ncftpput -R -A -u {{user}} -p {{password}} {{host}} {{root-folder}}/assets assets
-ncftpput -R -u {{user}} -p {{password}} {{host}} {{root-folder}}/data data
+git clone https://github.com/efg-ludwigshafen/efg-ludwigshafen.github.io.git .
+python -m SimpleHTTPServer
+# or use http-server (npm install -g http-server)
+# or clone into a folder served by apache/nginx/lighttpd
 ```
 
-```bash
-# execute this once
-brew install ncftp
-ln -s .git/hooks/pre-push .git/hooks/post-merge
-```
+## development
 
-If you don't know user/password/host/root-folder you might not be in a
-position where you should know them. But if you feel you should, kindly ask
-[dominikschreiber](http://github.com/dominikschreiber).
+This website is an [Angular 1](https://angularjs.org/) single page application. You'll need
+[node](https://nodejs.org) (which brings [npm](https://www.npmjs.com/) which you'll also need)
+and a text editor of your choice (e.g. [ATOM](https://atom.io/), [Brackets](http://brackets.io/)
+or [VSCode](https://code.visualstudio.com/)). And [GraphicsMagick](http://www.graphicsmagick.org/)
+(because we resize our image assets with it).
 
-## copywriting
+To get a deep dive into the code structure head over to the [wiki page](wiki/Development).
 
-Content is placed in [YAML](http://yaml.org/) files in the [/data](./data)
-folder. Those files contain an explaining header with a more-or-less final
-"schema" as well as possible notes on the stability of this schema (oriented
-at nodejs' [stability index](https://nodejs.org/api/documentation.html#documentation_stability_index))
-and the routes that are created for the resource. This would be for example
+## production
 
-```yml
-# ${id}:
-#     name: String
-#     thumbnail: url|classList
-#     poster: url
-#
-# @creates #!/foo/${id}
-# @stability 1
-```
+This website can be served by any http file server anywhere (especially in
+[gh-pages](https://pages.github.com/)). Its configuration/copywriting is done in
+[yml](http://www.yaml.org/start.html) files located in [`./data`](./data). However,
+there are some dynamic parts (i.e. sermons, downloads) which are handled by calls
+to the JSON APIs of an [ownCloud](https://owncloud.org/) instance.
+
+To see how ownCloud needs to be configured and which files need to be put where to
+configure this website, take a look at the [wiki page](wiki/Production).
+
+## license
+
+- source code (i.e. `/.*\.(js|less|html)$/`) is [MIT licensed](LICENSE)
+- content copy (i.e. `/.*\.yml$/` and this README) is [CC-BY-NC licensed](https://creativecommons.org/licenses/by-nc/4.0)
+- assets (i.e. `/.*\.(jpg|png|svg)$/`) are used with permission but not publicly licensed
