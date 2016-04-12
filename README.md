@@ -21,7 +21,7 @@ and a text editor of your choice (e.g. [ATOM](https://atom.io/), [Brackets](http
 or [VSCode](https://code.visualstudio.com/)). And [GraphicsMagick](http://www.graphicsmagick.org/)
 (because we resize our image assets with it).
 
-To get a deep dive into the code structure head over to the [wiki page](wiki/Development).
+To get a deep dive into the code structure head over to the [wiki page](https://github.com/efg-ludwigshafen/efg-ludwigshafen.github.io/wiki/Development).
 
 ## production
 
@@ -32,7 +32,7 @@ there are some dynamic parts (i.e. sermons, downloads) which are handled by call
 to the JSON APIs of an [ownCloud](https://owncloud.org/) instance.
 
 To see how ownCloud needs to be configured and which files need to be put where to
-configure this website, take a look at the [wiki page](wiki/Production).
+configure this website, take a look at the [wiki page](https://github.com/efg-ludwigshafen/efg-ludwigshafen.github.io/wiki/Production).
 
 ## license
 
