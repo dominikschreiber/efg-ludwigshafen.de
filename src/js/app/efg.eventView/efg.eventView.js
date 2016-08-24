@@ -13,6 +13,10 @@ angular.module('efg.eventView', [
         controller: 'EventCtrl as event',
         templateUrl: 'efg.eventView.tpl.html'
     });
+    $routeProvider.when('/event/print', {
+        controller: 'EventPrintCtrl as event',
+        templateUrl: 'efg.eventPrintView.tpl.html'
+    });
 })
 
 .controller('EventCtrl', function(uiCalendarConfig, headerbar, event, $filter, $scope, $log, configurationApi) {
@@ -136,6 +140,53 @@ angular.module('efg.eventView', [
     $scope.$on('$destroy', function() {
         headerbar.clear();
     });
+})
+
+.controller('EventPrintCtrl', function(uiCalendarConfig, $scope, configurationApi) {
+    var FC = uiCalendarConfig.calendars.events.fullCalendar
+      , View = FC.View;
+
+    FC.views.list = View.extend({
+        initialize: function() {
+            View.prototype.initialize.call(arguments);
+        },
+        render: function() {
+            View.prototype.render.call(arguments);
+        },
+        setHeight: function(height, isAuto) {
+            View.prototype.setHeight.call(arguments);
+        },
+        renderEvents: function(events) {
+            View.prototype.renderEvents.call(arguments);
+        },
+        destroyEvents: function() {
+            View.prototype.destroyEvents.call(arguments);
+        },
+        renderSelection: function(range) {
+            View.prototype.renderSelection.call(arguments);
+        },
+        destroySelection: function() {
+            View.prototype.destroySelection(arguments);
+        }
+    });
+
+    // generic class-adding fu (in efg.js) is misleading here
+    document.body.classList.remove('view-event');
+    document.body.classList.add('view-event-print');
+
+    configurationApi.get('event').then(function(conf) {
+        this.eventSource = {
+            googleCalendarId: conf.calendar.id
+        };
+        this.eventSources = [this.eventSource];
+
+        this.uiConfig = {
+            calendar: {
+                googleCalendarApiKey: conf.calendar.apikey,
+                defaultView: 'list'
+            }
+        }
+    }.bind(this));
 })
 
 .directive('eventpreview', function() {

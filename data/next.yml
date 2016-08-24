@@ -19,7 +19,7 @@ service:
         Im Gottesdienst sind für uns die Auslegung eines Bibeltextes in der Predigt und die Anbetung Gottes die Kernelemente. Du wirst bei uns keine &ldquo;allgemein bekannte&rdquo; Liturgie finden, in der wie zufällig alle um Dich rum aufstehen, singen oder beten. Was wir machen sagen wir vorher an, damit Du Dich möglichst leicht zurecht findest.
 
         Unsere Gemeinderäume sind in der [Böhlstraße 5, Ludwigshafen](#!/findus). Wenn Du Hilfe auf dem Weg zu uns brauchst hilft Dir [Markus Sander](#!/member/markus) weiter.
-    poster: /assets/img/kreuz2x1900.jpg
+    poster: /assets/img/kreuz2.jpg
 
 cellgroup:
     action: Besuch einen Hauskreis
@@ -30,7 +30,7 @@ cellgroup:
         Von Gruppe zu Gruppe werden die Abende etwas unterschiedlich gestaltet, indem z. B. mit gemeinsamen Singen oder einem Abendessen begonnen wird. Was allen wichtig ist, ist, im Glauben zu wachsen. Wir lesen in der Bibel und tauschen uns über die Texte aus. Sehr wichtig ist uns das Gebet; Lob, Dank und Bitten für persönliche Anliegen, Anliegen der Gemeinde und auch darüber hinaus.
 
         Unsere Gemeinde hat Hauskreise im Stadtgebiet von Ludwigshafen verteilt und in Limburgerhof. Wenn Du einen Hauskreis suchst oder einfach mal &ldquo;hinein schnuppern&rdquo; willst, nimm gern Kontakt mit [Jonas Weber](/#!/member/jonas) auf.
-    poster: /assets/img/hauskreis1x1900.jpg
+    poster: /assets/img/hauskreis1.jpg
 
 help:
     action: Erhalte Hilfe
@@ -70,7 +70,7 @@ baptism:
         Ein bis zwei mal im Jahr veranstalten wir einen Taufgottesdienst am Willersinnweiher in Ludwigshafen. Wir bereiten jeden, der den Wunsch hat sich taufen zu lassen, in einem Grundlagen-Kurs über Christsein, Taufe und Gemeindemitgliedschaft vor. So stellen wir sicher, dass Täuflinge wissen, worauf sie sich einlassen. Außerdem bekommt jeder Täufling einen Taufpaten &ndash; einen erfahrenen Christ, der ihn in den ersten Monaten nach der Taufe individuell begleitet.
 
         Du hegst den Wunsch, dich taufen zu lassen und so deinen Glauben verbindlich zu bezeugen? [Wilfried Schmitt](/#!/member/wilfried) hilft Dir gern weiter.
-    poster: /assets/img/taufex1900.jpg
+    poster: /assets/img/taufe.jpg
 
 participate:
     action: Arbeite mit
