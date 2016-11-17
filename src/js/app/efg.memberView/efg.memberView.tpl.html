@@ -1,7 +1,7 @@
-<component classes="component-almost-viewport bg-img"
-		   ng-style="{'background-image': 'url(' + member.$filter('responsive')(member.img) + ')'}"></component>
-<component classes="component-lg component-singlecolumn"
+<component classes="component-almost-viewport component-flex bg-img bg-dark"
+		   ng-style="{'background-image': 'url(' + member.$filter('responsive')(member.img) + ')'}"
 		   header="{{member.title}}"
-		   subheader="{{member.subtitle}}">
+		   subheader="{{member.subtitle}}"></component>
+<component classes="component-lg component-singlecolumn">
     <div btf-markdown="member.description"></div>
 </component>
