@@ -19,7 +19,7 @@ angular.module('efg.groupView', [
 
     groupApi.get($routeParams.id).then(function success(group) {
         this.title = group.name;
-        this.subtitle = 'für ' + group.target;
+        this.subtitle = group.date + ', in der ' + group.location + ', für ' + group.target;
         this.img = group.poster;
         this.description = group.description;
     }.bind(this));

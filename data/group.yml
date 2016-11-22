@@ -1,16 +1,19 @@
 # ${id}:
 #     name: String
 #     target: String
+#     date: String
+#     location: String
 #     icon: classList
 #     poster: url
 #     description: String (multiline, markdown)
 #
 # @creates #!/group/${id}
-# @stability 1
 
 krabbelgruppe:
     name: Krabbelgruppe
     target: 0-3-jährige
+    date: Dienstags, 9:30-11:00 Uhr
+    location: Böhlstraße 5
     icon: glyphicon-baby-formula
     poster: /assets/img/krabbelgruppe.jpg
     description: |
@@ -24,4 +27,4 @@ krabbelgruppe:
 
         In unregelmäßigen Abständen frühstücken wir auch zusammen oder basteln mit unseren Kindern.
 
-        Melde Dich bei [krabbelgruppe@efg-ludwigshafen.de](mailto:krabbelgruppe@efg-ludwigshafen.de) wenn Du mal vorbeischauen möchtest.
+        Wenn Du Fragen hast melde Dich bei [krabbelgruppe@efg-ludwigshafen.de](mailto:krabbelgruppe@efg-ludwigshafen.de). Oder komm einfach vorbei.
