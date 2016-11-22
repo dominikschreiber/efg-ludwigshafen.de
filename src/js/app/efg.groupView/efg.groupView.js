@@ -3,7 +3,6 @@
 angular.module('efg.groupView', [
     'efg.groupApi',
 	'efg.componentDirective',
-    'efg.responsiveFilter',
 	'ng',
 	'ngRoute'
 ])
@@ -17,10 +16,33 @@ angular.module('efg.groupView', [
 
 .controller('GroupCtrl', function(groupApi, $routeParams, $filter) {
     this.$filter = $filter;
-    
+
     groupApi.get($routeParams.id).then(function success(group) {
         this.title = group.name;
+        this.subtitle = 'für ' + group.target;
         this.img = group.poster;
         this.description = group.description;
     }.bind(this));
+})
+
+.directive('grouppreview', function(groupApi) {
+    return {
+        templateUrl: 'efg.groupPreview.tpl.html',
+        scope: {
+            classes: '@',
+            styles: '='
+        },
+        controller: function($scope) {
+            groupApi.query().then(function(groups) {
+                $scope.groups = Object.keys(groups).map(function(key) {
+                    return {
+                        id: key,
+                        title: groups[key].name,
+                        subtitle: groups[key].target,
+                        img: 'glyphicon ' + groups[key].icon
+                    }
+                });
+            });
+        }
+    }
 });

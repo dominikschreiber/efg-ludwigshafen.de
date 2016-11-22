@@ -4,6 +4,7 @@ angular.module('efg.indexView', [
     'efg.serviceView',
     'efg.geoView',
     'efg.eventView',
+    'efg.groupView',
     'efg.nextView',
     'efg.memberView',
     'efg.sermonView',
@@ -22,10 +23,10 @@ angular.module('efg.indexView', [
 	});
 })
 
-.controller('IndexCtrl', function($filter, $log) {
+.controller('IndexCtrl', function($filter) {
     /** @type {{String: String}} */
     var cache = {};
-    
+
     /**
      * @param {String} imgurl
      * @return {{'background-image': String}}
@@ -39,6 +40,7 @@ angular.module('efg.indexView', [
                 'background-image': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(' + $filter('responsive')(imgurl) + ')'
             };
         }
+
         return cache[imgurl];
     };
 });
