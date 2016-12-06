@@ -1,6 +1,6 @@
 # efg-ludwigshafen.github.io
 
-Website of the baptist church [EfG Ludwigshafen](http://efg-ludwigshafen.de), Germany.
+Website of the baptist church [EFG Ludwigshafen](http://efg-ludwigshafen.de), Germany.
 
 ## getting started
 
