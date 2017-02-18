@@ -9,5 +9,6 @@
     "**/*.min.{css,js,css.map,js.map}": true
   },
 
-  "standard.enable": false
+  "standard.enable": false,
+  "vsicons.presets.angular": false
 }
