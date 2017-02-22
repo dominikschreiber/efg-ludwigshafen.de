@@ -27,9 +27,9 @@ angular.module('efg.eventView', [
      * @param {string} method the fullCalendar api method
      */
     function fullCalendar(method) {
-        return uiCalendarConfig.calendars.events.fullCalendar(method);
+        return angular.element('#calendar').fullCalendar(method);
     }
-    
+
     var headerIds;
 
     configurationApi.get('event').then(function(conf) {
@@ -37,38 +37,36 @@ angular.module('efg.eventView', [
             googleCalendarId: conf.calendar.id
         };
         this.eventSources = [this.eventSource];
-        
-        this.uiConfig = {
-            calendar: {
-                googleCalendarApiKey: conf.calendar.apikey,
-                header: false,
-                timeFormat: 'H:mm',
-                height: Math.max(
-                    Math.max(
-                        document.documentElement.clientHeight, 
-                        window.innerHeight || 0
-                    ) - 
-                    document.querySelector('.headerbar').scrollHeight -
-                    2 * parseInt(document.body.style.paddingBottom),
-                    0
-                ),
-                viewRender: function() {
-                    this.updateTitle();
-                }.bind(this),
-                eventRender: function(e, $element) {
-                    event.unwrap(e).then(function(unwrapped) {
-                        var selectedTypes;
-                        
-                        $element
-                            .prop('title', e.title)
-                            .addClass(unwrapped.classname);
-                        
-                        if (this.selectedtypes.indexOf(unwrapped.classname) > -1) {
-                            $element.addClass('is-selected');
-                        }
-                    }.bind(this));
-                }.bind(this)
-            }
+
+        this.calendar = {
+            googleCalendarApiKey: conf.calendar.apikey,
+            header: false,
+            timeFormat: 'H:mm',
+            height: Math.max(
+                Math.max(
+                    document.documentElement.clientHeight,
+                    window.innerHeight || 0
+                ) -
+                document.querySelector('.headerbar').scrollHeight -
+                2 * parseInt(document.body.style.paddingBottom),
+                0
+            ),
+            viewRender: function() {
+                this.updateTitle();
+            }.bind(this),
+            eventRender: function(e, $element) {
+                event.unwrap(e).then(function(unwrapped) {
+                    var selectedTypes;
+
+                    $element
+                        .prop('title', e.title)
+                        .addClass(unwrapped.classname);
+
+                    if (this.selectedtypes.indexOf(unwrapped.classname) > -1) {
+                        $element.addClass('is-selected');
+                    }
+                }.bind(this));
+            }.bind(this)
         };
     }.bind(this));
 
@@ -99,7 +97,7 @@ angular.module('efg.eventView', [
         this.eventfilters = types.map(function(type) {
             return angular.extend(type, {checked: true});
         });
-        
+
         this.getSelectedTypes = function() {
             return (this.eventfilters || []).reduce(function(checkedClassnames, filter) {
                 if (filter.checked) {
@@ -109,15 +107,15 @@ angular.module('efg.eventView', [
                 }
             }, []);
         };
-        
+
         this.selectedtypes = this.getSelectedTypes();
-        
+
         this.updateCalendar = function() {
             this.selectedtypes = this.getSelectedTypes();
             fullCalendar('rerenderEvents');
         };
     }.bind(this));
-    
+
 
     headerIds = headerbar
         .add({
