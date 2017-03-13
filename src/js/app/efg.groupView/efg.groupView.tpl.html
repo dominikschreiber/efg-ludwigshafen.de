@@ -1,5 +1,6 @@
 <component classes="component-almost-viewport component-flex bg-img"
-		   ng-style="{'background-image': 'url(' + group.$filter('responsive')(group.img) + ')'}">
+		   ng-style="{'background-image': 'url(' + group.$filter('responsive')(group.img) + ')'}"
+		   ng-if="group.img">
 </component>
 <component classes="component-lg component-singlecolumn"
 		   header="{{group.title}}"
