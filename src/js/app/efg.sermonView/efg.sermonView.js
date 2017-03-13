@@ -5,7 +5,7 @@ angular.module('efg.sermonView', [
     'efg.sermonService',
     'efg.playerService',
     'efg.responsiveFilter',
-    'btford.markdown',
+    'hc.marked',
 	'ng',
 	'ngRoute'
 ])
@@ -20,7 +20,7 @@ angular.module('efg.sermonView', [
 .controller('SermonCtrl', function(player, sermon, $scope, $filter, $log) {
     var defaultheaders
       , seek;
-      
+
     this.$filter = $filter;
 
     // ----- header/subheader -----------------------------

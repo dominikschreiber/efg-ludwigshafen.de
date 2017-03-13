@@ -36,8 +36,8 @@ function resourceFactory(resource) {
             var deferred = $q.defer();
 
             if (!cache) {
-                $http.get('data/' + resource + '.yml').success(function (yml) {
-                    cache = jsyaml.load(yml);
+                $http.get('data/' + resource + '.yml').then(function (result) {
+                    cache = jsyaml.load(result.data);
                     deferred.resolve(cache);
                 });
             } else {

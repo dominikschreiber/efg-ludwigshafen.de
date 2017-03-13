@@ -3,6 +3,7 @@
 angular.module('efg.groupView', [
     'efg.groupApi',
 	'efg.componentDirective',
+    'hc.marked',
 	'ng',
 	'ngRoute'
 ])

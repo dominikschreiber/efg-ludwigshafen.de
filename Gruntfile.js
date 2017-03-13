@@ -39,30 +39,30 @@ module.exports = function(grunt) {
 			},
             vendorscripts: {
                 src: [
+                    'node_modules/moment/min/moment.min.js',
+                    'node_modules/jquery/dist/jquery.min.js',
+                    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+                    'node_modules/fullcalendar/dist/fullcalendar.min.js',
+                    'node_modules/fullcalendar/dist/gcal.min.js',
+                    'node_modules/marked/marked.min.js',
                     'node_modules/js-yaml/dist/js-yaml.min.js',
-                    'bower_components/lodash/lodash.min.js',
-                    'bower_components/jquery/dist/jquery.min.js',
-                    'bower_components/moment/min/moment.min.js',
-                    'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'bower_components/angular/angular.min.js',
-                    'bower_components/angular-route/angular-route.min.js',
-                    'bower_components/angular-i18n/angular-locale_de-de.js',
-                    'bower_components/angular-google-maps/dist/angular-google-maps.min.js',
-                    'bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js',
-                    'bower_components/angular-sanitize/angular-sanitize.min.js',
-                    'bower_components/angular-ui-calendar/src/calendar.js',
-                    'bower_components/angular-markdown-directive/markdown.js',
-                    'bower_components/angulartics/src/angulartics.js',
-                    'bower_components/angulartics/src/angulartics-piwik.js',
-                    'bower_components/fullcalendar/dist/fullcalendar.min.js',
-                    'bower_components/fullcalendar/dist/gcal.js',
-                    'bower_components/showdown/compressed/Showdown.min.js'
+                    'node_modules/angular/angular.min.js',
+                    'node_modules/angular-route/angular-route.min.js',
+                    'node_modules/angular-i18n/angular-locale_de-de.js',
+                    'node_modules/angular-simple-logger/dist/angular-simple-logger.light.min.js',
+                    'node_modules/ngmap/build/scripts/ng-map.min.js',
+                    'node_modules/angularjs-geolocation/dist/angularjs-geolocation.min.js',
+                    'node_modules/angular-sanitize/angular-sanitize.min.js',
+                    'node_modules/angular-ui-calendar/src/calendar.js',
+                    'node_modules/angular-marked/dist/angular-marked.min.js',
+                    'node_modules/angulartics/dist/angulartics.min.js',
+                    'node_modules/angulartics-piwik/dist/angulartics-piwik.min.js'
                 ],
                 dest: 'vendor.min.js'
             },
             vendorstyles: {
                 src: [
-                    'bower_components/fullcalendar/dist/fullcalendar.css'
+                    'node_modules/fullcalendar/dist/fullcalendar.css'
                 ],
                 dest: 'vendor.min.css'
             }
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
         copy: {
             glyphicons: {
                 files: [
-                    {expand: true, cwd: 'bower_components/bootstrap/dist/fonts', src: ['**'], dest: 'assets/fonts/'}
+                    {expand: true, cwd: 'node_modules/bootstrap/dist/fonts', src: ['**'], dest: 'assets/fonts/'}
                 ]
             }
         },

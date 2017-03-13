@@ -3,7 +3,7 @@
 angular.module('efg.nextView', [
     'efg.nextApi',
     'efg.responsiveFilter',
-    'btford.markdown',
+    'hc.marked',
     'ngRoute'
 ])
 
@@ -16,7 +16,7 @@ angular.module('efg.nextView', [
 
 .controller('NextCtrl', function(nextApi, $routeParams, $filter) {
     this.$filter = $filter;
-    
+
     nextApi.get($routeParams.id).then(function(action) {
         this.title = action.name;
         this.subtitle = action.subtitle;
@@ -34,11 +34,11 @@ angular.module('efg.nextView', [
         },
         controller: function($scope) {
             $scope.responsive = $filter('responsive');
-            
+
             nextApi.query().then(function(actions) {
                 $scope.actions = Object.keys(actions).map(function(key) {
                     var words = actions[key].action.split(' ');
-                    
+
                     return {
                         id: key,
                         title: words[words.length - 1],

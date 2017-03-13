@@ -3,14 +3,14 @@
 angular.module('efg.geoView', [
 	'efg.componentDirective',
     'efg.geoApi',
-	'uiGmapgoogle-maps',
 	'geolocation',
-    'btford.markdown',
+    'hc.marked',
 	'ng',
+	'ngMap',
 	'ngRoute'
 ])
 
-.config(function($routeProvider, uiGmapGoogleMapApiProvider) {
+.config(function($routeProvider) {
 	$routeProvider
         .when('/geo', {
             controller: 'GeoCtrl as geo',
@@ -19,72 +19,29 @@ angular.module('efg.geoView', [
         .when('/findus', {
             redirectTo: '/geo'
         });
-
-	uiGmapGoogleMapApiProvider.configure({
-		v: '3.17',
-		libraries: 'weather,geometry,visualization'
-	});
 })
 
-.controller('GeoCtrl', function(geolocation, geoApi) {
+.controller('GeoCtrl', function(geolocation, geoApi, NgMap) {
     geoApi.query().then(function(data) {
-        // need to create marker position twice (not as one object)
-        // or marker won't update when map is moved
-        var campus = data[Object.keys(data)[0]]
-          , latitude = campus.latitude
-          , longitude = campus.longitude
-          , delta = 0.0001;
+        this.we = data[Object.keys(data)[0]];
 
-        this.map = {
-            center: {
-                latitude: latitude,
-                longitude: longitude
-            },
-            zoom: 15,
-            options: {
-                backgroundColor: 'rgb(233,229,220)',
-                scrollwheel: false
-            },
-            bounds: {
-                northeast: {
-                    latitude: latitude * (1 + delta),
-                    longitude: longitude * (1 + delta)
-                },
-                southwest: {
-                    latitude: latitude * (1 - delta),
-                    longitude: longitude * (1 - delta)
-                }
-            }
-        };
-        this.we = {
-            coords: {
-                latitude: latitude,
-                longitude: longitude
-            },
-            street: campus.street,
-            city: campus.city,
-            id: 0
-        };
-        this.you = undefined;
-        this.connections = campus.connections;
+        this.markers = [{
+            position: new google.maps.LatLng(
+                this.we.latitude,
+                this.we.longitude
+            ),
+            title: 'Wir',
+            address: [this.we.street, this.we.city].join(', ')
+        }];
 
         geolocation.getLocation().then(function(data) {
-            this.you = {
-                coords: data.coords,
-                id: 1
-            };
-            this.map.bounds = {
-                northeast: {
-                    // to north == +lat
-                    latitude: Math.max(this.we.coords.latitude, this.you.coords.latitude) * (1 + delta),
-                    // to east == +lng
-                    longitude: Math.max(this.we.coords.longitude, this.you.coords.longitude) * (1 + delta)
-                },
-                southwest: {
-                    latitude: Math.min(this.we.coords.latitude, this.you.coords.latitude) * (1 - delta),
-                    longitude: Math.min(this.we.coords.longitude, this.you.coords.longitude) * (1 - delta)
-                }
-            };
+            this.markers.push({
+                position: new google.maps.LatLng(
+                    data.coords.latitude,
+                    data.coords.longitude
+                ),
+                title: 'Du'
+            });
         }.bind(this));
     }.bind(this));
 })
