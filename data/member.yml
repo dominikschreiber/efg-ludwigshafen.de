@@ -54,7 +54,7 @@ thomas:
         givenname: Thomas
         familyname: Weber
     description: |
-        Thomas ist nicht aus Zucker, denn er ist an einem der regenreichsten Orte Deutschlands geboren: Haiger im Westerwald. Er hat eine Großfamilie, die immer noch größer wird. Sie besteht zur Zeit aus einer Ehefrau, der Schwiegermutter und acht Kindern. Dazu kommen vier Schwiegerkinder und sechs Enkelkinder. 
+        Thomas ist nicht aus Zucker, denn er ist an einem der regenreichsten Orte Deutschlands geboren: Haiger im Westerwald. Er hat eine Großfamilie, die immer noch größer wird. Sie besteht zur Zeit aus einer Ehefrau, der Schwiegermutter und acht Kindern. Dazu kommen vier Schwiegerkinder und sechs Enkelkinder.
 
         Auf die Frage, wie er zu Jesus gefunden hat, antwortet er mit einem „Augenzwinkern“, dass es anders herum gewesen sei: Jesus habe ihn gefunden. Dabei habe er drei Personen gebraucht. Als Erstes war es eine Diakonisse, die trotz ihres hohen Alters eine große Ausstrahlung hatte. Ihre Liebe zu ihren Mitmenschen und ihre Geduld wirkten auf ihn irgendwie „überirdisch“, beinahe nicht menschlich. Des weiteren ein CVJM-Sekretär, den Gott auf besondere Weise befähigt und beauftragt hatte, jungen Menschen das Evangelium in Wort und Tat nahezubringen. Und nicht zuletzt ein gläubiger evangelischer Pfarrer, der ihm die Bibel in ihrer Komplexität und Tiefe nahe brachte.
 
@@ -67,39 +67,6 @@ thomas:
     poster: /assets/img/thomas.jpg
     isleader: true
 
-andreas:
-    name:
-        givenname: Andreas
-        familyname: Petry
-    description:  |
-        Andreas ist in Oberwesel, einer kleinen Stadt am Rhein geboren. Er hat zwei Brüder. Aufgewachsen ist er aber in Bacharach, wo er bis zu seinem zwölften Lebensjahr gelebt hat. Anschließend zog er mit seiner Familie nach Bonn. Er ist mit Sabine verheiratet und sie haben eine Tochter und einen Sohn.
-
-        Mit 20 Jahren zog er nach Karlsruhe, um dort eine Ausbildung zum Krankenpflegehelfer zu machen. Er arbeitete zunächst in diesem Beruf und holte später die Fachhochschulreife nach. An der Hochschule Ludwigshafen studierte er anschließend Soziale Arbeit und arbeitet heute als Sozialarbeiter.
-
-        Während der Krankenpflegehelferausbildung wurde er von einer Arbeitskollegin in die Baptistengemeinde Weingarten eingeladen. Es gefiel ihm gut in der Gemeinde und er ging mit zu Gottesdiensten und zu Bibelstunden. Irgendwann fragte er sich aber, ob er so wie die in der Gemeinde leben möchte, und beantwortete diese Frage zunächst mit Nein. Es war ja alles schön und gut, was er in der Gemeinde erlebte, aber es war irgendwie nicht seine Sache. Es schien ihm zu übertrieben. Er sagte das auch der jungen Frau, die ihn eingeladen hatte und dass er nicht mehr mitkommen wollte. Daraufhin meinte sie „das ist schade, ich wollte dich gerade zu meinem Geburtstag einladen.“ Auch wenn er nicht mehr zur Gemeinde gehen wollte, nahm er die Einladung zur Geburtstagsfeier gerne an. Er ahnte nicht, dass dies sein Leben verändern würde. Denn auf der Feier wurde ein Theaterstück über Abraham, der seinen Sohn Isaak opfern wollte, gespielt.
-
-        Das Stück bewegte ihn stark und er dachte zwei bis drei Wochen darüber nach. Dann suchte er den Kontakt zu einer Kollegin, die sich auch gerade für ein Leben mit Jesus Christus entschieden hatte. Er fühlte, dass die Zeit reif war, eine Entscheidung zu treffen und betete mit ihr im Auto. Bis heute weiß er das genaue Datum, an dem er sein Leben Jesus anvertraute und seit diesem Tag ging er auch in die Evangelisch Freikirchliche Gemeinde Weingarten.
-
-        Wenn er an seine Gemeinde denkt, dann empfindet er eine Vertrautheit, er fühlt sich dort zu Zuhause. Ihm sind natürlich nicht nur die Strukturen und Gegebenheiten vertraut. Es geht um mehr als sich z. B. in einem Gebäude wohlzufühlen. Egal wer im Laufe der Zeit die Gemeinde geleitet hat – sie hatte immer ein klares Profil und war doch beweglich. Einerseits war da eine große Offenheit und die Bereitschaft, sich mit neuen Herausforderungen auseinanderzusetzen. Auf der anderen Seite sah man die Notwendigkeit, neue Dinge ehrlich vor Gott zu prüfen und dann Seine Wege zu gehen.
-
-        In seiner Freizeit engagiert er sich in seiner Gemeinde. Er genießt die Zeit mit seiner Familie und interessiert sich für Fußball. Darüber hinaus hat er ein ungewöhnliches Hobby. Er interessiert sich für die Börse. Eher selten spielt er auch Schach und Skat, da ihm dazu meist nicht viel Zeit bleibt.
-    duties:
-        - Diakon
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster:
-    isleader: false
-
-daniel:
-    name:
-        givenname: Daniel
-        familyname: Mertins
-    description: |
-    duties:
-        - Diakon
-    img: /assets/img/daniel_klein.jpg
-    poster: /assets/img/daniel.jpg
-    isleader: false
-
 jonas:
     name:
         givenname: Jonas
@@ -109,4 +76,57 @@ jonas:
         - Diakon
     img: /assets/img/jonas_klein.jpg
     poster: /assets/img/jonas.jpg
+    isleader: false
+
+simon:
+    name:
+        givenname: Simon
+        familyname: Hoffmann
+    description: |
+    duties:
+        - Diakon
+    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
+    poster:
+    isleader: false
+
+milena:
+    name:
+        givenname: Milena
+        familyname: Hansen
+    description: |
+    duties:
+        - Diakon
+    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
+    poster:
+    isleader: false
+
+marina:
+    name:
+        givenname: Marina
+        familyname: Hobohm
+    description: |
+    duties:
+        - Diakon
+    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
+    poster:
+    isleader: false
+
+dominik:
+    name:
+        givenname: Dominik
+        familyname: Schreiber
+    description: |
+        Dominik stieß 2009 zur Gemeinde und wurde im Februar 2017 in die Gemeindeleitung berufen. Mit Frau und Tochter genießt er die lebendige Gemeinschaft in der Gemeinde, und lebt seinen Glauben insbesondere musikalisch und in der Gottesdienstgestaltung aus.
+
+        Geboren wurde er in Frankfurt am Main, aufgewachsen ist er in einem kleinen Ort in der Nähe von Limburg an der Lahn. Sein Vater leitet eine Musikschule, seine Mutter ist Lehrerin für Musik und Religion. So wurden ihm sowohl die Liebe zu Gott als auch die zur Musik schon mit der Muttermilch serviert. Als großer Bruder zweier Geschwister übernahm er früh Verantwortung, insbesondere nach der Trennung seiner Eltern. Noch in der Schule lernte er Hanna, seine Frau, kennen – und folgte ihr 2011 ganz nach Ludwigshafen. Mittlerweile gibt es eine weitere Frau in seinem Leben: Deborah, die gemeinsame Tochter.
+
+        Trotz der "christlichen Anlagen" musste Dominik seinen Weg zu Gott selbst finden. Den von seiner Mutter gehaltenen Kindergottesdienst, für den er mit Abstand zu alt war, durfte er im Teenager-Alter durch den "Teenkreis" der FeG Weilburg ersetzen. Und trotz einer Zeit, in der er alles übernatürliche strikt ablehnte, kam er durch diesen Kreis zu einer lebendigen Beziehung mit Gott. Auf einer Jugendfreizeit machte er diese Entscheidung fest, und bekräftigte sie später in der Konfirmation. Seitdem durfte er viel über Gott lernen, seine Nähe und Führung erleben, und an den verschiedensten Stellen erfahren, wie Gott Mitarbeit an seinem Reich segnet.
+
+        Diesen Segen erlebt Dominik ganz besonders in der EFG Ludwigshafen. Seine Erfahrung, dass er hier durch Mitarbeit und Geduld immer wieder Dinge verändern und in Gang bringen konnte, gibt er gerne weiter und ermutigt alle, die von Gott anvertrauten Gaben einzusetzen. Die familiäre Atmosphäre in der Gemeinde genießt er dabei sehr.
+
+        Neben seiner Familie, der Arbeit als Softwarearchitekt, und der Berufung in der Gemeinde ist Musik Dominiks größtes Hobby. Rund alle zwei Monate tritt er mit einem Trio – Gesang, Klavier, Drums – zu Konzerten, Kulturabenden oder auch Hochzeiten auf. Aber auch Zeit mit Freunden beim Handwerken, Grillen oder Computerspielen zu verbringen ist ihm wichtig – hier ergeben sich oft die intensivsten Gespräche über Gott, Glaube und Gemeinde.
+    duties:
+        - Diakon
+    img: /assets/img/dominik_klein.png
+    poster:
     isleader: false
