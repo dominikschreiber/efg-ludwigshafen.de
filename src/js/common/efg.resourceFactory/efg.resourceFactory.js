@@ -25,45 +25,47 @@
  * @param {string} resource the resource to serve
  */
 function resourceFactory(resource) {
-    var api = resource + 'Api';
+  var api = resource + 'Api';
 
-    angular.module('efg.' + api, ['ng'])
+  angular.module('efg.' + api, ['ng']).factory(api, [
+    '$q',
+    '$http',
+    function($q, $http) {
+      var cache;
 
-    .factory(api, ['$q', '$http', function ($q, $http) {
-        var cache;
+      function init() {
+        var deferred = $q.defer();
 
-        function init() {
-            var deferred = $q.defer();
-
-            if (!cache) {
-                $http.get('data/' + resource + '.yml').then(function (result) {
-                    cache = jsyaml.load(result.data);
-                    deferred.resolve(cache);
-                });
-            } else {
-                deferred.resolve(cache);
-            }
-
-            return deferred.promise;
+        if (!cache) {
+          $http.get('data/' + resource + '.yml').then(function(result) {
+            cache = jsyaml.load(result.data);
+            deferred.resolve(cache);
+          });
+        } else {
+          deferred.resolve(cache);
         }
 
-        return {
-            query: init,
-            get: function (id) {
-                var deferred = $q.defer();
+        return deferred.promise;
+      }
 
-                init().then(function success(result) {
-                    try {
-                        deferred.resolve(result[id]);
-                    } catch (e) {
-                        deferred.reject(e);
-                    }
-                });
+      return {
+        query: init,
+        get: function(id) {
+          var deferred = $q.defer();
 
-                return deferred.promise;
+          init().then(function success(result) {
+            try {
+              deferred.resolve(result[id]);
+            } catch (e) {
+              deferred.reject(e);
             }
-        };
-    }]);
+          });
+
+          return deferred.promise;
+        }
+      };
+    }
+  ]);
 }
 
 resourceFactory('configuration');

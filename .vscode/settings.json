@@ -1,4 +1,8 @@
 {
+  "editor.formatOnType": true,
+  "editor.tabSize": 2,
+  "editor.useTabStops": true,
+
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
@@ -10,5 +14,11 @@
   },
 
   "standard.enable": false,
-  "vsicons.presets.angular": false
+
+  "vsicons.presets.angular": false,
+
+  "prettier.tabWidth": 2,
+  "prettier.bracketSpacing": false,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none"
 }

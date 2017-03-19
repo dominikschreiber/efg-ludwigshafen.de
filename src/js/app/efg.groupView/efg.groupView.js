@@ -1,49 +1,53 @@
 'use strict';
 
-angular.module('efg.groupView', [
+angular
+  .module('efg.groupView', [
     'efg.groupApi',
-	'efg.componentDirective',
+    'efg.componentDirective',
     'hc.marked',
-	'ng',
-	'ngRoute'
-])
-
-.config(function($routeProvider) {
-	$routeProvider.when('/group/:id', {
-		controller: 'GroupCtrl as group',
-		templateUrl: 'efg.groupView.tpl.html'
-	});
-})
-
-.controller('GroupCtrl', function(groupApi, $routeParams, $filter) {
+    'ng',
+    'ngRoute'
+  ])
+  .config(function($routeProvider) {
+    $routeProvider.when('/group/:id', {
+      controller: 'GroupCtrl as group',
+      templateUrl: 'efg.groupView.tpl.html'
+    });
+  })
+  .controller('GroupCtrl', function(groupApi, $routeParams, $filter) {
     this.$filter = $filter;
 
-    groupApi.get($routeParams.id).then(function success(group) {
+    groupApi.get($routeParams.id).then(
+      function success(group) {
         this.title = group.name;
-        this.subtitle = group.date + ', in der ' + group.location + ', für ' + group.target;
+        this.subtitle = group.date +
+          ', in der ' +
+          group.location +
+          ', für ' +
+          group.target;
         this.img = group.poster;
         this.description = group.description;
-    }.bind(this));
-})
-
-.directive('grouppreview', function(groupApi) {
+      }.bind(this)
+    );
+  })
+  .directive('grouppreview', function(groupApi) {
     return {
-        templateUrl: 'efg.groupPreview.tpl.html',
-        scope: {
-            classes: '@',
-            styles: '='
-        },
-        controller: function($scope) {
-            groupApi.query().then(function(groups) {
-                $scope.groups = Object.keys(groups).map(function(key) {
-                    return {
-                        id: key,
-                        title: groups[key].name,
-                        subtitle: groups[key].target,
-                        img: 'glyphicon ' + groups[key].icon
-                    }
-                });
-            });
-        }
-    }
-});
+      templateUrl: 'efg.groupPreview.tpl.html',
+      scope: {
+        classes: '@',
+        styles: '='
+      },
+      controller: function($scope) {
+        groupApi.query().then(function(groups) {
+          $scope.groups = Object.keys(groups).map(function(key) {
+            return {
+              id: key,
+              title: groups[key].name,
+              subtitle: groups[key].target,
+              img: 'glyphicon ' + groups[key].icon
+            };
+          });
+        });
+      }
+    };
+  });
