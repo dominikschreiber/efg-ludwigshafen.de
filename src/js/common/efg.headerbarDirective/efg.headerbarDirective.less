@@ -17,7 +17,7 @@ body {
         padding: @u-navbar-vertical-padding @u-navbar-horizontal-padding;
         min-height: @u-navbar-height;
     }
-    
+
     background-color: fade(@c-white, 80);
     box-shadow: 0 0 (.5 * @u-unit) fade(@c-content, 60);
 
@@ -51,7 +51,10 @@ body {
 
     a {
         img {
-            max-height: @u-navbar-height - (2 * @u-navbar-vertical-padding);
+            max-height: @u-xs-headerbar-height - (2 * @u-navbar-vertical-padding);
+            @media (min-width: @screen-sm-min) {
+                max-height: @u-navbar-height - (2 * @u-navbar-vertical-padding);
+            }
         }
     }
 }
@@ -66,7 +69,7 @@ body {
     display: flex;
     margin: auto;
     padding: 0;
-    
+
     @media screen and (min-width: @screen-sm-min) {
         width: 50%;
     }
@@ -90,7 +93,7 @@ body {
 .headerbar-btn {
     margin-top: .5 * @u-unit;
     margin-bottom: .5 * @u-unit;
-    
+
     @media screen and (min-width: @screen-lg) {
         font-size: .65 * @u-unit;
     }
