@@ -21,11 +21,13 @@ angular
     groupApi.get($routeParams.id).then(
       function success(group) {
         this.title = group.name;
-        this.subtitle = group.date +
-          ', in der ' +
-          group.location +
-          ', für ' +
-          group.target;
+        this.subtitle = [
+          group.date,
+          group.location && 'in der ' + group.location,
+          group.target && 'für ' + group.target
+        ]
+          .filter(Boolean)
+          .join(', ');
         this.img = group.poster;
         this.description = group.description;
       }.bind(this)
