@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('bootstrap.thumbnailDirective', ['efg.responsiveFilter', 'ng'])
+  .module('bootstrap.thumbnailDirective', ['ng'])
   .directive('thumbnail', function() {
     return {
       link: function($scope, $element, $attributes) {

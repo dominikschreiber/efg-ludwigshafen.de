@@ -1,21 +1,21 @@
-<headerlogo classes="welcome component-flex component-almost-viewport bg-img bg-dark"
-		    ng-style="index.dark('/assets/img/header.jpg')">
-</headerlogo>
+<component classes="welcome component-flex component-almost-viewport bg-img bg-dark" responsive-background="/assets/img/header.jpg"
+    responsive-background-dark="true">
+    <div class="col-md-12">
+        <img style="width: 600px; max-width: 80vw;" src="/assets/img/claim.svg">
+    </div>
+</component>
 
 <servicepreview classes="component-lg"></servicepreview>
 
-<geopreview classes="component-lg bg-img bg-dark"
-            styles="index.dark('/assets/img/geopreview.jpg')"></geopreview>
+<geopreview classes="component-lg bg-img bg-dark" background="/assets/img/geopreview.jpg" dark="true"></geopreview>
 
 <eventpreview classes="component-lg"></eventpreview>
 
-<nextpreview classes="component-lg bg-dark bg-img"
-             styles="index.dark('/assets/img/nextpreview.jpg')"></nextpreview>
+<nextpreview classes="component-lg bg-dark bg-img" background="/assets/img/nextpreview.jpg" dark="true"></nextpreview>
 
 <memberpreview classes="component-lg bg-primary"></memberpreview>
 
-<grouppreview classes="component-lg bg-img bg-dark"
-              styles="index.dark('http://unsplash.com/photos/_pc8aMbI9UQ/download')"></grouppreview>
+<grouppreview classes="component-lg bg-img bg-dark" background="//unsplash.com/photos/_pc8aMbI9UQ/download" dark="true"></grouppreview>
 
 <sermonpreview classes="component-lg"></sermonpreview>
 
@@ -23,20 +23,17 @@
 
 <component>
     <div class="col-sm-4">
-        <a href="#!/imprint"
-           style="color:inherit">
+        <a href="#!/imprint" style="color:inherit">
             Impressum
         </a>
     </div>
     <div class="col-sm-4">
-        <a href="#!/downloads"
-           style="color:inherit">
+        <a href="#!/downloads" style="color:inherit">
             Downloads
         </a>
     </div>
     <div class="col-sm-4">
-        <a href="https://github.com/efg-ludwigshafen/efg-ludwigshafen.github.io"
-           style="color:inherit">
+        <a href="https://github.com/efg-ludwigshafen/efg-ludwigshafen.github.io" style="color:inherit">
             <i class="glyphicon glyphicon-heart"></i> Source Code auf GitHub
         </a>
     </div>

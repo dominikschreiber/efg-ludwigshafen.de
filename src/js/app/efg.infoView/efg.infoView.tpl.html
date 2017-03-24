@@ -1,6 +1,4 @@
-<component classes="component-almost-viewport"
-		   ng-style="{'background-image': 'url(' + info.$filter('responsive')(group.img) + ')'}">
+<component ng-if="group.img" classes="component-almost-viewport" responsive-background="{{group.img}}">
 </component>
-<component classes="component-lg"
-		   header="{{info.title}}">
+<component classes="component-lg" header="{{info.title}}">
 </component>

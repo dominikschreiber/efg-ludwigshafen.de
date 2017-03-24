@@ -5,7 +5,7 @@ angular
     'efg.sermonsDirective',
     'efg.sermonService',
     'efg.playerService',
-    'efg.responsiveFilter',
+    'efg.responsiveBackgroundDirective',
     'hc.marked',
     'ng',
     'ngRoute'
@@ -16,10 +16,8 @@ angular
       templateUrl: 'efg.sermonView.tpl.html'
     });
   })
-  .controller('SermonCtrl', function(player, sermon, $scope, $filter, $log) {
+  .controller('SermonCtrl', function(player, sermon, $scope, $log) {
     var defaultheaders, seek;
-
-    this.$filter = $filter;
 
     // ----- header/subheader -----------------------------
 
@@ -93,7 +91,8 @@ angular
       templateUrl: 'efg.sermonPreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       }
     };
   });

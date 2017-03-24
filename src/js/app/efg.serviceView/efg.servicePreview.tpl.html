@@ -1,12 +1,7 @@
-<component classes="services {{classes}}"
-           ng-style="styles"
-		   header="Unsere Gottesdienste"
-		   subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
-	<div class="col-sm-6"
-		 style="padding-left: 2rem; padding-right: 2rem"
-		 ng-repeat="service in services">
-		<a ng-href="#!/service/{{service.id}}"
-		   class="btn btn-lg btn-block btn-outline">
+<component classes="services {{classes}}" responsive-background="{{background}}" responsive-background-dark="{{dark}}" header="Unsere Gottesdienste"
+  subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
+	<div class="col-sm-6" style="padding-left: 2rem; padding-right: 2rem" ng-repeat="service in services">
+		<a ng-href="#!/service/{{service.id}}" class="btn btn-lg btn-block btn-outline">
 			<span ng-bind="service.title"></span><br>
 			<strong ng-bind="service.subtitle"></strong>
 		</a>

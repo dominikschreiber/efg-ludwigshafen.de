@@ -4,7 +4,7 @@ angular
   .module('efg.contactView', [
     'efg.contactApi',
     'efg.trustFilter',
-    'efg.responsiveFilter',
+    'efg.responsiveBackgroundDirective',
     'bootstrap.thumbnailsDirective',
     'hc.marked',
     'ng',
@@ -17,8 +17,6 @@ angular
     });
   })
   .controller('ContactCtrl', function(contactApi, $routeParams, $filter) {
-    this.$filter = $filter;
-
     contactApi.get($routeParams.id).then(
       function success(result) {
         this.img = result.poster;
@@ -33,7 +31,8 @@ angular
       templateUrl: 'efg.contactPreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       },
       controller: function($scope) {
         contactApi.query().then(function(contacts) {

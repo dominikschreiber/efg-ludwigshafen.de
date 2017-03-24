@@ -1,22 +1,13 @@
 'use strict';
 
 angular
-  .module('efg.responsiveFilter', ['ng'])
-  .filter('responsive', function($window) {
+  .module('efg.responsiveFilter', ['efg.responsiveService', 'ng'])
+  .filter('responsive', function(responsive, $window) {
     var viewport = {
       sm: 768,
       md: 992,
       lg: 1200
-    },
-      assetprefix = '/assets/img/';
-
-    function isimage(path) {
-      return /\.(jpg|jpeg|png|gif)$/.test(path);
-    }
-
-    function isasset(path) {
-      return path.indexOf(assetprefix) === 0;
-    }
+    };
 
     function imagedimension(joincharacter) {
       return [device(), resolution()].filter(Boolean).join(joincharacter || '');
@@ -48,13 +39,15 @@ angular
     }
 
     function rewritten(asseturl) {
-      return assetprefix +
+      return responsive.assetprefix +
         imagedimension('/') +
         '/' +
-        asseturl.slice(assetprefix.length);
+        asseturl.slice(responsive.assetprefix.length);
     }
 
     return function(path) {
-      return isimage(path) && isasset(path) ? rewritten(path) : path;
+      return responsive.isimage(path) && responsive.isasset(path)
+        ? rewritten(path)
+        : path;
     };
   });

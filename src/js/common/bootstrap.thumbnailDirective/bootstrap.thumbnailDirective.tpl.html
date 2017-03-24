@@ -1,14 +1,10 @@
-<a ng-href="{{href}}"
-   class="thumbnail"
-   ng-class="classes">
-	<p ng-if="img && contains(img, ' ')">
+<a ng-href="{{href}}" class="thumbnail" ng-class="classes">
+    <p ng-if="img && contains(img, ' ')">
         <i ng-class="img"></i>
     </p>
-	<img ng-if="img && !contains(img, ' ')"
-         ng-src="{{img}}"
-         ng-class="imgclass">
-	<div class="caption">
-		<h3 ng-bind="header"></h3>
-		<p ng-bind="subheader"></p>
-	</div>
+    <img ng-if="img && !contains(img, ' ')" ng-src="{{img}}" ng-class="imgclass">
+    <div class="caption">
+        <h3 ng-bind="header"></h3>
+        <p ng-bind="subheader"></p>
+    </div>
 </a>

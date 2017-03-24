@@ -5,7 +5,7 @@ angular
     'efg.serviceApi',
     'efg.trustFilter',
     'efg.sermonDirective',
-    'efg.responsiveFilter',
+    'efg.responsiveBackgroundDirective',
     'hc.marked',
     'ng',
     'ngRoute'
@@ -34,7 +34,8 @@ angular
       templateUrl: 'efg.servicePreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       },
       controller: function($scope) {
         serviceApi.query().then(function(services) {

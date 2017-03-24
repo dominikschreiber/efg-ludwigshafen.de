@@ -1,7 +1,5 @@
-<component classes="component-almost-viewport component-flex bg-img bg-dark"
-		   ng-style="{'background-image': 'url(' + member.$filter('responsive')(member.img) + ')'}"
-		   header="{{member.title}}"
-		   subheader="{{member.subtitle}}"></component>
+<component ng-if="member.title" classes="component-almost-viewport component-flex bg-img bg-dark" responsive-background="{{member.img}}"
+    responsive-background-dark="true" header="{{member.title}}" subheader="{{member.subtitle}}"></component>
 <component classes="component-lg component-singlecolumn">
     <div marked="member.description"></div>
 </component>

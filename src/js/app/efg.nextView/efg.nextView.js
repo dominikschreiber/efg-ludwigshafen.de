@@ -3,7 +3,7 @@
 angular
   .module('efg.nextView', [
     'efg.nextApi',
-    'efg.responsiveFilter',
+    'efg.responsiveBackgroundDirective',
     'hc.marked',
     'ngRoute'
   ])
@@ -13,9 +13,7 @@ angular
       templateUrl: 'efg.nextView.tpl.html'
     });
   })
-  .controller('NextCtrl', function(nextApi, $routeParams, $filter) {
-    this.$filter = $filter;
-
+  .controller('NextCtrl', function(nextApi, $routeParams) {
     nextApi.get($routeParams.id).then(
       function(action) {
         this.title = action.name;
@@ -30,7 +28,8 @@ angular
       templateUrl: 'efg.nextPreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       },
       controller: function($scope) {
         $scope.responsive = $filter('responsive');

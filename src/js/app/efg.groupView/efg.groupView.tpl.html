@@ -1,9 +1,6 @@
-<component classes="component-almost-viewport component-flex bg-img"
-		   ng-style="{'background-image': 'url(' + group.$filter('responsive')(group.img) + ')'}"
-		   ng-if="group.img">
+<component ng-if="group.title" classes="component-almost-viewport component-flex bg-img" responsive-background="{{group.img}}"
+    ng-if="group.img" header="{{group.title}}" subheader="{{group.subtitle}}">
 </component>
-<component classes="component-lg component-singlecolumn"
-		   header="{{group.title}}"
-		   subheader="{{group.subtitle}}">
+<component classes="component-lg component-singlecolumn">
     <div marked="group.description"></div>
 </component>

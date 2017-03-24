@@ -1,7 +1,5 @@
-<component classes="component-flex component-sm bg-dark"
-           ng-style="{'background-image': 'url(' + service.$filter('responsive')(service.img) + ')'}"
-		   header="{{service.title}}"
-		   subheader="{{service.subtitle}}"></component>
+<component classes="component-flex component-sm bg-dark" responsive-background="{{service.img}}" header="{{service.title}}"
+    subheader="{{service.subtitle}}"></component>
 <component classes="component-sm component-singlecolumn">
     <div marked="service.description"></div>
 </component>

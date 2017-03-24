@@ -206,7 +206,8 @@ angular
       templateUrl: 'efg.eventPreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       }
     };
   });

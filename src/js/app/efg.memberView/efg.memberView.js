@@ -3,7 +3,7 @@
 angular
   .module('efg.memberView', [
     'efg.memberApi',
-    'efg.responsiveFilter',
+    'efg.responsiveBackgroundDirective',
     'bootstrap.thumbnailsDirective',
     'ng',
     'ngRoute'
@@ -31,7 +31,8 @@ angular
       templateUrl: 'efg.memberPreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       },
       controller: function($scope) {
         function create(member) {

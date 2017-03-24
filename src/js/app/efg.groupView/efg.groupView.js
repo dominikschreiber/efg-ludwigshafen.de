@@ -4,6 +4,7 @@ angular
   .module('efg.groupView', [
     'efg.groupApi',
     'efg.componentDirective',
+    'efg.responsiveBackgroundDirective',
     'hc.marked',
     'ng',
     'ngRoute'
@@ -35,7 +36,8 @@ angular
       templateUrl: 'efg.groupPreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       },
       controller: function($scope) {
         groupApi.query().then(function(groups) {

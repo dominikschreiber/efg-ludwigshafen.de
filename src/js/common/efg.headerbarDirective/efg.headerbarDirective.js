@@ -5,7 +5,6 @@ angular
     'efg.playerService',
     'efg.headerbarService',
     'efg.sermonService',
-    'efg.responsiveFilter',
     'ng'
   ])
   .directive('headerbar', function(headerbar, player, sermon, $window, $log) {

@@ -55,7 +55,8 @@ angular
       templateUrl: 'efg.geoPreview.tpl.html',
       scope: {
         classes: '@',
-        styles: '='
+        background: '@',
+        dark: '@'
       },
       controller: function($scope) {
         $scope.responsive = $filter('responsive');
