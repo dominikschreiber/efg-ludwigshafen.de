@@ -6,12 +6,12 @@ angular
     'efg.responsiveFilter',
     'ng'
   ])
-  .directive('responsiveBackground', function(responsive, $filter, $log) {
+  .directive('responsiveBackground', function (responsive, $filter, $log) {
     var cache = {};
 
     return {
       restrict: 'A',
-      link: function($scope, $element, $attributes) {
+      link: function ($scope, $element, $attributes) {
         /** @type {boolean} */
         var isdark = $attributes.responsiveBackgroundDark === 'true';
         /** @type {string} */
@@ -31,40 +31,41 @@ angular
          * @return {string} background image that shows the image
          */
         function backgroundImage(path) {
-          return [
-            isdark && 'linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.7))',
-            'url(' + path + ')'
-          ]
-            .filter(Boolean)
-            .join(',');
+          return {
+            backgroundImage: [
+                isdark && 'linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.7))',
+                'url(' + path + ')'
+              ]
+              .filter(Boolean)
+              .join(','),
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          };
         }
 
         if (!(cacheid in cache)) {
-          $element.css({
-            backgroundImage: backgroundImage(
-              responsive.isimage(src) && responsive.isasset(src)
-                ? responsive.assetprefix +
-                    'xs/' +
-                    src.slice(responsive.assetprefix.length)
-                : src
-            )
-          });
-          tmpimg = document.createElement('img');
-          tmpimg.style.position = 'absolute';
-          tmpimg.style.top = '-100000px';
-          tmpimg.src = cacheid;
-          tmpimg.addEventListener('load', function() {
-            $element.css({
-              backgroundImage: backgroundImage(cacheid)
+          if (responsive.isimage(src) && responsive.isasset(src)) {
+            $element.css(backgroundImage(
+              responsive.assetprefix +
+              'xs/' +
+              src.slice(responsive.assetprefix.length)
+            ));
+            tmpimg = document.createElement('img');
+            tmpimg.style.position = 'absolute';
+            tmpimg.style.top = '-100000px';
+            tmpimg.src = cacheid;
+            tmpimg.addEventListener('load', function () {
+              $element.css(backgroundImage(cacheid));
+              cache[cacheid] = true;
+              document.body.removeChild(tmpimg);
             });
+            document.body.appendChild(tmpimg);
+          } else {
             cache[cacheid] = true;
-            document.body.removeChild(tmpimg);
-          });
-          document.body.appendChild(tmpimg);
+            $element.css(backgroundImage(src));
+          }
         } else {
-          $element.css({
-            backgroundImage: backgroundImage(cacheid)
-          });
+          $element.css(backgroundImage(cacheid));
         }
       }
     };
