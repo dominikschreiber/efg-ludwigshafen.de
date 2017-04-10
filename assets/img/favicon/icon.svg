@@ -1,0 +1,8 @@
+<svg version="1.1" baseProfile="full" width="16" height="16" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>.c-primary{fill:#55ace8}.c-light{fill:#ebebeb}.c-dark{fill:#132532}</style>
+  <path d="M100,0 l600,0 a100,100 0 0 1 100,100 l0,600 a100,100 0 0 1 -100,100 l-600,0 a100,100 0 0 1 -100,-100 l0,-600 a100,100 0 0 1 100,-100 Z" class="c-dark"/>
+  <path d="M407 100 h42 v180 h90 v42 h-132 Z" class="c-primary"/>
+  <path d="M407 332 v132 h42 v-90 h180 v-42 Z" class="c-light"/>
+  <path d="M265 332 h132 v373 h-42 v-331 h-90 Z" class="c-light"/>
+  <path d="M175 280 h180 v-90 h42 v132 h-222 Z" class="c-light"/>
+</svg>
