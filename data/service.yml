@@ -33,22 +33,3 @@ sunday:
         hours: 10:00 Uhr
     poster: #//lorempixel.com/1920/1080
     sermon:
-
-worship:
-    name: Lobpreis-Gottesdienst
-    subtitle: Musik. Gebet. Anbetung.
-    description: |
-        ### Zeit für dich und Gott
-        
-        An jedem ersten Sonntag im Monat treffen wir uns um 19:00 Uhr
-        und nehmen uns bewusst Zeit, um Gottes Nähe zu suchen. In
-        diesem Gottesdienst liegt das Hauptaugenmerk auf Musik und
-        Gebet und es gibt Raum für Zeugnisse. Der Rahmen ist etwas
-        kleiner und persönlicher als beim Vormittagsgottesdienst.
-        Meistens dauert der Lobpreisgottesdienst etwa eine Stunde.
-        Komm' gerne vorbei!
-    schedule:
-        day: an jedem 1. Sonntag im Monat
-        hours: 19:00 Uhr
-    poster: #//lorempixel.com/1920/1080
-    sermon:
