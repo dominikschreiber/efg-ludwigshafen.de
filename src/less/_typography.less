@@ -35,7 +35,9 @@ h3 {
 }
 
 p,
-li {
+li,
+th,
+td {
 	font-size: .825 * @u-unit;
 
 	&.lead {
@@ -51,6 +53,21 @@ dd {
 
     @media (-webkit-min-device-pixel-ratio: 2),
            (min-resolution: 192dpi) { font-weight: 600; }
+}
+
+[marked] {
+	table {
+		margin-bottom: .5 * @u-unit;
+	}
+	th:empty {
+		display: none;
+	}
+
+	th,
+	td {
+		border: 1px solid @c-content;
+		padding: 0 @u-unit;
+	}
 }
 
 [href],

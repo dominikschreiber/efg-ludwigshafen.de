@@ -38,12 +38,93 @@ jugendkreis:
     description: |
         Jeden Freitag treffen wir uns mit den Jugendlichen von 13-17 Jahren im Hemshofkeller. Im Jugendkreis gibt es immer ein biblisches Thema das wir mit den Jugendlichen bearbeiten. Dazu lesen wir in der Bibel, tauschen uns aus und besprechen Fragen. Natürlich gibt es auch viel Musik, Spiele und gemeinsame Aktionen. Ein gemeinsames Abendessen, ein Kickerspiel oder ein Ausflug zur Schlittschuh Halle standen in den letzten Monaten auf dem Programm.
 
+seniorenkreis:
+    name: Seniorenkreis
+    target: Junggebliebene und Senioren
+    date: 1. und 3. Montag im Monat, 14:30-16:30 Uhr
+    location: Hemshofstraße 23
+    icon: glyphicon-king
+    description: |
+        **Herzliche Einladung zum Seniorenkreis am 1. und 3. Montag im Monat 14:30 &ndash; 16:30 Uhr, Hemshofstraße 23**
+
+        Wir beginnen jeweils mit Kaffee und Kuchen und wenden uns dann einem Thema zu.
+
+        Unsere Themen im **II. Quartal 2017**
+
+        Änderungen vorbehalten
+
+        |           |                                     |
+        |-----------|-------------------------------------|
+        | 03. April | Gleichnis Anvertrautes Geld, II     |
+        | 24. April | Gleichnis Das gro&szlig;e Abendmahl |
+        | 01. Mai   | Kein Seniorenkreis                  |
+        | 15. Mai   | Gleichnis Herr und Knecht           |
+        | 12. Juni  | Gleichnis Treuloser Haushalter      |
+        | 19. Juni  | Gleichnis Treulose Weingärtner      |
+
+
+        Kontakt: Bärbel Wilms
+
 sport-mit-fluechtlingen:
     name: Sport mit Flüchtlingen
-    target: sportbegeisterte
+    target: sportbegeisterte aller Nationen
     date: alle 2 Wochen Sonntagabends
     icon: glyphicon-globe
     description: |
         Viele Flüchtlinge haben ihre Heimat verlassen und leben nun in Deutschland. Flüchtlinge stehen vor vielen Herausforderungen, wie beispielsweise die Sprachbarriere oder das Zurechtfinden in einer fremden Kultur.
 
         Wir als Baptistengemeinde wollen diesen Menschen gerne begegnen und Beziehungen zu ihnen aufbauen. Zusammen mit ihnen spielen wir Fußball, da Sport verbindet und Grenzen überwindet. Dadurch können wir unseren Glauben aktiv leben und wollen darüber hinaus das weitergeben, was wir selbst mit Gott erleben.
+
+cafe-life:
+    name: Café Life
+    target: Frauen und Kinder aller Nationen
+    date: Freitags, 16:00-18:30 Uhr
+    location: Böhlstraße 5
+    icon: glyphicon-send
+    description: |
+        Café Life ist
+
+        - Ein Team von Christen, die aus der Liebe und Freundlichkeit Gottes leben
+        - Wir lieben alle Menschen aus allen Nationen &ndash; Kleine &amp; Gro&szlig;e
+        - Wir machen gerne Mut zum Leben und laden die Nähe Gottes ein
+        - Wir unterstützen, wo Hilfe notwendig ist
+        - Wir machen auch gerne Besuche
+        - Wir feiern mit Freunden Feste
+
+        Kontakt: [(+49) 176 56587331](tel:017656587331)
+
+family-life:
+    name: Family Life
+    target: Familien aller Nationen
+    date: jeden letzten Freitag im Monat, 16:00-18:30 Uhr
+    location: Böhlstraße 5, Ludwigshafen
+    icon: glyphicon-gift
+    description: |
+        Family Life ist das Familien-Fest von Café Life. Café Life ist
+
+        - Ein Team von Christen, die aus der Liebe und Freundlichkeit Gottes leben
+        - Wir lieben alle Menschen aus allen Nationen &ndash; Kleine &amp; Gro&szlig;e
+        - Wir machen gerne Mut zum Leben und laden die Nähe Gottes ein
+        - Wir unterstützen, wo Hilfe notwendig ist
+        - Wir machen auch gerne Besuche
+        - Wir feiern mit Freunden Feste
+
+        Kontakt: [(+49) 176 56587331](tel:017656587331)
+
+jesus-life:
+    name: Jesus Life
+    target: Frauen aller Nationen
+    date: Dienstags, 16:00-18:30 Uhr
+    location: Hemshofstraße 23
+    icon: glyphicon-grain
+    description: |
+        Jesus Life ist der Glaubenskurs von Café Life. Café Life ist
+
+        - Ein Team von Christen, die aus der Liebe und Freundlichkeit Gottes leben
+        - Wir lieben alle Menschen aus allen Nationen &ndash; Kleine &amp; Gro&szlig;e
+        - Wir machen gerne Mut zum Leben und laden die Nähe Gottes ein
+        - Wir unterstützen, wo Hilfe notwendig ist
+        - Wir machen auch gerne Besuche
+        - Wir feiern mit Freunden Feste
+
+        Kontakt: [(+49) 176 56587331](tel:017656587331)
