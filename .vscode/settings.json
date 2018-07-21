@@ -16,5 +16,7 @@
 	"prettier.tabWidth": 2,
 	"prettier.bracketSpacing": false,
 	"prettier.singleQuote": true,
-	"prettier.trailingComma": "none"
+	"prettier.trailingComma": "none",
+
+	"perforce.activationMode": "off" 
 }
