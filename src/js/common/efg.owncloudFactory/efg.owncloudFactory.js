@@ -31,7 +31,7 @@ function owncloudFactory(resource, reducer, options) {
 
               $http
                 .get(
-                  'http://' +
+                  'https://' +
                     host +
                     '/index.php/apps/files_sharing/ajax/list.php?t=' +
                     sharedfolderid +
@@ -50,7 +50,7 @@ function owncloudFactory(resource, reducer, options) {
                   function(data) {
                     cache = data.data.data.files.reduce(
                       reducer(function(filename) {
-                        return 'http://' +
+                        return 'https://' +
                           host +
                           '/index.php/s/' +
                           sharedfolderid +
