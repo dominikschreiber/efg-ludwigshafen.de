@@ -123,28 +123,6 @@ milena:
     poster:
     isleader: false
 
-marina:
-    name:
-        givenname: Marina
-        familyname: Hobohm
-    description: |
-        Marina kommt aus der Nähe von Hannover. Nach dem Abitur hat sie ein ZfG (christliches FSJ) in der Nähe von Köln gemacht und 2005 ist sie zum Studieren nach Ludwigshafen gekommen.
-
-        Sie ist von klein auf in einer christlichen Gemeinde groß geworden. Die Gemeinde war immer ihr zweites zu Hause. Kindergottesdienst, Jungschar, Jugendgruppe, Gemeindeunterricht, Kinderband... All das hat den größten Teil ihres Lebens bestimmt.
-        
-        Auf die Frage hin, wie sie zum Glauben gefunden hat berichtet sie: "Schon früh habe ich mich Jesus anvertraut, in der Bibel gelesen, nur mit Gott als meinen Vater hatte ich durch meine Familiensituation so meine Probleme. Ich wollte mich immer beweisen und Gott gefallen. Mit 16 habe ich verstanden, dass Gott mich so liebt wie ich bin und dass ich immer ein Mitglied in seiner Familie sein darf. Gott wollte keine Pflichterfüllung sondern eine Beziehung zu mir. Ich wollte diesen Schritt ganz bewusst tun und habe mich taufen lassen."
-
-        An ihrer Gemeinde gefällt ihr besonders die familiäre Atmosphäre. Die Gemeinde in Ludwigshafen ist zu ihrer Ersatzfamilie geworden. Sie ist sehr dankbar für die Begleitung und Unterstützung in ihrer Zeit als Missionarin auf der Logos Hope.
-
-        Sie liebt Bücher und Kaffee. Gerne trifft sie sich auch mit Freunden, kocht und singt gerne.
-
-        Gott hat es ihr aufs Herz gelegt, anderen von ihm zu erzählen. Dies habe hat sie in den unterschiedlichsten Gruppen getan. Sie arbeitet in vielen Bereichen mit oder hat es in der Vergangenheit getan. Unter anderem im Kindergottesdienst, in der Jungschar, in Jugendgruppen, Hauskreisen, in der Gottesdienstleitung und beim Sommerlager; ganz besonders natürlich, als sie mit dem Schiff Logos Hope in Südostasien zur See gefahren ist und in den verschiedenen Ländern ihren Glauben bezeugt hat.
-    duties:
-        - Diakon
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster:
-    isleader: false
-
 dominik:
     name:
         givenname: Dominik
@@ -161,6 +139,6 @@ dominik:
         Neben seiner Familie, der Arbeit als Softwarearchitekt, und der Berufung in der Gemeinde ist Musik Dominiks größtes Hobby. Rund alle zwei Monate tritt er mit einem Trio – Gesang, Klavier, Drums – zu Konzerten, Kulturabenden oder auch Hochzeiten auf. Aber auch Zeit mit Freunden beim Handwerken, Grillen oder Computerspielen zu verbringen ist ihm wichtig – hier ergeben sich oft die intensivsten Gespräche über Gott, Glaube und Gemeinde.
     duties:
         - Diakon
-    img: /assets/img/dominik_klein.png
+    img: https://gravatar.com/avatar/0c387737897bfb3546f9b6c201fb1782?s=256
     poster:
     isleader: false
