@@ -1,20 +1,25 @@
 <component classes="component-sm bg-img bg-dark text-center component-sermon" responsive-background="//unsplash.com/photos/G6G93jtU1vE/download"
     responsive-background-dark="true" header="{{sermon.header}}" subheader="{{sermon.subheader}}">
-    <button ng-click="sermon.again()" class="btn btn-outline btn-light" title="{{sermon.frameduration}} Sekunden zurückspulen">
-        <i class="glyphicon glyphicon-repeat glyphicon-flip-horizontal"></i>
-    </button>
-    <button analytics-on analytics-category="Media" analytics-event="Play" analytics-label="{{sermon.subheader}}" ng-click="sermon.playpause()"
-        class="btn btn-outline btn-light">
-        <i class="glyphicon"
-           ng-class="{'glyphicon-play': sermon.ispaused, 'glyphicon-pause': !sermon.ispaused}"></i>
-    </button>
-    <a analytics-on analytics-category="Media" analytics-event="Download" analytics-label="{{sermon.subheader}}" ng-href="{{sermon.src}}"
-        class="btn btn-outline btn-light" download>
-        <i class="glyphicon glyphicon-save"></i>
-    </a>
-    <button ng-click="sermon.skip()" class="btn btn-outline btn-light" title="{{sermon.frameduration}} Sekunden vorspulen">
-        <i class="glyphicon glyphicon-repeat"></i>
-    </button>
+    <div class="col-xs-3 col-sm-1 col-sm-offset-4">
+        <button style="min-width:54px" ng-click="sermon.again()" class="btn btn-block btn-outline btn-light" title="{{sermon.frameduration}} Sekunden zurückspulen">
+            <i class="glyphicon glyphicon-repeat glyphicon-flip-horizontal"></i>
+        </button>
+    </div>
+    <div class="col-xs-3 col-sm-1">
+        <button style="min-width:54px" analytics-on analytics-category="Media" analytics-event="Play" analytics-label="{{sermon.subheader}}" ng-click="sermon.playpause()" class="btn btn-block btn-outline btn-light">
+            <i class="glyphicon" ng-class="{'glyphicon-play': sermon.ispaused, 'glyphicon-pause': !sermon.ispaused}"></i>
+        </button>
+    </div>
+    <div class="col-xs-3 col-sm-1">
+        <a style="min-width:54px" analytics-on analytics-category="Media" analytics-event="Download" analytics-label="{{sermon.subheader}}" ng-href="{{sermon.src}}" class="btn btn-block btn-outline btn-light" download>
+            <i class="glyphicon glyphicon-save"></i>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-1">
+        <button style="min-width:54px" ng-click="sermon.skip()" class="btn btn-block btn-outline btn-light" title="{{sermon.frameduration}} Sekunden vorspulen">
+            <i class="glyphicon glyphicon-repeat"></i>
+        </button>
+    </div>
     <progress class="sermon-progress" value="{{sermon.currenttime || 0}}" max="{{sermon.duration || 1}}">
     </progress>
 </component>
