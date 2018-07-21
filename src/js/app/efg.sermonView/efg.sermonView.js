@@ -16,7 +16,7 @@ angular
       templateUrl: 'efg.sermonView.tpl.html'
     });
   })
-  .controller('SermonCtrl', function(player, sermon, $scope, $log) {
+  .controller('SermonCtrl', function(player, sermon, $scope, $filter) {
     var defaultheaders, seek;
 
     // ----- header/subheader -----------------------------
