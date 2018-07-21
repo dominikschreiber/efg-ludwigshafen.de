@@ -5,6 +5,7 @@ angular
     'efg.sermonView',
     'efg.eventView',
     'efg.imprintView',
+    'efg.dataProtectionView',
     'efg.indexView',
     'efg.infoView',
     'efg.serviceView',

@@ -37,7 +37,9 @@ h3 {
 p,
 li,
 th,
-td {
+td,
+dd,
+dt {
 	font-size: .825 * @u-unit;
 
 	&.lead {
@@ -45,10 +47,17 @@ td {
 	}
 }
 
+dt:after {
+	content: ': ';
+}
+dd {
+	margin-bottom: 1em;
+}
+
 b,
 strong,
 th,
-dd {
+dt {
     font-weight: 700;
 
     @media (-webkit-min-device-pixel-ratio: 2),
