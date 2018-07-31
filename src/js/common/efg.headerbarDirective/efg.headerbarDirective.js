@@ -7,7 +7,7 @@ angular
     'efg.sermonService',
     'ng'
   ])
-  .directive('headerbar', function(headerbar, player, sermon, $window, $log) {
+  .directive('headerbar', function(headerbar, player, sermon, $filter, $log) {
     return {
       templateUrl: 'efg.headerbarDirective.tpl.html',
       link: function($scope) {
@@ -36,6 +36,33 @@ angular
               player.play();
             }
             initial = false;
+          }
+        });
+
+        function lpad(s, pad, len) {
+          s = s.toString();
+          while (s.length < len) {
+            s = pad + s;
+          }
+          return s.slice(-len);
+        }
+
+        function formatSeconds(s) {
+          return lpad(Math.floor(s / 60), '0', 2) + ':' + lpad(Math.floor(s % 60), '0', 2);
+        }
+
+        $scope.sermonpos = 0;
+        $scope.sermoncurrenttime = '00:00';
+        $scope.sermonduration = '00:00';
+        $scope.$on('player:timeupdate', function (e, update) {
+          if (update.duration > 0) {
+            $scope.sermonpos = 100 * update.currenttime / update.duration;
+            $scope.sermoncurrenttime = formatSeconds(update.currenttime);
+            $scope.sermonduration = formatSeconds(update.duration);
+          } else {
+            $scope.sermonpos = 0;
+            $scope.sermoncurrenttime = '00:00';
+            $scope.sermonduration = '00:00';
           }
         });
       },
