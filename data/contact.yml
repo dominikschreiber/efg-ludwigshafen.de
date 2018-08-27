@@ -6,30 +6,30 @@
 # @stability 2
 
 phone:
-    name: (+49) 621 12280558
-    action: "tel:+4962112280558"
-    thumbnail: glyphicon glyphicon-earphone
+  name: (+49) 621 12280558
+  action: 'tel:+4962112280558'
+  thumbnail: glyphicon glyphicon-earphone
 
 location:
-    name: Böhlstraße 5, Ludwigshafen
-    action: "#!/geo"
-    thumbnail: glyphicon glyphicon-map-marker
+  name: Böhlstr. 5 (Gemeinde) / Hemshofstraße 23 (Post), Ludwigshafen
+  action: '#!/geo'
+  thumbnail: glyphicon glyphicon-map-marker
 
 email:
-    name: info@efg-ludwigshafen.de
-    action: "mailto:info@efg-ludwigshafen.de"
-    thumbnail: glyphicon glyphicon-envelope
+  name: info@efg-ludwigshafen.de
+  action: 'mailto:info@efg-ludwigshafen.de'
+  thumbnail: glyphicon glyphicon-envelope
 
 bank:
-    name: Geben
-    action: "#!/contact/bank"
-    thumbnail: glyphicon glyphicon-piggy-bank
-    #poster: //unsplash.com/photos/ZKVBM2_Dp84/download
-    description: |
-        ## Gemeindekonto
-        IBAN DE09 5009 2100 0000 4632 05
+  name: Geben
+  action: '#!/contact/bank'
+  thumbnail: glyphicon glyphicon-piggy-bank
+  #poster: //unsplash.com/photos/ZKVBM2_Dp84/download
+  description: |
+    ## Gemeindekonto
+    IBAN DE09 5009 2100 0000 4632 05
 
-        ## Diakoniekonto
-        IBAN DE13 5009 2100 0000 4632 30
+    ## Diakoniekonto
+    IBAN DE13 5009 2100 0000 4632 30
 
-        BIC GENODE51BH2
+    BIC GENODE51BH2
