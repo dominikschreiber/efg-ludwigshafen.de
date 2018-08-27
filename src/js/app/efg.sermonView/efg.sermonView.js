@@ -4,6 +4,7 @@ angular
   .module('efg.sermonView', [
     'efg.sermonsDirective',
     'efg.sermonService',
+    'efg.sermonApi',
     'efg.playerService',
     'efg.responsiveBackgroundDirective',
     'hc.marked',
@@ -15,8 +16,12 @@ angular
       controller: 'SermonCtrl as sermon',
       templateUrl: 'efg.sermonView.tpl.html'
     });
+    $routeProvider.when('/sermon/:id', {
+      controller: 'SermonCtrl as sermon',
+      templateUrl: 'efg.sermonView.tpl.html'
+    });
   })
-  .controller('SermonCtrl', function(player, sermon, $scope, $filter) {
+  .controller('SermonCtrl', function(player, sermon, sermonApi, $window, $scope, $filter, $routeParams) {
     var defaultheaders, seek;
 
     // ----- header/subheader -----------------------------
@@ -85,6 +90,20 @@ angular
         this.duration = update.duration;
       }.bind(this)
     );
+
+    // ----- direct link ----------------------------------
+
+    if ($routeParams.id) {
+      sermonApi.query().then(function (sermons) {
+        for (var i = 0; i < sermons.length; i++) {
+          if (sermons[i].filename === $routeParams.id) {
+            sermon.set(sermons[i]);
+            return;
+          }
+        }
+        $window.location.hash = '!/sermon';
+      });
+    }
   })
   .directive('sermonpreview', function(sermonApi) {
     return {
