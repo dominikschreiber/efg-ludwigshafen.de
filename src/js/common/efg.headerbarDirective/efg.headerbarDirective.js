@@ -7,7 +7,7 @@ angular
     'efg.sermonService',
     'ng'
   ])
-  .directive('headerbar', function(headerbar, player, sermon, $filter, $log) {
+  .directive('headerbar', function(headerbar, player, sermon) {
     return {
       templateUrl: 'efg.headerbarDirective.tpl.html',
       link: function($scope) {
@@ -39,30 +39,48 @@ angular
           }
         });
 
-        function lpad(s, pad, len) {
-          s = s.toString();
-          while (s.length < len) {
-            s = pad + s;
+        function updatePosition(e) {
+          if ($progressbar) {
+            $scope.currenttime = $scope.duration * e.pageX / $progressbar.offsetWidth;
+            $progressbar.value = $scope.currenttime;
+            
+            e.preventDefault();
+            e.stopPropagation();
           }
-          return s.slice(-len);
         }
 
-        function formatSeconds(s) {
-          return lpad(Math.floor(s / 60), '0', 2) + ':' + lpad(Math.floor(s % 60), '0', 2);
-        }
+        /** @type {boolean} */
+        var seekStarted = false;
+        /** @type {$<HTMLProgressElement>} */
+        var $progressbar;
+        $scope.startSeek = function (e) {
+          seekStarted = true;
+          $progressbar = $progressbar || e.target;
+          updatePosition(e);
+        };
+        $(window)
+          .on('mousemove', function (e) {
+            if (seekStarted) {
+              updatePosition(e);
+            }
+          })
+          .on('mouseup', function (e) {
+            if (seekStarted) {
+              updatePosition(e);
+              player.position($scope.currenttime);
+              seekStarted = false;
+            }
+          });
 
-        $scope.sermonpos = 0;
-        $scope.sermoncurrenttime = '00:00';
-        $scope.sermonduration = '00:00';
+        $scope.currenttime = 0;
+        $scope.duration = 0;
         $scope.$on('player:timeupdate', function (e, update) {
           if (update.duration > 0) {
-            $scope.sermonpos = 100 * update.currenttime / update.duration;
-            $scope.sermoncurrenttime = formatSeconds(update.currenttime);
-            $scope.sermonduration = formatSeconds(update.duration);
+            $scope.currenttime = update.currenttime;
+            $scope.duration = update.duration;
           } else {
-            $scope.sermonpos = 0;
-            $scope.sermoncurrenttime = '00:00';
-            $scope.sermonduration = '00:00';
+            $scope.currenttime = 0;
+            $scope.duration = 0;
           }
         });
       },

@@ -27,19 +27,5 @@
             </button>
         </li>
     </ul>
-    <div
-        ng-if="sermon"
-        tabindex="0"
-        class="headerbar-progress"
-        ng-style="{'background-image': 'linear-gradient(90deg, rgba(85,172,232,.5) 0, rgba(85,172,232,.5) ' + sermonpos + '%, rgba(85,172,232, 0.05) ' + sermonpos + '%, rgba(85,172,232, 0.05) 100%)'}"
-        role="progressbar"
-        aria-valuemin="0"
-        aria-valuemax="{{sermonduration}}"
-        aria-valuenow="{{sermoncurrenttime}}">
-        <div
-            class="headerbar-progress-indicator"
-            ng-style="{left: !sermonpos || isNaN(sermonpos) ? '-100px' : sermonpos + '%'}"
-            data-valuenow="{{sermoncurrenttime}}"
-            data-valuemax="{{sermonduration}}"></div>
-    </div>
+    <progress ng-if="sermon" class="headerbar-progress" min="0" max="{{duration}}" value="{{currenttime}}" ng-mousedown="startSeek($event)"></progress>
 </nav>
