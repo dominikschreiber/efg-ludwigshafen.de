@@ -16,7 +16,7 @@
   "author": "Dominik Schreiber <domischreib@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "grunt": "*",
+    "grunt": "^1.0.4",
     "grunt-angular-templates": "*",
     "grunt-cli": "*",
     "grunt-contrib-clean": "*",
@@ -25,7 +25,7 @@
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-less": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-ng-annotate": "*",
     "grunt-responsive-images": "^0.1.7",
     "less-plugin-clean-css": "^1.5.0",
@@ -44,9 +44,9 @@
     "angulartics-piwik": "^1.0.5",
     "bootstrap": "^3.3.7",
     "fullcalendar": "^3.2.0",
-    "jquery": "^3.1.1",
-    "js-yaml": "^3.8.2",
-    "moment": "^2.17.1",
+    "jquery": "^3.4.1",
+    "js-yaml": "^3.13.1",
+    "moment": "^2.24.0",
     "ngmap": "^1.18.4"
   }
 }
