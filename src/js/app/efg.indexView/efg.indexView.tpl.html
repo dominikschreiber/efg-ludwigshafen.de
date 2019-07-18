@@ -1,3 +1,16 @@
+<section class="popupwindow" ng-show="!hideSolaAlert" ng-init="hideSolaAlert = false">
+    <h3>SOLA-Termine</h3>
+    <p>
+        <strong>Sonntag 28.7.:</strong> Gottesdienst um <em>10:30 Uhr</em> in der Böhlstraße 5, Ludwigshafen. Wir bekommen Besuch
+        von der FeG Ludwigshafen. <em>Kein Gottesdienst in der Lukasschule.</em>
+    </p>
+    <p>
+        <strong>Sonntag 4.8.:</strong> <em>Kein Gottesdienst in der Böhlstraße.</em> Wir besuchen die FeG Ludwigshafen. Gottesdienst
+        um <em>10:30 Uhr</em> in der <em>Lukasschule, Bliesstraße 1, Ludwigshafen</em>.
+    </p>
+    <p style="text-align:right;margin:1rem 0 0 0"><button class="btn btn-outline" ng-click="hideSolaAlert = true">Verstanden!</button></p>
+</section>
+
 <component classes="welcome component-flex component-almost-viewport bg-img bg-dark" responsive-background="/assets/img/header.jpg"
     responsive-background-dark="true">
     <div class="col-md-12">
