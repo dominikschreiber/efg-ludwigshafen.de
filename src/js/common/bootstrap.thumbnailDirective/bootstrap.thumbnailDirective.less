@@ -1,5 +1,15 @@
 .thumbnail {
+    &[class*="col-"] {
+        float: none;
+        display: inline-block;
+    }
     .glyphicon {
         font-size: 3 * @u-unit;
+    }
+}
+
+@media (max-width: @screen-xs-max) {
+    .thumbnail[class*="col-"]:not([class*="col-xs-"]) {
+        width: 100%;
     }
 }

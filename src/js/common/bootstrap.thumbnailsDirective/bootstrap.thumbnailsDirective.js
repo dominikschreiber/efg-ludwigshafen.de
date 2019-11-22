@@ -8,52 +8,24 @@ angular
   .directive('thumbnails', function($log) {
     return {
       controller: function($scope) {
-        function zip(a, b) {
-          var result = [], i;
+        $scope.items.forEach(function ($item, i, $items) {
+          /** @type {number} */
+          var len = $items.length;
+          /** @type {number} */
+          var remaining = len - i - 1;
+          /** @type {number}  */
+          var lg = 12 / Math.max(1, remaining < len % 4 ? len % 4 : 4);
+          /** @type {number}  */
+          var md = 12 / Math.max(1, remaining < len % 3 ? len % 3 : 3);
+          /** @type {number}  */
+          var sm = 12 / Math.max(1, remaining < len % 3 ? len % 3 : 3);
 
-          if (a.length !== b.length) {
-            throw new Error('arrays must be of same length!');
-          }
-          for (i = 0; i < a.length; i++) {
-            result.push([a[i], b[i]]);
-          }
+          console.log('item:', $item.id, 'i:', i, 'len:', len, 'remaining:', remaining, 'lg:', lg, 'md:', md, 'sm:', sm);
 
-          return result;
-        }
-
-        function createArray(item, times) {
-          var arr = [];
-          for (var i = 0; i < times; i++) {
-            arr.push(item);
-          }
-          return arr;
-        }
-
-        function getclasses(itemCount, itemsPerLine, slug) {
-          for (var i = 1; i <= itemsPerLine; i++) {
-            if (itemCount === i) {
-              return createArray('col-' + slug + '-' + 12 / i, itemCount);
-            }
-          }
-          return getclasses(itemsPerLine, itemsPerLine, slug).concat(
-            getclasses(itemCount - itemsPerLine, itemsPerLine, slug)
-          );
-        }
-
-        function classes(itemcount) {
-          return zip(
-            getclasses(itemcount, 3, 'sm'),
-            getclasses(itemcount, 4, 'md')
-          ).map(function(i) {
-            return i.join(' ');
+          angular.extend($item, {
+            cls: 'col-sm-' + sm + ' col-md-' + md + ' col-lg-' + lg
           });
-        }
-
-        var cls = classes($scope.items.length), i;
-
-        for (i = 0; i < $scope.items.length; i++) {
-          $scope.items[i] = angular.extend($scope.items[i], {cls: cls[i]});
-        }
+        });
       },
       restrict: 'E',
       scope: {
