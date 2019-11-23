@@ -155,3 +155,31 @@ monika:
     img: /assets/img/monika_klein.jpg
     poster:
     isleader: false
+
+andreas:
+    name:
+        givenname: Andreas
+        familyname: Petry
+    description: |
+        Andreas kommt aus einem katholischen Hintergrund, aber zum Glauben kam er mit 22 Jahren. Seine Glaubensgrundlagen hat er dann in einer Baptistengemeinde in der Nähe von Karlsruhe kennen gelernt.
+
+        Seit 1990 ist er aufgrund des Studiums der Sozialarbeit nach Ludwigshafen gekommen und ab 1991 dann zur EFG Ludwigshafen. Er schätzt dort die gute Gemeinschaft. Wichtig war ihm schon immer die tiefe Beziehung zu Jesus und die Unterstützung auf dem Weg dorthin. Er findet die verschiedenen Glaubensstile spannend und will Menschen verbinden, gerade auch bei unterschiedlichen Sichtweisen.
+
+        Andreas hat seine Frau Sabine im Studium kennengelernt und mit ihren zwei Kindern ist ihnen Gemeinde ein zu Hause, für das sie sich gemeinsam einsetzen.
+    duties:
+        - Diakon
+    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
+    poster:
+    isleader: false
+
+sabina:
+    name:
+        givenname: Sabina
+        familyname: Hertle
+    description: |
+        Details folgen
+    duties:
+        - Diakon
+    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
+    poster:
+    isleader: false
