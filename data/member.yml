@@ -81,7 +81,7 @@ milena:
 
         In ihrer Freizeit ist sie gerne draußen. Sie verbringt gerne Zeit mit ihrer Großfamilie und Freunden oder sitzt gerne gemütlich auf dem Sofa und strickt.
     duties:
-        - Diakon
+        - Diakonin
     img: /assets/img/milena_klein.jpg
     poster:
     isleader: false
@@ -117,7 +117,7 @@ fabienne:
 
         Die Gemeinde ist Fabienne besonders wichtig, da sie sie zum Glauben heranführte und dadurch zu ihrem geistlichen Zuhause wurde. Sie schätzt die familiäre Atmosphäre, den Zusammenhalt und die engen Freundschaften innerhalb der Gemeinde sehr. Außerdem hat sie die Umgebung rund um die Gemeinde lieben gelernt und merkt, wie ihr Herz für die Menschen aus dem Stadtteil schlägt. In der Gemeinde liegt ihr Fokus aktuell auf der Jugend, die sie seit dem Sommer 2017 leitet.
     duties:
-        - Diakon
+        - Diakonin
     img: /assets/img/fabienne_klein.jpg
     poster: /assets/img/fabienne.jpg
     isleader: false
@@ -151,7 +151,7 @@ monika:
 
         Gemeinde muss für sie ein Ort der Begegnung mit dem lebendigen Gott und mit Menschen sein.
     duties:
-        - Diakon
+        - Diakonin
     img: /assets/img/monika_klein.jpg
     poster:
     isleader: false
@@ -177,9 +177,17 @@ sabina:
         givenname: Sabina
         familyname: Hertle
     description: |
-        Details folgen
+        Sabina ist seit 1994 in der EFG Ludwigshafen, die so etwas wie eine erweiterte Familie für sie ist.
+
+        Seit sie denken kann, glaubt sie an Gott. In ihrer Kindheit wurde sie katholisch geprägt.
+
+        Nachdem sie mit ca. 16 Jahren zu einer evangelischen Jugendgruppe mitgenommen wurde, habt sie dort u.a. ausführlich Fragen mit Hilfe der Bibel erforscht. Dabei stellte sie fest, dass sich die Menschen aktiv und persönlich zu Gott bekehrt haben und dann getauft wurden. Dies hat sie als „richtige Schritte“ für sich dann umgesetzt.
+
+        Sie arbeitet als Sozialarbeiterin, ist mit Walter verheiratet und sie haben ein Kind.
+
+        In ihrer Freizeit liest sie gern. Sie mag Italien und die Farbe rot.
     duties:
-        - Diakon
-    img: glyphicon glyphicon-user glyphicon-fw img-thumbnail img-circle
-    poster:
+        - Diakonin
+    img: /assets/img/sabina_klein.jpeg
+    poster: /assets/img/sabina.jpeg
     isleader: false
