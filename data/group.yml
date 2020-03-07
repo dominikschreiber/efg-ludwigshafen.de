@@ -9,30 +9,10 @@
 #
 # @creates #!/group/${id}
 
-krabbelgruppe:
-    name: Krabbelgruppe
-    target: 0-3-jährige
-    date: Dienstags, 9:30-11:00 Uhr
-    location: Böhlstraße 5
-    icon: glyphicon-baby-formula
-    poster: /assets/img/krabbelgruppe.jpg
-    description: |
-        In der Krabbelgruppe treffen sich Mütter und Väter mit ihren 0-3-jährigen Kindern. Wir singen, spielen, hören gemeinsam eine Geschichte und tauschen uns bei Kaffee und Tee untereinander aus.
-
-        Üblicherweise wird im ersten Teil (ca. 10 Minuten) auf kindgerechte Weise ein bestimmtes Thema behandelt, wie beispielsweise die verschiedenen Farben, biblische Geschichten, Tiere oder aktuelle Feiertage wie Sankt Martin oder Weihnachten.
-
-        Der zweite Teil (ca. 20 Minuten) besteht aus Bewegungsliedern mit verschiedenen Materialien wie Tüchern und Klanghölzern, Fingerspielen und Schoßreitern.
-
-        Vor der Schlussrunde mit einem Abschlusslied haben die Kinder im letzten Teil (ca. 30 min) Zeit für freies Spielen, während die Eltern bei Kaffee und Tee und manchmal auch Kuchen oder Obst die Gelegenheit haben, sich zu unterhalten.
-
-        In unregelmäßigen Abständen frühstücken wir auch zusammen oder basteln mit unseren Kindern.
-
-        Wenn Du Fragen hast melde Dich bei [krabbelgruppe@efg-ludwigshafen.de](mailto:krabbelgruppe@efg-ludwigshafen.de). Oder komm einfach vorbei.
-
 jugendkreis:
     name: Jugendkreis
     target: 13-17-jährige
-    date: Freitags, 19:30-22:00 Uhr
+    date: Freitags, 18:30-21:00 Uhr
     location: Hemshofstraße 23
     icon: glyphicon-fire
     description: |
@@ -49,79 +29,14 @@ seniorenkreis:
 
         Senioren sind häufig vielbeschäftigte Menschen. Sie reisen, helfen anderen, betreuen Enkelkinder, haben viele Arzttermine und sind auch immer wieder krank. So schwankt der Besuch zwischen 10 &ndash; 18 Teilnehmern.
 
-        Wir beginnen mit einem Bibelwort, meist aus dem Losungsbuch der Herrnhuter Brüdergemeinde, mit Gebet und mit einem Lied. Wichtig sind die Geburtstage. Dafür haben wir als Gemeinde für alle über 60-jährigen eine Karte zur Jahreslosung mit persönlichen Worten und eine von allen unterschriebene Glückwunschkarte und dazu singen wir ein Wunschlied.
+        Wir beginnen mit einem Bibelwort, meist aus dem Losungsbuch der Herrnhuter Brüdergemeine, mit Gebet und mit einem Lied. Wichtig sind die Geburtstage. Dafür haben wir als Gemeinde für alle über 60-jährigen eine Karte zur Jahreslosung mit persönlichen Worten und eine von allen unterschriebene Glückwunschkarte und dazu singen wir ein Wunschlied.
 
         Wichtig ist der persönliche Austausch bei Kaffee und Kuchen: miterleben, Anteil nehmen, ermutigen, trösten, helfen, füreinander beten ist uns von großer Bedeutung. Weil Menschen in anderen Kreisen und Ländern viel Not haben, legen wir auch eine Kollekte zusammen, die dann halbjährlich an Hilfsorganisationen überwiesen wird.
 
-        Dann geht's zur Hauptsache, zur Beschäftigung mit der Bibel, aktuell mit dem "Bilderbuch Gottes", den Gleichnissen, die Jesus erzählt hat. Dabei finden wir überraschende Aussagen über Gottes Wesen und Handeln, aber auch über unser Leben und über die Geschenke, die Gott uns anbietet.
+        Dann geht's zur Hauptsache, zur Beschäftigung mit der Bibel. Dabei finden wir überraschende Aussagen über Gottes Wesen und Handeln, aber auch über unser Leben und über die Geschenke, die Gott uns anbietet.
 
         Im Sommer gibt es ein Gartenfest und im Dezember beschließen wir das Jahr im Seniorenkreis mit einem festlichen Nachmittag zur Weihnachtszeit.
 
         Jedermann ist uns immer herzlich willkommen.
 
         Kontakt: Bärbel Wilms
-
-        ### Unsere Themen im II. Quartal 2018
-
-        | | |
-        |-|-|
-        | 02. April | Kein Seniorenkreis (Ostermontag) |
-        | 16. April | Gleichnis Ehrenplätze bei Hochzeit |
-        | 07. Mai | Gleichnis großes Abendmahl |
-        | 21. Mai | Kein Seniorenkreis (Pfingstmontag) |
-        | 04. Juni | Gleichnis Feigenbaum ohne Früchte |
-        | 18. Juni | Gleichnis Feigenbaum als Zeichen der Zeit |
-
-cafe-life:
-    name: Café Life
-    target: Frauen und Kinder aller Nationen
-    date: Freitags, 16:00-18:30 Uhr
-    location: Böhlstraße 5
-    icon: glyphicon-send
-    description: |
-        Café Life ist
-
-        - Ein Team von Christen, die aus der Liebe und Freundlichkeit Gottes leben
-        - Wir lieben alle Menschen aus allen Nationen &ndash; Kleine &amp; Gro&szlig;e
-        - Wir machen gerne Mut zum Leben und laden die Nähe Gottes ein
-        - Wir unterstützen, wo Hilfe notwendig ist
-        - Wir machen auch gerne Besuche
-        - Wir feiern mit Freunden Feste
-
-        Kontakt: [(+49) 176 56587331](tel:017656587331)
-
-family-life:
-    name: Family Life
-    target: Familien aller Nationen
-    date: jeden letzten Freitag im Monat, 16:00-18:30 Uhr
-    location: Böhlstraße 5, Ludwigshafen
-    icon: glyphicon-gift
-    description: |
-        Family Life ist das Familien-Fest von Café Life. Café Life ist
-
-        - Ein Team von Christen, die aus der Liebe und Freundlichkeit Gottes leben
-        - Wir lieben alle Menschen aus allen Nationen &ndash; Kleine &amp; Gro&szlig;e
-        - Wir machen gerne Mut zum Leben und laden die Nähe Gottes ein
-        - Wir unterstützen, wo Hilfe notwendig ist
-        - Wir machen auch gerne Besuche
-        - Wir feiern mit Freunden Feste
-
-        Kontakt: [(+49) 176 56587331](tel:017656587331)
-
-jesus-life:
-    name: Jesus Life
-    target: Frauen aller Nationen
-    date: Dienstags, 16:00-18:30 Uhr
-    location: Hemshofstraße 23
-    icon: glyphicon-grain
-    description: |
-        Jesus Life ist der Glaubenskurs von Café Life. Café Life ist
-
-        - Ein Team von Christen, die aus der Liebe und Freundlichkeit Gottes leben
-        - Wir lieben alle Menschen aus allen Nationen &ndash; Kleine &amp; Gro&szlig;e
-        - Wir machen gerne Mut zum Leben und laden die Nähe Gottes ein
-        - Wir unterstützen, wo Hilfe notwendig ist
-        - Wir machen auch gerne Besuche
-        - Wir feiern mit Freunden Feste
-
-        Kontakt: [(+49) 176 56587331](tel:017656587331)

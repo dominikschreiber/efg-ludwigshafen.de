@@ -14,11 +14,11 @@ service:
     subtitle: "Der erste Schritt: Komm in Kontakt"
     description: |
         ## Komm in Kontakt
-        Jeden Sonntagmorgen feiern wir [Gottesdienst](#!/service/sunday). Das ist die ideale Gelegenheit, uns kennenzulernen &ndash; hier kommt die ganze Gemeinde zusammen. Mit Eltern-Kind-Raum, Kindergottesdienst und Gemeindeunterricht ist für jeden was dabei. Und danach ist reichlich Zeit, ins Gespräch zu kommen. Kaffee und Kekse gibt es immer, Kuchen wenn jemand vorher besonders gut gelaunt war (und Kuchen gebacken hat) &ndash; kostenlos.
+        Jeden Sonntagmorgen feiern wir [Gottesdienst](#!/service/sunday). Das ist die ideale Gelegenheit, uns kennenzulernen &ndash; hier kommt die ganze Gemeinde zusammen. Mit Eltern-Kind-Raum und Kindergottesdienst ist für jeden was dabei. Und danach ist reichlich Zeit, ins Gespräch zu kommen. Kaffee und Kekse gibt es immer, Kuchen wenn jemand vorher besonders gut gelaunt war (und Kuchen gebacken hat) &ndash; kostenlos.
 
         Im Gottesdienst sind für uns die Auslegung eines Bibeltextes in der Predigt und die Anbetung Gottes die Kernelemente. Du wirst bei uns keine &ldquo;allgemein bekannte&rdquo; Liturgie finden, in der wie zufällig alle um Dich rum aufstehen, singen oder beten. Was wir machen sagen wir vorher an, damit Du Dich möglichst leicht zurecht findest.
 
-        Unsere Gemeinderäume sind in der [Böhlstraße 5, Ludwigshafen](#!/findus). Wenn Du Hilfe auf dem Weg zu uns brauchst hilft Dir [Markus Sander](#!/member/markus) weiter.
+        Unsere Gemeinderäume sind in der [Böhlstraße 5, Ludwigshafen](#!/findus). Wenn Du Hilfe auf dem Weg zu uns brauchst hilft Dir [Monika Weber](#!/member/monika) weiter.
     poster: /assets/img/kreuz2.jpg
 
 cellgroup:
@@ -40,7 +40,7 @@ help:
         >
         > Matthäus 25,40
 
-        Du hast ein konkretes Problem, bei dem Du unsere Hilfe benötigst? [Markus Sander](#!/member/markus) bringt Dich mit den richtigen Personen dafür zusammen.
+        Du hast ein konkretes Problem, bei dem Du unsere Hilfe benötigst? [Monika Weber](#!/member/monika) bringt Dich mit den richtigen Personen dafür zusammen.
     poster: //unsplash.com/photos/iQWvVYMtv1k/download
 
 talents:
@@ -54,22 +54,22 @@ talents:
         
         Gott hat Dir Gaben geschenkt wie sonst niemandem. Es gibt einen Platz, den nur Du ausfüllen kannst. Ohne Dich ist der &ldquo;Leib Christi&ldquo; &ndash; die Gemeinde &ndash; nicht vollständig.
         
-        Weil wir das glauben &ndash; und weil jeder von uns so einen Platz hat &ndash; wollen wir Dir helfen, Deinen Platz zu finden. Vielleicht kennst Du Deine Gaben schon. Vielleicht weißt Du, was Dir leicht fällt, was Dir Spaß macht, was Du besser kannst als andere. Wir wollen Dir die Möglichkeit geben, das bei uns auszuleben.
+        Weil wir das glauben &ndash; und weil jeder von uns so einen Platz hat &ndash; wollen wir Dir helfen, Deinen Platz zu finden. Vielleicht kennst Du Deine Gaben schon. Vielleicht weißt Du, was Dir leicht fällt, was Dir Spaß macht, was Du besonders gut kannst. Wir wollen Dir die Möglichkeit geben, das bei uns auszuleben.
         
         Vielleicht fragst Du Dich auch, was Gott Dir wohl geschenkt haben könnte. Dann helfen wir Dir, das herauszufinden.
         
-        In jedem Fall ist [Jonas Weber](/#!/member/jonas) Dein Ansprechpartner und unterstützt Dich dabei, das zu tun, was Gott sich mit Dir gedacht hat.
+        In jedem Fall ist [Milena Hansen](/#!/member/milena) Dein Ansprechpartner und unterstützt Dich dabei, das zu tun, was Gott sich mit Dir gedacht hat.
     poster: //unsplash.com/photos/Tq4YjCa2BSc/download
 
 baptism:
     action: Werde Getauft
     name: Werde Getauft
     description: |
-        Wir glauben, dass jeder getauft werden darf, der sich selbst dafür entscheidet. Er drückt damit verbindlich seinen Glauben aus &ndash; und Gott legt einen großen Segen darauf.
+        Jeden Menschen, der sich mit seinem ganzen Leben Jesus anvertraut, ermutigen wir, darüber nachzudenken, sich taufen zu lassen und sich der Gemeinde anzuschließen. Wer sich zur Taufe entscheidet, drückt damit verbindlich seinen Glauben aus &ndash; und Gott legt einen großen Segen darauf. 
 
-        Ein bis zwei mal im Jahr veranstalten wir einen Taufgottesdienst am Willersinnweiher in Ludwigshafen. Wir bereiten jeden, der den Wunsch hat sich taufen zu lassen, in einem Grundlagen-Kurs über Christsein, Taufe und Gemeindemitgliedschaft vor. So stellen wir sicher, dass Täuflinge wissen, worauf sie sich einlassen. Außerdem bekommt jeder Täufling einen Taufpaten &ndash; einen erfahrenen Christ, der ihn in den ersten Monaten nach der Taufe individuell begleitet.
+        Ein bis zwei mal im Jahr veranstalten wir einen Taufgottesdienst, meist im Bliesbad in Ludwigshafen. Wir bereiten jeden, der den Wunsch hat sich taufen zu lassen, in einem Grundlagen-Kurs über Christsein, Taufe und Gemeindemitgliedschaft vor. So stellen wir sicher, dass Täuflinge wissen, worauf sie sich einlassen. Außerdem bekommt jeder Täufling einen Taufpaten &ndash; einen erfahrenen Christ, der ihn in den ersten Monaten nach der Taufe individuell begleitet.
 
-        Du hegst den Wunsch, dich taufen zu lassen und so deinen Glauben verbindlich zu bezeugen? [Wilfried Schmitt](/#!/member/wilfried) hilft Dir gern weiter.
+        Du hegst den Wunsch, dich taufen zu lassen und so deinen Glauben verbindlich zu bezeugen? [Dominik Schreiber](/#!/member/dominik) hilft Dir gern weiter.
     poster: /assets/img/taufe.jpg
 
 participate:
@@ -83,9 +83,9 @@ participate:
         >
         > Matthäus 28,19-20
         
-        Diesem Auftrag kommen wir mit den verschiedensten Angeboten nach: Jungschar, Café Life und Gospel Kids; Seniorenkreis, Frauenfrühstück und Lobpreis-Gottesdienste; Hauskreise und Gottesdienste. Alles mit dem einen Ziel: Gottes Liebe bekannt machen, Gottes Nähe erlebbar machen, Gott für seine Taten loben und preisen.
+        Diesem Auftrag kommen wir mit den verschiedensten Angeboten nach: Jugendkreis, Seniorenkreis und Lobpreis-Gottesdienste; Hauskreise und Gottesdienste. Alles mit dem einen Ziel: Gottes Liebe bekannt machen, Gottes Nähe erlebbar machen, Gott für seine Taten loben und preisen.
         
-        So haben wir viele Punkte, an denen genau Du mit genau Deinen Gaben und Fähigkeiten gebraucht bist. Du machst Musik und willst anderen helfen, Gott anzubeten? Spiel in einer der Bands mit, die sonntags den Gottesdienst gestalten. Du kannst gut mit Kindern umgehen und möchtest ihnen von Gottes Liebe erzählen? Hilf mit in der Jungschar oder dem Kindergottesdienst. Du schreibst gern Texte und Artikel und möchtest davon etwas weitergeben? Schreib Artikel für unseren Gemeindebrief &ndash; oder steig gleich in das Gemeindebrief-Team mit ein.
+        So haben wir viele Punkte, an denen genau Du mit genau Deinen Gaben und Fähigkeiten gebraucht bist. Du machst Musik und willst anderen helfen, Gott anzubeten? Vielleicht ist dein Platz in einer der Bands, die sonntags den Gottesdienst gestalten. Du kannst gut mit Kindern umgehen und möchtest ihnen von Gottes Liebe erzählen? Das Kindergottesdienst-Team sucht Verstärkung. Du schreibst gern Texte und Artikel und möchtest davon etwas weitergeben? Schreib Artikel für unseren Gemeindebrief &ndash; und hilf so, dass er mit Interesse gelesen wird.
         
-        Egal ob Du schon weißt wo Gott Dich braucht, oder ob Du noch auf der Suche nach dem richtigen Platz bist: [Jonas Weber](/#!/member/jonas) steht Dir zur Seite und hilft Dir, Deinen Platz zu finden.
+        Egal ob Du schon weißt wo Gott Dich braucht, oder ob Du noch auf der Suche nach dem richtigen Platz bist: [Milena Hansen](/#!/member/milena) steht Dir zur Seite und hilft Dir, Deinen Platz zu finden.
     poster: //unsplash.com/photos/vS7LVkPyXJU/download
