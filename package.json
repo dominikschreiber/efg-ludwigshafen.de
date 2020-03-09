@@ -32,7 +32,7 @@
     "load-grunt-tasks": "*"
   },
   "dependencies": {
-    "angular": "^1.6.3",
+    "angular": "^1.7.9",
     "angular-i18n": "^1.6.3",
     "angular-marked": "^1.2.2",
     "angular-route": "^1.6.3",
