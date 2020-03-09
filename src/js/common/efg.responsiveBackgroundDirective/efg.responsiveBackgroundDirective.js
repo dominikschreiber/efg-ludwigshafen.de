@@ -6,7 +6,7 @@ angular
     'efg.responsiveFilter',
     'ng'
   ])
-  .directive('responsiveBackground', function (responsive, $filter, $log) {
+  .directive('responsiveBackground', function (responsive, $filter) {
     var cache = {};
 
     return {

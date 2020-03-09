@@ -40,11 +40,8 @@ module.exports = function(grunt) {
       },
       vendorscripts: {
         src: [
-          'node_modules/moment/min/moment.min.js',
           'node_modules/jquery/dist/jquery.min.js',
           'node_modules/bootstrap/dist/js/bootstrap.min.js',
-          'node_modules/fullcalendar/dist/fullcalendar.min.js',
-          'node_modules/fullcalendar/dist/gcal.min.js',
           'node_modules/marked/marked.min.js',
           'node_modules/js-yaml/dist/js-yaml.min.js',
           'node_modules/angular/angular.min.js',
@@ -60,10 +57,6 @@ module.exports = function(grunt) {
           'node_modules/angulartics-piwik/dist/angulartics-piwik.min.js'
         ],
         dest: 'vendor.min.js'
-      },
-      vendorstyles: {
-        src: ['node_modules/fullcalendar/dist/fullcalendar.css'],
-        dest: 'vendor.min.css'
       }
     },
     copy: {

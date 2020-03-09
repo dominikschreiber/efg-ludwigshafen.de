@@ -29,7 +29,7 @@ angular
     $locationProvider.html5Mode(false);
     $locationProvider.hashPrefix('!');
   })
-  .run(function($rootScope, $log, $route) {
+  .run(function($rootScope, $route) {
     $rootScope.$on('$routeChangeSuccess', function() {
       if ($route.current.$$route) {
         document.body.className = 'view-' +

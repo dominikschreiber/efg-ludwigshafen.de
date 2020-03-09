@@ -2,7 +2,7 @@
 
 angular
   .module('efg.componentDirective', ['ng'])
-  .directive('component', function($log) {
+  .directive('component', function() {
     return {
       replace: true, // to allow style/ng-style
       restrict: 'E',

@@ -2,7 +2,7 @@
 
 angular
   .module('efg.playerService', ['efg.sermonService', 'ng'])
-  .factory('player', function(sermon, $rootScope, $log) {
+  .factory('player', function(sermon, $rootScope) {
     function position(audio) {
       return {
         currenttime: audio.currentTime,

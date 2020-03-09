@@ -50,7 +50,7 @@ angular
       }.bind(this)
     );
   })
-  .directive('geopreview', function(geoApi, $log, $filter) {
+  .directive('geopreview', function(geoApi, $filter) {
     return {
       templateUrl: 'efg.geoPreview.tpl.html',
       scope: {

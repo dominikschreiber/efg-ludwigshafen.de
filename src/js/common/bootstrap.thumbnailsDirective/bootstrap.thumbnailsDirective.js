@@ -5,7 +5,7 @@ angular
     'bootstrap.thumbnailDirective',
     'ng'
   ])
-  .directive('thumbnails', function($log) {
+  .directive('thumbnails', function() {
     return {
       controller: function($scope) {
         $scope.items.forEach(function ($item, i, $items) {
@@ -19,8 +19,6 @@ angular
           var md = 12 / Math.max(1, remaining < len % 3 ? len % 3 : 3);
           /** @type {number}  */
           var sm = 12 / Math.max(1, remaining < len % 3 ? len % 3 : 3);
-
-          console.log('item:', $item.id, 'i:', i, 'len:', len, 'remaining:', remaining, 'lg:', lg, 'md:', md, 'sm:', sm);
 
           angular.extend($item, {
             cls: 'col-sm-' + sm + ' col-md-' + md + ' col-lg-' + lg

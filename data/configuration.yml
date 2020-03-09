@@ -4,16 +4,3 @@ owncloud:
         downloads: 9VJFv5jmb3JpNXB
         sermon: bq1QQFmNVLVoE8p
         public: Xh8kAU86IUnH3RC
-            
-event:
-    calendar:
-        id: efg.ludwigshafen@gmail.com
-        apikey: AIzaSyAItn9V0gjivVppN6e0Ey5RviaMxtTuQ0U
-    types:
-        für alle: is-for-all
-        für Frauen: is-for-women
-        für Männer: is-for-men
-        für Kinder: is-for-kids
-        für Jugendliche: is-for-teens
-        für Senioren: is-for-seniors
-        für Mitarbeiter: is-internal

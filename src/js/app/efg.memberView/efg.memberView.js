@@ -26,7 +26,7 @@ angular
       }.bind(this)
     );
   })
-  .directive('memberpreview', function(memberApi, $log) {
+  .directive('memberpreview', function(memberApi) {
     return {
       templateUrl: 'efg.memberPreview.tpl.html',
       scope: {

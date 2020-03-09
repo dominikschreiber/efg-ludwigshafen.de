@@ -1,102 +1,11 @@
-@u-event-borderwidth: .125 * @u-unit;
-@u-disabled-opacity: .1;
-
-@c-all:      @c-primary;
-@c-women:    @c-accent-1;
-@c-men:      @c-accent-2;
-@c-kids:     @c-accent-3;
-@c-teens:    @c-accent-4;
-@c-seniors:  @c-accent-5;
-@c-internal: @c-accent-6;
-
-.fc-event {
-    background-color: transparent;
-    border-color: @c-primary;
-    border-width: 0 0 0 @u-event-borderwidth;
-    border-radius: 0;
-    
-    font-size: .6 * @u-unit;
-    
-    opacity: @u-disabled-opacity;
-    &.is-selected { opacity: 1; }
-
-    &,
-    &:hover {
-        color: @c-content;
-    }
-    
-    &.is-for-all     { border-color: @c-all; }
-    &.is-for-women   { border-color: @c-women; }
-    &.is-for-men     { border-color: @c-men; }
-    &.is-for-kids    { border-color: @c-kids; }
-    &.is-for-teens   { border-color: @c-teens; }
-    &.is-for-seniors { border-color: @c-seniors; }
-    &.is-internal    { border-color: @c-internal; }
-}
-
-.fc-content {
-    text-overflow: ellipsis;
-}
-
-.fc-day-grid-event {
-    margin: .0625 * @u-unit 0;
-}
-
-.fc-unthemed {
-    .fc-other-month {
-        background: fade(@c-background, 30);
-    }
-    // needs to be behind .fc-sat/.fc-sun to style
-    // .fc-sat/.fc-sun.fc-today correctly
-    .fc-today {
-        background: fade(@c-primary, 10);
-    }
-}
-
-.eventfilters {
-    padding: 0;
-    list-style: none;
-    text-align: left;
-}
-.eventfilter {
-    opacity: @u-disabled-opacity;
-    &.is-selected { opacity: 1; }
-    
-    label {
-        font-weight: 400;
-        @media (-webkit-min-device-pixel-ratio: 2),
-               (min-resolution: 192dpi) {
-            font-weight: 300;
-        }
-        border-left: 2 * @u-event-borderwidth solid transparent;
-    }
-    
-    input {
-        margin-right: .5 * @u-unit;
-        margin-left: .5 * @u-unit;
-    }
-    
-    &.is-for-all label { border-left-color: @c-all; }
-    &.is-for-women label { border-left-color: @c-women; }
-    &.is-for-men label { border-left-color: @c-men; }
-    &.is-for-kids label { border-left-color: @c-kids; }
-    &.is-for-teens label { border-left-color: @c-teens; }
-    &.is-for-seniors label { border-left-color: @c-seniors; }
-    &.is-internal label { border-left-color: @c-internal; }
-}
- 
-@media screen and (max-width: @screen-xs-max) {
-    .view-event {
-        .headerbar-items {
-            width: 100%;
-            justify-content: flex-end;
-        }
-        .headerbar-brand { margin-right: auto; }
-        .headerbar-rightitems { display: none; }
-    }
-}
-
 .view-event {
-    padding-top: @u-navbar-height + 2 * @u-unit;
-    padding-bottom: 2 * @u-unit;
+    height: 100vh;
+}
+
+.view-event > div[ng-view],
+.view-event > div[ng-view] > iframe {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: none;
 }

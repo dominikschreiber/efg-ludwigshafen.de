@@ -2,7 +2,7 @@
 
 angular
   .module('efg.eventService', ['ng'])
-  .factory('event', function($q, $log, configurationApi) {
+  .factory('event', function($q, configurationApi) {
     function endswithignorecase(str, suffix) {
       return str &&
         str.toLowerCase().lastIndexOf(suffix.toLowerCase()) ===
