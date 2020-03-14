@@ -3,20 +3,25 @@
 angular
   .module('efg.infoView', [
     'efg.infoApi',
-    'efg.responsiveBackgroundDirective',
-    'ng',
-    'ngRoute'
+    'ng'
   ])
-  .config(function($routeProvider) {
-    $routeProvider.when('/info/:id', {
-      controller: 'InfoCtrl as info',
-      templateUrl: 'efg.infoView.tpl.html'
-    });
-  })
-  .controller('InfoCtrl', function(infoApi, $routeParams) {
-    infoApi.get($routeParams.id).then(
-      function(info) {
-        this.title = info.name;
-      }.bind(this)
-    );
+  .directive('infopreview', function(infoApi) {
+    return {
+      templateUrl: 'efg.infoPreview.tpl.html',
+      scope: {
+        classes: '@'
+      },
+      controller: function($scope) {
+        infoApi.query().then(function(infos) {
+          $scope.infos = Object.entries(infos).map(function(e) {
+            var timestamp = e[0].split('_').map(function(_) { return _.split('-'); });
+            
+            return {
+              timestamp: timestamp[0].reverse().join('.') + ' ' + timestamp[1].join(':') + ' Uhr',
+              text: e[1]
+            };
+          })
+        });
+      }
+    }
   });

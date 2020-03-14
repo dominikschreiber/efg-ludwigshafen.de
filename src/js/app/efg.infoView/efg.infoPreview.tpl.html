@@ -1,0 +1,6 @@
+<component ng-if="infos.length > 0" classes="component-lg info {{classes}}" header="Aktuelle Informationen">
+  <div ng-repeat="info in infos">
+    <h3>{{info.timestamp}}</h3>
+    <div marked="info.text"></div>
+  </div>
+</component>
