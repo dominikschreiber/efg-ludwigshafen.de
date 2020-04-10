@@ -50,7 +50,17 @@
 </head>
 
 <body>
-    <headerbar></headerbar>
+    <nav class="headerbar headerbar-fixed-top">
+        <ul class="headerbar-items">
+            <li class="headerbar-item headerbar-brand">
+                <a href="#!/">
+                    <img alt="EFG Ludwigshafen"
+                         src="assets/img/logo.svg"
+                         class="img-responsive">
+                </a>
+            </li>
+        </ul>
+    </nav>
     <div ng-view autoscroll></div>
 
     <script src="vendor.min.js"></script>

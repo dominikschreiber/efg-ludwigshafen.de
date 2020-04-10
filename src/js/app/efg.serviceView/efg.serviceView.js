@@ -3,8 +3,6 @@
 angular
 	.module('efg.serviceView', [
 		'efg.serviceApi',
-		'efg.trustFilter',
-		'efg.sermonDirective',
 		'efg.responsiveBackgroundDirective',
 		'hc.marked',
 		'ng',
@@ -25,7 +23,6 @@ angular
 				this.title = result.name;
 				this.subtitle = result.subtitle;
 				this.description = result.description;
-				this.sermon = result.sermon;
 			}.bind(this)
 		);
 	})

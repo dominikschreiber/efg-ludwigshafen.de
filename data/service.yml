@@ -6,7 +6,6 @@
 #         day: String (e.g. Sonntags)
 #         hours: String (e.g. 10:00 Uhr)
 #     poster: url
-#     sermon: Sermon (see sermon.yml)
 #
 # @creates #!/service/${id}
 # @stability 2
@@ -32,4 +31,3 @@ sunday:
         day: Jeden Sonntag
         hours: 10:00 Uhr
     poster: #//lorempixel.com/1920/1080
-    sermon:

@@ -15,7 +15,6 @@ angular
     'efg.nextView',
     'efg.contactView',
     'efg.downloadsView',
-    'efg.headerbarDirective',
     'ng',
     'ngRoute',
     'angulartics',

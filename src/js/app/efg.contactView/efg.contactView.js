@@ -3,7 +3,6 @@
 angular
   .module('efg.contactView', [
     'efg.contactApi',
-    'efg.trustFilter',
     'efg.responsiveBackgroundDirective',
     'bootstrap.thumbnailsDirective',
     'hc.marked',
