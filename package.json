@@ -42,7 +42,7 @@
     "angulartics": "^1.4.0",
     "angulartics-piwik": "^1.0.5",
     "bootstrap": "^3.3.7",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "js-yaml": "^3.13.1",
     "ngmap": "^1.18.4"
   }
