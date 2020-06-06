@@ -35,4 +35,9 @@ angular
           ($route.current.$$route.originalPath.split('/')[1] || 'index');
       }
     });
+
+    var d = new Date();
+    if (d.getDate() === 0 && d.getHours() > 8 && d.getHours() < 12) {
+      document.getElementById('stream').classList.add('live');
+    }
   });
