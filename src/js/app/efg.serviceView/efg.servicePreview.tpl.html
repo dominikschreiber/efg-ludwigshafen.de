@@ -1,5 +1,7 @@
 <component classes="services {{classes}}" responsive-background="{{background}}" responsive-background-dark="{{dark}}" header="{{ services.length === 1 ? 'Unser Gottesdienst' : 'Unsere Gottesdienste' }}"
-  subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
+	subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
+	<style>#headsup { padding: 16px; border-radius: 4px; border: 1px solid #e33; background: #fee; color: #e33; }#headsup a{color: #e33; text-decoration: underline}</style>
+	<p id="headsup">Am <b>Sonntag den 9.8.2020</b> feiern wir mit beim <b>Gottesdienst der FeG Ludwigshafen</b>. Schalte dich über deren Website hinzu: <a href="https://ludwigshafen.feg.de/">ludwigshafen.feg.de</a>. Der Gottesdienst beginnt um <b>10:30 Uhr</b>.</p>
 	<div ng-if="services" class="col-sm-6" style="padding-left: 2rem; padding-right: 2rem" ng-repeat="service in services" ng-class="{'col-sm-offset-3': isLastAndOdd($index)}">
 		<a ng-href="#!/service/{{service.id}}" class="btn btn-lg btn-block btn-outline">
 			<span ng-bind="service.title"></span><br>
