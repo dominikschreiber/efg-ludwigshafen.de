@@ -37,7 +37,7 @@ angular
     });
 
     var d = new Date();
-    if (d.getDate() === 7 && d.getHours() > 8 && d.getHours() < 12) {
+    if (d.getDay() === 0 && d.getHours() > 8 && d.getHours() < 12) {
       document.getElementById('stream').classList.add('live');
     }
   });
