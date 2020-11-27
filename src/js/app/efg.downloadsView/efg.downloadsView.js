@@ -13,6 +13,10 @@ angular
       url: '/assets/downloads/2020-10-04 Arbeitsanweisung Dankbarkeit.pdf',
       title: '2020-10-04 Arbeitsanweisung Dankbarkeit',
       ending: 'pdf'
+    }, {
+      url: '/assets/downloads/2020-11-29 Bibelstellen zur Predigt.pdf',
+      title: '2020-11-29 Bibelstellen zur Predigt',
+      ending: 'pdf'
     }];
 
     this.getImageSrc = function(asset) {
