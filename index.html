@@ -1,36 +1,36 @@
-<!--
-Notes to future me:
-
-- routing is done via ids, ids must end on / (js redirects !/foo -> !/foo/)
-- routes are basically !/:locale/:resource[/:key]
-
-- sections center their content (flexbox, align-items/justify-content:center)
-- .h-32 fixes the height to ~32vh ((1 - 1/1.618) * 100vh)
-- .h-68 fixes the height to ~68vh ((1/1.618) * 100vh)
-- .inverse indicates a dark background, flips text-colors to white
-- style="background-image:linear-gradient(0deg,#000a 0#000a 100%),url(img/bg.webp)"
-  creates a semi-transparent black overlay over img/bg.webm (use with .inverse)
-
-- .cols creates a columned line (flexbox)
-- .cols > .(s|m|l|lx)-(0|25|33|50|66|75|100) defines the width of a column
-- viewport-width breakpoints are s=0px, m=600px, l=1024px, xl=1440px
-
-- images are referenced as webp (convert with cwebp -q (10|50) in.jpg -o out.webp)
-- for IE, webp is replaced by jpg in the whole html
-
-- svgs are referenced from the svg library at the bottom, need the viewBox on the
-  referencing element as well (or a fixed height+width), use the id-prefix img-
-- icons, where possible, are inlined from https://icons.getbootstrap.com/
-
-- iframes are placed in <noscript> tags and are lazily evaluated in JS (when the
-  route is visible)
-
--->
 <!DOCTYPE html>
 <html lang="de">
   <head>
     <title>EFG Ludwigshafen</title>
     <meta charset="utf-8" />
+    <!--
+    Notes to future me:
+
+    - routing is done via ids, ids must end on / (js redirects !/foo -> !/foo/)
+    - routes are basically !/:locale/:resource[/:key]
+
+    - sections center their content (flexbox, align-items/justify-content:center)
+    - .h-32 fixes the height to ~32vh ((1 - 1/1.618) * 100vh)
+    - .h-68 fixes the height to ~68vh ((1/1.618) * 100vh)
+    - .inverse indicates a dark background, flips text-colors to white
+    - style="background-image:linear-gradient(0deg,#000a 0#000a 100%),url(img/bg.webp)"
+      creates a semi-transparent black overlay over img/bg.webm (use with .inverse)
+
+    - .cols creates a columned line (flexbox)
+    - .cols > .(s|m|l|lx)-(0|25|33|50|66|75|100) defines the width of a column
+    - viewport-width breakpoints are s=0px, m=600px, l=1024px, xl=1440px
+
+    - images are referenced as webp (convert with cwebp -q (10|50) in.jpg -o out.webp)
+    - for IE, webp is replaced by jpg in the whole html
+
+    - svgs are referenced from the svg library at the bottom, need the viewBox on the
+      referencing element as well (or a fixed height+width), use the id-prefix img-
+    - icons, where possible, are inlined from https://icons.getbootstrap.com/
+
+    - iframes are placed in <noscript> tags and are lazily evaluated in JS (when the
+      route is visible)
+
+    -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,700,300,300italic"
@@ -137,7 +137,7 @@ Notes to future me:
        */
 
       html {
-        font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+        font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
         color: #132532;
       }
 
@@ -465,17 +465,17 @@ Notes to future me:
       .fold:checked + label {
         margin-bottom: 2rem;
       }
-      article[id^="!/de/"] .fold + label:before {
-        content: "Mehr anzeigen";
+      article[id^='!/de/'] .fold + label:before {
+        content: 'Mehr anzeigen';
       }
-      article[id^="!/de/"] .fold:checked + label:before {
-        content: "Weniger anzeigen";
+      article[id^='!/de/'] .fold:checked + label:before {
+        content: 'Weniger anzeigen';
       }
-      article [id^="!/en/"] .fold + label:before {
-        content: "Show more";
+      article [id^='!/en/'] .fold + label:before {
+        content: 'Show more';
       }
-      article[id^="!/en/"] .fold:checked + label:before {
-        content: "Show less";
+      article[id^='!/en/'] .fold:checked + label:before {
+        content: 'Show less';
       }
       /* #endregion */
       /* #region .alert ===================================================== */
@@ -2885,7 +2885,7 @@ Notes to future me:
       <symbol id="img-claim" viewBox="0 0 2195 700">
         <style>
           text {
-            font-family: "Source Sans Pro", sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
             font-size: 92px;
             font-weight: 300;
           }
@@ -3079,53 +3079,53 @@ Notes to future me:
       /** @type {HTMLAnchorElement[]} */
       var articleLinks;
       /** @type {HTMLAnchorElement} */
-      var logo = document.getElementById("logo");
+      var logo = document.getElementById('logo');
       /** @type {HTMLHtmlElement} */
-      var html = document.querySelector("html");
+      var html = document.querySelector('html');
       /** @type {{[from: string]: string}} */
       var redirects = {
-        "!/": "!/de/",
-        "!/service/sunday/": "!/de/service/sunday-1000/",
-        "!/geo/": "!/de/geo/",
-        "!/event/": "!/de/events/",
-        "!/packparty/": "!/de/packparty/",
-        "!/next/service/": "!/de/next/service/",
-        "!/next/cellgroup/": "!/de/next/cellgroup/",
-        "!/next/help/": "!/de/next/help/",
-        "!/next/talents/": "!/de/next/gifts/",
-        "!/next/baptism/": "!/de/next/baptism/",
-        "!/next/participate/": "!/de/next/participate/",
-        "!/member/dominik/": "!/de/leadership/dominik/",
-        "!/member/jonas/": "!/de/leadership/jonas/",
-        "!/member/simon/": "!/de/leadership/simon/",
-        "!/member/milena/": "!/de/leadership/milena/",
-        "!/member/fabienne/": "!/de/leadership/fabienne/",
-        "!/member/marc/": "!/de/leadership/marc/",
-        "!/member/monika/": "!/de/leadership/monika/",
-        "!/member/andreas/": "!/de/leadership/andreas/",
-        "!/member/sabina/": "!/de/leadership/sabina/",
-        "!/group/jugendkreis/": "!/de/group/hafen/",
-        "!/group/seniorenkreis/": "!/de/group/seniorenkreis/",
-        "!/contact/bank/": "!/de/give/",
-        "!/imprint/": "!/de/imprint/",
-        "!/data-protection/": "!/de/data-protection/",
-        "!/downloads/": "!/de/downloads/",
+        '!/': '!/de/',
+        '!/service/sunday/': '!/de/service/sunday-1000/',
+        '!/geo/': '!/de/geo/',
+        '!/event/': '!/de/events/',
+        '!/packparty/': '!/de/packparty/',
+        '!/next/service/': '!/de/next/service/',
+        '!/next/cellgroup/': '!/de/next/cellgroup/',
+        '!/next/help/': '!/de/next/help/',
+        '!/next/talents/': '!/de/next/gifts/',
+        '!/next/baptism/': '!/de/next/baptism/',
+        '!/next/participate/': '!/de/next/participate/',
+        '!/member/dominik/': '!/de/leadership/dominik/',
+        '!/member/jonas/': '!/de/leadership/jonas/',
+        '!/member/simon/': '!/de/leadership/simon/',
+        '!/member/milena/': '!/de/leadership/milena/',
+        '!/member/fabienne/': '!/de/leadership/fabienne/',
+        '!/member/marc/': '!/de/leadership/marc/',
+        '!/member/monika/': '!/de/leadership/monika/',
+        '!/member/andreas/': '!/de/leadership/andreas/',
+        '!/member/sabina/': '!/de/leadership/sabina/',
+        '!/group/jugendkreis/': '!/de/group/hafen/',
+        '!/group/seniorenkreis/': '!/de/group/seniorenkreis/',
+        '!/contact/bank/': '!/de/give/',
+        '!/imprint/': '!/de/imprint/',
+        '!/data-protection/': '!/de/data-protection/',
+        '!/downloads/': '!/de/downloads/'
       };
       /** @type {'Edge'|'LegacyEdge'|'Firefox'|'Chrome'|'Safari'|'WebKit'|'IE'} */
       var browser =
-        navigator.userAgent.indexOf("Edge/") > -1
-          ? "Edge"
-          : navigator.userAgent.indexOf("Edg/") > -1
-          ? "LegacyEdge"
-          : navigator.userAgent.indexOf("Gecko/") > -1
-          ? "Firefox"
-          : navigator.userAgent.indexOf("Chrome/") > -1
-          ? "Chrome"
-          : navigator.userAgent.indexOf("Safari/") > -1
-          ? "Safari"
-          : navigator.userAgent.indexOf("WebKit/") > -1
-          ? "WebKit"
-          : "IE";
+        navigator.userAgent.indexOf('Edge/') > -1
+          ? 'Edge'
+          : navigator.userAgent.indexOf('Edg/') > -1
+          ? 'LegacyEdge'
+          : navigator.userAgent.indexOf('Gecko/') > -1
+          ? 'Firefox'
+          : navigator.userAgent.indexOf('Chrome/') > -1
+          ? 'Chrome'
+          : navigator.userAgent.indexOf('Safari/') > -1
+          ? 'Safari'
+          : navigator.userAgent.indexOf('WebKit/') > -1
+          ? 'WebKit'
+          : 'IE';
       /**
        * @template T
        * @param {ArrayLike<T>} _
@@ -3148,7 +3148,7 @@ Notes to future me:
         var id = location.hash.slice(1);
 
         if (!articles) {
-          articles = toArray(document.querySelectorAll("article[id]")).reduce(
+          articles = toArray(document.querySelectorAll('article[id]')).reduce(
             function (as, e) {
               as[e.id] = e.dataset;
 
@@ -3163,52 +3163,52 @@ Notes to future me:
         }
 
         if (id in articles) {
-          document.title = articles[id].title + " | EFG Ludwigshafen";
+          document.title = articles[id].title + ' | EFG Ludwigshafen';
           articleLinks.forEach(function (_) {
-            if (id.indexOf(_.href.split("#")[1]) === 0) {
-              _.classList.add("active");
+            if (id.indexOf(_.href.split('#')[1]) === 0) {
+              _.classList.add('active');
             } else {
-              _.classList.remove("active");
+              _.classList.remove('active');
             }
           });
           html.lang = id.slice(2, 4);
-          logo.href = "#" + id.slice(0, 5);
+          logo.href = '#' + id.slice(0, 5);
           toArray(
-            document.getElementById(id).getElementsByTagName("noscript")
+            document.getElementById(id).getElementsByTagName('noscript')
           ).forEach(function (_) {
-            var d = document.createElement("div");
+            var d = document.createElement('div');
             d.innerHTML = _.textContent;
             toArray(d.children).forEach(function (c) {
               _.parentElement.insertBefore(c, _);
             });
             _.parentElement.removeChild(_);
           });
-        } else if (id + "/" in articles) {
-          location.hash = "#" + id + "/";
+        } else if (id + '/' in articles) {
+          location.hash = '#' + id + '/';
         } else if (id in redirects) {
-          location.hash = "#" + redirects[id];
-        } else if (id + "/" in redirects) {
-          location.hash = "#" + redirects[id + "/"];
+          location.hash = '#' + redirects[id];
+        } else if (id + '/' in redirects) {
+          location.hash = '#' + redirects[id + '/'];
         } else {
-          location.hash = "#" + Object.keys(articles)[0];
+          location.hash = '#' + Object.keys(articles)[0];
         }
       }
 
-      window.addEventListener("hashchange", onhashchange);
+      window.addEventListener('hashchange', onhashchange);
       onhashchange();
 
-      if (browser === "IE") {
+      if (browser === 'IE') {
         // IE doesn't support webp => replace with jpg
         toArray(document.querySelectorAll('img[src*=".webp"]')).forEach(
           function (_) {
-            _.src = _.src.replace(/\.webp/g, ".jpg");
+            _.src = _.src.replace(/\.webp/g, '.jpg');
           }
         );
         toArray(document.querySelectorAll('[style*=".webp"]')).forEach(
           function (_) {
             _.setAttribute(
-              "style",
-              _.getAttribute("style").replace(/\.webp/g, ".jpg")
+              'style',
+              _.getAttribute('style').replace(/\.webp/g, '.jpg')
             );
           }
         );
