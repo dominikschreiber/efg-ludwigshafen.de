@@ -1,0 +1,3223 @@
+<!--
+Notes to future me:
+
+- routing is done via ids, ids must end on / (js redirects !/foo -> !/foo/)
+- routes are basically !/:locale/:resource[/:key]
+
+- sections center their content (flexbox, align-items/justify-content:center)
+- .h-32 fixes the height to ~32vh ((1 - 1/1.618) * 100vh)
+- .h-68 fixes the height to ~68vh ((1/1.618) * 100vh)
+- .inverse indicates a dark background, flips text-colors to white
+- style="background-image:linear-gradient(0deg,#000a 0#000a 100%),url(img/bg.webp)"
+  creates a semi-transparent black overlay over img/bg.webm (use with .inverse)
+
+- .cols creates a columned line (flexbox)
+- .cols > .(s|m|l|lx)-(0|25|33|50|66|75|100) defines the width of a column
+- viewport-width breakpoints are s=0px, m=600px, l=1024px, xl=1440px
+
+- images are referenced as webp (convert with cwebp -q (10|50) in.jpg -o out.webp)
+- for IE, webp is replaced by jpg in the whole html
+
+- svgs are referenced from the svg library at the bottom, need the viewBox on the
+  referencing element as well (or a fixed height+width), use the id-prefix img-
+- icons, where possible, are inlined from https://icons.getbootstrap.com/
+
+- iframes are placed in <noscript> tags and are lazily evaluated in JS (when the
+  route is visible)
+
+-->
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>EFG Ludwigshafen</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,700,300,300italic"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="img/favicon-96x96.png"
+    />
+
+    <link rel="apple-touch-icon" href="img/favicon-120x120.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="img/favicon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="167x167"
+      href="img/favicon-167x167.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/favicon-180x180.png"
+    />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="EFG Ludwigshafen. Christen im Hemshof. Gottesdienst Sonntag 10:00 Uhr. Lern uns kennen."
+    />
+    <meta name="author" content="EFG Ludwigshafen" />
+
+    <meta name="apple-mobile-web-app-title" content="EFG Ludwigshafen" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta property="og:title" content="EFG Ludwigshafen" />
+    <meta
+      property="og:description"
+      content="EFG Ludwigshafen. Christen im Hemshof. Gottesdienst Sonntag 10:00 Uhr. Lern uns kennen."
+    />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://efg-ludwigshafen.de/img/favicon-1024x1024.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:url" content="https://efg-ludwigshafen.de" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:url" content="https://efg-ludwigshafen.de" />
+    <meta property="twitter:title" content="EFG Ludwigshafen" />
+    <meta
+      property="twitter:description"
+      content="EFG Ludwigshafen. Christen im Hemshof. Gottesdienst Sonntag 10:00 Uhr. Lern uns kennen."
+    />
+    <meta
+      property="twitter:image"
+      content="https://efg-ludwigshafen.de/img-favicon-1024x1024-square.png"
+    />
+    <meta property="twitter:image:width" content="1024" />
+    <meta property="twitter:image:height" content="1024" />
+    <meta property="twitter:site" content="@efglu" />
+    <meta property="twitter:creator" content="@efglu" />
+
+    <meta name="theme-color" content="#132532" />
+    <style>
+      /**
+       * @fileoverview
+       * colors obtained by spinning #55ace8 by 45° multiple times:
+       * --black: #132532;
+       * --grey: #ebebeb;
+       * --white: #ffffff;
+       * --blue: #55ace8;
+       * --violet: #6c55e8;
+       * --pink: #da55e8;
+       * --red: #e85587;
+       * --orange: #e89155;
+       * --lime: #d1e855;
+       * --green: #63e855;
+       * --turquoise: #55e8b6;
+       *
+       * --border-width: 0.0625rem;
+       * --border-radius: 0.25rem;
+       */
+
+      html {
+        font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+        color: #132532;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-top: 0;
+      }
+
+      h1 + p {
+        margin-top: -2.5rem;
+        margin-bottom: 3rem;
+      }
+
+      h1 + p:last-child {
+        margin-bottom: 0;
+      }
+
+      h2 + p {
+        margin-top: 0;
+      }
+
+      p {
+        width: 100%;
+        line-height: 1.4;
+      }
+
+      blockquote {
+        margin: 0;
+        padding: 1rem;
+        border-left: 0.25rem solid #ebebeb;
+      }
+
+      blockquote > :first-child {
+        margin-top: 0;
+      }
+
+      blockquote > :last-child {
+        margin-bottom: 0;
+      }
+
+      ul.-inline {
+        padding: 0;
+        list-style: none;
+      }
+      ul.-inline > li {
+        display: inline-block;
+        margin: 0 1rem;
+      }
+      ul.-inline > li:first-of-type {
+        margin-left: 0;
+      }
+      ul.-inline > li:last-of-type {
+        margin-right: 0;
+      }
+
+      svg {
+        height: 2rem;
+      }
+      /* #region article ==================================================== */
+      article[id] {
+        display: none;
+      }
+
+      article[id]:target {
+        display: block;
+      }
+
+      article {
+        padding-top: 4rem;
+      }
+      /* #endregion */
+      /* #region section ==================================================== */
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+        box-sizing: border-box;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+      }
+
+      .inverse {
+        color: #fff;
+        text-shadow: 0 0 0.25rem #000;
+      }
+
+      section.h-68 {
+        height: calc((100vh - 4rem) / 1.618);
+      }
+
+      section.h-32 {
+        height: calc(100vh - ((100vh - 4rem) / 1.618));
+      }
+
+      section.text {
+        padding: 2rem calc(50% - 15rem);
+      }
+
+      .text h1,
+      .text h2,
+      .text ul,
+      .text li,
+      .text blockquote,
+      .text address,
+      .text p,
+      .text dt,
+      .text dd {
+        box-sizing: border-box;
+        width: 100%;
+        text-align: left;
+      }
+
+      .text li,
+      .text p,
+      .text blockquote,
+      .text dd {
+        text-align: justify;
+        hyphens: auto;
+      }
+
+      .text a {
+        color: #55ace8;
+        text-decoration: underline;
+      }
+      /* #endregion */
+      /* #region nav =========================================================*/
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 4rem;
+        padding: 0 1rem;
+        border-bottom: 1px solid #13253233;
+        background-color: #fffd;
+        box-shadow: 0 0 0.5rem #13253233;
+        backdrop-filter: blur(0.1875rem);
+      }
+
+      nav > * {
+        white-space: nowrap;
+        padding: 0 0.5rem;
+        text-decoration: none;
+      }
+
+      nav > :first-child {
+        padding-left: 0;
+      }
+
+      nav > :last-child {
+        padding-right: 0;
+      }
+
+      nav > .active {
+        font-weight: bold;
+      }
+      /* #endregion */
+      /* #region a ========================================================== */
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      p a,
+      blockquote a {
+        text-decoration: underline;
+      }
+
+      .inverse a {
+        color: #fff;
+      }
+      /* #endregion */
+      /* #region button ===================================================== */
+      button,
+      .button {
+        appearance: none;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 0.0625rem solid #132532;
+        border-radius: 0.25rem;
+        color: #132532;
+        background-color: transparent;
+        text-decoration: none;
+        font-size: 1.25em;
+        cursor: pointer;
+      }
+
+      button:hover,
+      .button:hover {
+        background-color: #13253233;
+      }
+
+      button:active,
+      .button:active {
+        background-color: #13253299;
+      }
+
+      button.-solid,
+      .button.-solid {
+        background-color: #ebebeb;
+      }
+
+      button.-solid:hover,
+      .button.-solid:hover {
+        background-color: #dadada;
+      }
+
+      button.-solid:active,
+      .button.-solid:active {
+        background-color: #55ace8;
+        color: #fff;
+      }
+
+      .inverse button,
+      .inverse .button {
+        color: #fff;
+        border-color: #fff;
+      }
+
+      .inverse button:hover,
+      .inverse .button:hover {
+        background-color: #fff3;
+      }
+
+      .inverse button:active,
+      .inverse .button:active {
+        background-color: #fff9;
+      }
+
+      .inverse button.-solid,
+      .inverse .button.-solid {
+        background-color: #132532;
+      }
+
+      .inverse button.-solid:hover,
+      .inverse .button.-solid:hover {
+        background-color: #243643;
+      }
+      /* #endregion */
+      /* #region img ======================================================== */
+      img.-round {
+        border-radius: 100%;
+        border: 0.5rem solid #fff;
+      }
+      /* #endregion */
+      /* #region .cols ====================================================== */
+      .cols {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .cols > * {
+        box-sizing: border-box;
+        flex-grow: 0;
+        flex-shrink: 1;
+      }
+
+      .cols > * > * {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .cols > .s-100 {
+        padding: 0.5rem;
+        flex-basis: 100%;
+      }
+      .cols > .s-75 {
+        padding: 0.5rem;
+        flex-basis: 75%;
+      }
+      .cols > .s-66 {
+        padding: 0.5rem;
+        flex-basis: calc(200% / 3);
+      }
+      .cols > .s-50 {
+        padding: 0.5rem;
+        flex-basis: 50%;
+      }
+      .cols > .s-33 {
+        padding: 0.5rem;
+        flex-basis: calc(100% / 3);
+      }
+      .cols > .s-25 {
+        padding: 0.5rem;
+        flex-basis: 25%;
+      }
+      .cols > .s-16 {
+        padding: 0.5rem;
+        flex-basis: calc(100% / 6);
+      }
+      .cols > .s-0 {
+        padding: 0;
+        flex-basis: 0;
+      }
+      /* #endregion */
+      /* #region .fold =====================================================  */
+      .fold,
+      .fold ~ * {
+        display: none;
+      }
+      .fold:checked ~ * {
+        display: flex;
+      }
+      .fold + label,
+      .fold:checked + label {
+        display: inline-block;
+      }
+      .fold:checked + label {
+        margin-bottom: 2rem;
+      }
+      article[id^="!/de/"] .fold + label:before {
+        content: "Mehr anzeigen";
+      }
+      article[id^="!/de/"] .fold:checked + label:before {
+        content: "Weniger anzeigen";
+      }
+      article [id^="!/en/"] .fold + label:before {
+        content: "Show more";
+      }
+      article[id^="!/en/"] .fold:checked + label:before {
+        content: "Show less";
+      }
+      /* #endregion */
+      /* #region .alert ===================================================== */
+      .alert {
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        box-sizing: border-box;
+        width: calc(100% - 2rem);
+        margin: 1rem;
+        padding: 0.5rem 1rem;
+        border: 0.125rem solid #55ace8;
+        border-radius: 0.25rem;
+        color: #132532;
+        background-color: #e1eef9;
+      }
+      /* #endregion */
+      @media (-webkit-min-device-pixel-ratio: 1.5) {
+        html {
+          font-weight: 300;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        b,
+        strong,
+        th,
+        dt {
+          font-weight: 500;
+        }
+      }
+
+      @media (min-width: 600px) {
+        section {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+
+        nav {
+          padding: 0 2rem;
+        }
+
+        .cols > .m-100 {
+          padding: 0.5rem;
+          flex-basis: 100%;
+        }
+        .cols > .m-75 {
+          padding: 0.5rem;
+          flex-basis: 75%;
+        }
+        .cols > .m-66 {
+          padding: 0.5rem;
+          flex-basis: calc(200% / 3);
+        }
+        .cols > .m-50 {
+          padding: 0.5rem;
+          flex-basis: 50%;
+        }
+        .cols > .m-33 {
+          padding: 0.5rem;
+          flex-basis: calc(100% / 3);
+        }
+        .cols > .m-25 {
+          padding: 0.5rem;
+          flex-basis: 25%;
+        }
+        .cols > .m-16 {
+          padding: 0.5rem;
+          flex-basis: calc(100% / 6);
+        }
+        .cols > .m-0 {
+          padding: 0;
+          flex-basis: 0;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        section {
+          padding-left: calc(50% - 30rem);
+          padding-right: calc(50% - 30rem);
+        }
+
+        .cols > .l-100 {
+          padding: 0.5rem;
+          flex-basis: 100%;
+        }
+        .cols > .l-75 {
+          padding: 0.5rem;
+          flex-basis: 75%;
+        }
+        .cols > .l-66 {
+          padding: 0.5rem;
+          flex-basis: calc(200% / 3);
+        }
+        .cols > .l-50 {
+          padding: 0.5rem;
+          flex-basis: 50%;
+        }
+        .cols > .l-33 {
+          padding: 0.5rem;
+          flex-basis: calc(100% / 3);
+        }
+        .cols > .l-25 {
+          padding: 0.5rem;
+          flex-basis: 25%;
+        }
+        .cols > .l-16 {
+          padding: 0.5rem;
+          flex-basis: calc(100% / 6);
+        }
+        .cols > .l-0 {
+          padding: 0;
+          flex-basis: 0;
+        }
+
+        section {
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        nav {
+          padding: 0 3rem;
+        }
+
+        .cols > .xl-100 {
+          padding: 0.5rem;
+          flex-basis: 100%;
+        }
+        .cols > .xl-75 {
+          padding: 0.5rem;
+          flex-basis: 75%;
+        }
+        .cols > .xl-66 {
+          padding: 0.5rem;
+          flex-basis: calc(200% / 3);
+        }
+        .cols > .xl-50 {
+          padding: 0.5rem;
+          flex-basis: 50%;
+        }
+        .cols > .xl-33 {
+          padding: 0.5rem;
+          flex-basis: calc(100% / 3);
+        }
+        .cols > .xl-25 {
+          padding: 0.5rem;
+          flex-basis: 25%;
+        }
+        .cols > .xl-16 {
+          padding: 0.5rem;
+          flex-basis: calc(100% / 6);
+        }
+        .cols > .xl-0 {
+          padding: 0;
+          flex-basis: 0;
+        }
+
+        section {
+          padding-top: 6rem;
+          padding-bottom: 6rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <a
+        id="logo"
+        href="#!/de/"
+        style="display: inline-block; height: calc(100% - 1rem)"
+        aria-label="Zur Startseite"
+      >
+        <svg
+          viewBox="0 0 454 605"
+          xmlns="http://www.w3.org/2000/svg"
+          style="height: 100%"
+        >
+          <use href="#img-logo" />
+        </svg>
+      </a>
+      <!-- pusher between left- and rightitems -->
+      <div style="width: 100%"></div>
+      <a
+        href="https://www.youtube.com/channel/UCKg6EAu6yE9FSJj2wjNvB-Q/live"
+        style="display: inline-flex; align-items: center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 71.412065 50"
+          style="height: 1rem; margin-right: 0.25rem"
+          fill="#000"
+        >
+          <use href="#img-youtube" />
+        </svg>
+        <span
+          >Sonntag ab 10:00 Uhr streamen wir unseren Gottesdienst auf YouTube.
+          Klick hier um dabei zu sein!</span
+        >
+      </a>
+    </nav>
+    <!-- #region !/de/ ##################################################### -->
+    <article id="!/de/" data-title="Herzlich Willkommen">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #132532ee 0, #132532ee 100%),
+            url(img/header.webp);
+          height: 80vh;
+        "
+        class="inverse"
+      >
+        <svg
+          viewBox="0 0 2195 700"
+          xmlns="http://www.w3.org/2000/svg"
+          style="width: 50vw; max-width: 32rem; height: auto"
+        >
+          <use href="#img-claim" />
+        </svg>
+        <p style="margin-top: 15vh">
+          Aufgrund der verschärften Corona-Allgemeinverfügung für Ludwigshafen
+          feiern wir unsere Gottesdienste per
+          <a href="https://efg-ludwigshafen.de/youtube">YouTube-Stream</a>.
+          Schalte Dich Sonntag um 10:00 Uhr dazu!
+        </p>
+      </section>
+      <section style="background-color: #55ace8">
+        <h1>Unsere Channels</h1>
+        <div class="cols">
+          <div class="s-100 m-50 l-25">
+            <a class="button" href="https://efg-ludwigshafen.de/telegram"
+              >Telegram-Channel</a
+            >
+            <p>Hier bekommst du alle aktuellen Informationen</p>
+          </div>
+          <div class="s-100 m-50 l-25">
+            <a class="button" href="https://efg-ludwigshafen.de/whatsapp"
+              >WhatsApp-Channel</a
+            >
+            <p>Hier auch.</p>
+          </div>
+          <div class="s-100 m-50 l-25">
+            <a class="button" href="https://efg-ludwigshafen.de/youtube"
+              >YouTube-Channel</a
+            >
+            <p>
+              Hier siehst du den Livestream und Aufzeichnunngen von unseren
+              Gottesdiensten.
+            </p>
+          </div>
+          <div class="s-100 m-50 l-25">
+            <a class="button" href="https://efg-ludwigshafen.de/zoom"
+              >Zoom-Channel</a
+            >
+            <p>
+              Hier betrittst du das "Digitale Gemeindehaus": trink mit anderen
+              einen Kaffee, bete, rede. Sonntags nach dem Gottesdienst treffen
+              wir uns hier zum Austausch.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h1>Unser Gottesdienst</h1>
+        <p>Wir freuen uns sehr, Dich dort zu begrüßen.</p>
+        <a href="#!/de/service/sunday-1000/" class="button">
+          Sonntagmorgen-Gottesdienst<br />
+          <b>Jeden Sonntag, 10:00 Uhr</b>
+        </a>
+      </section>
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000c 0, #000c 100%),
+            url(img/geopreview.webp);
+        "
+        class="inverse"
+      >
+        <h1>Unser Standort</h1>
+        <p>Wir sind mitten im Hemshof, dem Herz von Ludwigshafen.</p>
+        <p style="font-size: larger">Böhlstraße 5, Ludwigshafen</p>
+        <a href="#!/de/geo/" class="button">Wegbeschreibung anzeigen</a>
+      </section>
+      <section>
+        <h1>Nächste Events</h1>
+        <p>Bei uns in der Gemeinde</p>
+        <div class="cols">
+          <div class="s-0 l-25"></div>
+          <div class="s-100 m-50 l-25">
+            <a href="#!/de/events/" class="button">Zum Kalender</a>
+          </div>
+          <div class="s-100 m-50 l-25">
+            <a href="#!/de/packparty/" class="button">#packpartylu</a>
+          </div>
+        </div>
+      </section>
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000c 0, #000c 100%),
+            url(img/nextpreview.webp);
+        "
+        class="inverse"
+      >
+        <h1>Nächste Schritte</h1>
+        <div class="cols">
+          <div class="s-100 m-33">
+            <a href="#!/de/next/service/" class="button">
+              Komm zu einem<br />
+              <b>Gottesdienst</b>
+            </a>
+          </div>
+          <div class="s-100 m-33">
+            <a href="#!/de/next/cellgroup/" class="button">
+              Besuch einen<br />
+              <b>Hauskreis</b>
+            </a>
+          </div>
+          <div class="s-100 m-33">
+            <a href="#!/de/next/help/" class="button">
+              Erhalte<br />
+              <b>Hilfe</b>
+            </a>
+          </div>
+          <div class="s-100 m-33">
+            <a href="#!/de/next/gifts/" class="button">
+              Entdecke Deine<br />
+              <b>Gaben</b>
+            </a>
+          </div>
+          <div class="s-100 m-33">
+            <a href="#!/de/next/baptism/" class="button">
+              Werde<br />
+              <b>Getauft</b>
+            </a>
+          </div>
+          <div class="s-100 m-33">
+            <a href="#!/de/next/participate/" class="button">
+              Arbeite<br />
+              <b>Mit</b>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section style="background-color: #55ace8">
+        <h1>Unsere Gemeindeleitung</h1>
+        <div class="cols">
+          <div class="s-0 m-25 l-33"></div>
+          <a href="#!/de/leadership/dominik/" class="s-100 m-50 l-33">
+            <img
+              src="https://gravatar.com/avatar/0c387737897bfb3546f9b6c201fb1782?s=256"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Dominik Schreiber"
+            />
+            <h2>Dominik Schreiber</h2>
+            <p>Geschäftsführung, Gebet, Gottesdienste, Lobpreis</p>
+          </a>
+        </div>
+        <input id="leadership-more" type="checkbox" class="fold" />
+        <label for="leadership-more" class="button"></label>
+        <div class="cols">
+          <a href="#!/de/leadership/jonas/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="img/jonas_klein.webp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+            />
+            <h2>Jonas Weber</h2>
+            <p>Hauskreise, Technik</p>
+          </a>
+          <a href="#!/de/leadership/simon/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="https://gravatar.com/avatar/0c063badc0a8c5b3dd4f819f8e097eab?s=256&d=mp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Simon Hoffmann"
+            />
+            <h2>Simon Hoffmann</h2>
+            <p>Landesverband Südwest, BEFG, Lobpreis</p>
+          </a>
+          <a href="#!/de/leadership/milena/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="img/milena_klein.webp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Milena Hansen"
+            />
+            <h2>Milena Hansen</h2>
+            <p>Mitarbeiterentwicklung, Junge Familien</p>
+          </a>
+          <a href="#!/de/leadership/fabienne/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="img/fabienne_klein.webp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Fabienne Hoffmann"
+            />
+            <h2>Fabienne Hoffmann</h2>
+            <p>Jugendkreis, Mission</p>
+          </a>
+          <a href="#!/de/leadership/marc/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="https://gravatar.com/avatar/f3f8eb51fa0400c47869f8c2602782e2?s=256&d=mp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Marc Warnecke"
+            />
+            <h2>Marc Warnecke</h2>
+            <p>Haus und Hof, Jugendkreis</p>
+          </a>
+          <a href="#!/de/leadership/monika/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="img/monika_klein.webp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Monika Weber"
+            />
+            <h2>Monika Weber</h2>
+            <p>Seelsorge, Diakonie, Gottesdienste</p>
+          </a>
+          <div class="s-0 l-16 xl-0"></div>
+          <a href="#!/de/leadership/andreas/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="https://gravatar.com/avatar/66eb197b9aab356069c8f87946f51b86?s=256&d=mp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Andreas Petry"
+            />
+            <h2>Andreas Petry</h2>
+            <p>Gebet, Seelsorge, Gottesdienste</p>
+          </a>
+          <a href="#!/de/leadership/sabina/" class="s-100 m-50 l-33 xl-25">
+            <img
+              src="img/sabina_klein.webp"
+              class="-round"
+              style="width: 8rem; height: 8rem"
+              alt="Sabina Hertle"
+            />
+            <h2>Sabina Hertle</h2>
+            <p>Evangelische Allianz, Gemeindebrief</p>
+          </a>
+        </div>
+      </section>
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000b 0, #000b 100%),
+            url(img/groupspreview.webp);
+        "
+        class="inverse"
+      >
+        <h1>Unsere Gruppen</h1>
+        <p>Finde Leute wie Dich</p>
+        <div class="cols">
+          <div class="s-100 m-50">
+            <a href="#!/de/group/hafen/">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <use href="#img-earbuds" />
+              </svg>
+              <h2>hafen</h2>
+              <p>Der Jugendkreis</p>
+            </a>
+          </div>
+          <div class="s-100 m-50">
+            <a href="#!/de/group/seniorenkreis/">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <use href="#img-gem" />
+              </svg>
+              <h2>Seniorenkreis</h2>
+              <p>Für Junggebliebene und Senioren</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h1>Gemeinde-Podcast EFG Ludwigshafen</h1>
+        <p>Podcast-Episoden und Predigten der Woche</p>
+        <noscript>
+          <iframe
+            src="https://embed.podcasts.apple.com/us/podcast/gemeinde-podcast-efg-ludwigshafen/id1504444203?itsct=podcast_box&amp;itscg=30200"
+            height="450px"
+            frameborder="0"
+            sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+            allow="autoplay *; encrypted-media *;"
+            title="Gemeinde-Podcast EFG Ludwigshafen bei Apple Podcasts"
+            style="
+              width: 100%;
+              max-width: 60rem;
+              overflow: hidden;
+              border-top-left-radius: 10px;
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              border-bottom-left-radius: 10px;
+              background-color: transparent;
+            "
+          ></iframe>
+        </noscript>
+        <p>
+          Unter dem Namen "Gemeinde-Podcast EFG Ludwigshafen" findest du unseren
+          Podcast auf allen Podcast-Plattformen:
+        </p>
+        <ul class="-inline">
+          <li>
+            <a
+              href="https://podcasts.apple.com/us/podcast/gemeinde-podcast-efg-ludwigshafen/id1504444203?uo=4"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+                <title>Apple Podcasts</title>
+                <use href="#img-apple-podcasts" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://open.spotify.com/show/4Sjd0mLmFPcJpJ8XuoDsj1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 168">
+                <title>Spotify</title>
+                <use href="#img-spotify" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9hbmNob3IuZm0vcy8xNzc3OGI0MC9wb2RjYXN0L3Jzcw=="
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                <title>Google Podcasts</title>
+                <use href="#img-google-podcasts" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://overcast.fm/itunes1504444203/gemeinde-podcast-efg-ludwigshafen"
+              title="Overcast"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+                <title>Overcast</title>
+                <use href="#img-overcast" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.breaker.audio/gemeinde-podcast-efg-ludwigshafen"
+              title="Breaker"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                <title>Breaker</title>
+                <use href="#img-breaker" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://pca.st/q3hjq3jb" title="Pocket Casts">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
+                <title>Pocket Casts</title>
+                <use href="#img-pocketcasts" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://radiopublic.com/gemeindepodcast-efg-ludwigshafen-GAq7gn"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+                <title>RadioPublic</title>
+                <use href="#img-radiopublic" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://anchor.fm/s/17778b40/podcast/rss">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <title>RSS Feed</title>
+                <use href="#img-rss" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section style="background-color: #132532" class="inverse">
+        <h1>Kontakt</h1>
+        <p>So erreichst Du uns</p>
+        <div class="cols">
+          <div class="s-100 l-33">
+            <a href="#!/de/geo/">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                height="2rem"
+              >
+                <use href="#img-map-marker" />
+              </svg>
+              <br />
+              Böhlstr. 5 (Gemeinde) /<br />
+              Hemshofstr. 23 (Post)<br />
+              67063 Ludwigshafen
+            </a>
+          </div>
+          <div class="s-100 l-33">
+            <a
+              href="mailto:info@efg-ludwigshafen.de?subject=Ich möchte Kontakt aufnehmen"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                height="2rem"
+              >
+                <use href="#img-envelope" />
+              </svg>
+              <br />
+              info@efg-ludwigshafen.de
+            </a>
+          </div>
+          <div class="s-100 l-33">
+            <a href="#!/de/give/">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 511.997 511.997"
+                height="2rem"
+              >
+                <use href="#img-seed" />
+              </svg>
+              <br />
+              IBAN: DE09 5009 2100 0000 4632 05
+            </a>
+          </div>
+        </div>
+      </section>
+      <section
+        style="background-color: #ebebeb; padding-top: 0; padding-bottom: 0"
+      >
+        <div class="cols">
+          <a
+            href="#!/de/data-protection/"
+            class="s-100 m-50 l-25"
+            style="color: #132532"
+          >
+            Datenschutz
+          </a>
+          <a
+            href="#!/de/imprint/"
+            class="s-100 m-50 l-25"
+            style="color: #132532"
+          >
+            Impressum
+          </a>
+          <a
+            href="#!/de/downloads/"
+            class="s-100 m-50 l-25"
+            style="color: #132532"
+          >
+            Downloads
+          </a>
+          <a
+            href="https://efg-lu.church.tools"
+            class="s-100 m-50 l-25"
+            style="color: #132532"
+          >
+            ChurchTools
+          </a>
+        </div>
+      </section>
+    </article>
+    <!-- #region !/de/service/ ============================================= -->
+    <!-- #region !/de/service/sunday-1000/ ................................. -->
+    <article
+      id="!/de/service/sunday-1000/"
+      data-title="Sonntagmorgen-Gottesdienst"
+    >
+      <section style="background-color: #132532" class="inverse">
+        <h1>Sonntagmorgen-Gottesdienst</h1>
+        <p>Jung und Alt, Groß und Klein. Gemeinsam vor Gott.</p>
+      </section>
+      <section class="text">
+        <h2>Gottes Familie. Zusammen.</h2>
+        <p>
+          Sonntagsmorgens trifft sich die ganze Gemeinde. Wir feiern etwa
+          eineinhalb Stunden Gott, unseren Herrn, und bleiben im Anschluss zu
+          Kaffee und Gesprächen.
+        </p>
+        <p>
+          In einem typischen Sonntagmorgen-Gottesdienst sind zwischen 40 und 60
+          Gottesdienstbesucher. Wir beginnen um 10:00 mit einer musikalischen
+          Einstimmung. Ein Mitarbeiter leitet uns durch den Gottesdienst. Der
+          Prediger erklärt uns einen Text aus der Bibel und eine Band singt mit
+          uns Lieder, um Gott anzubeten.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #endregion -->
+    <!-- #region !/de/geo/ ================================================= -->
+    <article id="!/de/geo/" data-title="Wegbeschreibung">
+      <noscript>
+        <iframe
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=8.426953554153444%2C49.488346706357405%2C8.443454504013063%2C49.49455611990282&amp;layer=mapnik&amp;marker=49.49145151158979%2C8.435204029083252"
+          style="width: 100vw; height: 50vh"
+          title="Böhlstraße 5, Ludwigshafen auf OpenStreetMap"
+        ></iframe>
+      </noscript>
+      <section>
+        <h1>Böhlstraße 5, Ludwigshafen</h1>
+        <p>Plane Deinen Weg zu uns.</p>
+        <div class="cols">
+          <div class="s-100 m-50">
+            <h2>Mit öffentlichen Verkehrsmitteln</h2>
+            <p>
+              Die Haltestelle <i>Hemshofstraße/BASF Tor 7 (Linie 7)</i> liegt
+              nur zwei Gehminuten entfernt.
+            </p>
+          </div>
+          <div class="s-100 m-50">
+            <h2>Mit dem Auto</h2>
+            <p>
+              Du kannst direkt gegenüber parken. Oder auf dem
+              BASF-Mitarbeiterparkplatz (<i>Anilinstraße</i>), zwei Gehminuten
+              entfernt.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/events/ ============================================== -->
+    <article id="!/de/events/" data-title="Kalender">
+      <noscript>
+        <iframe
+          style="border-width: 0px; height: calc(100vh - 5rem); width: 100%"
+          src="https://efg-lu.church.tools/?q=churchcal&category_select=19,3,1,2&embedded=true&minical=true&viewname=calView#CalView/"
+        ></iframe>
+      </noscript>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/packparty/ =========================================== -->
+    <article id="!/de/packparty/" data-title="Packparty">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/packparty.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>#packpartylu</h1>
+        <p>150 Pakete für Moldawien, 21.11.2020</p>
+      </section>
+      <section class="text">
+        <p>
+          Wir wollen mit dir gemeinsam Weihnachtspäckchen für Kinder in
+          Moldawien und der Ukraine packen. Moldawien gilt als das ärmste Land
+          Europas und in der Ukraine liegt die Wirtschaft ebenfalls
+          kriegsbedingt am Boden. Viele Familien dort kommen gerade so über die
+          Runden, ein Weihnachtsgeschenk für die Kinder ist daher häufig nicht
+          machbar.
+        </p>
+
+        <p>
+          Hier setzt die Organisation
+          <a href="https://www.hoffnungstraeger-ost.de/"
+            >"Hoffnungsträger Ost"</a
+          >
+          an. Sie haben mehrere Projekte in der Region, um bedürftige Menschen
+          zu unterstützen. Neben beispielsweise Hilfe zur Selbsthilfe,
+          Suppenküchen, Gefängnisbesuchen und Kinderpatenschaften organisieren
+          sie jährlich den Transport und die Übergabe der Weihnachtspäckchen.
+          Vor Ort veranstalten sie Weihnachtsfeiern und Gottesdienste. Die
+          Geschenke sollen den Kindern die Liebe Gottes näherbringen.
+        </p>
+
+        <p>
+          Dieses Projekt unterstützen wir in unserer Gemeinde schon seit
+          mehreren Jahren und 2019 fand unsere erste Packparty statt. Auch
+          dieses Jahr wollten wir wieder gemeinsam packen. Die Materialien
+          werden zentral besorgt, sodass bei der Veranstaltung nur noch gepackt
+          werden muss. Dieses Jahr haben wir uns 150 Päckchen zum Ziel gesetzt.
+          Aufgrund der aktuellen Corona-Verordnungen ist jedoch eine Packparty
+          wie wir sie kennen, nicht möglich. Genaue Informationen folgen. Du
+          möchtest dich auch gerne einbringen? Super, du hast verschiedene
+          Möglichkeiten zur Auswahl:
+        </p>
+        <ol>
+          <li>
+            Hilf uns 150 Weihachtspäckchen zu packen, indem du dein
+            individuelles Paket zuhause packst. Was in ein Paket gehört, findest
+            du unter
+            <a href="https://www.hoffnungstraeger-ost.de/weihnachtspaeckchen"
+              >hoffnungstraeger-ost.de/weihnachtspäckchen</a
+            >
+          </li>
+          <li>
+            Spende Geld. Wir benötigen Mittel zum Einkauf der Geschenke und 5€
+            pro Päckchen für den Transport. Nutze dafür unsere
+            <a href="https://www.betterplace.me/weihnachtspaeckchen-fuer-kinder"
+              >Spendenseite</a
+            >. Oder spende auf unser Gemeindekonto mit dem Verwendungszweck
+            "Packparty". (IBAN: DE09 5009 2100 0000 4632 05)
+          </li>
+          <li>
+            Spende, was du nicht mehr brauchst. Hast du noch gut erhaltene
+            Schätze im Keller, auf dem Dachboden oder in der Garage gelagert?
+            Dann kannst du auch diese Sachen spenden. Wir verkaufen sie und von
+            dem Erlös werden die Geschenke gekauft. Auf Wunsch erhältst du eine
+            Spendenbescheinigung über den Betrag, den wir mit deinen Sachen
+            erzielen konnten. Die aktuellen Angebote findest du bei
+            <a
+              href="https://www.ebay-kleinanzeigen.de/s-bestandsliste.html?userId=76895283"
+              >eBay Kleinanzeigen</a
+            >. Wende dich zum Spenden an Hanna Schreiber (<a
+              href="mailto:hanna.schreiber@efg-ludwigshafen.de"
+              >hanna.schreiber@efg-ludwigshafen.de</a
+            >).
+          </li>
+        </ol>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/next/ ================================================ -->
+    <!-- #region !/de/next/service/ ........................................ -->
+    <article id="!/de/next/service/" data-title="Gottesdienst">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/kreuz.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Gottesdienst</h1>
+        <p>Der erste Schritt: Komm in Kontakt.</p>
+      </section>
+      <section class="text">
+        <p>
+          Jeden Sonntagmorgen feiern wir Gottesdienst. Das ist die ideale
+          Gelegenheit, uns kennenzulernen – hier kommt die ganze Gemeinde
+          zusammen. Mit Eltern-Kind-Raum und Kindergottesdienst ist für jeden
+          was dabei. Und danach ist reichlich Zeit, ins Gespräch zu kommen.
+          Kaffee und Kekse gibt es immer, Kuchen wenn jemand vorher besonders
+          gut gelaunt war (und Kuchen gebacken hat) – kostenlos.
+        </p>
+
+        <p>
+          Im Gottesdienst sind für uns die Auslegung eines Bibeltextes in der
+          Predigt und die Anbetung Gottes die Kernelemente. Du wirst bei uns
+          keine “allgemein bekannte” Liturgie finden, in der wie zufällig alle
+          um Dich rum aufstehen, singen oder beten. Was wir machen sagen wir
+          vorher an, damit Du Dich möglichst leicht zurecht findest.
+        </p>
+
+        <p>
+          Unsere Gemeinderäume sind in der
+          <a href="#!/de/geo">Böhlstraße 5, Ludwigshafen</a>. Wenn Du Hilfe auf
+          dem Weg zu uns brauchst, schreib eine Mail an
+          <a
+            href="mailto:info@efg-ludwigshafen.de?subject=Ich will zum Gottesdienst kommen"
+            >info@efg-ludwigshafen.de</a
+          >.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/next/cellgroup/ ...................................... -->
+    <article id="!/de/next/cellgroup/" data-title="Hauskreis">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/hauskreis.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Hauskreis</h1>
+        <p>Die Gemeinde-Klein-Familie.</p>
+      </section>
+      <section class="text">
+        <p>
+          Bibelkreise, die sich in Privathaushalten als kleine Gruppen zu ca. 5
+          bis 10 Personen treffen, nennen wir Hauskreise. In der Regel finden
+          die Treffen an einem Werktag, abends, einmal wöchentlich, manche auch
+          14-tägig, statt.
+        </p>
+
+        <p>
+          Von Gruppe zu Gruppe werden die Abende etwas unterschiedlich
+          gestaltet, indem z. B. mit gemeinsamen Singen oder einem Abendessen
+          begonnen wird. Was allen wichtig ist, ist, im Glauben zu wachsen. Wir
+          lesen in der Bibel und tauschen uns über die Texte aus. Sehr wichtig
+          ist uns das Gebet; Lob, Dank und Bitten für persönliche Anliegen,
+          Anliegen der Gemeinde und auch darüber hinaus.
+        </p>
+
+        <p>
+          Unsere Gemeinde hat Hauskreise im Stadtgebiet von Ludwigshafen
+          verteilt und in Limburgerhof. Wenn Du einen Hauskreis suchst oder
+          einfach mal “hinein schnuppern” willst, schreib eine Mail an
+          <a
+            href="mailto:info@efg-ludwigshafen.de?subject=Ich suche einen Hauskreis"
+            >info@efg-ludwigshafen.de</a
+          >.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/next/help/ ........................................... -->
+    <article id="!/de/next/help/" data-title="Hilfe">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/help.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Erhalte Hilfe</h1>
+      </section>
+      <section class="text">
+        <blockquote>
+          <p>
+            Und der König wird antworten und zu ihnen sagen:
+            <b
+              >Wahrlich, ich sage euch: Was ihr getan habt einem von diesen
+              meinen geringsten Bründern, das habt ihr mir getan.</b
+            >
+          </p>
+          <p>Matthäus 25,40</p>
+        </blockquote>
+        <p>
+          Du hast ein konkretes Problem, bei dem Du unsere Hilfe benötigst?
+          Schreib eine Mail an
+          <a href="mailto:info@efg-ludwigshafen.de?subject=Ich brauche Hilfe"
+            >info@efg-ludwigshafen.de</a
+          >.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/next/gifts/ .......................................... -->
+    <article id="!/de/next/gifts/" data-title="Gaben">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/gifts.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Entdecke Deine Gaben</h1>
+        <p>Gott hat Dich beschenkt! Nutze das.</p>
+      </section>
+      <section class="text">
+        <p>
+          Gott hat Dir Gaben geschenkt wie sonst niemandem. Es gibt einen Platz,
+          den nur Du ausfüllen kannst. Ohne Dich ist der “Leib Christi“ – die
+          Gemeinde – nicht vollständig.
+        </p>
+
+        <p>
+          Weil wir das glauben – und weil jeder von uns so einen Platz hat –
+          wollen wir Dir helfen, Deinen Platz zu finden. Vielleicht kennst Du
+          Deine Gaben schon. Vielleicht weißt Du, was Dir leicht fällt, was Dir
+          Spaß macht, was Du besonders gut kannst. Wir wollen Dir die
+          Möglichkeit geben, das bei uns auszuleben.
+        </p>
+
+        <p>
+          Vielleicht fragst Du Dich auch, was Gott Dir wohl geschenkt haben
+          könnte. Dann helfen wir Dir, das herauszufinden.
+        </p>
+
+        <p>
+          Schreib eine Mail an
+          <a
+            href="mailto:info@efg-ludwigshafen.de?subject=Ich will meine Gaben entdecken"
+            >info@efg-ludwigshafen.de</a
+          >. Wir unterstützen Dich dabei, das zu tun, was Gott sich mit Dir
+          gedacht hat.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/next/baptism/ ........................................ -->
+    <article id="!/de/next/baptism/" data-title="Taufe">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/taufe.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Werde getauft</h1>
+      </section>
+      <section class="text">
+        <p>
+          Jeden Menschen, der sich mit seinem ganzen Leben Jesus anvertraut,
+          ermutigen wir, darüber nachzudenken, sich taufen zu lassen und sich
+          der Gemeinde anzuschließen. Wer sich zur Taufe entscheidet, drückt
+          damit verbindlich seinen Glauben aus – und Gott legt einen großen
+          Segen darauf.
+        </p>
+
+        <p>
+          Ein bis zwei mal im Jahr veranstalten wir einen Taufgottesdienst,
+          meist im Bliesbad in Ludwigshafen. Wir bereiten jeden, der den Wunsch
+          hat sich taufen zu lassen, in einem Grundlagen-Kurs über Christsein,
+          Taufe und Gemeindemitgliedschaft vor. So stellen wir sicher, dass
+          Täuflinge wissen, worauf sie sich einlassen. Außerdem bekommt jeder
+          Täufling einen Taufpaten – einen erfahrenen Christ, der ihn in den
+          ersten Monaten nach der Taufe individuell begleitet.
+        </p>
+
+        <p>
+          Du hegst den Wunsch, dich taufen zu lassen und so deinen Glauben
+          verbindlich zu bezeugen? Schreib eine Mail an
+          <a
+            href="mailto:info@efg-ludwigshafen.de?subject=Ich möchte getauft werden"
+            >info@efg-ludwigshafen.de</a
+          >.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/next/participate/ .................................... -->
+    <article id="!/de/next/participate/" data-title="Mitarbeit">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/participate.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Arbeite mit</h1>
+        <p>Bau am Reich Gottes.</p>
+      </section>
+      <section class="text">
+        <p>
+          Wir haben einen Auftrag: In Ludwigshafen das Reich Gottes aufzubauen.
+        </p>
+
+        <blockquote>
+          <p>
+            Darum geht zu allen Völkern und macht die Menschen zu meinen
+            Jüngern; tauft sie auf den Namen des Vaters, des Sohnes und des
+            Heiligen Geistes und lehrt sie, alles zu befolgen, was ich euch
+            geboten habe. Und seid gewiss: Ich bin jeden Tag bei euch, bis zum
+            Ende der Welt.
+          </p>
+          <p>Matthäus 28,19-20</p>
+        </blockquote>
+
+        <p>
+          Diesem Auftrag kommen wir mit den verschiedensten Angeboten nach:
+          Jugendkreis, Seniorenkreis und Lobpreis-Gottesdienste; Hauskreise und
+          Gottesdienste. Alles mit dem einen Ziel: Gottes Liebe bekannt machen,
+          Gottes Nähe erlebbar machen, Gott für seine Taten loben und preisen.
+        </p>
+
+        <p>
+          So haben wir viele Punkte, an denen genau Du mit genau Deinen Gaben
+          und Fähigkeiten gebraucht bist. Du machst Musik und willst anderen
+          helfen, Gott anzubeten? Vielleicht ist dein Platz in einer der Bands,
+          die sonntags den Gottesdienst gestalten. Du kannst gut mit Kindern
+          umgehen und möchtest ihnen von Gottes Liebe erzählen? Das
+          Kindergottesdienst-Team sucht Verstärkung. Du schreibst gern Texte und
+          Artikel und möchtest davon etwas weitergeben? Schreib Artikel für
+          unseren Gemeindebrief – und hilf so, dass er mit Interesse gelesen
+          wird.
+        </p>
+
+        <p>
+          Egal ob Du schon weißt wo Gott Dich braucht, oder ob Du noch auf der
+          Suche nach dem richtigen Platz bist: schreib eine Mail an
+          <a
+            href="mailto:info@efg-ludwigshafen.de?subject=Ich möchte mitarbeiten"
+            >info@efg-ludwigshafen.de</a
+          >
+          und wir helfen Dir, Deinen Platz zu finden.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/ ========================================== -->
+    <!-- #region !/de/leadership/dominik/ .................................. -->
+    <article id="!/de/leadership/dominik/" data-title="Dominik Schreiber">
+      <section class="h-32">
+        <h1>Dominik Schreiber</h1>
+        <p>Geschäftsführung, Gebet, Lobpreis, Gottesdienste</p>
+      </section>
+      <section class="text">
+        <p>
+          Dominik stieß 2009 zur Gemeinde und wurde im Februar 2017 in die
+          Gemeindeleitung berufen. Mit Frau und Kindern genießt er die lebendige
+          Gemeinschaft in der Gemeinde, und lebt seinen Glauben insbesondere
+          musikalisch und in der Gottesdienstgestaltung aus.
+        </p>
+
+        <p>
+          Geboren wurde er in Frankfurt am Main, aufgewachsen ist er in einem
+          kleinen Ort in der Nähe von Limburg an der Lahn. Sein Vater leitet
+          eine Musikschule, seine Mutter ist Lehrerin für Musik und Religion. So
+          wurden ihm sowohl die Liebe zu Gott als auch die zur Musik schon mit
+          der Muttermilch serviert. Als großer Bruder zweier Geschwister
+          übernahm er früh Verantwortung, insbesondere nach der Trennung seiner
+          Eltern. Noch in der Schule lernte er Hanna, seine Frau, kennen – und
+          folgte ihr 2011 ganz nach Ludwigshafen. Mittlerweile sind sie gesegnet
+          mit Deborah, Samuel und Daniel, drei wundervollen Kindern.
+        </p>
+
+        <p>
+          Trotz der "christlichen Anlagen" musste Dominik seinen Weg zu Gott
+          selbst finden. Den von seiner Mutter gehaltenen Kindergottesdienst,
+          für den er mit Abstand zu alt war, durfte er im Teenager-Alter durch
+          den "Teenkreis" der FeG Weilburg ersetzen. Und trotz einer Zeit, in
+          der er alles übernatürliche strikt ablehnte, kam er durch diesen Kreis
+          zu einer lebendigen Beziehung mit Gott. Auf einer Jugendfreizeit
+          machte er diese Entscheidung fest, und bekräftigte sie später in der
+          Konfirmation. Seitdem durfte er viel über Gott lernen, seine Nähe und
+          Führung erleben, und an den verschiedensten Stellen erfahren, wie Gott
+          Mitarbeit an seinem Reich segnet.
+        </p>
+
+        <p>
+          Diesen Segen erlebt Dominik ganz besonders in der EFG Ludwigshafen.
+          Seine Erfahrung, dass er hier durch Mitarbeit und Geduld immer wieder
+          Dinge verändern und in Gang bringen konnte, gibt er gerne weiter und
+          ermutigt alle, die von Gott anvertrauten Gaben einzusetzen. Die
+          familiäre Atmosphäre in der Gemeinde genießt er dabei sehr.
+        </p>
+
+        <p>
+          Neben seiner Familie, der Arbeit als Softwarearchitekt, und der
+          Berufung in der Gemeinde ist Musik Dominiks größtes Hobby. Rund alle
+          zwei Monate tritt er mit einem Trio – Gesang, Klavier, Drums – zu
+          Konzerten, Kulturabenden oder auch Hochzeiten auf. Aber auch Zeit mit
+          Freunden beim Handwerken, Grillen oder Computerspielen zu verbringen
+          ist ihm wichtig – hier ergeben sich oft die intensivsten Gespräche
+          über Gott, Glaube und Gemeinde.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/jonas/ .................................... -->
+    <article id="!/de/leadership/jonas/" data-title="Jonas Weber">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/jonas.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Jonas Weber</h1>
+        <p>Hauskreise, Technik</p>
+      </section>
+      <section class="text">
+        <p>
+          Seit Jonas denken kann geht er in die Gemeinde nach Ludwigshafen.
+          Schon in der Kleinkinderbetreuung der Baptistengemeinde hat er viele
+          Freunde gefunden. Daher hat der kleine Jonas sich immer auf den
+          Gottesdienst gefreut. Im Kindergottesdienst wurden bei ihm die ersten
+          Grundlagen des Glaubens gelegt. Nachdem er aus dem Kindergottesdienst
+          herausgewachsen war, durfte Jonas seine Begabungen​ im Technikdienst
+          ausleben. Später hat er für diesen Dienst auch die Leitung übernommen.
+          Während einem SOLA-Sommerlager in Mannheim hat Jonas sein Leben Jesus
+          übergeben und sich später in der Baptistengemeinde Ludwigshafen taufen
+          lassen
+        </p>
+
+        <p>
+          Seit 2006 ist Jonas mit Carolyn verheiratet. In gemeinsamen
+          Radurlauben konnten sie Gott immer wieder sehr persönlich erfahren.
+          Mittlerweile sind sie zu viert.
+        </p>
+
+        <p>
+          Die Gemeinde in Ludwigshafen ist Jonas sehr wichtig, und er schätzt
+          es, dass sich in den Reihen der Gemeinde so viele verschiedene
+          Generation wohl fühlen. So gibt es immer einen guten Austausch
+          zwischen Jung und Alt. Außerdem kann man immer viel voneinander und
+          miteinander lernen.
+        </p>
+
+        <p>
+          Jonas mag es, dass wir Teppichboden in der Gemeinde haben. Wenn er
+          seine Schuhe auszieht und über den Teppich läuft, dann fühlt er sich
+          wie in seinem Wohnzimmer.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/simon/ .................................... -->
+    <article id="!/de/leadership/simon/" data-title="Simon Hoffmann">
+      <section class="h-32">
+        <h1>Simon Hoffmann</h1>
+        <p>Landesverband, BEFG, Lobpreis</p>
+      </section>
+      <section class="text">
+        <p>
+          Simon Hoffmann kommt aus Maxdorf, das für seine Pfälzer Grumbeeren
+          bekannt ist. Für nicht Eingeweihte: Grumbeeren nennt man anderswo
+          Kartoffeln.
+        </p>
+
+        <p>
+          Er ist mit Johanna verheiratet. Sie sind Eltern von zwei Söhnen, Emil
+          und Henri.
+        </p>
+
+        <p>
+          Er stammt aus einem katholischen Hintergrund und hat sich schon früh
+          für die Bibel interessiert. Was es bedeutet, wirklich Jesus
+          nachzufolgen, hat er erst später durch eine Freundin gelernt, die zur
+          Baptistengemeinde Mannheim gehört. Dies bildete den Grundstein für
+          sein Glaubensleben. Auf dem SOLA Mannheim (Sommerlager für Kinder und
+          Teens) hat er eine Entscheidung für Jesus getroffen und sich später in
+          unserer Gemeinde taufen lassen.
+        </p>
+
+        <p>
+          Seitdem gehört er zur Gemeinde die für ihn auch sein geistliches
+          Zuhause geworden ist. An seiner Gemeinde schätzt er besonders die
+          Mischung aus Jung und Alt und die Offenheit, gegenüber jedem der beim
+          Gottesdienst vorbeischaut. In diesem Zusammenhang gefällt ihm auch das
+          Kaffeetrinken und Beisammensein nach dem Sonntagsgottesdienst.
+        </p>
+
+        <p>
+          In seiner Freizeit geht er allen drei Disziplinen des Triathlons nach,
+          wenn er nicht gerade Zeit mit seinen beiden Jungs verbringt.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/milena/ ................................... -->
+    <article id="!/de/leadership/milena/" data-title="Milena Hansen">
+      <section class="h-32">
+        <h1>Milena Hansen</h1>
+        <p>Mitarbeiterentwicklung, Junge Familien</p>
+      </section>
+      <section class="text">
+        <p>
+          Milena Hansen kommt aus Ludwigshafen und ist in der Gemeinde groß
+          geworden. So hat sie dort auch Gott kennen gelernt und seine Liebe
+          erfahren. Für ein Leben mit Jesus hat sie sich auf einer
+          Kinderfreizeit der Evangelisch Freikirchlichen Gemeinde Neuhofen
+          entschieden.
+        </p>
+
+        <p>
+          Seit 2013 ist sie mit Daniel verheiratet. Im August 2016 sind sie die
+          stolzen Eltern von Ludwig geworden.
+        </p>
+
+        <p>
+          An unserer Gemeinde schätzt sie besonders die Vielfältigkeit und die
+          Gastfreundschaft. Ihr gefällt es immer wieder zu erleben, wie wir
+          einander ein Zuhause geben. Milena wünscht sich, das wir uns das
+          erhalten und es weiter ausbauen.
+        </p>
+
+        <p>
+          In ihrer Freizeit ist sie gerne draußen. Sie verbringt gerne Zeit mit
+          ihrer Großfamilie und Freunden oder sitzt gerne gemütlich auf dem Sofa
+          und strickt.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/fabienne/ ................................. -->
+    <article id="!/de/leadership/fabienne/" data-title="Fabienne Hoffmann">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/fabienne.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Fabienne Hoffmann</h1>
+        <p>Jugendkreis, Mission</p>
+      </section>
+      <section class="text">
+        <p>
+          Fabienne Hoffmann führte der Weg 2009 im Alter von vierzehn Jahren
+          durch Freunde in unsere Gemeinde. Die damals stattfindenden
+          Jugendgottesdienste begeisterten sie, wodurch sie neugierig wurde und
+          erfahren wollte, was noch alles dahintersteckt. Auf einem großen
+          christlichen Sommerlager entschied sie sich im selben Jahr für ein
+          Leben mit Gott. 2011, zwei Jahre später, im Alter von sechzehn Jahren,
+          wurde sie durch ihre Taufe Mitglied in unserer Gemeinde.
+        </p>
+
+        <p>
+          Bereits ein Jahr nach ihrer Taufe zog es sie zu dem ersten
+          Missionseinsatz nach Moldawien. Seither verging kaum ein Jahr, in dem
+          sie nicht nach Moldawien reiste, um im ärmsten Land Europas Gottes
+          Liebe weiterzugeben und Hoffnung durch den Glauben an Jesus zu
+          verbreiten. Die Mission in Moldawien forderte sie heraus weiter im
+          Glauben zu wachsen und wurde dadurch zu ihrer großen Leidenschaft.
+        </p>
+
+        <p>
+          Die Gemeinde ist Fabienne besonders wichtig, da sie sie zum Glauben
+          heranführte und dadurch zu ihrem geistlichen Zuhause wurde. Sie
+          schätzt die familiäre Atmosphäre, den Zusammenhalt und die engen
+          Freundschaften innerhalb der Gemeinde sehr. Außerdem hat sie die
+          Umgebung rund um die Gemeinde lieben gelernt und merkt, wie ihr Herz
+          für die Menschen aus dem Stadtteil schlägt. In der Gemeinde liegt ihr
+          Fokus aktuell auf der Jugend, die sie seit dem Sommer 2017 leitet.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/marc/ ..................................... -->
+    <article id="!/de/leadership/marc/" data-title="Marc Warnecke">
+      <section class="h-32">
+        <h1>Marc Warnecke</h1>
+        <p>Haus und Hof, Jugendkreis</p>
+      </section>
+      <section class="text">
+        <p>
+          Marc Warnecke ist schon als Kind, mit seiner Mutter, in unsere
+          Gemeinde gegangen. Von Kindergottesdienst, über den Gemeindeunterricht
+          und den Hauskreisen wurde der Bezug zur Gemeinde und der Glaube immer
+          weiter gefestigt. Gerade der persönliche Rahmen der Hauskreise und die
+          Atmosphäre im kleinen Kreis förderte die enge Bindung zu unserer
+          Gemeinde.
+        </p>
+
+        <p>
+          Als Teil der Jugend gestaltete er einige Jugendgottesdienste mit und
+          brachte sich so, als Teil der Gemeinde, immer weiter ein. Nach einigen
+          kleinen und großen Schritten traf Marc dann beim Südwestival die feste
+          Entscheidung für ein Leben mit Gott. In der Gemeinde, den Hauskreisen
+          oder seit 2007 auch auf dem Sommerlager wuchs er im Glauben und
+          übernahm mehr und mehr Verantwortung.
+        </p>
+
+        <p>
+          Über die Jahre arbeitete Marc unter Anderem in den Bereichen der
+          Technik, sang in den Lobpreisbands, leitete Gottesdienste und
+          arbeitete im Jugendkreis mit.
+        </p>
+
+        <p>
+          Besonders schätzt er an der Gemeinde, dass sie offen und herzlich auf
+          jeden Mensch zu geht. Durch all die unterschiedlichen Gesichter,
+          Facetten und Gaben ist und bleibt die Gemeinde frisch und interessant.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/monika/ ................................... -->
+    <article id="!/de/leadership/monika/" data-title="Monika Weber">
+      <section class="h-32">
+        <h1>Monika Weber</h1>
+        <p>Seelsorge, Diakonie, Gottesdienste</p>
+      </section>
+      <section class="text">
+        <p>
+          Monika Weber wuchs in einem christlichen Elternhaus auf. Durch die
+          Nähe der Gemeinde und liebevollen Kinderstunden, wurde ihr früh klar,
+          dass Jesus Christus ihr Heiland und Erretter ist.
+        </p>
+
+        <p>
+          Seit fast 30 Jahren ist sie Mitglied der Gemeinde Ludwigshafen, wo sie
+          mit ihrem Mann und ihren 10 Kindern ein zweites zuhause hat.
+        </p>
+
+        <p>
+          Gemeinde muss für sie ein Ort der Begegnung mit dem lebendigen Gott
+          und mit Menschen sein.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/andreas/ .................................. -->
+    <article id="!/de/leadership/andreas/" data-title="Andreas Petry">
+      <section class="h-32">
+        <h1>Andreas Petry</h1>
+        <p>Gebet, Seelsorge, Gottesdienste</p>
+      </section>
+      <section class="text">
+        <p>
+          Andreas kommt aus einem katholischen Hintergrund, aber zum Glauben kam
+          er mit 22 Jahren. Seine Glaubensgrundlagen hat er dann in einer
+          Baptistengemeinde in der Nähe von Karlsruhe kennen gelernt.
+        </p>
+
+        <p>
+          Seit 1990 ist er aufgrund des Studiums der Sozialarbeit nach
+          Ludwigshafen gekommen und ab 1991 dann zur EFG Ludwigshafen. Er
+          schätzt dort die gute Gemeinschaft. Wichtig war ihm schon immer die
+          tiefe Beziehung zu Jesus und die Unterstützung auf dem Weg dorthin. Er
+          findet die verschiedenen Glaubensstile spannend und will Menschen
+          verbinden, gerade auch bei unterschiedlichen Sichtweisen.
+        </p>
+
+        <p>
+          Andreas hat seine Frau Sabine im Studium kennengelernt und mit ihren
+          zwei Kindern ist ihnen Gemeinde ein zu Hause, für das sie sich
+          gemeinsam einsetzen.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/leadership/sabina/ ................................... -->
+    <article id="!/de/leadership/sabina/" data-title="Sabina Hertle">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/sabina.webp);
+        "
+        class="inverse h-68"
+      >
+        <h1>Sabina Hertle</h1>
+        <p>Evangelische Allianz, Gemeindebrief</p>
+      </section>
+      <section class="text">
+        <p>
+          Sabina ist seit 1994 in der EFG Ludwigshafen, die so etwas wie eine
+          erweiterte Familie für sie ist.
+        </p>
+
+        <p>
+          Seit sie denken kann, glaubt sie an Gott. In ihrer Kindheit wurde sie
+          katholisch geprägt.
+        </p>
+
+        <p>
+          Nachdem sie mit ca. 16 Jahren zu einer evangelischen Jugendgruppe
+          mitgenommen wurde, habt sie dort u.a. ausführlich Fragen mit Hilfe der
+          Bibel erforscht. Dabei stellte sie fest, dass sich die Menschen aktiv
+          und persönlich zu Gott bekehrt haben und dann getauft wurden. Dies hat
+          sie als „richtige Schritte“ für sich dann umgesetzt.
+        </p>
+
+        <p>
+          Sie arbeitet als Sozialarbeiterin, ist mit Walter verheiratet und sie
+          haben ein Kind.
+        </p>
+
+        <p>
+          In ihrer Freizeit liest sie gern. Sie mag Italien und die Farbe rot.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #endregion -->
+    <!-- #region !/de/group/ =============================================== -->
+    <!-- #region !/de/group/hafen/ ......................................... -->
+    <article id="!/de/group/hafen/" data-title="Hafen">
+      <section class="h-32">
+        <h1>Hafen</h1>
+        <p>
+          Der Jugendkreis. Freitags, 18:30-21:00 Uhr, in der Hemshofstraße 23.
+        </p>
+      </section>
+      <section class="text">
+        <p>
+          Jeden Freitag treffen wir uns mit den Jugendlichen von 13-17 Jahren im
+          Hemshofkeller. Im Jugendkreis gibt es immer ein biblisches Thema das
+          wir mit den Jugendlichen bearbeiten. Dazu lesen wir in der Bibel,
+          tauschen uns aus und besprechen Fragen. Natürlich gibt es auch viel
+          Musik, Spiele und gemeinsame Aktionen. Ein gemeinsames Abendessen, ein
+          Kickerspiel oder ein Ausflug zur Schlittschuh Halle standen in den
+          letzten Monaten auf dem Programm.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/group/seniorenkreis/ .................................... -->
+    <article id="!/de/group/seniorenkreis/" data-title="Seniorenkreis">
+      <section class="h-32">
+        <h1>Seniorenkreis</h1>
+        <p>
+          1. und 3. Montag im Monat, 14:30-16:30 Uhr, in der Hemshofstraße 23,
+          für Junggebliebene und Senioren
+        </p>
+      </section>
+      <section class="text">
+        <p>
+          Jeweils am 1. und 3. Montag im Monat treffen sich die Senioren um
+          14:30 in der Hemshofstraße 23.
+        </p>
+
+        <p>
+          Senioren sind häufig vielbeschäftigte Menschen. Sie reisen, helfen
+          anderen, betreuen Enkelkinder, haben viele Arzttermine und sind auch
+          immer wieder krank. So schwankt der Besuch zwischen 10 – 18
+          Teilnehmern.
+        </p>
+
+        <p>
+          Wir beginnen mit einem Bibelwort, meist aus dem Losungsbuch der
+          Herrnhuter Brüdergemeine, mit Gebet und mit einem Lied. Wichtig sind
+          die Geburtstage. Dafür haben wir als Gemeinde für alle über
+          60-jährigen eine Karte zur Jahreslosung mit persönlichen Worten und
+          eine von allen unterschriebene Glückwunschkarte und dazu singen wir
+          ein Wunschlied.
+        </p>
+
+        <p>
+          Wichtig ist der persönliche Austausch bei Kaffee und Kuchen:
+          miterleben, Anteil nehmen, ermutigen, trösten, helfen, füreinander
+          beten ist uns von großer Bedeutung. Weil Menschen in anderen Kreisen
+          und Ländern viel Not haben, legen wir auch eine Kollekte zusammen, die
+          dann halbjährlich an Hilfsorganisationen überwiesen wird.
+        </p>
+
+        <p>
+          Dann geht's zur Hauptsache, zur Beschäftigung mit der Bibel. Dabei
+          finden wir überraschende Aussagen über Gottes Wesen und Handeln, aber
+          auch über unser Leben und über die Geschenke, die Gott uns anbietet.
+        </p>
+
+        <p>
+          Im Sommer gibt es ein Gartenfest und im Dezember beschließen wir das
+          Jahr im Seniorenkreis mit einem festlichen Nachmittag zur
+          Weihnachtszeit.
+        </p>
+
+        <p>Jedermann ist uns immer herzlich willkommen.</p>
+
+        <p>Kontakt: Bärbel Wilms</p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #endregion -->
+    <!-- #region !/de/give/ ================================================ -->
+    <article id="!/de/give/" data-title="Unterstütze uns">
+      <section class="h-32">
+        <h1>Beteilige Dich</h1>
+        <p>Du kannst mit einer Spende einen direkten Beitrag leisten.</p>
+      </section>
+      <section class="text">
+        <h2>Gemeindekonto</h2>
+        <p>
+          Hier unterstützt du die Arbeit unserer Gemeinde. Wir sind zu 100%
+          spendenfinanziert. Unsere Arbeitszweige sind direkt darauf angewiesen.
+        </p>
+        <p style="font-style: italic">
+          Natürlich kannst Du für Spenden auf unser Gemeindekonto eine
+          <b>Spendenbescheinigung</b> bekommen.
+        </p>
+        <p style="font-size: larger">
+          <b>IBAN:</b> DE09 5009 2100 0000 4632 05<br />
+          <b>BIC:</b> GENODE51BH2
+        </p>
+        <h2>Diakoniekasse</h2>
+        <p>
+          Mit der Diakoniekasse helfen wir bei Notfällen schnell, unkompliziert
+          und vertraulich. In der Regel in Form von zinslosen Darlehen.
+        </p>
+        <p style="font-style: italic">
+          Für Spenden auf die Diakoniekasse können wir
+          <b>keine Spendenbescheinigung</b> ausstellen, da das dort ankommende
+          Geld nicht für gemeinnützige Zwecke verwendet wird.
+        </p>
+        <p style="font-size: larger">
+          <b>IBAN:</b> DE13 5009 2100 0000 4632 30<br />
+          <b>BIC:</b> GENODE51BH2
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/data-protection/ ===================================== -->
+    <article id="!/de/data-protection/" data-title="Datenschutz">
+      <section class="h-32">
+        <h1>Datenschutzerklärung</h1>
+        <p>Der Evangelisch-Freikirchlichen Gemeinde Ludwigshafen</p>
+      </section>
+      <section class="text">
+        <h2>Präambel</h2>
+        <p>
+          Wir, die Evangelisch-Freikirchliche Gemeinde Ludwigshafen, bedanken
+          uns für Ihren Besuch auf unserer Homepage. Als Kirche ist uns der
+          sichere Umgang mit Ihren Daten besonders wichtig. Die
+          Evangelisch-Freikirchliche Gemeinde Ludwigshafen ist Mitglied im Bund
+          Evangelisch-Freikirchlicher Gemeinden (BEFG) in Deutschland K.d.ö.R.
+          (<a href="https://www.baptisten.de">baptisten.de</a>) und unterliegt
+          daher nicht der EU-DSGVO. Stattdessen findet die Datenschutzordnung
+          des Bundes Evangelisch-Freikirchlicher Gemeinden in Deutschland
+          K.d.ö.R (DSO-BUND:
+          <a href="https://www.baptisten.de/dso">baptisten.de/dso</a>) Anwendung
+        </p>
+        <p>
+          Wir möchten Sie daher ausführlich über die verantwortliche Stelle
+          sowie die Verwendung Ihrer Daten beim Besuch unseres Webauftritts
+          informieren:
+        </p>
+        <h2>Begriffsbestimmungen</h2>
+        <dl>
+          <dt>personenbezogene Daten</dt>
+          <dd>
+            alle Informationen, die sich auf eine identifizierte oder
+            identifizierbare natürliche Person (im Folgenden „betroffene
+            Person“) beziehen; als identifizierbar wird eine natürliche Person
+            angesehen, die direkt oder indirekt, insbesondere mittels Zuordnung
+            zu einer Kennung wie einem Namen, zu einer Kennnummer, zu
+            Standortdaten, zu einer Online-Kennung oder zu einem oder mehreren
+            besonderen Merkmalen, die Ausdruck der physischen, physiologischen,
+            genetischen, psychischen, wirtschaftlichen, kulturellen oder
+            sozialen Identität dieser natürlichen Person sind, identifiziert
+            werden kann
+          </dd>
+          <dt>besondere Daten</dt>
+          <dd>
+            personenbezogene Daten, aus denen die rassische und ethnische
+            Herkunft, politische Meinungen, religiöse oder weltanschauliche
+            Überzeugungen oder die Gewerkschaftszugehörigkeit hervorgehen, sowie
+            genetisch oder biometrischen Daten zur eindeutigen Identifizierung
+            einer natürlichen Person, Gesundheitsdaten oder Daten zum
+            Sexualleben oder der sexuellen Orientierung einer natürlichen Person
+          </dd>
+          <dt>Verarbeitung</dt>
+          <dd>
+            jeden mit oder ohne Hilfe automatisierter Verfahren ausgeführten
+            Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit
+            personenbezogenen Daten wie das Erheben, das Erfassen, die
+            Organisation, das Ordnen, die Speicherung, die Anpassung oder
+            Veränderung, das Auslesen, das Abfragen, die Verwendung, die
+            Offenlegung durch Übermittlung, Verbreitung oder eine andere Form
+            der Bereitstellung, den Abgleich oder die Verknüpfung, die
+            Einschränkung, das Löschen oder die Vernichtung
+          </dd>
+          <dt>Empfänger</dt>
+          <dd>
+            eine natürliche oder juristische Person, Behörde, Einrichtung oder
+            andere Stelle, der personenbezogene Daten offengelegt werden,
+            unabhängig davon, ob es sich bei ihr um einen Dritten handelt oder
+            nicht
+          </dd>
+          <dt>Drittland</dt>
+          <dd>ein Land, das nicht Mitglied der Europäischen Union ist</dd>
+          <dt>Stelle des Bundes</dt>
+          <dd>
+            eine Gemeinde, die Mitglied des Bunds Evangelisch-Freikirchlicher
+            Gemeinden, K.d.ö.R. ist, ein Landesverband, die Arbeitsgemeinschaft
+            der Brüdergemeinden, ein Arbeitszweig, eine Einrichtung oder ein
+            Organ dieses Bundes
+          </dd>
+          <dt>Verantwortliche Stelle</dt>
+          <dd>
+            eine Stelle des Bundes, die allein oder gemeinsam mit anderen über
+            die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten
+            entscheidet
+          </dd>
+          <dt>Auftragsverarbeiter</dt>
+          <dd>
+            eine natürliche oder juristische Person oder - falls die
+            verantwortliche Stelle zu einer anderen juristischen Person gehört -
+            eine Stelle des Bundes, die personenbezogene Daten im Auftrag der
+            verantwortlichen Stelle verarbeitet
+          </dd>
+          <dt>Dritter</dt>
+          <dd>
+            eine natürliche oder juristische Person, Behörde, selbständige
+            Gemeinde oder Einrichtung außer der betroffenen Person, der
+            verantwortlichen Stelle, dem Auftragsverarbeiter und den Personen,
+            die unter der unmittelbaren Verantwortung der verantwortlichen
+            Stelle oder des Auftragsverarbeiters befugt sind, die
+            personenbezogenen Daten zu verarbeiten
+          </dd>
+          <dt>Anonymisierung</dt>
+          <dd>
+            ist die Verarbeitung personenbezogener Daten derart, dass die
+            personenbezogenen Daten nicht mehr einer spezifischen betroffenen
+            Person zugeordnet werden können oder nur mit einem großen Aufwand an
+            Zeit, Kosten und Arbeitskraft einer identifizierten oder
+            identifizierbaren Person zugeordnet werden können
+          </dd>
+          <dt>Pseudonymisierung</dt>
+          <dd>
+            die Verarbeitung personenbezogener Daten in einer Weise, dass die
+            personenbezogenen Daten ohne Hinzuziehung zusätzlicher Informationen
+            nicht mehr einer spezifischen betroffenen Person zugeordnet werden
+            können, sofern diese zusätzlichen Informationen gesondert aufbewahrt
+            werden und technischen und organisatorischen Maßnahmen unterliegen,
+            die gewährleisten, dass die personenbezogenen Daten nicht einer
+            identifizierten oder identifizierbaren natürlichen Person zugewiesen
+            werden
+          </dd>
+          <dt>Dateisystem</dt>
+          <dd>
+            jede strukturierte Sammlung personenbezogener Daten, die nach
+            bestimmten Kriterien zugänglich sind, unabhängig davon, ob diese
+            Sammlung zentral, dezentral oder nach funktionalen oder
+            geografischen Gesichtspunkten geordnet geführt wird
+          </dd>
+          <dt>Aufsichtsgremium bzw. Datenschutzrat</dt>
+          <dd>
+            eine unabhängige Stelle des Bundes, die über die Einhaltung der
+            Datenschutzordnung wacht
+          </dd>
+          <dt>Bundesbeauftragter für Datenschutz</dt>
+          <dd>
+            der vom Präsidium des Bundes bestellten Beauftragten für den
+            Datenschutz (im Folgenden auch kurz: Bundesbeauftragter)
+          </dd>
+          <dt>Einschränkung der Verarbeitung</dt>
+          <dd>
+            die Markierung gespeicherter personenbezogener Daten mit dem Ziel,
+            ihre künftige Verarbeitung einzuschränken
+          </dd>
+          <dt>Einwilligung</dt>
+          <dd>
+            der betroffenen Person jede freiwillig für den bestimmten Fall, in
+            informierter Weise und unmissverständlich abgegebene
+            Willensbekundung in Form einer Erklärung oder einer sonstigen
+            eindeutigen bestätigenden Handlung, mit der die betroffene Person zu
+            verstehen gibt, dass sie mit der Verarbeitung der sie betreffenden
+            personenbezogenen Daten einverstanden ist
+          </dd>
+        </dl>
+        <h2>Verantwortliche Stelle</h2>
+        <p>
+          Verantwortliche Stelle im Sinne der Datenschutzordnung (DSO-BUND) ist
+        </p>
+        <p>
+          die Evangelisch-Freikirchliche Gemeinde Ludwigshafen<br />Böhlstr. 5
+          (Gemeindehaus) / Hemshofstr. 23 (Postanschrift)<br />67063
+          Ludwigshafen
+        </p>
+        <p>
+          Die Evangelisch-Freikirchliche Gemeinde Ludwigshafen wird vertreten
+          durch Herrn Dominik Schreiber (kommissarischer Geschäftsführer).
+        </p>
+        <p>
+          Bei allgemeinen Fragen oder Anregungen an uns zum Thema Datenschutz
+          können Sie sich jederzeit telefonisch unter
+          <a href="tel:062365777894">06236-5777894</a> oder per E-Mail unter
+          <a href="mailto:datenschutz@efg-ludwigshafen.de"
+            >datenschutz@efg-ludwigshafen.de</a
+          >
+          mit uns in Verbindung setzen.
+        </p>
+        <h2>Erfassung von Daten</h2>
+        <p>
+          Die Internetseite der Evangelisch-Freikirchlichen Gemeinde
+          Ludwigshafen erfasst mit jedem Aufruf der Internetseite durch eine
+          betroffene Person oder ein automatisiertes System eine Reihe von
+          allgemeinen Daten und Informationen. Diese allgemeinen Daten und
+          Informationen werden in den Logfiles des Servers gespeichert. Erfasst
+          werden können die
+        </p>
+        <ul>
+          <li>verwendeten Browsertypen und Versionen,</li>
+          <li>das vom zugreifenden System verwendete Betriebssystem,</li>
+          <li>
+            die Internetseite, von welcher ein zugreifendes System auf unsere
+            Internetseite gelangt (sog. Referrer),
+          </li>
+          <li>
+            die Unterwebseiten, welche über ein zugreifendes System auf unserer
+            Internetseite angesteuert werden,
+          </li>
+          <li>
+            das Datum und die Uhrzeit eines Zugriffs auf die Internetseite,
+          </li>
+          <li>eine Internetprotokolladresse (IP-Adresse),</li>
+          <li>der Internet-Service-Provider des zugreifenden Systems und</li>
+          <li>
+            sonstige ähnliche Daten und Informationen, die der Gefahrenabwehr im
+            Fall von Angriffen auf unsere informationstechnologischen Systeme
+            dienen.
+          </li>
+        </ul>
+
+        <p>
+          Bei der Nutzung dieser allgemeinen Daten und Informationen zieht die
+          Evangelisch-Freikirchliche Gemeinde Ludwigshafen keine Rückschlüsse
+          auf die betroffene Person. Diese Informationen werden vielmehr
+          benötigt, um
+        </p>
+        <ul>
+          <li>die Inhalte unserer Internetseite korrekt auszuliefern,</li>
+          <li>
+            die Inhalte unserer Internetseite sowie die Werbung für diese zu
+            optimieren,
+          </li>
+          <li>
+            die dauerhafte Funktionsfähigkeit unserer
+            informationstechnologischen Systeme und der Technik unserer
+            Internetseite zu gewährleisten sowie
+          </li>
+          <li>
+            um Strafverfolgungsbehörden im Fall eines Cyberangriffs die zur
+            Strafverfolgung notwendigen Informationen bereitzustellen.
+          </li>
+        </ul>
+
+        <p>
+          Diese anonym erhobenen Daten und Informationen werden durch die
+          Evangelisch-Freikirchliche Gemeinde Ludwigshafen daher einerseits
+          statistisch und ferner mit dem Ziel ausgewertet, den Datenschutz und
+          die Datensicherheit in unserer Kirchengemeinde zu erhöhen, um
+          letztlich ein optimales Schutzniveau für die von uns verarbeiteten
+          personenbezogenen Daten sicherzustellen. Die anonymen Daten der
+          Server-Logfiles werden getrennt von allen durch eine betroffene Person
+          angegebenen personenbezogenen Daten gespeichert.
+        </p>
+        <h2>
+          Gesetzliche oder vertragliche Vorschriften zur Bereitstellung der
+          personenbezogenen Daten; Erforderlichkeit für den Vertragsabschluss;
+          Verpflichtung der betroffenen Person, die personenbezogenen Daten
+          bereitzustellen; mögliche Folgen der Nichtbereitstellung
+        </h2>
+        <p>
+          Wir klären Sie darüber auf, dass die Bereitstellung personenbezogener
+          Daten zum Teil gesetzlich vorgeschrieben ist (z.B. Steuervorschriften)
+          oder sich auch aus vertraglichen Regelungen (z.B. Angaben zum
+          Vertragspartner) ergeben kann. Mitunter kann es zu einem
+          Vertragsschluss erforderlich sein, dass eine betroffene Person uns
+          personenbezogene Daten zur Verfügung stellt, die in der Folge durch
+          uns verarbeitet werden müssen. Die betroffene Person ist
+          beispielsweise verpflichtet, uns personenbezogene Daten
+          bereitzustellen, wenn unsere Kirchengemeinde mit ihr einen Vertrag
+          abschließt. Eine Nichtbereitstellung der personenbezogenen Daten hätte
+          zur Folge, dass der Vertrag mit dem Betroffenen nicht geschlossen
+          werden könnte. Vor einer Bereitstellung personenbezogener Daten durch
+          den Betroffenen muss sich der Betroffene an den Verantwortlichen
+          unserer Kirchengemeinde wenden. Er klärt den Betroffenen
+          einzelfallbezogen darüber auf, ob die Bereitstellung der
+          personenbezogenen Daten gesetzlich oder vertraglich vorgeschrieben
+          oder für den Vertragsabschluss erforderlich ist, ob eine Verpflichtung
+          besteht, die personenbezogenen Daten bereitzustellen, und welche
+          Folgen die Nichtbereitstellung der personenbezogenen Daten hätte.
+        </p>
+        <h2>Welche Daten werden erhoben und gespeichert?</h2>
+        <p>
+          Um unsere Homepage zu besuchen, ist die Angabe von personenbezogenen
+          Daten nicht notwendig. Personenbezogene Daten sind Einzelangaben über
+          persönliche und sachliche Verhältnisse einer bestimmten oder
+          bestimmbaren Person (vgl. §3 Nr. 1 DSO-BUND), also Daten, die
+          Rückschlüsse über eine Person zulassen. Diese Daten werden von uns nur
+          erhoben oder gespeichert, wenn Sie uns die Daten freiwillig,
+          beispielsweise bei Kontaktaufnahme über E-Mail, mitteilen.
+        </p>
+        <p>
+          Freiwillig mitgeteilte personenbezogene Daten werden ausschließlich
+          zur Durchführung der Kontaktaufnahme erhoben, gespeichert und
+          verarbeitet. Eine Weitergabe Ihrer Daten an Dritte erfolgt nicht.
+          Selbstverständlich achten wir bei der Verwendung Ihrer Daten auf die
+          Einhaltung datenschutzrechtlicher Bestimmungen der DSO-BUND.
+        </p>
+        <h2>Verwendung von Cookies</h2>
+        <p>
+          Unsere Website verwendet Cookies. „Cookies“ sind kurze
+          Textinformationen, die auf Ihrem Rechner abgelegt werden. Sie
+          erleichtern die Nutzung von Internetseiten. Bei der Verwendung von
+          Cookies besteht grundsätzlich die Gefahr, dass Ihr Surfverhalten
+          innerhalb der genutzten Internetpräsenz ausgelesen und Benutzerprofile
+          erstellt werden können. Nichtsdestotrotz verwenden wir auch auf
+          unserer Internetseite „Cookies“, da diese die Nutzung der
+          Internetpräsenz komfortabler gestalten und anderenfalls bestimmte
+          Funktionen der Webseite nicht ausgeführt werden können. Nach Beenden
+          des Browsers werden die meisten der von uns verwendeten Cookies wieder
+          von Ihrer Festplatte gelöscht („Sitzungs-Cookies“). Die sogenannten
+          „dauerhaften Cookies“ verbleiben dagegen auf Ihrem Rechner und
+          ermöglichen es uns so, Sie bei Ihrem nächsten Besuch wiederzuerkennen.
+        </p>
+        <p>
+          Sie haben jedoch dennoch die Möglichkeit, das Abspeichern von Cookies
+          auf Ihrem eigenen Rechner zu verhindern, indem Sie die entsprechenden
+          Einstellungen bei Ihrem Browser-Programm ändern. Dies kann jedoch zu
+          einer eingeschränkten Funktionalität unseres Webauftritts führen.
+        </p>
+        <h2>Einsatz von Google Fonts und Google Maps</h2>
+        <p>
+          Einige unserer Seiten enthalten eingebettete Schriftarten (Fonts) und
+          Landkarten (Google Maps) der Firma Google Inc. Beim alleinigen
+          Aufrufen einer Seite aus unserem Internetangebot mit eingebundenen
+          Google Fonts oder Google Maps werden keine personenbezogenen Daten,
+          mit Ausnahme der IP-Adresse, übermittelt. Die IP-Adresse wird an die
+          Google Inc., 600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+          („Google“) übermittelt. Durch die Nutzung dieser Website erklären Sie
+          sich mit der Erfassung, Bearbeitung sowie der Nutzung der automatisch
+          erhobenen sowie der von Ihnen eingegeben Daten durch Google, einer
+          seiner Vertreter, oder Drittanbieter einverstanden.
+        </p>
+        <p>
+          Die Nutzungsbedingungen für Google Maps finden Sie unter
+          <a href="https://www.radtke-partner.de/maps"
+            >Nutzungsbedingungen für Google Maps</a
+          >. Ausführliche Details finden Sie im
+          <a href="https://www.radtke-partner.de/gdenb"
+            >Datenschutz-Center von google.de</a
+          >
+          (Transparenz und Wahlmöglichkeiten sowie Datenschutzbestimmungen).
+        </p>
+        <h2>Social-Media</h2>
+        <p>
+          Neben diesem Webauftritt unterhalten wir auch Präsenzen in
+          verschiedenen sozialen Medien. Sollten Sie eine solche Präsenz
+          besuchen, können ggf. personenbezogene Daten an den Anbieter des
+          sozialen Netzwerks übermittelt werden. Es ist möglich, dass neben der
+          Speicherung der von Ihnen in diesem sozialen Medium konkret
+          eingegebenen Daten auch weitere Informationen von dem Anbieter des
+          sozialen Netzwerks erhoben, verarbeitet oder genutzt werden.
+        </p>
+        <p>
+          Überdies erhebt, verarbeitet und nutzt der Anbieter des sozialen
+          Netzwerks ggf. die wichtigsten Daten des Computersystems, von dem aus
+          Sie dieses besuchen – zum Beispiel Ihre IP-Adresse, den genutzten
+          Prozessortyp und Browserversion samt Plug-ins.
+        </p>
+        <p>
+          Sofern Sie während des Besuchs eines solchen sozialen Netzwerks mit
+          Ihrem persönlichen Benutzerkonto des jeweiligen Netzwerks eingeloggt
+          sind, kann dieses den Besuch diesem Konto zuordnen. Sollten Sie eine
+          solche Zuordnung nicht wünschen, müssen Sie sich vor Besuch unserer
+          Präsenz mit Ihrem Konto ausloggen.
+        </p>
+        <p>
+          Zweck und Umfang der Datenerhebung durch das jeweilige soziale
+          Netzwerk sowie die dortige weitere Verarbeitung und Nutzung Ihrer
+          Daten wie auch Ihre diesbezüglichen Rechte entnehmen Sie bitte den
+          jeweiligen Bestimmungen des jeweiligen Netzwerks:
+        </p>
+        <ul>
+          <li>
+            <a href="https://www.radtke-partner.de/fbdatenschutz">Facebook</a>
+          </li>
+          <li>
+            <a href="https://help.instagram.com/155833707900388">Instagram</a>
+          </li>
+          <li>
+            <a href="https://www.radtke-partner.de/gdatenschutz">YouTube</a>
+          </li>
+          <li>
+            <a href="https://www.radtke-partner.de/tdatenschutz">Twitter</a>
+          </li>
+          <li><a href="https://anchor.fm/privacy">Anchor</a></li>
+        </ul>
+
+        <h2>Verlinkungen</h2>
+        <p>
+          Innerhalb unseres Webauftritts können sich Links zu den Seiten anderer
+          Anbieter befinden. Da wir auf diese Websites keinen Einfluss haben,
+          wird dem Nutzer empfohlen, sich nach den dort gegebenenfalls
+          bereitgehaltenen Informationen zum Datenschutz zu erkundigen. Wir
+          übernehmen keine Verantwortung für die Inhalte der verlinkten Seiten.
+        </p>
+        <h2>Datensicherheit</h2>
+        <p>
+          Wir sichern unseren Webauftritt und sonstigen Systeme durch technische
+          und organisatorische Maßnahmen gegen Verlust, Zerstörung, Zugriff,
+          Veränderung oder Verbreitung Ihrer Daten durch unbefugte Personen.
+          Trotz regelmäßiger Kontrollen ist ein vollständiger Schutz gegen alle
+          Gefahren nicht möglich.
+        </p>
+        <p>
+          Der Webauftritt verwendet an manchen Stellen zur Verschlüsselung den
+          Industriestandard SSL (Secure Sockets Layer). Dadurch wird die
+          Vertraulichkeit Ihrer persönlichen Angaben über das Internet
+          gewährleistet.
+        </p>
+        <h2>Aktualisierung/Löschung Ihrer persönlichen Daten</h2>
+        <p>
+          Sie haben jederzeit die Möglichkeit, die uns zur Verfügung gestellten
+          persönlichen Daten zu überprüfen, zu ändern oder zu löschen, indem Sie
+          uns eine E-Mail an die E-Mail-Adresse
+          <a href="mailto:datenschutz@efg-ludwigshafen.de"
+            >datenschutz@efg-ludwigshafen.de</a
+          >
+          schicken. Wenn Sie Mitglied bei uns sind, können Sie dort auch den
+          Empfang weiterer Informationen für die Zukunft ausschließen.
+        </p>
+        <p>
+          Ebenso haben Sie das Recht, einmal erteilte Einwilligungen mit Wirkung
+          für die Zukunft jederzeit zu widerrufen.
+        </p>
+        <p>
+          Die Löschung der gespeicherten personenbezogenen Daten erfolgt, wenn
+          Sie Ihre Einwilligung zur Speicherung widerrufen.
+        </p>
+        <p>
+          Der für die Verarbeitung Verantwortliche verarbeitet und speichert
+          personenbezogene Daten der betroffenen Person nur für den Zeitraum,
+          der zur Erreichung des Speicherungszwecks erforderlich ist oder sofern
+          dies durch den Europäischen Richtlinien- und Verordnungsgeber oder
+          einen anderen Gesetzgeber in Gesetzen oder Vorschriften, welchen der
+          für die Verarbeitung Verantwortliche unterliegt, vorgesehen wurde.
+        </p>
+        <p>
+          Entfällt der Speicherungszweck oder läuft eine vom Europäischen
+          Richtlinien- und Verordnungsgeber oder einem anderen zuständigen
+          Gesetzgeber vorgeschriebene Speicherfrist ab, werden die
+          personenbezogenen Daten routinemäßig und entsprechend den gesetzlichen
+          Vorschriften gesperrt oder gelöscht.
+        </p>
+        <h2>Rechte der betroffenen Personen</h2>
+        <p>
+          Jede betroffene Person hat das Recht, von dem für die Verarbeitung
+          Verantwortlichen eine Bestätigung darüber zu verlangen, ob sie
+          betreffende personenbezogene Daten verarbeitet werden. Möchte eine
+          betroffene Person dieses Bestätigungsrecht in Anspruch nehmen, kann
+          sie sich hierzu jederzeit an den für die Verarbeitung Verantwortlichen
+          wenden.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat das Recht, jederzeit von dem für die Verarbeitung Verantwortlichen
+          unentgeltliche Auskunft über die zu seiner Person gespeicherten
+          personenbezogenen Daten und eine Kopie dieser Auskunft zu erhalten.
+          Ferner besteht ein Auskunftsrecht über folgende Informationen (§11
+          DSO-BUND):
+        </p>
+        <ul>
+          <li>die Verarbeitungszwecke;</li>
+          <li>die Kategorien personenbezogener Daten;</li>
+          <li>
+            die Empfänger, gegenüber denen die personenbezogenen Daten
+            offengelegt worden sind;
+          </li>
+          <li>
+            falls möglich, die geplante Dauer, für die die personenbezogenen
+            Daten gespeichert werden, oder, falls dies nicht möglich ist, die
+            Kriterien für die Festlegung dieser Dauer;
+          </li>
+          <li>
+            das Bestehen eines Rechts auf Berichtigung oder Löschung der sie
+            betreffenden personenbezogenen Daten oder auf Einschränkung der
+            Verarbeitung durch die verantwortliche Stelle oder eines
+            Widerspruchsrechts gegen diese Verarbeitung;
+          </li>
+          <li>das Bestehen eines Beschwerderechts beim Datenschutzrat;</li>
+          <li>Information über die Herkunft der Daten.</li>
+        </ul>
+
+        <p>
+          Möchte eine betroffene Person dieses Auskunftsrecht in Anspruch
+          nehmen, kann sie sich hierzu jederzeit an den für die Verarbeitung
+          Verantwortlichen wenden.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat das Recht, die unverzügliche Berichtigung sie betreffender
+          unrichtiger personenbezogener Daten zu verlangen (§12 DSO-Bund).
+          Ferner steht der betroffenen Person das Recht zu, unter
+          Berücksichtigung der Zwecke der Verarbeitung, die Vervollständigung
+          unvollständiger personenbezogener Daten – auch mittels einer
+          ergänzenden Erklärung – zu verlangen (§12 Abs. 2 DSO-BUND).
+        </p>
+        <p>
+          Möchte eine betroffene Person dieses Berichtigungsrecht in Anspruch
+          nehmen, kann sie sich hierzu jederzeit an unseren den für die
+          Verarbeitung Verantwortlichen wenden.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat zudem das Recht, von dem Verantwortlichen zu verlangen, dass die
+          sie betreffenden personenbezogenen Daten unverzüglich gelöscht werden,
+          sofern einer der folgenden Gründe zutrifft und soweit die Verarbeitung
+          nicht erforderlich ist:
+        </p>
+        <ul>
+          <li>
+            Die personenbezogenen Daten wurden für solche Zwecke erhoben oder
+            auf sonstige Weise verarbeitet, für welche sie nicht mehr notwendig
+            sind.
+          </li>
+          <li>
+            Die betroffene Person widerruft ihre Einwilligung (§6 Abs. 3
+            DSO-BUND), auf die sich die Verarbeitung gem. §6 Abs. 1 DSO-Bund
+            oder §8 Abs. 2 Buchst. a) DSO-BUND stützte, und es fehlt an einer
+            anderweitigen Rechtsgrundlage für die Verarbeitung.
+          </li>
+          <li>
+            Die betroffene Person legt gem. §16 Abs. 1 DSO-Bund Widerspruch
+            gegen die Verarbeitung ein, und es liegen keine vorrangigen
+            berechtigten Gründe für die Verarbeitung vor.
+          </li>
+          <li>Die personenbezogenen Daten wurden unrechtmäßig verarbeitet.</li>
+          <li>
+            Die Löschung der personenbezogenen Daten ist zur Erfüllung einer
+            rechtlichen Verpflichtung nach dem Kirchenrecht, Unionsrecht oder
+            dem Recht der Mitgliedstaaten erforderlich, dem der Verantwortliche
+            unterliegt.
+          </li>
+        </ul>
+
+        <p>
+          Sofern einer der o.g. Gründe zutrifft und eine betroffene Person die
+          Löschung von personenbezogenen Daten, die bei der
+          Evangelisch-Freikirchlichen Gemeinde Ludwigshafen gespeichert sind,
+          veranlassen möchte, kann sie sich hierzu jederzeit an den für die
+          Verarbeitung Verantwortlichen wenden. Dieser wird sodann veranlassen,
+          dass dem Löschverlangen unverzüglich nachgekommen wird.
+        </p>
+        <p>
+          Wurden die personenbezogenen Daten von der Evangelisch-Freikirchlichen
+          Gemeinde Ludwigshafen öffentlich gemacht und ist diese als
+          Verantwortlicher gem. §13 Abs. 1 DSO-BUND zur Löschung der
+          personenbezogenen Daten verpflichtet, so trifft die
+          Evangelisch-Freikirchlichen Gemeinde Ludwigshafen unter
+          Berücksichtigung der verfügbaren Technologie und der
+          Implementierungskosten angemessene Maßnahmen, auch technischer Art, um
+          andere für die Datenverarbeitung Verantwortliche, welche die
+          veröffentlichten personenbezogenen Daten verarbeiten, darüber in
+          Kenntnis zu setzen, dass die betroffene Person von diesen anderen für
+          die Datenverarbeitung Verantwortlichen die Löschung sämtlicher Links
+          zu diesen personenbezogenen Daten oder von Kopien oder Replikationen
+          dieser personenbezogenen Daten verlangt hat, soweit die Verarbeitung
+          nicht erforderlich ist. Der Datenschutzbeauftragte der
+          Evangelisch-Freikirchlichen Gemeinde Ludwigshafen oder ein anderer
+          Mitarbeiter wird im Einzelfall das Notwendige veranlassen.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat gem. §14 DSO-BUND das Recht, von dem Verantwortlichen die
+          Einschränkung der Verarbeitung zu verlangen, wenn eine der folgenden
+          Voraussetzungen gegeben ist:
+        </p>
+        <ul>
+          <li>
+            Die Richtigkeit der personenbezogenen Daten wird von der betroffenen
+            Person bestritten, und zwar für eine Dauer, die es dem
+            Verantwortlichen ermöglicht, die Richtigkeit der personenbezogenen
+            Daten zu überprüfen.
+          </li>
+          <li>
+            Die Verarbeitung ist unrechtmäßig, die betroffene Person lehnt die
+            Löschung der personenbezogenen Daten ab und verlangt stattdessen die
+            Einschränkung der Nutzung der personenbezogenen Daten.
+          </li>
+          <li>
+            Der Verantwortliche benötigt die personenbezogenen Daten für die
+            Zwecke der Verarbeitung nicht länger, die betroffene Person benötigt
+            sie jedoch zur Geltendmachung, Ausübung oder Verteidigung von
+            Rechtsansprüchen.
+          </li>
+          <li>
+            Die betroffene Person hat Widerspruch gegen die Verarbeitung gem.
+            §16 Abs. 1 DSO-BUND eingelegt und es steht noch nicht fest, ob die
+            berechtigten Gründe des Verantwortlichen gegenüber denen der
+            betroffenen Person überwiegen.
+          </li>
+        </ul>
+
+        <p>
+          Sofern eine der o.g. Voraussetzungen gegeben ist und eine betroffene
+          Person die Einschränkung von personenbezogenen Daten, die bei der
+          Evangelisch-Freikirchlichen Gemeinde Ludwigshafen gespeichert sind,
+          verlangen möchte, kann sie sich hierzu jederzeit an den für die
+          Verarbeitung Verantwortlichen wenden. Dieser wird sodann die
+          Einschränkung der Verarbeitung veranlassen.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat das Recht, die sie betreffenden personenbezogenen Daten, welche
+          durch die betroffene Person einem Verantwortlichen bereitgestellt
+          wurden, in einem strukturierten, gängigem und maschinenlesbaren Format
+          zu erhalten. Sie hat außerdem das Recht, diese Daten einem anderen
+          Verantwortlichen ohne Behinderung durch den Verantwortlichen, dem die
+          personenbezogenen Daten bereitgestellt wurden, zu übermitteln, sofern
+          die Verarbeitung auf der Einwilligung gem. §5 Abs. 2 b) DSO-BUND oder
+          §8 Abs. 2 DSO-BUND oder auf einer sich aus einem Vertrag ergebenden
+          rechtlichen Verpflichtung gem. §5 Abs. 2 d) DSO-BUND beruht und die
+          Verarbeitung mithilfe automatisierter Verfahren erfolgt, sofern die
+          Verarbeitung nicht für die Wahrnehmung einer Aufgabe erforderlich ist,
+          die im öffentlichen Interesse liegt oder in Ausübung öffentlicher
+          Gewalt erfolgt, welche dem Verantwortlichen übertragen wurde.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat das Recht, aus Gründen, die sich aus ihrer besonderen Situation
+          ergeben, jederzeit gegen die Verarbeitung sie betreffender
+          personenbezogener Daten, die aufgrund von Art. 5 Abs. 2 e), f) oder g)
+          DSO-BUND erfolgt, Widerspruch einzulegen. Dies gilt auch für ein auf
+          diese Bestimmungen gestütztes Profiling.
+        </p>
+        <p>
+          Die Evangelisch-Freikirchlichen Gemeinde Ludwigshafen verarbeitet die
+          personenbezogenen Daten im Fall des Widerspruchs nicht mehr, es sei
+          denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung
+          nachweisen, die den Interessen, Rechten und Freiheiten der betroffenen
+          Person überwiegen oder der Verarbeitung, Geltendmachung, Ausübung oder
+          Verteidigung von Rechtsansprüchen dienen.
+        </p>
+        <p>
+          Verarbeitet die Evangelisch-Freikirchlichen Gemeinde Ludwigshafen
+          personenbezogene Daten, um Direktwerbung zu betreiben, so hat die
+          betroffene Person das Recht, jederzeit Widerspruch gegen die
+          Verarbeitung der personenbezogenen Daten zum Zweck derartiger Werbung
+          einzulegen. Dies gilt auch für das Profiling, soweit es mit solcher
+          Direktwerbung in Verbindung steht. Widerspricht die betroffene Person
+          gegenüber der Evangelisch-Freikirchlichen Gemeinde Ludwigshafen der
+          Verarbeitung für Zwecke der Direktwerbung, so wird die
+          Evangelisch-Freikirchlichen Gemeinde Ludwigshafen die
+          personenbezogenen Daten nicht mehr für diese Zwecke verarbeiten.
+        </p>
+        <p>
+          Zudem hat die betroffene Person das Recht, aus Gründen, die sich aus
+          ihrer besonderen Situation ergeben, gegen die sie betreffende
+          Verarbeitung personenbezogener Daten, die bei der
+          Evangelisch-Freikirchlichen Gemeinde Ludwigshafen zu
+          wissenschaftlichen oder historischen Forschungszwecken oder zu
+          statistischen Zwecken gem. §13 Abs. 3 Nr. 4 DSO-BUND erfolgen,
+          Widerspruch einzulegen, es sei denn, eine solche Verarbeitung ist zur
+          Erfüllung einer im öffentlichen Interesse liegenden Aufgabe
+          erforderlich.
+        </p>
+        <p>
+          Zur Ausübung des Rechts auf Widerspruch kann sich die betroffene
+          Person direkt an den für die Verarbeitung Verantwortlichen wenden.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat das Recht, nicht einer ausschließlich auf einer automatisierten
+          Verarbeitung – einschließlich Profiling – beruhenden Entscheidung
+          unterworfen zu werden, die ihr gegenüber rechtliche Wirkung entfaltet
+          oder sie in ähnlicher Weise erheblich beeinträchtigt, sofern die
+          Entscheidung
+        </p>
+        <ul>
+          <li>
+            nicht für den Abschluss oder die Erfüllung eines Vertrags zwischen
+            der betroffenen Person und dem Verantwortlichen erforderlich ist,
+            oder
+          </li>
+          <li>
+            aufgrund von Rechtsvorschriften des Bundes
+            Evangelisch-Freikirchlicher Gemeinden in Deutschland K.d.ö.R., der
+            Europäischen Union oder der Mitgliedstaaten, denen der
+            Verantwortliche unterliegt, zulässig ist und diese
+            Rechtsvorschriften angemessene Maßnahmen zur Wahrung der Rechte und
+            Freiheiten sowie der berechtigten Interessen der betroffenen Person
+            enthalten oder
+          </li>
+          <li>
+            mit ausdrücklicher Einwilligung der betroffenen Person erfolgt.
+          </li>
+        </ul>
+
+        <p>Ist die Entscheidung</p>
+        <ul>
+          <li>
+            für den Abschluss oder die Erfüllung eines Vertrags zwischen der
+            betroffenen Person und dem Verantwortlichen erforderlich oder
+          </li>
+          <li>
+            erfolgt sie mit ausdrücklicher Einwilligung der betroffenen Person,
+          </li>
+        </ul>
+
+        <p>
+          trifft die Evangelisch-Freikirchlichen Gemeinde Ludwigshafen
+          angemessene Maßnahmen, um die Rechte und Freiheiten sowie die
+          berechtigten Interessen der betroffenen Person zu wahren, wozu
+          mindestens das Recht auf Erwirkung des Eingreifens einer Person
+          seitens des Verantwortlichen, auf Darlegung des eigenen Standpunkts
+          und auf Anfechtung der Entscheidung gehört.
+        </p>
+        <p>
+          Möchte die betroffene Person Rechte mit Bezug auf automatisierte
+          Entscheidungen geltend machen, kann sie sich hierzu jederzeit an den
+          für die Verarbeitung Verantwortlichen wenden.
+        </p>
+        <p>
+          Jede von der Verarbeitung personenbezogener Daten betroffene Person
+          hat das Recht, eine Einwilligung zur Verarbeitung personenbezogener
+          Daten jederzeit zu widerrufen.
+        </p>
+        <p>
+          Möchte die betroffene Person ihr Recht auf Widerruf einer Einwilligung
+          geltend machen, kann sie sich hierzu jederzeit an den für die
+          Verarbeitung Verantwortlichen wenden.
+        </p>
+        <h2>Rechtsgrundlage der Verarbeitung</h2>
+        <p>
+          §5 Abs. 2 DSO-BUND dient uns als Rechtsgrundlage für
+          Verarbeitungsvorgänge, bei denen wir eine Einwilligung für einen
+          bestimmten Verarbeitungszweck einholen. Ist die Verarbeitung
+          personenbezogener Daten zur Erfüllung eines Vertrags, dessen
+          Vertragspartei die betroffene Person ist, erforderlich, wie dies
+          beispielsweise bei Verarbeitungsvorgängen der Fall ist, die für eine
+          Lieferung von Waren oder die Erbringung einer sonstigen Leistung oder
+          Gegenleistung notwendig sind, so beruht die Verarbeitung auf §5 Abs. 2
+          d) DSO-BUND. Gleiches gilt für solche Verarbeitungsvorgänge, die zur
+          Durchführung vorvertraglicher Maßnahmen erforderlich sind. Unterliegen
+          wir einer rechtlichen Verpflichtung, durch welche eine Verarbeitung
+          von personenbezogenen Daten erforderlich wird, wie beispielsweise zur
+          Erfüllung steuerlicher Pflichten, so basiert die Verarbeitung
+          ebenfalls auf §5 Abs. 2 d) DSO-BUND. In seltenen Fällen könnte die
+          Verarbeitung von personenbezogenen Daten erforderlich werden, um
+          lebenswichtige Interessen der betroffenen Person oder einer anderen
+          natürlichen Person zu schützen. Dies wäre beispielsweise der Fall,
+          wenn ein Besucher in unseren Räumen verletzt werden würde und
+          daraufhin sein Name, sein Alter, seine Krankenkassendaten oder
+          sonstige lebenswichtige Informationen an einen Arzt, ein Krankenhaus
+          oder sonstige Dritte weitergegeben werden müssten. Dann würde die
+          Verarbeitung auf §5 Abs. 2 e) DSO-BUND beruhen. Letztlich könnten
+          Verarbeitungsvorgänge auf §5 Abs. 2 f) bis h) DSO-BUND beruhen. Auf
+          dieser Rechtsgrundlage basieren Verarbeitungsvorgänge, die von keiner
+          der vorgenannten Rechtsgrundlagen erfasst werden, wenn die
+          Verarbeitung zur Wahrung eines berechtigten Interesses unserer
+          Gemeinde oder eines Dritten erforderlich ist, sofern die Interessen,
+          Grundrechte und Grundfreiheiten des Betroffenen nicht überwiegen.
+          Gleiches gilt für solche Verarbeitungen, die zur Wahrnehmung einer
+          Aufgabe erforderlich ist, die im Interesse des Bundes liegt oder sie
+          journalistisch-redaktionellen Zwecke des Bundes dient. Letztlich ist
+          eine Verarbeitung personenbezogener Daten zulässig, wenn eine
+          Rechtsvorschrift des Bundes oder eine vorrangige staatliche
+          Rechtsvorschrift diese erlaubt oder anordnet, §5 Abs. 2 a) DSO-BUND.
+        </p>
+        <h2>Bekanntmachung von Veränderungen</h2>
+        <p>
+          Gesetzesänderungen oder Änderungen unserer internen Prozesse können
+          eine Anpassung dieser Datenschutzerklärung erforderlich machen. Für
+          den Fall einer solchen Änderung werden wir Ihnen dies spätestens sechs
+          Wochen vor Inkrafttreten mitteilen. Ihnen steht generell (Nr. 20) ein
+          Widerrufsrecht hinsichtlich Ihrer erteilten Einwilligungen zu. Bitte
+          beachten Sie, dass (sofern Sie keinen Gebrauch von Ihrem
+          Widerrufsrecht machen) die jeweils aktuelle Version der
+          Datenschutzerklärung die gültige ist.
+        </p>
+        <h2>Ihr Verantwortlicher bzw. Ansprechpartner für Datenschutz</h2>
+        <p>
+          Haben Sie Fragen zur Erhebung, Verarbeitung oder Nutzung Ihrer
+          personenbezogenen Daten oder wünschen Sie eine Auskunft, Berichtigung,
+          Löschung oder Sperrung Ihrer Daten oder den Widerruf erteilter
+          Einwilligungen oder den Widerspruch gegen eine bestimmte
+          Datenverwendung, wenden Sie sich bitte direkt an den für die
+          Verarbeitung Verantwortlichen:
+        </p>
+        <p>
+          Dominik Schreiber, E-Mail:
+          <a href="mailto:datenschutz@efg-ludwigshafen.de"
+            >datenschutz@efg-ludwigshafen.de</a
+          >, Telefon: <a href="tel:062365777894">06236-5777894</a>
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/imprint/ ============================================= -->
+    <article id="!/de/imprint/" data-title="Impressum">
+      <section class="h-32">
+        <h1>Impressum</h1>
+      </section>
+      <section class="text">
+        <h2>Kontakt</h2>
+        <address>
+          <b>Evangelisch-Freikirchliche Gemeinde Ludwigshafen (Baptisten)</b
+          ><br />
+          im Bund Evangelisch-Freikirchlicher Gemeinden in Deutschland
+          K.d.Ö.R.<br /><br />
+          Böhlstraße 5 (Gemeindehaus)<br />
+          Hemshofstraße 23 (Post)<br />
+          67063 Ludwigshafen
+        </address>
+        <address>
+          V.i.s.d.P.: <b>Dominik Schreiber</b><br />
+          E-Mail:
+          <a href="mailto:info@efg-ludwigshafen.de">info@efg-ludwigshafen.de</a>
+        </address>
+
+        <h2>Haftungsausschluss</h2>
+        <p>
+          Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung
+          für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten
+          sind ausschließlich deren Betreiber verantwortlich.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/de/downloads/ =========================================== -->
+    <article id="!/de/downloads/" data-title="Downloads">
+      <section
+        style="
+          background-image: linear-gradient(0deg, #000a 0, #000a 100%),
+            url(img/downloads.webp);
+        "
+        class="inverse h-32"
+      >
+        <h1>Downloads</h1>
+      </section>
+      <section class="text">
+        <p>
+          <a href="downloads/2020-11-29 Bibelstellen zur Predigt.pdf" download>
+            2020-11-29 Bibelstellen zur Predigt.pdf
+          </a>
+        </p>
+        <p>
+          <a
+            href="downloads/2020-10-04 Arbeitsanweisung Dankbarkeit.pdf"
+            download
+          >
+            2020-11-04 Arbeitsanweisung Dankbarkeit.pdf
+          </a>
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #endregion -->
+    <!-- #region !/en/ ######################################################-->
+    <article id="!/en/" data-title="Welcome"></article>
+    <!-- #endregion -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="img-logo" viewBox="0 0 454 605">
+        <path d="M 232   0 h  42 v 180 h  90 v   42 h -132 Z" fill="#55ace8" />
+        <path d="M 232 232 v 132 h  42 v -90 h  180 v  -42 Z" fill="#132532" />
+        <path d="M 90 232 h 132 v 373 h -42 v -331 h  -90 Z" fill="#132532" />
+        <path d="M 0 180 h 180 v -90 h  42 v  132 h -222 Z" fill="#132532" />
+      </symbol>
+      <symbol id="img-claim" viewBox="0 0 2195 700">
+        <style>
+          text {
+            font-family: "Source Sans Pro", sans-serif;
+            font-size: 92px;
+            font-weight: 300;
+          }
+        </style>
+        <text text-anchor="end" x="1871" y="485" fill="#ebebeb">
+          Evangelisch-Freikirchliche Gemeinde (Baptisten)
+        </text>
+        <text
+          text-anchor="end"
+          x="1871"
+          y="603"
+          fill="#ebebeb"
+          style="font-weight: 600"
+        >
+          Ludwigshafen
+        </text>
+        <path d="M 1964   0 h  42 v 180 h  90 v   42 h -132 Z" fill="#55ace8" />
+        <path d="M 1964 232 v 132 h  42 v -90 h  180 v  -42 Z" fill="#ebebeb" />
+        <path d="M 1822 232 h 132 v 373 h -42 v -331 h  -90 Z" fill="#ebebeb" />
+        <path d="M 1732 180 h 180 v -90 h  42 v  132 h -222 Z" fill="#ebebeb" />
+      </symbol>
+      <symbol id="img-apple-podcasts" viewBox="0 0 300 300">
+        <rect width="300" height="300" fill="#ad4fdd" ry="66.74" />
+        <path
+          fill="#fff"
+          d="M140.84 262.64c-8.95-3.2-10.87-7.55-14.54-33.04-4.27-29.63-5.2-47.97-2.73-53.78 3.28-7.7 12.18-12.07 24.63-12.12 12.35-.05 21.33 4.36 24.63 12.12 2.48 5.8 1.55 24.15-2.72 53.78-2.9 20.7-4.5 25.93-8.5 29.45-5.5 4.87-13.3 6.22-20.7 3.6zm-38.23-30.4c-30.9-15.2-50.7-40.92-57.9-75.14-1.8-8.83-2.1-29.9-.4-38 4.5-21.75 13.1-38.76 27.4-53.8 20.6-21.72 47.1-33.2 76.6-33.2 29.2 0 55.6 11.27 75.7 32.34 15.3 15.9 23.9 32.73 28.3 54.9 1.5 7.38 1.5 27.5.1 35.8-4.6 26.24-19.2 50.14-40.5 66.2-7.6 5.74-26.2 15.76-29.2 15.76-1.1 0-1.2-1.14-.7-5.75.9-7.4 1.8-8.94 6-10.7 6.7-2.8 18.1-10.92 25.1-17.94 12.1-12 21-27.7 25.1-44.2 2.6-10.3 2.3-33.2-.6-43.8-9.1-33.7-36.6-59.9-70.3-66.9-9.8-2-27.6-2-37.5 0-34.1 7-62.3 34.5-70.9 69.1-2.3 9.4-2.3 32.3 0 41.7 5.7 22.9 20.5 43.9 39.9 56.4 3.8 2.5 8.4 5.1 10.3 5.9 4.2 1.8 5.1 3.3 5.9 10.7.5 4.5.4 5.8-.7 5.8-.7 0-5.8-2.2-11.2-4.8zm.4-40.68c-10.4-8.3-19.6-23.02-23.4-37.46-2.3-8.72-2.3-25.3.1-34 6.3-23.48 23.6-41.68 47.6-50.23 8.2-2.9 26.4-3.55 36.5-1.32 34.8 7.75 59.5 42.6 54.7 77.17-1.9 13.93-6.7 25.37-15.2 36-4.2 5.37-14.4 14.38-16.2 14.38-.3 0-.6-3.4-.6-7.54V181l5.2-6.2c19.6-23.48 18.2-56.28-3.2-77.8-8.3-8.38-17.9-13.3-30.3-15.57-8-1.48-9.7-1.48-18.1-.1-12.75 2.08-22.63 7.02-31.4 15.7-21.5 21.3-22.9 54.27-3.3 77.77l5.16 6.2v7.6c0 4.2-.33 7.6-.74 7.6-.4 0-3.3-2-6.4-4.5zm34.7-40.83c-8.9-4.14-13.7-11.95-13.8-22.13 0-9.15 5.1-17.13 13.9-21.8 5.6-2.94 15.5-2.94 21.1.02 6.1 3.17 11.1 9.32 13 15.74 5.8 19.72-15.1 37-34 28.17z"
+        />
+        <circle cx="149.89" cy="129.67" r="24.94" fill="#fff" />
+        <path
+          fill="#fff"
+          d="M152.28 164.27c1.73.23 5.17.68 8.35 1.7 3.2 1 6.1 2.57 8.36 4.18 2.2 1.6 3.8 3.26 4.8 5.28 1 2.02 1.5 4.42 1.8 8.35.2 3.94.2 9.4-.7 19.6-.9 10.17-2.7 25.08-4.1 34.63-1.4 9.6-2.4 13.8-3.7 16.9-1.3 3.2-3 5.3-4.9 6.8-1.9 1.5-4.1 2.4-6.2 2.9-2.1.5-4 .5-5.8.5-1.8 0-3.5 0-5.8-.5s-5.3-1.4-7.5-3.2c-2.3-1.8-3.8-4.4-5-7.8-1.2-3.4-2.1-7.5-3.3-15.7-1.2-8.2-2.8-20.4-3.8-29.7s-1.4-15.7-1.48-20c-.1-4.3.1-6.43.6-8.5.5-2 1.3-3.9 2.4-5.5 1.1-1.6 2.54-3 4-4.1 1.43-1.1 2.9-1.9 4.66-2.52 1.74-.7 3.83-1.3 6.4-1.8 2.6-.5 5.6-1 7.14-1.2 1.54-.23 1.54-.23 3.26 0z"
+        />
+      </symbol>
+      <symbol id="img-spotify" viewBox="0 0 168 168">
+        <path
+          fill="#1ED760"
+          d="m83.996 0.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.251 37.494 83.741 83.743 83.741 46.254 0 83.744-37.49 83.744-83.741 0-46.246-37.49-83.738-83.745-83.738l0.001-0.004zm38.404 120.78c-1.5 2.46-4.72 3.24-7.18 1.73-19.662-12.01-44.414-14.73-73.564-8.07-2.809 0.64-5.609-1.12-6.249-3.93-0.643-2.81 1.11-5.61 3.926-6.25 31.9-7.291 59.263-4.15 81.337 9.34 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.805c-1.89 3.075-5.91 4.045-8.98 2.155-22.51-13.839-56.823-17.846-83.448-9.764-3.453 1.043-7.1-0.903-8.148-4.35-1.04-3.453 0.907-7.093 4.354-8.143 30.413-9.228 68.222-4.758 94.072 11.127 3.07 1.89 4.04 5.91 2.15 8.976v-0.001zm0.88-23.744c-26.99-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.73 2.209 4.95 7.016 2.74 10.733-2.2 3.722-7.02 4.949-10.73 2.739z"
+        />
+      </symbol>
+      <symbol id="img-google-podcasts" viewBox="0 0 400 400">
+        <g stroke-linecap="round" stroke-width="48.5">
+          <path d="m24.26 186.32v27.351" stroke="#0066d9" />
+          <path d="m375.74 186.32v27.351" stroke="#4285f4" />
+          <path d="m112.13 104.27v89.46m0 74.645v27.351" stroke="#ea4335" />
+          <path d="m287.87 206.26v89.46m0-191.46v27.351" stroke="#34a853" />
+          <path
+            d="m200 127.06v145.87m0-248.68v27.351m0 296.78v27.351"
+            stroke="#fab908"
+          />
+        </g>
+      </symbol>
+      <symbol id="img-overcast" viewBox="100 100 900 900">
+        <path
+          fill-rule="evenodd"
+          stroke="none"
+          fill="#fc7e0f"
+          d="M 500,900 C 278.33,900 100,721.67 100,500 100,278.33 278.33,100 500,100 721.67,100 900,278.33 900,500 900,721.67 721.67,900 500,900 Z M 500,741.67 L 530,711.67 500,596.67 470,711.67 500,741.67 Z M 461.67,740 L 446.67,796.67 481.67,761.67 461.67,740 Z M 538.33,740 L 518.33,760 553.33,795 538.33,740 Z M 566.67,843.33 L 500,776.67 433.33,843.33 C 455,846.67 476.67,850 500,850 523.33,850 545,848.33 566.67,843.33 Z M 500,150 C 306.67,150 150,306.67 150,500 150,653.33 248.33,783.33 385,830 L 460,551.67 C 443.33,540 433.33,520 433.33,498.33 433.33,461.67 463.33,431.67 500,431.67 536.67,431.67 566.67,461.67 566.67,498.33 566.67,520 556.67,538.33 540,551.67 L 615,830 C 751.67,783.33 850,653.33 850,500 850,306.67 693.33,150 500,150 Z M 728.33,673.33 C 720,683.33 705,686.67 693.33,678.33 681.67,670 680,655 688.33,645 688.33,645 733.33,585 733.33,500 733.33,415 688.33,355 688.33,355 680,345 681.67,330 693.33,321.67 705,313.33 720,316.67 728.33,326.67 731.67,330 783.33,398.33 783.33,500 783.33,601.67 731.67,670 728.33,673.33 Z M 606.67,608.33 C 596.67,598.33 598.33,580 608.33,570 608.33,570 633.33,543.33 633.33,500 633.33,456.67 608.33,431.67 608.33,430 598.33,420 598.33,403.33 606.67,391.67 616.67,380 631.67,380 641.67,390 643.33,391.67 683.33,433.33 683.33,500 683.33,566.67 643.33,608.33 641.67,610 631.67,620 616.67,618.33 606.67,608.33 Z M 393.33,608.33 C 383.33,618.33 368.33,620 358.33,610 356.67,606.67 316.67,566.67 316.67,500 316.67,433.33 356.67,393.33 358.33,390 368.33,380 385,380 393.33,391.67 403.33,401.67 401.67,420 391.67,430 391.67,431.67 366.67,456.67 366.67,500 366.67,543.33 391.67,570 391.67,570 401.67,580 403.33,596.67 393.33,608.33 Z M 306.67,678.33 C 295,686.67 280,683.33 271.67,673.33 268.33,670 216.67,601.67 216.67,500 216.67,398.33 268.33,330 271.67,326.67 280,316.67 295,313.33 306.67,321.67 318.33,330 320,345 311.67,355 311.67,355 266.67,415 266.67,500 266.67,585 311.67,645 311.67,645 320,655 316.67,670 306.67,678.33 Z M 306.67,678.33"
+        />
+      </symbol>
+      <symbol id="img-breaker" viewBox="0 0 128 128">
+        <path
+          fill="#1269FF"
+          d="M52.79,91c4.08,12.49,10.64,23.85,19.12,33.5c15.88-2.06,29.85-10.22,39.46-22.06  c-7.84,2.07-16.07,3.17-24.56,3.17c-6.79,0-13.42-0.72-19.81-2.06C60.33,102.19,54.93,97.34,52.79,91z"
+        />
+        <path
+          fill="#5C9DFF"
+          d="M64,125c2.68,0,5.32-0.17,7.91-0.51c-8.48-9.65-15.04-21.01-19.12-33.5  c-0.64-1.91-0.99-3.95-0.99-6.07c0-4.77,1.76-9.12,4.66-12.46c-11.1,12.41-19.02,27.71-22.48,44.64C42.83,122.13,53.08,125,64,125z"
+        />
+        <path
+          fill="#9EC6FF"
+          d="M4.69,78.33c4,16.61,14.79,30.57,29.28,38.78c3.47-16.95,11.4-32.28,22.52-44.69  c3.48-3.98,8.6-6.49,14.3-6.49c1.27,0,2.5,0.12,3.7,0.36c-6.36-1.33-12.95-2.04-19.71-2.04C36.43,64.24,19.28,69.39,4.69,78.33z"
+        />
+        <path
+          fill="#D1E3FF"
+          d="M74.5,66.28c-6.36-1.33-12.95-2.04-19.71-2.04c-18.36,0-35.51,5.15-50.1,14.09  C3.59,73.74,3,68.94,3,64c0-19.02,8.71-36.01,22.35-47.2c29.91,9.03,53.64,32.31,63.39,61.91c0.09,0.26,0.18,0.52,0.26,0.79  c-0.08-0.26-0.17-0.53-0.26-0.79C86.55,72.42,81.14,67.59,74.5,66.28z"
+        />
+        <path
+          fill="#FFFFFF"
+          d="M121.99,53c0-27-22.49-50-58-50C49.33,3,35.87,8.18,25.35,16.8c30.18,9.12,54.07,32.7,63.64,62.69  c0.56,1.75,1.07,3.62,1.53,5.42C107.86,84.53,121.99,70.43,121.99,53z"
+        />
+        <path
+          fill="#003DAD"
+          d="M70.8,68.92c1.12,0,2.06,0.09,3.12,0.3c5.56,1.1,10.12,5.14,11.98,10.43c0.54,1.7,1.25,4.25,1.7,6l0.59,2.31  l2.38-0.05C109.51,87.51,125,72.1,125,53c0-28.93-24.13-53-61-53C48.79,0.05,34.37,5.58,23.45,14.48C9.14,26.21,0,44.04,0,64  c0.01,5.12,0.63,10.27,1.78,15.03c4.2,17.43,15.52,32.08,30.71,40.68c9.19,5.18,20.18,8.25,31.51,8.28c2.78,0,5.61-0.19,8.29-0.53  c16.67-2.16,31.32-10.73,41.41-23.14l0.66-0.81l-1.28-4.63l-2.47,0.65c-7.66,2.03-15.51,3.08-23.8,3.07c-6.63,0-12.95-0.68-19.19-2  C62,99.47,57.43,95.38,55.63,90.04c-0.58-1.68-0.84-3.24-0.83-5.11c-0.06-4.17,1.37-7.6,3.95-10.53C61.69,71.04,66,68.92,70.8,68.92  z M64,6c34.12,0,55,21.92,55,47c0,14.99-11.56,27.3-26.23,28.78c-0.39-1.39-0.81-2.86-1.17-3.98c-9.29-29.1-31.41-51.63-59.87-62.03  C40.98,9.49,51.89,5.96,64,6z M6,64c0-17.51,7.76-33.21,20.03-43.85c23.34,7.48,42.47,23.45,53.64,44.64  c-1.45-0.64-2.98-1.13-4.58-1.45c-6.5-1.35-13.39-2.1-20.3-2.1c-17.28,0.03-33.84,4.58-48,12.4C6.26,70.51,6,67.33,6,64z   M66.39,106.48c6.53,1.37,13.47,2.12,20.42,2.12c5.31,0,10.59-0.44,15.72-1.25c-8.1,7.21-18.23,12.17-29.43,13.94  c-4.26-5-7.96-10.4-11.05-16.17C63.43,105.71,64.88,106.17,66.39,106.48z M65.94,121.97C65.3,121.99,64.65,122,64,122  c-9.73,0.03-18.59-2.26-26.63-6.45c2.31-10.17,6.25-19.6,11.58-28.14c0.18,1.57,0.53,3.13,0.99,4.52  C53.51,102.82,59.02,113.07,65.94,121.97z M54.25,70.43c-10.42,11.68-18.29,26.2-22.27,41.94c-11.43-7.58-20.01-19.1-23.82-32.62  c13.79-8.04,29.5-12.54,46.63-12.51c0.96,0,1.91,0.01,2.86,0.04C56.41,68.21,55.27,69.26,54.25,70.43z"
+        />
+      </symbol>
+      <symbol id="img-pocketcasts" viewBox="0 0 26 26">
+        <circle cx="13" cy="13" r="13" fill="#f43e37" />
+        <g transform="translate(2.888889, 2.888889)" fill="#FFFFFF">
+          <path
+            d="M0,10 C0,4.4771525 4.4771525,0 10,0 C15.5228475,0 20,4.4771525 20,10 L17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 L10,20 C4.4771525,20 0,15.5228475 0,10 Z M10,16 C6.6862915,16 4,13.3137085 4,10 C4,6.6862915 6.6862915,4 10,4 C13.3137085,4 16,6.6862915 16,10 L13.8181818,10 C13.8181818,7.89127641 12.1087236,6.18181818 10,6.18181818 C7.89127641,6.18181818 6.18181818,7.89127641 6.18181818,10 C6.18181818,12.1087236 7.89127641,13.8181818 10,13.8181818 L10,16 Z"
+          />
+        </g>
+      </symbol>
+      <symbol id="img-radiopublic" viewBox="0 0 80 80">
+        <rect width="72" height="72" x="4" y="4" fill="#CE262F" rx="15" />
+        <g transform="translate(18.824 16)">
+          <g transform="translate(18.216 5.864)">
+            <path
+              fill="#FFF"
+              d="M24.7985766,40.954138 C16.5462969,36.9788844 8.29482251,44.9293916 0.0433480972,40.954138 C0.0425428396,27.7024743 0.0425428396,14.4508105 0.0433480972,1.19914682 C8.29482251,5.1744004 16.5462969,-2.77610675 24.7985766,1.19914682 L24.7985766,40.954138 Z"
+            />
+          </g>
+          <path
+            fill="#CE262F"
+            d="M29.6255874,25.4985876 C29.9106486,25.431474 30.196515,25.3627235 30.4815762,25.293973 C31.5477372,25.0377954 31.6475892,24.3527455 31.6483944,23.5514745 C31.6475892,22.1109873 31.6475892,20.6713186 31.6483944,19.2308314 C31.6459787,18.2904225 31.5485425,17.7207752 30.4815762,17.9769528 C30.196515,18.0457033 29.9106486,18.1144538 29.6255874,18.1815675 L29.6255874,25.4985876 Z M29.6255874,29.714468 L29.6255874,40.0974343 C28.1052611,40.4559191 26.58574,40.7816657 25.066219,40.9248959 L25.066219,15.0026741 C27.2267251,14.7988779 29.3856206,14.2275938 31.5453215,13.7152387 C35.4202209,12.8034758 36.2423889,14.8144286 36.2415837,17.9818635 L36.2415837,23.1725282 C36.2431942,26.3939814 34.973303,28.440128 31.7852882,29.1980206 C31.065388,29.3674416 30.3454877,29.5442287 29.6255874,29.714468 L29.6255874,29.714468 Z"
+          />
+          <path
+            fill="#E7E7E7"
+            d="M25.0907793,40.9476491 C25.0907793,40.9476491 24.7074767,43.1566689 18.258974,46.8176344 L18.258974,25.3404614 L25.0907793,40.9476491 Z"
+          />
+          <path
+            fill="#FFF"
+            d="M25.0680711,40.9026339 C16.7127184,36.9273803 8.35656053,44.8778874 0.00040262879,40.9026339 L0.00040262879,1.14764269 C8.35656053,5.12289627 16.7127184,-2.82761088 25.0680711,1.14764269 L25.0680711,40.9026339 Z"
+          />
+          <path
+            fill="#CE262F"
+            d="M11.4584933,18.8286408 C11.7556333,18.7598903 12.0527733,18.6886844 12.3499134,18.618297 C13.2775701,18.3981316 13.6181941,17.9708962 13.6181941,16.7513928 L13.6181941,13.2320207 C13.6173888,12.1172801 13.4120481,11.8152688 12.4868072,12.0354342 C12.1445727,12.1172801 11.801533,12.1991259 11.4584933,12.2785164 L11.4584933,18.8286408 Z M11.4584933,34.1935648 C9.9389722,34.5471389 8.41945115,34.8671562 6.89912484,35.009568 L6.89912484,9.0873462 C9.29879242,8.86227008 11.6992653,8.19604475 14.0981276,7.65176976 C16.875461,7.01091665 18.2798302,8.47923144 18.2798302,11.258717 L18.2798302,15.4050284 C18.2814407,17.558393 17.1122067,18.6166601 16.2578284,19.1609351 C16.9769234,19.3017099 18.2137991,20.0358673 18.2121886,21.960882 L18.2121886,30.7756815 C18.2105781,31.8912406 18.4183345,32.3602174 18.5882439,32.6614102 L18.5882439,32.8357419 C17.0687228,32.9445969 15.550007,33.2433343 14.0296807,33.5895423 C13.7913245,33.3644662 13.6198046,32.8480188 13.6181941,31.6980844 L13.6181941,24.1371635 C13.6165836,22.9176602 13.3452118,22.6672118 12.4183603,22.8873772 C12.098673,22.9634939 11.7781805,23.0396105 11.4584933,23.1140902 L11.4584933,34.1935648 Z"
+          />
+        </g>
+      </symbol>
+      <symbol id="img-rss" viewBox="0 0 16 16">
+        <path
+          fill="#e89155"
+          fill-rule="evenodd"
+          d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2 8 8 0 0 1 8 8 1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2 4 4 0 0 1 4 4 1 1 0 1 0 2 0 6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+        ></path>
+      </symbol>
+      <symbol id="img-map-marker" viewBox="0 0 16 16">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+        />
+      </symbol>
+      <symbol id="img-envelope" viewBox="0 0 16 16">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"
+        ></path>
+      </symbol>
+      <symbol id="img-seed" viewBox="0 0 511.997 511.997">
+        <path
+          fill="currentColor"
+          d="M368.232,242.574c-0.186-0.901-0.457-1.801-0.815-2.672c-0.357-0.858-0.801-1.687-1.315-2.459 c-0.515-0.786-1.115-1.515-1.773-2.173c-0.658-0.658-1.387-1.258-2.173-1.787c-0.772-0.515-1.601-0.958-2.473-1.315 c-0.858-0.357-1.758-0.629-2.673-0.815c-1.844-0.372-3.731-0.372-5.589,0c-0.901,0.186-1.801,0.457-2.673,0.815 c-0.858,0.357-1.687,0.801-2.459,1.315c-0.786,0.529-1.515,1.129-2.173,1.787c-0.658,0.658-1.258,1.387-1.787,2.173 c-0.515,0.772-0.958,1.601-1.315,2.46c-0.357,0.871-0.629,1.771-0.815,2.672c-0.186,0.929-0.272,1.874-0.272,2.802 c0,0.929,0.086,1.874,0.272,2.788c0.186,0.916,0.457,1.817,0.815,2.673c0.357,0.859,0.801,1.701,1.315,2.473 c0.529,0.786,1.129,1.515,1.787,2.173s1.387,1.258,2.173,1.773c0.772,0.515,1.601,0.958,2.459,1.315 c0.872,0.357,1.773,0.629,2.673,0.815c0.929,0.186,1.873,0.284,2.802,0.284c3.76,0,7.448-1.528,10.107-4.188 c0.658-0.658,1.258-1.387,1.773-2.173c0.515-0.772,0.958-1.615,1.315-2.473c0.357-0.858,0.629-1.757,0.815-2.673 c0.186-0.915,0.286-1.858,0.286-2.788C368.518,244.448,368.418,243.503,368.232,242.574z"
+        />
+        <path
+          fill="currentColor"
+          d="M507.812,57.071c-2.77-2.77-6.552-4.264-10.47-4.183c-3.677,0.093-90.523,2.74-130.967,43.183 c-1.993,1.993-3.835,4.031-5.539,6.105c-4.546-10.155-11.055-20.063-20.168-29.175c-49.113-49.111-155.3-52.345-159.798-52.459 c-3.904-0.086-7.699,1.414-10.47,4.183c-2.769,2.77-4.281,6.554-4.181,10.47c0.113,4.497,3.346,110.685,52.459,159.796 c22.924,22.922,50.854,29.424,75.181,29.424c30.726,0,55.701-10.38,57.53-11.159c1.176-0.502,2.263-1.162,3.249-1.943 c1.159,1.044,2.482,1.91,3.943,2.533c1.514,0.645,22.139,9.218,47.583,9.218c20.232,0,43.512-5.422,62.646-24.558 c40.444-40.443,43.091-127.289,43.183-130.966C512.092,63.625,510.581,59.84,507.812,57.071z M338.372,175.002l-49.65-49.649 c-5.582-5.581-14.634-5.581-20.216,0c-5.582,5.582-5.582,14.634,0,20.218l47.962,47.96c-21.839,4.003-54.266,4.549-77.572-18.755 c-31.068-31.066-40.354-94.995-43.043-124.611c29.604,2.666,93.461,11.915,124.6,43.056 C345.312,118.078,343.034,153.317,338.372,175.002z M448.596,178.29c-23.56,23.563-59.551,15.479-73.247,11.197 c-4.343-13.701-12.471-49.483,11.245-73.199c23.413-23.414,70.911-31.164,95.668-33.667 C479.759,107.382,472.008,154.88,448.596,178.29z"
+        />
+        <path
+          fill="currentColor"
+          d="M262.304,102.341c-0.186-0.915-0.457-1.815-0.815-2.673c-0.357-0.858-0.801-1.687-1.315-2.472 c-0.515-0.772-1.115-1.517-1.773-2.174s-1.387-1.244-2.173-1.773c-0.772-0.513-1.601-0.958-2.473-1.315 c-0.858-0.357-1.758-0.628-2.673-0.813c-1.844-0.373-3.745-0.373-5.589,0c-0.901,0.186-1.801,0.456-2.673,0.813 c-0.858,0.357-1.687,0.802-2.459,1.315c-0.786,0.529-1.515,1.115-2.173,1.773c-0.672,0.658-1.258,1.401-1.787,2.174 c-0.515,0.786-0.958,1.615-1.315,2.472c-0.357,0.859-0.629,1.758-0.815,2.673c-0.186,0.929-0.272,1.858-0.272,2.802 c0,0.929,0.086,1.858,0.272,2.788c0.186,0.915,0.457,1.815,0.815,2.673s0.801,1.687,1.315,2.472 c0.529,0.772,1.115,1.501,1.787,2.174c0.658,0.658,1.387,1.258,2.173,1.773c0.772,0.513,1.601,0.958,2.459,1.315 c0.872,0.357,1.773,0.628,2.673,0.813c0.929,0.186,1.873,0.286,2.802,0.286c0.929,0,1.873-0.1,2.788-0.286 c0.915-0.186,1.815-0.456,2.673-0.813c0.858-0.357,1.701-0.802,2.473-1.315c0.786-0.515,1.515-1.115,2.173-1.773 c0.658-0.673,1.258-1.401,1.773-2.174c0.515-0.786,0.958-1.615,1.315-2.472c0.357-0.859,0.629-1.758,0.815-2.673 c0.186-0.929,0.286-1.858,0.286-2.788C262.59,104.199,262.49,103.27,262.304,102.341z"
+        />
+        <path
+          fill="currentColor"
+          d="M456.119,422.532c-2.457-15.512-9.811-29.786-21.231-40.93c-13.782-13.448-31.98-20.855-51.241-20.855 c-5.121,0-10.187,0.555-15.131,1.6V288.26c0-7.894-6.4-14.295-14.295-14.295c-7.895,0-14.295,6.401-14.295,14.295v44.204 c-15.146-17.981-37.815-29.425-63.11-29.425c-14.024,0-27.746,3.588-39.878,10.29c-19.158-26.623-49.862-42.618-83.385-42.618 c-39.729,0-75.795,23.072-92.754,58.367c-30.393,2.154-54.463,27.57-54.463,58.502c0,10.879,2.963,21.34,8.503,30.432 C5.201,431.23,0,447.091,0,463.768c0,5.481,0.585,10.994,1.738,16.387c1.411,6.593,7.236,11.305,13.979,11.305h461.223 c3.881,0,7.595-1.578,10.29-4.371c2.695-2.793,4.137-6.563,3.997-10.441C490.381,453.286,476.645,432.598,456.119,422.532z  M28.598,462.87c0.187-10.534,3.66-20.518,9.931-28.799H214.84c7.895,0,14.295-6.401,14.295-14.295s-6.4-14.295-14.295-14.295 H40.884c-3.85-5.159-5.961-11.376-5.961-17.902c0-16.574,13.485-30.057,30.057-30.057c1.146,0,2.312,0.071,3.558,0.219 c6.604,0.773,12.869-3.096,15.123-9.35c10.583-29.361,38.669-49.088,69.888-49.088c28.149,0,53.55,15.629,66.29,40.786 c1.98,3.91,5.645,6.697,9.942,7.558c4.301,0.863,8.753-0.294,12.088-3.139c9.738-8.304,22.148-12.877,34.945-12.877 c29.728,0,53.914,24.185,53.914,53.913c0,0.915-0.034,1.92-0.107,3.165c-0.336,5.742,2.802,11.126,7.965,13.665 c5.163,2.536,11.343,1.733,15.685-2.041c8.154-7.089,18.585-10.992,29.377-10.992c24.459,0,44.128,19.15,44.778,43.596 c0.163,6.135,4.226,11.482,10.092,13.286c8.849,2.718,15.993,8.823,20.158,16.65H28.598z"
+        />
+        <path
+          fill="currentColor"
+          d="M271.739,416.975c-0.186-0.899-0.457-1.8-0.815-2.67c-0.357-0.859-0.801-1.688-1.315-2.46 c-0.515-0.786-1.115-1.515-1.773-2.173c-2.659-2.659-6.347-4.19-10.107-4.19c-3.76,0-7.448,1.53-10.107,4.19 c-0.658,0.658-1.258,1.387-1.787,2.173c-0.515,0.772-0.958,1.601-1.315,2.46c-0.357,0.871-0.629,1.771-0.815,2.672 c-0.186,0.929-0.272,1.874-0.272,2.802c0,0.929,0.086,1.874,0.272,2.788c0.186,0.916,0.457,1.817,0.815,2.673 c0.357,0.872,0.801,1.701,1.315,2.473c0.529,0.786,1.129,1.515,1.787,2.173c0.658,0.658,1.387,1.258,2.173,1.773 c0.772,0.515,1.601,0.958,2.459,1.315c0.872,0.357,1.773,0.629,2.673,0.815c0.929,0.186,1.873,0.284,2.802,0.284 c3.76,0,7.448-1.528,10.107-4.188c0.658-0.658,1.258-1.387,1.773-2.173c0.515-0.772,0.958-1.601,1.315-2.473 c0.357-0.858,0.629-1.757,0.815-2.673c0.186-0.915,0.286-1.858,0.286-2.788C272.025,418.849,271.925,417.904,271.739,416.975z"
+        />
+      </symbol>
+      <symbol id="img-gem" viewBox="0 0 16 16">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6l3-4zm11.386 3.785l-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004l.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999l-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817l2.194-6.828 2.929-.003-5.123 6.831z"
+        ></path>
+      </symbol>
+      <symbol id="img-earbuds" viewBox="0 0 16 16">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.432 4.432 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.548.548 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563-.43.112-.561.994-.292 1.969.269.975.836 1.675 1.266 1.563zm3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.434 4.434 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948zm.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563.43.112.561.994.292 1.969-.269.975-.836 1.675-1.266 1.563z"
+        ></path>
+      </symbol>
+      <symbol id="img-youtube" viewBox="0 0 71.412065 50">
+        <g transform="scale(0.58823529,0.58823529)">
+          <path
+            fill="currentColor"
+            d="M 118.9,13.3 C 117.5,8.1 113.4,4 108.2,2.6 98.7,0 60.7,0 60.7,0 60.7,0 22.7,0 13.2,2.5 8.1,3.9 3.9,8.1 2.5,13.3 0,22.8 0,42.5 0,42.5 0,42.5 0,62.3 2.5,71.7 3.9,76.9 8,81 13.2,82.4 22.8,85 60.7,85 60.7,85 c 0,0 38,0 47.5,-2.5 5.2,-1.4 9.3,-5.5 10.7,-10.7 2.5,-9.5 2.5,-29.2 2.5,-29.2 0,0 0.1,-19.8 -2.5,-29.3 z"
+          />
+          <polygon fill="#fff" points="80.2,42.5 48.6,24.3 48.6,60.7 " />
+        </g>
+      </symbol>
+    </svg>
+    <script>
+      /** @type {{[id: string]: {title: string}}} */
+      var articles;
+      /** @type {HTMLAnchorElement[]} */
+      var articleLinks;
+      /** @type {HTMLAnchorElement} */
+      var logo = document.getElementById("logo");
+      /** @type {HTMLHtmlElement} */
+      var html = document.querySelector("html");
+      /** @type {{[from: string]: string}} */
+      var redirects = {
+        "!/": "!/de/",
+        "!/service/sunday/": "!/de/service/sunday-1000/",
+        "!/geo/": "!/de/geo/",
+        "!/event/": "!/de/events/",
+        "!/packparty/": "!/de/packparty/",
+        "!/next/service/": "!/de/next/service/",
+        "!/next/cellgroup/": "!/de/next/cellgroup/",
+        "!/next/help/": "!/de/next/help/",
+        "!/next/talents/": "!/de/next/gifts/",
+        "!/next/baptism/": "!/de/next/baptism/",
+        "!/next/participate/": "!/de/next/participate/",
+        "!/member/dominik/": "!/de/leadership/dominik/",
+        "!/member/jonas/": "!/de/leadership/jonas/",
+        "!/member/simon/": "!/de/leadership/simon/",
+        "!/member/milena/": "!/de/leadership/milena/",
+        "!/member/fabienne/": "!/de/leadership/fabienne/",
+        "!/member/marc/": "!/de/leadership/marc/",
+        "!/member/monika/": "!/de/leadership/monika/",
+        "!/member/andreas/": "!/de/leadership/andreas/",
+        "!/member/sabina/": "!/de/leadership/sabina/",
+        "!/group/jugendkreis/": "!/de/group/hafen/",
+        "!/group/seniorenkreis/": "!/de/group/seniorenkreis/",
+        "!/contact/bank/": "!/de/give/",
+        "!/imprint/": "!/de/imprint/",
+        "!/data-protection/": "!/de/data-protection/",
+        "!/downloads/": "!/de/downloads/",
+      };
+      /** @type {'Edge'|'LegacyEdge'|'Firefox'|'Chrome'|'Safari'|'WebKit'|'IE'} */
+      var browser =
+        navigator.userAgent.indexOf("Edge/") > -1
+          ? "Edge"
+          : navigator.userAgent.indexOf("Edg/") > -1
+          ? "LegacyEdge"
+          : navigator.userAgent.indexOf("Gecko/") > -1
+          ? "Firefox"
+          : navigator.userAgent.indexOf("Chrome/") > -1
+          ? "Chrome"
+          : navigator.userAgent.indexOf("Safari/") > -1
+          ? "Safari"
+          : navigator.userAgent.indexOf("WebKit/") > -1
+          ? "WebKit"
+          : "IE";
+      /**
+       * @template T
+       * @param {ArrayLike<T>} _
+       * @return {T[]}
+       */
+      var toArray =
+        Array.from ||
+        function (_) {
+          var r = [];
+
+          for (var i = 0; i < _.length; i++) {
+            r.push(_[i]);
+          }
+
+          return r;
+        };
+
+      function onhashchange() {
+        /** @type {string} */
+        var id = location.hash.slice(1);
+
+        if (!articles) {
+          articles = toArray(document.querySelectorAll("article[id]")).reduce(
+            function (as, e) {
+              as[e.id] = e.dataset;
+
+              return as;
+            },
+            {}
+          );
+        }
+
+        if (!articleLinks) {
+          articleLinks = toArray(document.querySelectorAll('a[href^="#!/"]'));
+        }
+
+        if (id in articles) {
+          document.title = articles[id].title + " | EFG Ludwigshafen";
+          articleLinks.forEach(function (_) {
+            if (id.indexOf(_.href.split("#")[1]) === 0) {
+              _.classList.add("active");
+            } else {
+              _.classList.remove("active");
+            }
+          });
+          html.lang = id.slice(2, 4);
+          logo.href = "#" + id.slice(0, 5);
+          toArray(
+            document.getElementById(id).getElementsByTagName("noscript")
+          ).forEach(function (_) {
+            var d = document.createElement("div");
+            d.innerHTML = _.textContent;
+            toArray(d.children).forEach(function (c) {
+              _.parentElement.insertBefore(c, _);
+            });
+            _.parentElement.removeChild(_);
+          });
+        } else if (id + "/" in articles) {
+          location.hash = "#" + id + "/";
+        } else if (id in redirects) {
+          location.hash = "#" + redirects[id];
+        } else if (id + "/" in redirects) {
+          location.hash = "#" + redirects[id + "/"];
+        } else {
+          location.hash = "#" + Object.keys(articles)[0];
+        }
+      }
+
+      window.addEventListener("hashchange", onhashchange);
+      onhashchange();
+
+      if (browser === "IE") {
+        // IE doesn't support webp => replace with jpg
+        toArray(document.querySelectorAll('img[src*=".webp"]')).forEach(
+          function (_) {
+            _.src = _.src.replace(/\.webp/g, ".jpg");
+          }
+        );
+        toArray(document.querySelectorAll('[style*=".webp"]')).forEach(
+          function (_) {
+            _.setAttribute(
+              "style",
+              _.getAttribute("style").replace(/\.webp/g, ".jpg")
+            );
+          }
+        );
+      }
+    </script>
+    <noscript class="alert">
+      efg-ludwigshafen.de funktioniert am besten mit aktiviertem JavaScript. Wir
+      laden keine Werbung und führen keine Aufruf-Statistik. Bitte aktiviere
+      JavaScript in deinen Browser-Einstellungen.
+    </noscript>
+  </body>
+</html>
