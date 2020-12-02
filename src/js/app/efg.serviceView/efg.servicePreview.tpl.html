@@ -1,9 +1,0 @@
-<component classes="services {{classes}}" responsive-background="{{background}}" responsive-background-dark="{{dark}}" header="{{ services.length === 1 ? 'Unser Gottesdienst' : 'Unsere Gottesdienste' }}"
-	subheader="Wir freuen uns sehr, Dich dort zu begrüßen.">
-	<div ng-if="services" class="col-sm-6" style="padding-left: 2rem; padding-right: 2rem" ng-repeat="service in services" ng-class="{'col-sm-offset-3': isLastAndOdd($index)}">
-		<a ng-href="#!/service/{{service.id}}" class="btn btn-lg btn-block btn-outline">
-			<span ng-bind="service.title"></span><br>
-			<strong ng-bind="service.subtitle"></strong>
-		</a>
-	</div>
-</component>
