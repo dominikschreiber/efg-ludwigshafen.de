@@ -5,6 +5,10 @@
 	RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
+<filesMatch ".(jpg|jpeg|png|gif|ico|webp)$">
+Header set Cache-Control "max-age=31536000, public"
+</filesMatch>
+
 Redirect 302 /zoom https://us02web.zoom.us/j/2202766707?pwd=dTVreXJLQXFzdVNrTUp0aVpZUzdJUT09
 Redirect 302 /telegram https://t.me/efgludwigshafen
 Redirect 302 /whatsapp https://chat.whatsapp.com/EqHjh3PjCTcLARdD84zgo3
