@@ -3201,6 +3201,8 @@
           ).forEach(replaceNoscript);
         } else if (id + '/' in articles) {
           location.hash = '#' + id + '/';
+        } else if (id.slice(0, -1) in articles) {
+          location.hash = '#' + id.slice(0, -1);
         } else if (id in redirects) {
           location.hash = '#' + redirects[id];
         } else if (id + '/' in redirects) {
