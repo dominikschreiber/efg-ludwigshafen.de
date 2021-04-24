@@ -24,5 +24,6 @@ Redirect 302 /packparty https://efg-ludwigshafen.de/#!/de/packparty/
 Redirect 302 /ichkomme https://efg-lu.church.tools/publicgroup/209
 Redirect 302 /ich-komme https://efg-lu.church.tools/publicgroup/209
 Redirect 302 /downloads https://efg-ludwigshafen.de/#!/de/downloads/
+Redirect 302 /infektionsschutzkonzept https://efg-ludwigshafen.de/#!/de/infektionsschutzkonzept
 Redirect 302 /taufkurs https://efg-lu.church.tools/publicgroup/230
 Redirect 302 /tauf-kurs https://efg-lu.church.tools/publicgroup/230
