@@ -318,6 +318,36 @@
       nav > .active {
         font-weight: bold;
       }
+
+      .live > svg {
+        color: #ea3223;
+        animation: wiggle infinite 1s ease-in-out;
+      }
+
+      .live:hover > svg {
+        animation: none;
+      }
+
+      @keyframes wiggle {
+        0% {
+          transform: rotate(0deg);
+        }
+        5% {
+          transform: rotate(5deg);
+        }
+        15% {
+          transform: rotate(-5deg);
+        }
+        25% {
+          transform: rotate(5deg);
+        }
+        35% {
+          transform: rotate(-5deg);
+        }
+        40% {
+          transform: rotate(0deg);
+        }
+      }
       /* #endregion */
       /* #region a ========================================================== */
       a {
@@ -751,6 +781,7 @@
       <a
         href="https://www.youtube.com/channel/UCKg6EAu6yE9FSJj2wjNvB-Q/live"
         style="display: inline-flex; align-items: center"
+        id="youtube-title"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -760,7 +791,7 @@
         >
           <use href="#img-youtube" />
         </svg>
-        <span
+        <span id="youtube-title-text"
           >Sonntag ab 10:00 Uhr streamen wir unseren Gottesdienst auf YouTube.
           Klick hier um dabei zu sein!</span
         >
@@ -3430,6 +3461,8 @@
 
           return r;
         };
+      /** @type {Date} */
+      var now = new Date();
 
       /** @type {HTMLNoScriptElement} */
       function replaceNoscript(_) {
@@ -3508,6 +3541,12 @@
         toArray(
           document.querySelector('head').querySelectorAll('noscript')
         ).forEach(replaceNoscript);
+      }
+
+      if (now.getDay() === 0 && 9 < now.getHours() && now.getHours() < 12) {
+        document.getElementById('youtube-title').classList.add('live');
+        document.getElementById('youtube-title-text').textContent =
+          'Wir sind live auf YouTube. Klick hier um dabei zu sein!';
       }
     </script>
     <noscript class="alert">
