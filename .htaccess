@@ -21,12 +21,12 @@ Redirect 302 /anchor https://anchor.fm/efgludwigshafen
 Redirect 302 /instagram http://instagram.com/efgludwigshafen/
 Redirect 302 /facebook http://facebook.com/efglu
 Redirect 302 /paypal https://www.paypal.com/donate?hosted_button_id=DGLL9UQBHAZHQ
-Redirect 302 /paypal-cancel https://efg-ludwigshafen.de/#!/de/give/cancel/
-Redirect 302 /paypal-completed https://efg-ludwigshafen.de/#!/de/give/completed/
+Redirect 302 /paypal-cancel https://efg-ludwigshafen.de/#!/de/give/cancel
+Redirect 302 /paypal-completed https://efg-ludwigshafen.de/#!/de/give/completed
 Redirect 302 /packparty https://efg-ludwigshafen.de/#!/de/packparty/
-Redirect 302 /anmeldung https://efg-lu.church.tools/publicgroup/212
-Redirect 302 /ichkomme https://efg-lu.church.tools/publicgroup/212
-Redirect 302 /ich-komme https://efg-lu.church.tools/publicgroup/212
+Redirect 302 /anmeldung https://efg-lu.church.tools/publicgroup/215
+Redirect 302 /ichkomme https://efg-lu.church.tools/publicgroup/215
+Redirect 302 /ich-komme https://efg-lu.church.tools/publicgroup/215
 Redirect 302 /downloads https://efg-ludwigshafen.de/#!/de/downloads/
 Redirect 302 /infektionsschutzkonzept https://efg-ludwigshafen.de/#!/de/infektionsschutzkonzept
 Redirect 302 /taufkurs https://efg-lu.church.tools/publicgroup/230
