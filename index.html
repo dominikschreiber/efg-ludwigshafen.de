@@ -127,21 +127,22 @@
     <style>
       /**
        * @fileoverview
-       * colors obtained by spinning #55ace8 by 45° multiple times:
-       * --black: #132532;
-       * --grey: #ebebeb;
-       * --white: #ffffff;
-       * --blue: #55ace8;
-       * --violet: #6c55e8;
-       * --pink: #da55e8;
-       * --red: #e85587;
-       * --orange: #e89155;
-       * --lime: #d1e855;
-       * --green: #63e855;
-       * --turquoise: #55e8b6;
-       *
-       * --border-width: 0.0625rem;
-       * --border-radius: 0.25rem;
+       * colors obtained by spinning #55ace8 by 45° multiple times: * /
+       :root {
+        --black: #132532;
+        --grey: #ebebeb;
+        --white: #ffffff;
+        --blue: #55ace8;
+        --violet: #6c55e8;
+        --pink: #da55e8;
+        --red: #e85587;
+        --orange: #e89155;
+        --lime: #d1e855;
+        --green: #63e855;
+        --turquoise: #55e8b6;
+        --border-width: 0.0625rem;
+        --border-radius: 0.25rem;
+        }
        */
 
       html {
@@ -793,7 +794,7 @@
         </svg>
         <span id="youtube-title-text"
           >Sonntag ab 10:00 Uhr streamen wir unseren Gottesdienst auf YouTube.
-          Klick hier um dabei zu sein!</span
+          Klick hier, um dabei zu sein!</span
         >
       </a>
     </nav>
@@ -803,7 +804,7 @@
         style="
           background-image: linear-gradient(0deg, #132532ee 0, #132532ee 100%),
             url(img/header.webp);
-          height: 80vh;
+          height: 60vh;
         "
         class="inverse"
       >
@@ -814,7 +815,11 @@
         >
           <use href="#img-claim" />
         </svg>
-        <p style="margin-top: 15vh">
+      </section>
+      <section
+        style="background-color: #da55e8; padding-top: 0; padding-bottom: 0"
+      >
+        <p>
           <b>Wir feiern wieder Hybrid-Gottesdienste:</b>
           bis zu 45 Gäste vor Ort, zusätzlich als
           <a href="https://efg-ludwigshafen.de/youtube">YouTube-Stream</a>.
@@ -830,6 +835,17 @@
           >
           mit den Name/Handynummer/Adresse aller die du anmelden möchtest, und
           wir tragen Dich ein).
+        </p>
+      </section>
+      <section style="padding-top: 0; padding-bottom: 0">
+        <p>
+          <b>Eine Taufe steht an!</b> Am <i>13.6.21</i> feiern wir eine Taufe.
+          Du überlegst, Dich taufen zu lassen? Oder willst unsere Gemeinde
+          besser kennen lernen?
+          <a href="https://efg-ludwigshafen.de/taufkurs"
+            >Klick hier, um Dich jetzt zu unserem Tauf- und Gemeinde-Kurs
+            anzumelden.</a
+          >
         </p>
       </section>
       <section style="background-color: #55ace8">
@@ -3546,7 +3562,7 @@
       if (now.getDay() === 0 && 9 < now.getHours() && now.getHours() < 12) {
         document.getElementById('youtube-title').classList.add('live');
         document.getElementById('youtube-title-text').textContent =
-          'Wir sind live auf YouTube. Klick hier um dabei zu sein!';
+          'Wir sind live auf YouTube. Klick hier, um dabei zu sein!';
       }
     </script>
     <noscript class="alert">
