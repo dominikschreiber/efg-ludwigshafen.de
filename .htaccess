@@ -29,7 +29,7 @@ Redirect 302 /paypal https://www.paypal.com/donate?hosted_button_id=DGLL9UQBHAZH
 Redirect 302 /paypal-cancel https://efg-ludwigshafen.de/#!/de/give/cancel
 Redirect 302 /paypal-completed https://efg-ludwigshafen.de/#!/de/give/completed
 Redirect 302 /packparty https://efg-ludwigshafen.de/#!/de/packparty/
-Redirect 302 /anmeldung https://efg-lu.church.tools/publicgroup/243
+Redirect 302 /anmeldung https://efg-lu.church.tools/publicgroup/244
 Redirect 302 /ichkomme https://efg-lu.church.tools/publicgroup/243
 Redirect 302 /ich-komme https://efg-lu.church.tools/publicgroup/243
 Redirect 302 /downloads https://efg-ludwigshafen.de/#!/de/downloads/
