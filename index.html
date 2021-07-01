@@ -263,6 +263,7 @@
       background-color: #fffd;
       box-shadow: 0 0 0.5rem #13253233;
       backdrop-filter: blur(0.1875rem);
+      z-index: 1;
     }
 
     nav>* {
@@ -315,6 +316,16 @@
 
       40% {
         transform: rotate(0deg);
+      }
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 .25rem #55ace8;
+      }
+
+      100% {
+        box-shadow: 0 0 1rem #55ace8;
       }
     }
 
@@ -827,26 +838,14 @@
         <use href="#img-claim" />
       </svg>
     </section>
-    <section class="inverse" style="
-          background-color: #da55e866;
-          padding-top: 0;
-          padding-bottom: 0;
-          transform: translateY(-100%);
-          top: calc(80vh + 64px);
-          position: absolute;
-        ">
-      <p>
-        <b>Wir feiern wieder Hybrid-Gottesdienste:</b>
-        bis zu 45 Gäste vor Ort, zusätzlich als
-        <a href="https://efg-ludwigshafen.de/youtube">YouTube-Stream</a>.
-        Melde Dich über
-        <a href="https://efg-ludwigshafen.de/ichkomme">efg-ludwigshafen.de/ichkomme</a>
-        an, wenn du live dabei sein möchtest (wenn das absolut nicht klappt,
-        schreib eine Mail an
-        <a
-          href="mailto:info@efg-ludwigshafen.de?subject=Anmeldung%20zum%20Gottesdienst%20am%2027.6.21%20um%2010%3A00%20Uhr&body=Hallo%2C%0A%0Ahiermit%20melde%20ich%20die%20folgenden%20Personen%20zum%20Gottesdienst%20am%2027.6.21%20um%2010%3A00%20Uhr%20in%20der%20EFG%20Ludwigshafen%20an.%0A%0A%3CVorname%3E%20%3CNachname%3E%0A%3CAdresse%3E%0A%3CTelefonnummer%3E%0A%3CMailadresse%3E%0A%0A%3CWiederholen%20f%C3%BCr%20weitere%20Personen%3E%0A%0AMit%20dem%20Versand%20dieser%20Mail%20best%C3%A4tige%20ich%2C%20dass%20meine%20Daten%20entsprechend%20https%3A%2F%2Fefg-ludwigshafen.de%2F%23!%2Fde%2Fdata-protection%20verwendet%20werden%20d%C3%BCrfen.%20Weiterhin%20best%C3%A4tige%20ich%2C%20dass%20alle%20von%20mir%20angemeldeten%20Personen%20sich%20an%20das%20Infektionsschutzkonzept%20der%20EFG%20Ludwigshafen%20halten%20und%20bei%20jeglichen%20Erk%C3%A4ltungssymptomen%20nicht%20zum%20Gottesdienst%20kommen%20werden.%0A%0AViele%20Gr%C3%BC%C3%9Fe%0A%3CDu%3E">info@efg-ludwigshafen.de</a>
-        mit den Name/Handynummer/Adresse aller die du anmelden möchtest, und
-        wir tragen Dich ein).
+    <section class="inverse"
+      style="background-color: #55ace866; padding-top: 0; padding-bottom: 0; top: 64px; position: absolute">
+      <p><span style="filter: brightness(100)">🎶</span> Wir feiern einen <b>Open-Air-Lobpreis-Gottesdienst</b>. Und die
+        Gemeinde darf mitsingen! Am
+        <b>10.7.21 um
+          19:30 Uhr im hack-museumsgARTen Ludwigshafen</b>. <a
+          href="#!/de/service/lobpreis-gottesdienst-im-hack-museumsgarten">Klick hier um mehr darüber zu erfahren.</a>
+        <span style="filter: brightness(100)">🎶</span>
       </p>
     </section>
     <section id="channels">
@@ -891,10 +890,29 @@
     <section>
       <h1>Unser Gottesdienst</h1>
       <p>Wir freuen uns sehr, Dich dort zu begrüßen.</p>
-      <a href="#!/de/service/sunday-1000/" class="button">
-        Sonntagmorgen-Gottesdienst<br />
-        <b>Jeden Sonntag, 10:00 Uhr</b>
-      </a>
+      <div class="cols">
+        <div class="s-0 l-16"></div>
+        <div class="s-100 m-50 l-33">
+          <p><a href="#!/de/service/sunday-1000/" class="button">
+              Sonntagmorgen-Gottesdienst<br />
+              <b>Jeden Sonntag, 10:00 Uhr</b>
+            </a></p>
+          <p>Live oder im <a href="https://efg-ludwigshafen.de/youtube">YouTube-Stream</a>. Melde Dich über
+            <a href="https://efg-ludwigshafen.de/ichkomme">efg-ludwigshafen.de/ichkomme</a>
+            an, wenn Du live dabei sein möchtest.
+          </p>
+        </div>
+        <div class="s-100 m-50 l-33">
+          <p><a href="#!/de/service/lobpreis-gottesdienst-im-hack-museumsgarten" class="button"
+              style="animation: glow 1s infinite alternate ease-in-out">
+              Lobpreis-Gottesdienst<br>
+              <b>Samstag 10.7.21, 19:30 Uhr</b>
+            </a></p>
+          <p>Keine YouTube-Übertragung. Melde Dich über <a
+              href="https://efg-ludwigshafen.de/anmeldung">efg-ludwigshafen.de/anmeldung</a> an, wenn Du live dabei sein
+            möchtest.</p>
+        </div>
+      </div>
     </section>
     <section style="
           background-image: linear-gradient(0deg, #000c 0, #000c 100%),
@@ -1137,7 +1155,7 @@
       <div class="cols">
         <div class="s-100 l-33">
           <a href="#!/de/geo/">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="2rem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="32px">
               <use href="#img-map-marker" />
             </svg>
             <br />
@@ -1148,7 +1166,7 @@
         </div>
         <div class="s-100 l-33">
           <a href="mailto:info@efg-ludwigshafen.de?subject=Ich möchte Kontakt aufnehmen">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="2rem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="32px">
               <use href="#img-envelope" />
             </svg>
             <br />
@@ -1157,7 +1175,7 @@
         </div>
         <div class="s-100 l-33">
           <a href="#!/de/give/">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.997 511.997" height="2rem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.997 511.997" height="32px">
               <use href="#img-seed" />
             </svg>
             <br />
@@ -1208,6 +1226,34 @@
         Prediger erklärt uns einen Text aus der Bibel und eine Band singt mit
         uns Lieder, um Gott anzubeten.
       </p>
+    </section>
+  </article>
+  <!-- #endregion -->
+  <!-- #region !/de/service/lobpreis-gottesdienst-im-hack-museumsgarten ......... -->
+  <article id="!/de/service/lobpreis-gottesdienst-im-hack-museumsgarten"
+    data-title="Lobpreis-Gottesdienst im hack-museumsgARTen">
+    <section style="background-image: linear-gradient(0deg, #000a 0, #000a 100%), url(img/hackgarten.webp)"
+      class="inverse h-68">
+      <h1>Lobpreis-Gottesdienst im hack&#8209;museumsgARTen</h1>
+      <p>Am <b>10.7. ab 19:30 Uhr:</b> Singen, Beten, Hören im hack-museumsgARTen Ludwigshafen</p>
+    </section>
+    <section class="text">
+      <h2>Open-Air-Lobpreis-Gottesdienst</h2>
+      <p>Nach einem Jahr corona-bedingter Stille in den Gemeinden darf in Open-Air-Gottesdiensten endlich wieder
+        gesungen werden. Wir nutzen die zurückgewonnene Freiheit für einen <b>Open-Air-Lobpreis-Gottesdienst</b>. Du
+        bist herzlich dazu eingeladen &ndash; aus unserer Gemeinde, anderen Gemeinden und Jugenden in Ludwigshafen und
+        der Umgebung, und gerne auch einfach so.</p>
+      <p>
+        <b>Was?</b> Lieder singen für Gott.<br>
+        <b>Wann?</b> Am Samstag den 10.7.21, 19:30 Uhr bis 21:00 Uhr.<br>
+        <b>Wo?</b> Im <a
+          href="https://www.ludwigshafen.de/nachhaltig/engagement/interkulturelle-gaerten/hack-museumsgarten/"
+          target="blank">hack-museumsgARTen
+          Ludwigshafen</a>, Berliner Straße 23
+      </p>
+      <p><b>Infektionsschutz:</b> Bitte melde Dich über <a
+          href="https://efg-ludwigshafen.de/anmeldung">efg-ludwigshafen.de/anmeldung</a> an. Wir halten Deine Daten für
+        vier Wochen vor, um eine mögliche Kontaktverfolgung durch das Gesundheitsamt zu gewährleisten.</p>
     </section>
   </article>
   <!-- #endregion -->
