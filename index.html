@@ -321,7 +321,7 @@
 
     @keyframes glow {
       0% {
-        box-shadow: 0 0 .25rem #55ace8;
+        box-shadow: 0 0 0.25rem #55ace8;
       }
 
       100% {
@@ -822,17 +822,35 @@
         fill="#000">
         <use href="#img-youtube" />
       </svg>
-      <span id="youtube-title-text">Sonntag ab 10:00 Uhr streamen wir unseren Gottesdienst auf YouTube.
-        Klick hier, um dabei zu sein!</span>
+      <span id="youtube-title-text">Schau dir unsere Gottesdienst-Aufzeichnungen auf YouTube an.
+        <!--Sonntag ab 10:00 Uhr streamen wir unseren Gottesdienst auf YouTube.
+        Klick hier, um dabei zu sein!-->
+      </span>
     </a>
   </nav>
   <!-- #region !/de/ ##################################################### -->
   <article id="!/de/" data-title="Herzlich Willkommen">
+    <section class="inverse" style="
+          background-color: #da55e866;
+          padding-top: 0;
+          padding-bottom: 0;
+          transform: translateY(-100%);
+          top: calc(80vh + 64px);
+          position: absolute;
+        ">
+      <p>
+        <b>Am Sonntag (29.8.) feiern wir den Schulanfänger-Gottesdienst.</b>
+        Der Gottesdienst wird <i>nicht auf YouTube gestreamt</i>. Melde Dich
+        über
+        <a href="https://efg-ludwigshafen.de/ichkomme">efg-ludwigshafen.de/ichkomme</a>
+        an, um live dabei zu sein.
+      </p>
+    </section>
     <section style="
-            background-image: linear-gradient(0deg, #132532ee 0, #132532ee 100%),
-              url(img/header.webp);
-            height: 80vh;
-          " class="inverse">
+          background-image: linear-gradient(0deg, #132532ee 0, #132532ee 100%),
+            url(img/header.webp);
+          height: 80vh;
+        " class="inverse">
       <svg viewBox="0 0 2195 700" xmlns="http://www.w3.org/2000/svg"
         style="width: 50vw; max-width: 32rem; height: auto">
         <use href="#img-claim" />
@@ -883,11 +901,16 @@
       <div class="cols">
         <div class="s-0 m-16 l-33"></div>
         <div class="s-100 m-68 l-33">
-          <p><a href="#!/de/service/sunday-1000/" class="button">
+          <p>
+            <a href="#!/de/service/sunday-1000/" class="button">
               Sonntagmorgen-Gottesdienst<br />
               <b>Jeden Sonntag, 10:00 Uhr</b>
-            </a></p>
-          <p>Live oder im <a href="https://efg-ludwigshafen.de/youtube">YouTube-Stream</a>. Melde Dich über
+            </a>
+          </p>
+          <p>
+            Live oder im
+            <a href="https://efg-ludwigshafen.de/youtube">YouTube-Stream</a>.
+            Melde Dich über
             <a href="https://efg-ludwigshafen.de/ichkomme">efg-ludwigshafen.de/ichkomme</a>
             an, wenn Du live dabei sein möchtest.
           </p>
