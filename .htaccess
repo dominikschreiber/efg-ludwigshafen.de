@@ -38,3 +38,5 @@ Redirect 302 /downloads https://efg-ludwigshafen.de/#!/de/downloads/
 Redirect 302 /infektionsschutzkonzept https://efg-ludwigshafen.de/#!/de/infektionsschutzkonzept
 Redirect 302 /taufkurs https://efg-ludwigshafen.de/#!/de/next/baptism/
 Redirect 302 /tauf-kurs https://efg-ludwigshafen.de/#!/de/next/baptism/
+Redirect 302 /alpha-kurs https://efg-lu.church.tools/publicgroup/270
+Redirect 302 /alphakurs https://efg-lu.church.tools/publicgroup/270
