@@ -7,15 +7,10 @@
 
 <IfModule mod_headers.c>
   Header always set Permissions-Policy: interest-cohort=()
-</IfModule>
-
-<filesMatch ".(jpg|jpeg|png|gif|ico|webp)$">
-Header set Cache-Control "max-age=31536000, public"
-</filesMatch>
-
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule telemetry.csv - [R=403,NC,L]
+  
+  <filesMatch ".(jpg|jpeg|png|gif|ico|webp)$">
+  Header set Cache-Control "max-age=31536000, public"
+  </filesMatch>
 </IfModule>
 
 Redirect 302 /zoom https://us02web.zoom.us/j/2202766707?pwd=dTVreXJLQXFzdVNrTUp0aVpZUzdJUT09
